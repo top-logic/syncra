@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
+    <booleanAttribute key="org.eclipse.debug.core.ATTR_FORCE_SYSTEM_CONSOLE_ENCODING" value="false"/>
     <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
         <listEntry value="/synchra"/>
     </listAttribute>
@@ -20,5 +21,5 @@
     <stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="-port 8080 -contextPath /synchra"/>
     <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="synchra"/>
     <stringAttribute key="org.eclipse.jdt.launching.SOURCE_PATH_PROVIDER" value="org.eclipse.m2e.launchconfig.sourcepathProvider"/>
-    <stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Xms128m&#10;-Xmx256M &#10;-Declipse.workspace=&quot;${workspace_loc}&quot; &#10;-Dcom.top_logic.util.sched.task.SystemPropertyTaskClusterNodeName=8080&#10;-ea&#10;-XX:+HeapDumpOnOutOfMemoryError"/>
+    <stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Xms256m&#13;&#10;-Xmx1024M &#13;&#10;-Declipse.workspace=&quot;${workspace_loc}&quot; &#13;&#10;-Dcom.top_logic.util.sched.task.SystemPropertyTaskClusterNodeName=8080&#13;&#10;-ea&#13;&#10;-XX:+HeapDumpOnOutOfMemoryError&#10;-Dtl_initial_password=root1234&#13;&#10;&#10;-Dtl_environment=&quot;Developer machine&quot;&#13;&#10;-Dtl_config=${project_loc:/synchra}/bin/launch/conf/config-${project.developer}.xml&#13;&#10;-Dtl.developerMode=true&#13;&#10;-Dlog4j2.configurationFile=${workspace_loc:/synchra}/src/main/webapp/WEB-INF/conf/logging/logConf.xml"/>
 </launchConfiguration>

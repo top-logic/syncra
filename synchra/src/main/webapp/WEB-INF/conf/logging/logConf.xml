@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Configuration>
+	<Properties>
+		<!--
+			IMPORTANT: If this value is changed, the alias %LOG_PATH% in the application configuration
+			has to be changed in the same way.
+		-->
+		<Property name="log.directory">${sys:tl_dev_log_dir:-${sys:tl_log_dir:-${env:tl_log_dir:-tmp/app-data/logs}}}</Property>
+		<Property name="log.port">${sys:tl_log_port:-${env:tl_log_port:-4445}}</Property>
+		<Property name="filename.prefix">${hostName}.Synchra</Property>
+		<Property name="pattern.long">%date{ISO8601} %-5level [%thread]: %logger - %message%n%throwable</Property>
+		<Property name="pattern.plain">%message%n%throwable</Property>
+	</Properties>
+	<Appenders>
+		<Console name="STDOUT"
+			target="SYSTEM_OUT"
+		>
+			<PatternLayout pattern="${pattern.plain}"/>
+		</Console>
+		<Console name="STDERR"
+			target="SYSTEM_ERR"
+		>
+			<PatternLayout pattern="${pattern.plain}"/>
+		</Console>
+		<RollingFile name="FILE_APPENDER"
+			fileName="${log.directory}/${filename.prefix}.main.log"
+			filePattern="${log.directory}/${filename.prefix}.main.%i.log"
+		>
+			<PatternLayout pattern="${pattern.long}"/>
+			<DefaultRolloverStrategy max="10"/>
+			<SizeBasedTriggeringPolicy size="10 MB"/>
+		</RollingFile>
+		<RollingFile name="SCHEDULER_APPENDER"
+			fileName="${log.directory}/${filename.prefix}.scheduler.log"
+			filePattern="${log.directory}/${filename.prefix}.scheduler.%i.log"
+		>
+			<PatternLayout pattern="${pattern.long}"/>
+			<DefaultRolloverStrategy max="10"/>
+			<SizeBasedTriggeringPolicy size="10 MB"/>
+		</RollingFile>
+		<RollingFile name="MEMORY_APPENDER"
+			fileName="${log.directory}/${filename.prefix}.memory.log"
+			filePattern="${log.directory}/${filename.prefix}.memory.%i.log"
+		>
+			<PatternLayout pattern="${pattern.long}"/>
+			<DefaultRolloverStrategy max="10"/>
+			<SizeBasedTriggeringPolicy size="10 MB"/>
+		</RollingFile>
+		<SystemPropertyArbiter
+			propertyName="tl.developerMode"
+			propertyValue="true"
+		>
+			<Socket name="SOCKET_APPENDER"
+				host="localhost"
+				port="${log.port}"
+			>
+				<SerializedLayout/>
+			</Socket>
+		</SystemPropertyArbiter>
+	
+	</Appenders>
+	<Loggers>
+		<Logger name="STDOUT"
+			level="info"
+		>
+			<AppenderRef ref="STDOUT"/>
+		</Logger>
+		<Logger name="STDERR"
+			level="info"
+		>
+			<AppenderRef ref="STDERR"/>
+		</Logger>
+		<Logger name="com.top_logic.util.sched"
+			additivity="false"
+			level="info"
+		>
+			<AppenderRef ref="SCHEDULER_APPENDER"/>
+		</Logger>
+		<Logger name="com.top_logic.util.sched.MemoryObserverThread"
+			additivity="false"
+			level="info"
+		>
+			<AppenderRef ref="MEMORY_APPENDER"/>
+		</Logger>
+		<Logger name="com.top_logic.base.accesscontrol.ExternalAuthenticationServlet"
+			level="debug"
+		>
+			<AppenderRef ref="FILE_APPENDER"/>
+		</Logger>
+		<Logger name="com.top_logic.base.accesscontrol.J2eeRemoteUserAuthenticationServlet"
+			level="debug"
+		>
+			<AppenderRef ref="FILE_APPENDER"/>
+		</Logger>
+		<Root level="info">
+			<AppenderRef ref="FILE_APPENDER">
+				<Filters>
+					<ThreadContextMapFilter
+						onMatch="DENY"
+						onMismatch="NEUTRAL"
+						operator="or"
+					>
+						<KeyValuePair key="in-kafka-context"
+							value="true"
+						/>
+						<KeyValuePair key="in-tl-sync-context"
+							value="true"
+						/>
+					</ThreadContextMapFilter>
+				</Filters>
+			</AppenderRef>
+			<SystemPropertyArbiter
+				propertyName="tl.developerMode"
+				propertyValue="true"
+			>
+				<AppenderRef ref="SOCKET_APPENDER"/>
+			</SystemPropertyArbiter>			
+		</Root>
+		<!--
+			Prevent warning about useless Boolean instantiation. This happens when a
+			com.top_logic.element.meta.expr.internal.MethodCall calls a boolean method.
+			Hence the BooleanField should only log ERRORs.
+		-->
+		<Logger name="com.top_logic.layout.form.model.BooleanField"
+			level="error"
+		/>
+		<!-- Workaround for TL ticket #27408 -->
+		<Logger name="com.top_logic.knowledge.service.db2.AbstractFlexDataManager"
+			level="error"
+		/>
+	</Loggers>
+</Configuration>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	final="true"
+	template="com.top_logic/dialog.template.xml"
+>
+	<arguments
+		createOpenerButtons="false"
+		helpID="ID_e0b2f8f9_e6a1_4686_8edd_e882b57cc55a"
+	>
+		<title title="class.com.top_logic.layout.editor.I18NConstants.DYNAMIC_COMPONENT.com.top_logic.model.search.tableWithDialogs.template.defaults.editDialogTitle"/>
+		<open-handler id="editRow"
+			config:interface="com.top_logic.layout.editor.config.DialogOpenHandlerConfig"
+			image="theme:ICONS_BUTTON_EDIT"
+			resourceKey="class.com.top_logic.layout.editor.I18NConstants.DYNAMIC_COMPONENT.com.top_logic.model.search.tableWithDialogs.template.defaults.editButton"
+			target="selection(self())"
+			targetComponent="synchra/variants/properties/properties_Form_Form.layout.xml#Form"
+		>
+			<postCreateActions>
+				<setEditMode>
+					<target name="synchra/variants/properties/properties_Form_Form.layout.xml#Form"/>
+				</setEditMode>
+			</postCreateActions>
+		</open-handler>
+		<buttons>
+			<button id="showPrevious"
+				class="com.top_logic.model.search.providers.CommandHandlerByExpression"
+				group="System"
+				image="css:fas fa-chevron-left"
+				resourceKey="class.com.top_logic.layout.editor.I18NConstants.DYNAMIC_COMPONENT.com.top_logic.model.search.tableWithDialogs.template.defaults.previousObject"
+				transaction="false"
+			>
+				<target class="com.top_logic.layout.channel.linking.impl.CombineLinking">
+					<channel name="rows">
+						<target name="synchra/variants/variantsTable.layout.xml#Table"/>
+					</channel>
+					<channel name="model">
+						<target name="synchra/variants/properties/properties_Form_Form.layout.xml#Form"/>
+					</channel>
+				</target>
+				<executability>
+					<rule-by-expression show-disabled="true">
+						<decision><![CDATA[input -> {
+    rows = $input[0];
+    model = $input[1];
+    index = $rows.elementIndex($model);
+    $index > 0 || #"class.com.top_logic.layout.editor.I18NConstants.DYNAMIC_COMPONENT.com.top_logic.model.search.tableWithDialogs.template.defaults.firstRow";
+}]]></decision>
+					</rule-by-expression>
+				</executability>
+				<operation><![CDATA[input -> {
+    rows = $input[0];
+    model = $input[1];
+    index = $rows.elementIndex($model);
+    $rows[$index - 1];
+}]]></operation>
+				<postCreateActions>
+					<setModel target="model(synchra/variants/properties/properties_Form_Form.layout.xml#Form)"/>
+					<setModel target="selection(synchra/variants/variantsTable.layout.xml#Table)"/>
+				</postCreateActions>
+			</button>
+			<button id="showNext"
+				class="com.top_logic.model.search.providers.CommandHandlerByExpression"
+				group="System"
+				image="css:fas fa-chevron-right"
+				resourceKey="class.com.top_logic.layout.editor.I18NConstants.DYNAMIC_COMPONENT.com.top_logic.model.search.tableWithDialogs.template.defaults.nextObject"
+				transaction="false"
+			>
+				<target class="com.top_logic.layout.channel.linking.impl.CombineLinking">
+					<channel name="rows">
+						<target name="synchra/variants/variantsTable.layout.xml#Table"/>
+					</channel>
+					<channel name="model">
+						<target name="synchra/variants/properties/properties_Form_Form.layout.xml#Form"/>
+					</channel>
+				</target>
+				<executability>
+					<rule-by-expression show-disabled="true">
+						<decision><![CDATA[input -> {
+    rows = $input[0];
+    model = $input[1];
+    index = $rows.elementIndex($model);
+    $index < $rows.size() - 1 || #"class.com.top_logic.layout.editor.I18NConstants.DYNAMIC_COMPONENT.com.top_logic.model.search.tableWithDialogs.template.defaults.lastRow"
+}]]></decision>
+					</rule-by-expression>
+				</executability>
+				<operation><![CDATA[input -> {
+    rows = $input[0];
+    model = $input[1];
+    index = $rows.elementIndex($model);
+    $rows[$index + 1];
+}]]></operation>
+				<postCreateActions>
+					<setModel target="model(synchra/variants/properties/properties_Form_Form.layout.xml#Form)"/>
+					<setModel target="selection(synchra/variants/variantsTable.layout.xml#Table)"/>
+				</postCreateActions>
+			</button>
+		</buttons>
+		<components>
+			<layout-reference resource="synchra/variants/properties/properties_Form_Form.layout.xml"/>
+		</components>
+	</arguments>
+</config:template-call>

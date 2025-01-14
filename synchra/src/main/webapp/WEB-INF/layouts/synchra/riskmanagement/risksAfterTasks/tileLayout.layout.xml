@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	final="true"
+	template="com.top_logic.chart.chartjs/tileChartjs.template.xml"
+>
+	<arguments
+		helpID="c724723e-b59f-4e0e-8e52-dad37214570b"
+		tileName="ID_2c24f9fb_d9f6_45f4_b0b2_5262f1c2deb6"
+	>
+		<name key="dynamic.f3a12174-5ff5-43a7-87db-0beb47b9b727">
+			<en>Risks after Tasks</en>
+			<de>Risikoportfolio nach MN</de>
+		</name>
+		<model class="com.top_logic.layout.channel.linking.impl.ProviderLinking">
+			<script expr="all (`synchra.Riskmanagement:Risk`)"/>
+		</model>
+		<chartDescription key="dynamic.3dc7a99e-6c85-4031-9b02-fb493bd0a6d6">
+			<en>Risks</en>
+			<de>Risiken nach MN</de>
+		</chartDescription>
+		<data><![CDATA[
+    nodes->{
+    // bubble chart with individual dataset for each node
+    
+    // define color set by creating a map by enum literal and color
+    colors = {
+    `synchra.Riskmanagement:RiskClass#low`: "rgba(0,255,0,0.5)",
+    `synchra.Riskmanagement:RiskClass#middle`: "rgba(255, 255, 0, 0.5)",
+    `synchra.Riskmanagement:RiskClass#high`: "rgba(255, 0, 0, 0.5)"
+    };
+    
+    // define reskeys for axis labels
+    xAxisLabel = #("Eintrittswahrscheinlichkeit"@de, "Probability"@en);
+    yAxisLabel = #("Auswirkung in T€"@de, "Impact"@en);
+    
+    // define limits for dynamic bubble size calculation
+    minRadius = 15;
+    maxRadius = 35;
+    
+    // compute data for the chart configuration. create one dataset for each node with individual label and color
+    datasets = $nodes.map(x-> {
+    'label': $x.get(`synchra.Riskmanagement:Risk#name`),
+    'backgroundColor': $colors[$x.get(`synchra.Riskmanagement:Risk#hasClass`)],
+    'data':  [{
+    'x': $x.get(`synchra.Riskmanagement:Risk#probAsNumberAfter`),
+    'y': $x.get(`synchra.Riskmanagement:Risk#lossAsNumberAfter`),
+    'r': 15
+    }]
+    });
+    
+    // chart configuration
+    chart = {
+    'type': 'bubble',
+    'data': {
+    'datasets': $datasets
+    },
+    'options': {
+    'maintainAspectRatio': false,
+    'scales': {
+    'x':{
+    'min': -10,
+    'max': 110,
+    'title': {
+    'display': true,
+    'text': $xAxisLabel
+    },
+    'ticks': {
+    'precision': 0
+    }
+    },
+    'y':{
+    'min': -10,
+    'max': 300,
+    'title': {
+    'display': true,
+    'text': $yAxisLabel
+    },
+    'ticks': {
+    'precision': 0
+    }
+    }
+    },
+    'plugins': {
+    'legend': {
+    'display': false
+    
+    }
+    }
+    }
+    }; $chart
+    }
+  ]]></data>
+	</arguments>
+</config:template-call>

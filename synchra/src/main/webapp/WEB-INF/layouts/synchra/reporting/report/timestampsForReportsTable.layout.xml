@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	template="com.top_logic/table.template.xml"
+>
+	<arguments
+		defaultColumns="dateOfReport,revisions,name"
+		type="synchra.Report:Report"
+	>
+		<name key="dynamic.943f49cb-4145-40c7-aec7-e54676031700">
+			<en>Timestamps for Reports</en>
+			<de>Zeitpunkte für das Auslesen historischer Daten</de>
+		</name>
+		<modelBuilder class="com.top_logic.model.search.providers.ListModelByExpression"
+			elements="model->all(`synchra.Report:Report`)"
+			supportsElement="element->$element.instanceOf(`synchra.Report:Report`)"
+		/>
+		<buttons>
+			<button id="exportExcel"
+				class="com.top_logic.layout.table.export.ExcelExportHandler"
+			/>
+		</buttons>
+	</arguments>
+</config:template-call>

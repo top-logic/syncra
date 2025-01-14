@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	final="true"
+	template="com.top_logic.element/treegrid.template.xml"
+>
+	<arguments
+		defaultColumns="partName,name,numberOfEntities,fineName,codeRule"
+		expandRoot="false"
+		model="selection(synchra/variants/variantsTable.layout.xml#Table)"
+		type="synchra.Bom:Component,synchra.Bom:ConstructionPart"
+	>
+		<name key="dynamic.0f262e7f-99df-4d87-9fdc-8d86a72516cc">
+			<de>Variantenstückliste</de>
+		</name>
+		<modelBuilder class="com.top_logic.model.search.providers.TreeModelByExpression"
+			nodePredicate="node->$node.instanceOf(`synchra.Bom:Composition`)"
+			parents="node->$node.referers(`synchra.Bom:Composition#parts`)"
+			rootNode="model -> $model"
+		>
+			<children><![CDATA[
+      node -> model -> {
+      parts = switch{
+      $node.instanceOf(`synchra.Bom:Composition`): $node.get(`synchra.Bom:Composition#parts`);
+      $node.instanceOf(`synchra.Bom:ConstructionPart`):$node.get(`synchra.Bom:ConstructionPart#implementedBy`).get(`synchra.Bom:Composition#parts`);
+      default: null;
+      };
+      config = $model.get(`synchra.Bom:DerivedComposition#classifiers`);
+      
+      switch {
+      $node == $model: $node.get(`synchra.Bom:DerivedComposition#master`);
+      default: $parts.filter(p->{
+      cond = $p.get(`synchra.Bom:ConstructionPart#codeRule`);
+      condType = $cond.get(`synchra.Bom:ConstructionCondition#type`);
+      condClassifiers = $cond.get(`synchra.Bom:ConstructionCondition#classifiers`);
+      switch{
+      $cond == null: true;
+      $condType == `synchra.Bom:ConditionType#AND`: $config.containsAll($condClassifiers);
+      $condType == `synchra.Bom:ConditionType#OR`: $config.containsSome($condClassifiers);
+      $condType == `synchra.Bom:ConditionType#NOT`: !$config.containsSome($condClassifiers);
+      default: true;
+      }
+      });
+      };
+      
+      }
+    ]]></children>
+		</modelBuilder>
+		<buttons>
+			<button id="exportExcelGrid"
+				class="com.top_logic.layout.table.export.StreamingExcelExportHandler"
+			/>
+			<button id="createNewRow"
+				class="com.top_logic.model.search.providers.GridCreateHandlerByExpression"
+				createContext="model -> $model"
+				initOperation="createContext -> newObject -> target -> $createContext.add(`synchra.Bom:Composition#parts`, $newObject)"
+				target="selection(self())"
+			>
+				<checkScopeProvider/>
+				<type-options class="com.top_logic.element.layout.create.AttributeBasedCreateTypeOptions"
+					attribute="synchra.Bom:Composition#parts"
+					owner="synchra.Bom:Component"
+				/>
+			</button>
+			<button id="ID_4283b84a_7fce_4ed3_94d9_f33e0940359d"
+				class="com.top_logic.layout.form.component.InvalidateCommand"
+			/>
+		</buttons>
+	</arguments>
+</config:template-call>

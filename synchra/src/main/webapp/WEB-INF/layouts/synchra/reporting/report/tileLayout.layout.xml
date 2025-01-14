@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	final="true"
+	template="com.top_logic/tile.template.xml"
+>
+	<arguments
+		helpID="ID_1c649bf3_78eb_4137_a311_e6ea19ddd17f"
+		tileName="ID_f0fc0e1b_58f4_43e5_95ad_4062c7449e57"
+	>
+		<tileLabel key="dynamic.4f29113a-fab3-4eeb-be6f-21d9dd3447b8">
+			<en>Report</en>
+			<de>Bericht</de>
+		</tileLabel>
+		<preview class="com.top_logic.mig.html.layout.tiles.component.StaticPreview"
+			icon="css:far fa-file-alt"
+		/>
+		<components>
+			<layout-reference resource="synchra/reporting/report/innerLayout.layout.xml"/>
+		</components>
+	</arguments>
+</config:template-call>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	final="true"
+	template="com.top_logic.model.search/create/genericCreateDialog.template.xml"
+>
+	<arguments>
+		<title title="class.com.top_logic.model.search.providers.I18NConstants.CREATE_OBJECT_DEFAULT_LABEL"/>
+		<open-handler id="ID_ae400915_28bf_44f4_98d3_6ed85f430a52"
+			config:interface="com.top_logic.layout.editor.config.CreateDialogOpenHandlerConfig"
+			image="theme:ICONS_ADD_BUTTON"
+			resourceKey="class.com.top_logic.model.search.providers.I18NConstants.CREATE_OBJECT_DEFAULT_LABEL"
+			target="model(synchra/stammdatenBaumGrid/createObject/dialog.layout.xml#Editor)"
+			targetComponent="synchra/stammdatenBaumGrid/createObject/dialog.layout.xml#Editor"
+		>
+			<executability>
+				<rule-by-expression>
+					<decision>model-&gt;if($model==null || $model.instanceOf(`synchra.Bom:Library`), true, #("Keine Bibliothek gewählt"@de,"No library selected"@en))</decision>
+				</rule-by-expression>
+			</executability>
+		</open-handler>
+		<typeOptions type="synchra.Bom:Section"/>
+		<create-handler id="ID_44e764bc_634d_4bcb_9346_2e3cc4c698b1"/>
+	</arguments>
+</config:template-call>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	final="true"
+	template="com.top_logic/tab.template.xml"
+>
+	<arguments
+		helpID="ID_416e4ee9_b895_458b_a262_e141966ed8cf"
+		tabIcon="css:bi bi-bezier2"
+	>
+		<tabLabel key="dynamic.05550394-c95e-4543-9f9e-43d90a2e29c1">
+			<en>Variants</en>
+			<de>Variantenverwaltung</de>
+		</tabLabel>
+		<components>
+			<layout-reference resource="synchra/variants1/innerLayout.layout.xml"/>
+		</components>
+	</arguments>
+</config:template-call>

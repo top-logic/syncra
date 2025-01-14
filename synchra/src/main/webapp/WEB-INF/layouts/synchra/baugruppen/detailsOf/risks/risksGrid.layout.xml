@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	final="true"
+	template="com.top_logic.element/grid.template.xml"
+>
+	<arguments
+		defaultColumns="name,description,riskHasexpectedAmountOfLoss,probability,riskForComponent,requiresTasks,colorAsString,hasClass,index,probAsNumber,lossAsNumber,riskHasexpectedAmountOfLossAfter,probabilityAfter,hasClassAfter,probAsNumberAfter,lossAsNumberAfter,allTokens,activeTokens,collaboration,process,userRelevantTokens,durationInMinutes,createdBy,createdByContact,executionState,executionNumber"
+		model="model(synchra/baugruppen/detailsOf/detailsOfForm.layout.xml#Form)"
+		type="synchra.Riskmanagement:Risk"
+	>
+		<name key="dynamic.fa4dd9a3-9e99-45d5-ba7b-bcbc00c29a6c">
+			<en>Risks</en>
+			<de>Risiken</de>
+		</name>
+		<modelBuilder class="com.top_logic.model.search.providers.ListModelByExpression"
+			elements="model-> $model.get(`synchra.Bom:Component#compIsAffectedByRisk`) "
+			supportsElement="element->$element.instanceOf(`synchra.Riskmanagement:Risk`)"
+		/>
+		<buttons>
+			<button id="exportExcelGrid"
+				class="com.top_logic.layout.table.export.StreamingExcelExportHandler"
+			/>
+			<button id="createRow"
+				class="com.top_logic.model.search.providers.GridCreateHandlerByExpression"
+			>
+				<checkScopeProvider/>
+				<type-options
+					include-subtypes="false"
+					type="synchra.Riskmanagement:Risk"
+				/>
+			</button>
+			<button id="deleteRow"
+				class="com.top_logic.layout.component.GenericDeleteCommandHandler"
+				target="selection(self())"
+			/>
+		</buttons>
+	</arguments>
+</config:template-call>

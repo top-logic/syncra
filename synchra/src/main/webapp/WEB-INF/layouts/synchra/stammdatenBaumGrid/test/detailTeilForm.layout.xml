@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	template="com.top_logic.element/form.template.xml"
+>
+	<arguments
+		defaultFor="synchra.Bom:AtomicPart"
+		model="selection(synchra/stammdatenBaumGrid/stammdatenBaumGridGrid.layout.xml#Grid)"
+		type="synchra.Bom:AtomicPart"
+	>
+		<name key="dynamic.01a37c29-54eb-4db8-854a-d8fd4e2004fe">
+			<en>Detail Teil</en>
+			<de>Detail Teil</de>
+		</name>
+		<forms>
+			<form type="synchra.Bom:AtomicPart">
+				<formDefinition>
+					<other-attributes/>
+					<field
+						attribute="name"
+						fullQualifiedName="synchra.Bom:Named#name"
+						type="tl.core:String"
+					/>
+					<field
+						attribute="price"
+						fullQualifiedName="synchra.Bom:Component#price"
+						type="tl.core:Float"
+					/>
+					<field
+						attribute="weight"
+						fullQualifiedName="synchra.Bom:Component#weight"
+						type="tl.core:Integer"
+					/>
+					<field
+						attribute="partName"
+						fullQualifiedName="synchra.Bom:Component#partName"
+						type="tl.core:String"
+					/>
+					<field
+						attribute="length"
+						fullQualifiedName="synchra.Bom:Component#length"
+						type="tl.core:Double"
+					/>
+					<field
+						attribute="partArt"
+						fullQualifiedName="synchra.Bom:Component#partArt"
+						type="synchra.Bom:PartArt"
+					/>
+					<field
+						attribute="etPicture"
+						fullQualifiedName="synchra.Bom:AtomicPart#etPicture"
+						type="tl.imagegallery:GalleryImage"
+					/>
+					<separator/>
+					<field
+						attribute="componentMayBeDeliveredBy"
+						fullQualifiedName="synchra.Bom:Component#componentMayBeDeliveredBy"
+						type="synchra.Vendormanagement:Vendor"
+					/>
+				</formDefinition>
+			</form>
+		</forms>
+	</arguments>
+</config:template-call>

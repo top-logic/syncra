@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	final="true"
+	template="com.top_logic/tab.template.xml"
+>
+	<arguments
+		helpID="ID_475ed744_aee8_46ee_9199_481c9f256a9b"
+		tabIcon="css:fas fa-fire-extinguisher"
+	>
+		<tabLabel key="dynamic.826c9410-6357-4008-a87d-da0b944f28e8">
+			<en>Riskmanagement</en>
+			<de>Risikomanagement</de>
+		</tabLabel>
+		<components>
+			<layout-reference resource="synchra/riskmanagement/innerLayout.layout.xml"/>
+		</components>
+	</arguments>
+</config:template-call>

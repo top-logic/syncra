@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	final="true"
+	template="com.top_logic.element/treegrid.template.xml"
+>
+	<arguments
+		defaultColumns="name,partName,fineName,implementedBy,chapter,defines,library,price,weight,length,partArt,parts"
+		defaultSelection="false"
+		rootVisible="false"
+		type="synchra.Bom:Component,synchra.Bom:LibraryNode,synchra.Bom:ConstructionPart"
+	>
+		<name key="dynamic.97ec1dd0-0de6-4677-9220-95dbc63d1395">
+			<de>Produkte</de>
+		</name>
+		<modelBuilder class="com.top_logic.model.search.providers.TreeModelByExpression"
+			nodePredicate="node->$node.instanceOf(`synchra.Bom:LibraryNode`) || $node.instanceOf(`synchra.Bom:Component`) || $node.instanceOf(`synchra.Bom:ConstructionPart`)"
+			parents="node->$node.container()"
+			rootNode="`synchra.Bom#PRODUCTS`"
+		>
+			<children><![CDATA[
+      node -> switch {
+      $node.instanceOf(`synchra.Bom:Structure`): $node.get(`synchra.Bom:Structure#contents`);
+      $node.instanceOf(`synchra.Bom:Chapter`): $node.get(`synchra.Bom:Chapter#defines`).filter(elt->$elt.instanceOf(`synchra.Bom:Composition`));
+      $node.instanceOf(`synchra.Bom:Composition`): $node.get(`synchra.Bom:Composition#parts`);
+      $node.instanceOf(`synchra.Bom:ConstructionPart`):$node.get(`synchra.Bom:ConstructionPart#implementedBy`).get(`synchra.Bom:Composition#parts`);
+      }
+    ]]></children>
+		</modelBuilder>
+		<buttons>
+			<button id="exportExcelGrid"
+				class="com.top_logic.layout.table.export.StreamingExcelExportHandler"
+			/>
+			<button id="ID_45d5f90b_c450_4475_a3db_2bfd7864723a"
+				class="com.top_logic.model.search.providers.GridCreateHandlerByExpression"
+				createContext="model->$model"
+				disabledImage="colored:tl-icon text-arrow-right"
+				image="colored:tl-icon text-arrow-right"
+				initOperation="ctx->obj->model->$ctx.add(`synchra.Bom:Chapter#defines`, $obj)"
+				target="selection(self())"
+				typeChooser="false"
+			>
+				<resourceKey key="dynamic.331263ba-a1cf-4ed4-a260-9ce4e4a33ecf">
+					<en>New Composition</en>
+					<de>Neue Baugruppe</de>
+				</resourceKey>
+				<executability>
+					<rule-by-expression show-disabled="true">
+						<decision>tgt-&gt;if($tgt.instanceOf(`synchra.Bom:Chapter`), true, #("Kein Kapitel ausgewählt"@de,"No chapter selected"@en))</decision>
+					</rule-by-expression>
+				</executability>
+				<checkScopeProvider/>
+				<type-options type="synchra.Bom:Composition"/>
+			</button>
+			<button id="ID_bf59e5e2_6149_4421_815d_86764f2b7e45"
+				class="com.top_logic.model.search.providers.GridCreateHandlerByExpression"
+				createContext="model->$model"
+				disabledImage="colored:tl-icon gear-double"
+				image="colored:tl-icon gear-double"
+				initOperation="ctx->obj->model->$ctx.add(`synchra.Bom:Composition#parts`, $obj)"
+				target="selection(self())"
+			>
+				<resourceKey key="dynamic.a43d1059-e314-481f-93de-cf3676219324">
+					<en>New row</en>
+					<de>Neue Teileverwendung</de>
+				</resourceKey>
+				<executability>
+					<rule-by-expression show-disabled="true">
+						<decision>tgt-&gt;if($tgt.instanceOf(`synchra.Bom:Composition`), true, #("Keine Baugruppe ausgewählt"@de,"No Composition selected"@en))</decision>
+					</rule-by-expression>
+				</executability>
+				<checkScopeProvider/>
+				<type-options class="com.top_logic.element.layout.create.AttributeBasedCreateTypeOptions"
+					attribute="synchra.Bom:Composition#parts"
+					owner="synchra.Bom:Composition"
+				/>
+			</button>
+			<button id="ID_0e819d40_1c87_4946_89b3_9a441bcec1c4"
+				class="com.top_logic.layout.component.GenericDeleteCommandHandler"
+				target="selection(self())"
+			/>
+			<button id="ID_99872236_24bf_40d1_a71d_d755a417b990"
+				class="com.top_logic.layout.form.component.InvalidateCommand"
+			/>
+		</buttons>
+	</arguments>
+</config:template-call>

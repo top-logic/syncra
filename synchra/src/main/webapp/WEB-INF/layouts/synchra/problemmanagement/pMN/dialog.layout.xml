@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	final="true"
+	template="com.top_logic/dialog.template.xml"
+>
+	<arguments
+		createOpenerButtons="false"
+		helpID="ID_0dee52c0_812b_42c1_b440_2c5b2b0bb346"
+	>
+		<title>
+			<title key="dynamic.c99ae4a1-194b-4f1f-9e96-157ef35e7be5">
+				<de>PMN</de>
+			</title>
+		</title>
+		<open-handler id="ID_b42dc765_0b14_450b_8d92_5af273f94de6"
+			config:interface="com.top_logic.layout.editor.config.DialogOpenHandlerConfig"
+		>
+			<resourceKey key="dynamic.c99ae4a1-194b-4f1f-9e96-157ef35e7be5">
+				<de>PMN</de>
+			</resourceKey>
+		</open-handler>
+		<components>
+			<layout-reference resource="synchra/problemmanagement/pMN/innerLayout.layout.xml"/>
+		</components>
+	</arguments>
+</config:template-call>

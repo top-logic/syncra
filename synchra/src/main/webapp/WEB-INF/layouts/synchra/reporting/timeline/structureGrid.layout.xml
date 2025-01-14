@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	final="true"
+	template="com.top_logic.element/treegrid.template.xml"
+>
+	<arguments
+		defaultColumns="name,partName,fineName,implementedBy,chapter,defines,library,price,weight,length,partArt,parts"
+		rootVisible="false"
+		type="synchra.Bom:Component,synchra.Bom:LibraryNode,synchra.Bom:ConstructionPart"
+	>
+		<name key="dynamic.5804834e-84a8-4653-b87e-73501f2799b2">
+			<en>structure</en>
+			<de>Produktstruktur</de>
+		</name>
+		<modelBuilder class="com.top_logic.model.search.providers.TreeModelByExpression"
+			nodePredicate="node->$node.instanceOf(`synchra.Bom:LibraryNode`) || $node.instanceOf(`synchra.Bom:Component`) || $node.instanceOf(`synchra.Bom:ConstructionPart`)"
+			parents="node->$node.container()"
+			rootNode="`synchra.Bom#PRODUCTS`"
+		>
+			<children><![CDATA[node -> switch {
+      $node.instanceOf(`synchra.Bom:Structure`): $node.get(`synchra.Bom:Structure#contents`);
+      $node.instanceOf(`synchra.Bom:Chapter`): $node.get(`synchra.Bom:Chapter#defines`).filter(elt->$elt.instanceOf(`synchra.Bom:Composition`));
+      $node.instanceOf(`synchra.Bom:Composition`): $node.get(`synchra.Bom:Composition#parts`);
+      $node.instanceOf(`synchra.Bom:ConstructionPart`):$node.get(`synchra.Bom:ConstructionPart#implementedBy`).get(`synchra.Bom:Composition#parts`);
+      }]]></children>
+		</modelBuilder>
+		<buttons>
+			<button id="exportExcelGrid"
+				class="com.top_logic.layout.table.export.StreamingExcelExportHandler"
+			/>
+			<button id="createNewRow"
+				class="com.top_logic.model.search.providers.GridCreateHandlerByExpression"
+				createContext="model -> $model"
+				initOperation="createContext -> newObject -> target -> $createContext.add(`synchra.Bom:Composition#parts`, $newObject)"
+				target="selection(self())"
+			>
+				<checkScopeProvider/>
+				<type-options class="com.top_logic.element.layout.create.AttributeBasedCreateTypeOptions"
+					attribute="synchra.Bom:Composition#parts"
+					owner="synchra.Bom:Component"
+				/>
+			</button>
+		</buttons>
+	</arguments>
+</config:template-call>

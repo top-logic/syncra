@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	final="true"
+	template="com.top_logic/dialog.template.xml"
+>
+	<arguments
+		createOpenerButtons="false"
+		helpID="ID_13a643a3_e7a3_453f_9d42_d736ef26c2ea"
+	>
+		<title>
+			<title key="dynamic.bfd0a2c8-9274-483a-9cd5-786034b0c1b1">
+				<en>detail of risk</en>
+				<de>Risiko Detail</de>
+			</title>
+		</title>
+		<open-handler id="ID_3697d293_33a2_43c9_b67b_78e166ac2837"
+			config:interface="com.top_logic.layout.editor.config.DialogOpenHandlerConfig"
+			image="/icons/add2Clipboard.png"
+		>
+			<resourceKey key="dynamic.bfd0a2c8-9274-483a-9cd5-786034b0c1b1">
+				<en>detail of risk</en>
+				<de>Risiko Detail</de>
+			</resourceKey>
+		</open-handler>
+		<components>
+			<layout-reference resource="synchra/riskmanagement/table/detailOfRisk/innerLayout.layout.xml"/>
+		</components>
+	</arguments>
+</config:template-call>

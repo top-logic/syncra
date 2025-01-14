@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	final="true"
+	template="com.top_logic/tab.template.xml"
+>
+	<arguments
+		helpID="ID_2f5281f8_1b29_475a_b1e8_1a9fb7e52e55"
+		tabIcon="colored:tl-icon structure"
+	>
+		<tabLabel key="dynamic.7ae39557-03d6-4f6b-9978-52e2c2b75b8f">
+			<en>Productstructure</en>
+			<de>Produktstruktur</de>
+		</tabLabel>
+		<components>
+			<layout-reference resource="synchra/productstructure/innerLayout.layout.xml"/>
+		</components>
+	</arguments>
+</config:template-call>

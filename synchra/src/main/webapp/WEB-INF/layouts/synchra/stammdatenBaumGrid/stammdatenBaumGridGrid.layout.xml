@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	template="com.top_logic.element/treegrid.template.xml"
+>
+	<arguments
+		defaultColumns="name,defines,partName,length,weight,price,partArt"
+		defaultSelection="false"
+		rootVisible="false"
+		type="synchra.Bom:Component,synchra.Bom:LibraryNode"
+	>
+		<name key="dynamic.6d638326-51e7-45a9-9a30-dc982ff4b33c">
+			<de>Stammdaten Baum Grid</de>
+		</name>
+		<modelBuilder class="com.top_logic.model.search.providers.TreeModelByExpression"
+			leafPredicate="elt->$elt.instanceOf(`synchra.Bom:AtomicPart`)"
+			nodePredicate="node -> $node.instanceOf(`synchra.Bom:LibraryNode`) or $node.instanceOf(`synchra.Bom:Component`)"
+			parents="node->$node.container()"
+			rootNode="`synchra.Bom#LIBRARIES`"
+		>
+			<children><![CDATA[node -> switch {
+    $node.instanceOf(`synchra.Bom:Structure`): $node.get(`synchra.Bom:Structure#contents`);
+    $node.instanceOf(`synchra.Bom:Chapter`): $node.get(`synchra.Bom:Chapter#defines`).filter(elt->$elt.instanceOf(`synchra.Bom:AtomicPart`));
+}]]></children>
+		</modelBuilder>
+		<buttons>
+			<button id="exportExcelGrid"
+				class="com.top_logic.layout.table.export.StreamingExcelExportHandler"
+			/>
+			<button id="createNewRow"
+				class="com.top_logic.model.search.providers.GridCreateHandlerByExpression"
+				createContext="model -> $model"
+				initOperation="ctx->obj->model->$ctx.add(`synchra.Bom:Chapter#defines`, $obj)"
+				target="selection(self())"
+				typeChooser="false"
+			>
+				<resourceKey key="dynamic.3a0f21a0-2e1d-4f57-885a-1007b9e35b27">
+					<en>New Part</en>
+					<de>Neues Einzelteil</de>
+				</resourceKey>
+				<executability>
+					<rule-by-expression show-disabled="true">
+						<decision>tgt-&gt;if($tgt.instanceOf(`synchra.Bom:Chapter`), true, #("Kein Kapitel ausgewählt"@de,"No chapter selected"@en))</decision>
+					</rule-by-expression>
+				</executability>
+				<checkScopeProvider/>
+				<type-options type="synchra.Bom:AtomicPart"/>
+			</button>
+			<button id="ID_b89826f8_457a_485d_afac_33e60757021a"
+				class="com.top_logic.layout.component.GenericDeleteCommandHandler"
+				target="selection(self())"
+			/>
+			<button id="ID_eda0bc50_9f7a_4c5b_a575_9e8bce9c5ade"
+				class="com.top_logic.model.search.providers.GridCreateHandlerByExpression"
+				createContext="model -> $model"
+				disabledImage="colored:tl-icon arrow-top-right-square"
+				image="colored:tl-icon arrow-top-right-square"
+				initOperation="ctx->obj->model->$ctx.add(`synchra.Bom:Library#contents`, $obj)"
+				target="selection(self())"
+			>
+				<resourceKey key="dynamic.ddabfc01-28cb-4285-ac80-5b1bc6238903">
+					<en>New Chapter</en>
+					<de>Neues Kapitel</de>
+				</resourceKey>
+				<executability>
+					<rule-by-expression show-disabled="true">
+						<decision>tgt-&gt;if($tgt.instanceOf(`synchra.Bom:Library`), true, #("Keine Bibliothek ausgewählt"@de,"No library selected"@en))</decision>
+					</rule-by-expression>
+				</executability>
+				<checkScopeProvider/>
+				<type-options type="synchra.Bom:Chapter"/>
+			</button>
+		</buttons>
+		<dialogs>
+			<layout-reference resource="synchra/stammdatenBaumGrid/createObject/dialog.layout.xml"/>
+			<layout-reference resource="synchra/stammdatenBaumGrid/test/dialog.layout.xml"/>
+		</dialogs>
+	</arguments>
+</config:template-call>

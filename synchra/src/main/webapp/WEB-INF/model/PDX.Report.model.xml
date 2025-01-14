@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<model xmlns="http://www.top-logic.com/ns/dynamic-types/6.0">
+	<module name="PDX.Report">
+		<class name="Report">
+			<generalizations>
+				<generalization type="synchra.Bom:Named"/>
+			</generalizations>
+			<annotations>
+				<form-definition>
+					<form>
+						<field
+							attribute="name"
+							fullQualifiedName="synchra.Bom:Named#name"
+							type="tl.core:String"
+						/>
+						<field
+							attribute="dateOfReport"
+							fullQualifiedName="PDX.Report:Report#dateOfReport"
+							type="tl.core:DateTime"
+						/>
+						<separator/>
+					</form>
+				</form-definition>
+			</annotations>
+			<attributes>
+				<property name="dateOfReport"
+					type="tl.core:DateTime"
+				>
+					<annotations>
+						<format>
+							<format-ref format-id="date-time"/>
+						</format>
+					</annotations>
+				</property>
+				<reference name="revisions"
+					kind="forwards"
+					multiple="true"
+					navigate="true"
+					type="tl.core:Revision"
+				>
+					<annotations>
+						<storage-algorithm>
+							<query expr="x-> revisionAt($x.get(`PDX.Report:Report#dateOfReport`))"/>
+						</storage-algorithm>
+					</annotations>
+				</reference>
+			</attributes>
+		</class>
+	</module>
+</model>

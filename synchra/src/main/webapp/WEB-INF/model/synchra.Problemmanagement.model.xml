@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<model xmlns="http://www.top-logic.com/ns/dynamic-types/6.0">
+	<module name="synchra.Problemmanagement">
+		<enum name="ProblemStatus">
+			<classifier name="new"/>
+			<classifier name="inProgress"/>
+			<classifier name="solved"/>
+			<classifier name="notSolved"/>
+		</enum>
+		<enum name="TaskStatus">
+			<classifier name="new"/>
+			<classifier name="inWork"/>
+			<classifier name="stopped"/>
+			<classifier name="finished"/>
+		</enum>
+		<class name="Problem">
+			<generalizations>
+				<generalization type="tl.bpe.execution:ProcessExecution"/>
+			</generalizations>
+			<annotations>
+				<form-definition>
+					<form>
+						<field
+							attribute="name"
+							fullQualifiedName="synchra.Bom:Named#name"
+							type="tl.core:String"
+						/>
+						<field
+							attribute="affects"
+							fullQualifiedName="synchra.Problemmanagement:Problem#affects"
+							type="synchra.Bom:Component"
+						/>
+						<field
+							attribute="description"
+							fullQualifiedName="synchra.Problemmanagement:Problem#description"
+							type="tl.model.wysiwyg:Html"
+						/>
+						<field
+							attribute="createdBy"
+							fullQualifiedName="tl.bpe.execution:ProcessExecution#createdBy"
+							type="tl.accounts:Person"
+						/>
+						<field
+							attribute="pStatus"
+							fullQualifiedName="synchra.Problemmanagement:Problem#pStatus"
+							type="synchra.Problemmanagement:ProblemStatus"
+						/>
+						<field
+							attribute="executionNumber"
+							fullQualifiedName="tl.bpe.execution:ProcessExecution#executionNumber"
+							type="tl.core:String"
+						/>
+						<field
+							attribute="solution"
+							fullQualifiedName="synchra.Problemmanagement:Problem#solution"
+							type="synchra.Problemmanagement:TasksWorksOnProblems"
+						/>
+					</form>
+				</form-definition>
+			</annotations>
+			<attributes>
+				<property name="description"
+					type="tl.model.wysiwyg:Html"
+				/>
+				<reference name="pStatus"
+					kind="forwards"
+					navigate="true"
+					type="ProblemStatus"
+				/>
+				<reference name="solution"
+					composite="true"
+					kind="forwards"
+					multiple="true"
+					navigate="true"
+					ordered="true"
+					type="TasksWorksOnProblems"
+				/>
+				<property name="name"
+					type="tl.core:String"
+				/>
+				<reference name="affects"
+					inverse-reference="isAffectedBy"
+					kind="forwards"
+					multiple="true"
+					navigate="true"
+					type="synchra.Bom:Component"
+				/>
+				<property name="remarkKoordination"
+					type="tl.core:Text"
+				/>
+				<property name="remarkDevelopment"
+					type="tl.core:Text"
+				/>
+				<property name="remarkManagement"
+					type="tl.core:Text"
+				/>
+			</attributes>
+		</class>
+		<class name="TasksWorksOnProblems">
+			<generalizations>
+				<generalization type="tl.model:TLObject"/>
+			</generalizations>
+			<annotations>
+				<form-definition>
+					<form>
+						<field
+							attribute="description"
+							fullQualifiedName="synchra.Problemmanagement:TasksWorksOnProblems#description"
+							type="tl.core:String"
+						/>
+						<field
+							attribute="name"
+							fullQualifiedName="synchra.Problemmanagement:TasksWorksOnProblems#name"
+							type="tl.core:String"
+						/>
+						<field
+							attribute="hasStatus"
+							fullQualifiedName="synchra.Problemmanagement:TasksWorksOnProblems#hasStatus"
+							type="synchra.Problemmanagement:TaskStatus"
+						/>
+					</form>
+				</form-definition>
+			</annotations>
+			<attributes>
+				<property name="name"
+					mandatory="true"
+					type="tl.core:String"
+				/>
+				<property name="description"
+					type="tl.core:String"
+				/>
+				<reference name="hasStatus"
+					kind="forwards"
+					navigate="true"
+					type="TaskStatus"
+				/>
+				<reference name="willBeImplementedBy"
+					kind="forwards"
+					multiple="true"
+					navigate="true"
+					type="synchra.Changemanagement:ChangeTask"
+				/>
+			</attributes>
+		</class>
+	</module>
+</model>

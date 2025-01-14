@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	final="true"
+	template="com.top_logic/tab.template.xml"
+>
+	<arguments
+		helpID="ID_487fddca_dc53_404b_98e0_c87266aac8f6"
+		tabIcon="colored:tl-icon hierarchy"
+	>
+		<tabLabel key="dynamic.71d37942-6939-48f3-8824-9faf2769b0c7">
+			<de>Baugruppen</de>
+		</tabLabel>
+		<components>
+			<layout-reference resource="my.macapp/baugruppen/innerLayout.layout.xml"/>
+		</components>
+	</arguments>
+</config:template-call>

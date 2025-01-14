@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	final="true"
+	template="com.top_logic/dialog.template.xml"
+>
+	<arguments helpID="ID_8aa73b6c_c2f4_4687_acdc_b6ff9c9e549b">
+		<title>
+			<title key="dynamic.b93ea4fb-c98b-431f-8757-cb3ec5200b09">
+				<en>Test</en>
+				<de>TestDialog</de>
+			</title>
+		</title>
+		<open-handler id="ID_effef756_d8a1_4f52_b0d6_92741af41c11"
+			config:interface="com.top_logic.layout.editor.config.DialogOpenHandlerConfig"
+		>
+			<resourceKey key="dynamic.b93ea4fb-c98b-431f-8757-cb3ec5200b09">
+				<en>Test</en>
+				<de>TestDialog</de>
+			</resourceKey>
+		</open-handler>
+		<components>
+			<layout-reference resource="my.macapp/stammdatenBaumGrid/test/innerLayout.layout.xml"/>
+		</components>
+	</arguments>
+</config:template-call>

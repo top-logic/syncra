@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	final="true"
+	template="com.top_logic/tab.template.xml"
+>
+	<arguments
+		helpID="ID_6777f90e_fca9_46f8_9fc9_c600e714c0f7"
+		tabIcon="css:bi bi-buildings-fill"
+	>
+		<tabLabel key="dynamic.739f19ca-0771-489c-a7ee-f9a08602825f">
+			<de>Lieferantenverwaltung</de>
+		</tabLabel>
+		<components>
+			<layout-reference resource="my.macapp/lieferantenverwaltung/innerLayout.layout.xml"/>
+		</components>
+	</arguments>
+</config:template-call>

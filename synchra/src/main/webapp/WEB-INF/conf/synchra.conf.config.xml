@@ -6,6 +6,12 @@
 			<instance>
 				<bundles>
 					<bundle name="synchra.app-messages" />
+            		<bundle name="model.synchra.messages"/>
+            		<bundle name="model.synchra.Bom.messages"/>
+            		<bundle name="model.synchra.Problemmanagement.messages"/>
+            		<bundle name="model.synchra.Riskmanagement.messages"/>
+            		<bundle name="model.synchra.Changemanagement.messages"/>
+            		<bundle name="model.synchra.Vendormanagement.messages"/>
 				</bundles>
 			</instance>
 		</config>
@@ -17,6 +23,18 @@
 				</modules>
 			</instance>
 		</config>
+	    <config service-class="com.top_logic.util.model.ModelService">
+	      <instance class="com.top_logic.element.model.DynamicModelService">
+	        <declarations>
+	          <declaration file="/WEB-INF/model/synchra.model.xml"/>
+	          <declaration file="/WEB-INF/model/synchra.Bom.model.xml"/>
+	          <declaration file="/WEB-INF/model/synchra.Problemmanagement.model.xml"/>
+	          <declaration file="/WEB-INF/model/synchra.Riskmanagement.model.xml"/>
+	          <declaration file="/WEB-INF/model/synchra.Changemanagement.model.xml"/>
+	          <declaration file="/WEB-INF/model/synchra.Vendormanagement.model.xml"/>
+	        </declarations>
+	      </instance>
+	    </config>
 	</services>
 
 	<configs>

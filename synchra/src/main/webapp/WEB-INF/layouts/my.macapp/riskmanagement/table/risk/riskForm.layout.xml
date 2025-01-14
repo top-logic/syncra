@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	final="true"
+	template="com.top_logic.element/form.template.xml"
+>
+	<arguments
+		defaultFor="PDX.Riskmanagement:TaskForRisks"
+		type="PDX.Riskmanagement:TaskForRisks"
+	>
+		<name key="dynamic.d1636462-8562-4b22-a10d-ddd77ca1ffc8">
+			<en>Risk</en>
+			<de>Risiko Detail</de>
+		</name>
+	</arguments>
+</config:template-call>

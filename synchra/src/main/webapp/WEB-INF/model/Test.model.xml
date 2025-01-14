@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<model xmlns="http://www.top-logic.com/ns/dynamic-types/6.0">
+	<module name="Test">
+		<class name="HBericht">
+			<generalizations>
+				<generalization type="tl.model:TLObject"/>
+			</generalizations>
+			<attributes>
+				<property name="name"
+					mandatory="true"
+					type="tl.core:String"
+				/>
+				<property name="histDateOfReport"
+					mandatory="true"
+					type="tl.core:DateTime"
+				/>
+				<reference name="histRevision"
+					kind="forwards"
+					type="tl.core:Revision"
+				>
+					<annotations>
+						<storage-algorithm>
+							<query expr="x-> revisionAt($x.get(`Test:HBericht#histDateOfReport`))"/>
+						</storage-algorithm>
+					</annotations>
+				</reference>
+				<reference name="containsCurrently"
+					inverse-reference="isReportedIn"
+					kind="forwards"
+					multiple="true"
+					navigate="true"
+					type="HistAssembly"
+				/>
+				<reference name="containsHistorically"
+					history-type="historic"
+					kind="forwards"
+					multiple="true"
+					navigate="true"
+					type="HistAssembly"
+				/>
+				<property name="dateOfSetting"
+					type="tl.core:DateTime"
+				>
+					<annotations>
+						<default-value>
+							<default-by-expression value="now()"/>
+						</default-value>
+					</annotations>
+				</property>
+				<property name="revHisBezAnlage"
+					type="tl.core:Revision"
+				>
+					<annotations>
+						<storage-algorithm>
+							<query expr="x->$x.get(`Test:HBericht#containsHistorically`).firstElement().revision()"/>
+						</storage-algorithm>
+					</annotations>
+				</property>
+				<property name="histDateofReportUntil"
+					type="tl.core:DateTime"
+				/>
+				<property name="histRevisionDateUntil"
+					type="tl.core:Revision"
+				>
+					<annotations>
+						<storage-algorithm>
+							<query expr="x->revisionAt($x.get(`Test:HBericht#histDateofReportUntil`))"/>
+						</storage-algorithm>
+					</annotations>
+				</property>
+			</attributes>
+		</class>
+		<class name="HistAssembly">
+			<generalizations>
+				<generalization type="tl.model:TLObject"/>
+			</generalizations>
+			<attributes>
+				<property name="name"
+					type="tl.core:String"
+				/>
+				<property name="histAssemblyPrice"
+					type="tl.core:Integer"
+				>
+					<annotations>
+						<storage-algorithm>
+							<query expr="b->$b.get(`Test:HistAssembly#hConstistsOf`).get(`Test:HistPart#histUnitPrice`).sum()"/>
+						</storage-algorithm>
+					</annotations>
+				</property>
+				<reference name="hConstistsOf"
+					inverse-reference="histWillBeAssembledStandard"
+					kind="backwards"
+					multiple="true"
+					navigate="true"
+					type="HistPart"
+				/>
+				<reference name="isReportedIn"
+					inverse-reference="containsCurrently"
+					kind="backwards"
+					multiple="true"
+					navigate="true"
+					type="HBericht"
+				/>
+			</attributes>
+		</class>
+		<class name="HistPart">
+			<generalizations>
+				<generalization type="tl.model:TLObject"/>
+			</generalizations>
+			<attributes>
+				<property name="name"
+					type="tl.core:String"
+				/>
+				<property name="histUnitPrice"
+					type="tl.core:Integer"
+				/>
+				<reference name="histWillBeAssembledStandard"
+					inverse-reference="hConstistsOf"
+					kind="forwards"
+					multiple="true"
+					navigate="true"
+					type="HistAssembly"
+				/>
+			</attributes>
+		</class>
+	</module>
+</model>

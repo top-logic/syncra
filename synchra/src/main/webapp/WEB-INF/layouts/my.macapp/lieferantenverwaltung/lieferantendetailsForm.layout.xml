@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	final="true"
+	template="com.top_logic.element/form.template.xml"
+>
+	<arguments
+		defaultFor="PDX.Vendormanagement:Vendor"
+		model="selection(my.macapp/lieferantenverwaltung/lieferantenTable.layout.xml#Table)"
+		type="PDX.Vendormanagement:Vendor"
+	>
+		<name key="dynamic.9995150c-421c-4040-8cf5-48f5281d38e0">
+			<de>Lieferantendetails</de>
+		</name>
+	</arguments>
+</config:template-call>

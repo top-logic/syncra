@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	final="true"
+	template="com.top_logic/table.template.xml"
+>
+	<arguments
+		defaultColumns="description,name,pStatus,solution"
+		model="model(my.macapp/stammdatenBaumGrid/test/detailTeilForm.layout.xml#Form)"
+		type="PDX.Problemmanagement:Problem"
+	>
+		<name key="dynamic.741046f2-76d9-4b7f-a986-5a84fed80150">
+			<en>problems</en>
+			<de>Probleme</de>
+		</name>
+		<modelBuilder class="com.top_logic.model.search.providers.ListModelByExpression"
+			elements="model->$model.get(`PDX.Bom:Component#isAffectedBy`)"
+			supportsElement="element->$element.instanceOf(`PDX.Problemmanagement:Problem`)"
+		/>
+		<buttons>
+			<button id="exportExcel"
+				class="com.top_logic.layout.table.export.ExcelExportHandler"
+			/>
+		</buttons>
+	</arguments>
+</config:template-call>

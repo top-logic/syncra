@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	final="true"
+	template="com.top_logic.element/treegrid.template.xml"
+>
+	<arguments
+		defaultColumns="name,partName,fineName,implementedBy,chapter,defines,library,price,weight,length,partArt,parts"
+		defaultSelection="false"
+		rootVisible="false"
+		type="PDX.Bom:Component,PDX.Bom:LibraryNode,PDX.Bom:ConstructionPart"
+	>
+		<name key="dynamic.97ec1dd0-0de6-4677-9220-95dbc63d1395">
+			<de>Produkte</de>
+		</name>
+		<modelBuilder class="com.top_logic.model.search.providers.TreeModelByExpression"
+			nodePredicate="node->$node.instanceOf(`PDX.Bom:LibraryNode`) || $node.instanceOf(`PDX.Bom:Component`) || $node.instanceOf(`PDX.Bom:ConstructionPart`)"
+			parents="node->$node.container()"
+			rootNode="`PDX.Bom#PRODUCTS`"
+		>
+			<children><![CDATA[
+      node -> switch {
+      $node.instanceOf(`PDX.Bom:Structure`): $node.get(`PDX.Bom:Structure#contents`);
+      $node.instanceOf(`PDX.Bom:Chapter`): $node.get(`PDX.Bom:Chapter#defines`).filter(elt->$elt.instanceOf(`PDX.Bom:Composition`));
+      $node.instanceOf(`PDX.Bom:Composition`): $node.get(`PDX.Bom:Composition#parts`);
+      $node.instanceOf(`PDX.Bom:ConstructionPart`):$node.get(`PDX.Bom:ConstructionPart#implementedBy`).get(`PDX.Bom:Composition#parts`);
+      }
+    ]]></children>
+		</modelBuilder>
+		<buttons>
+			<button id="exportExcelGrid"
+				class="com.top_logic.layout.table.export.StreamingExcelExportHandler"
+			/>
+			<button id="ID_45d5f90b_c450_4475_a3db_2bfd7864723a"
+				class="com.top_logic.model.search.providers.GridCreateHandlerByExpression"
+				createContext="model->$model"
+				disabledImage="colored:tl-icon text-arrow-right"
+				image="colored:tl-icon text-arrow-right"
+				initOperation="ctx->obj->model->$ctx.add(`PDX.Bom:Chapter#defines`, $obj)"
+				target="selection(self())"
+				typeChooser="false"
+			>
+				<resourceKey key="dynamic.331263ba-a1cf-4ed4-a260-9ce4e4a33ecf">
+					<en>New Composition</en>
+					<de>Neue Baugruppe</de>
+				</resourceKey>
+				<executability>
+					<rule-by-expression show-disabled="true">
+						<decision>tgt-&gt;if($tgt.instanceOf(`PDX.Bom:Chapter`), true, #("Kein Kapitel ausgewählt"@de,"No chapter selected"@en))</decision>
+					</rule-by-expression>
+				</executability>
+				<checkScopeProvider/>
+				<type-options type="PDX.Bom:Composition"/>
+			</button>
+			<button id="ID_bf59e5e2_6149_4421_815d_86764f2b7e45"
+				class="com.top_logic.model.search.providers.GridCreateHandlerByExpression"
+				createContext="model->$model"
+				disabledImage="colored:tl-icon gear-double"
+				image="colored:tl-icon gear-double"
+				initOperation="ctx->obj->model->$ctx.add(`PDX.Bom:Composition#parts`, $obj)"
+				target="selection(self())"
+			>
+				<resourceKey key="dynamic.a43d1059-e314-481f-93de-cf3676219324">
+					<en>New row</en>
+					<de>Neue Teileverwendung</de>
+				</resourceKey>
+				<executability>
+					<rule-by-expression show-disabled="true">
+						<decision>tgt-&gt;if($tgt.instanceOf(`PDX.Bom:Composition`), true, #("Keine Baugruppe ausgewählt"@de,"No Composition selected"@en))</decision>
+					</rule-by-expression>
+				</executability>
+				<checkScopeProvider/>
+				<type-options class="com.top_logic.element.layout.create.AttributeBasedCreateTypeOptions"
+					attribute="PDX.Bom:Composition#parts"
+					owner="PDX.Bom:Composition"
+				/>
+			</button>
+			<button id="ID_0e819d40_1c87_4946_89b3_9a441bcec1c4"
+				class="com.top_logic.layout.component.GenericDeleteCommandHandler"
+				target="selection(self())"
+			/>
+			<button id="ID_99872236_24bf_40d1_a71d_d755a417b990"
+				class="com.top_logic.layout.form.component.InvalidateCommand"
+			/>
+		</buttons>
+	</arguments>
+</config:template-call>

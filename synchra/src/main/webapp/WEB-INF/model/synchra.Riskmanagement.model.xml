@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<model xmlns="http://www.top-logic.com/ns/dynamic-types/6.0">
+	<module name="synchra.Riskmanagement">
+		<enum name="EventRisk">
+			<classifier name="verylow"/>
+			<classifier name="low"/>
+			<classifier name="Medium"/>
+			<classifier name="high"/>
+			<classifier name="veryhigh"/>
+		</enum>
+		<enum name="ExpectedAmountOfLoss">
+			<classifier name="veryhigh"/>
+			<classifier name="high"/>
+			<classifier name="medium"/>
+			<classifier name="low"/>
+		</enum>
+		<enum name="KindOfRiskTask">
+			<classifier name="Technical"/>
+			<classifier name="Organisational"/>
+			<classifier name="Infrastructure"/>
+			<classifier name="Other"/>
+		</enum>
+		<enum name="RiskClass">
+			<classifier name="low"/>
+			<classifier name="middle"/>
+			<classifier name="high"/>
+			<classifier name="Mistake"/>
+		</enum>
+		<enum name="StatusOfRiskTask">
+			<classifier name="New"/>
+			<classifier name="inEvaluation"/>
+			<classifier name="evaluated"/>
+		</enum>
+		<class name="Risk">
+			<generalizations>
+				<generalization type="tl.bpe.execution:ProcessExecution"/>
+			</generalizations>
+			<annotations>
+				<form-definition>
+					<form>
+						<field
+							attribute="executionNumber"
+							fullQualifiedName="tl.bpe.execution:ProcessExecution#executionNumber"
+							type="tl.core:String"
+						/>
+						<field
+							attribute="createdBy"
+							fullQualifiedName="tl.bpe.execution:ProcessExecution#createdBy"
+							type="tl.accounts:Person"
+						/>
+						<field
+							attribute="executionState"
+							fullQualifiedName="tl.bpe.execution:ProcessExecution#executionState"
+							type="tl5.enum:bpe.execution.state"
+						/>
+						<field
+							attribute="name"
+							fullQualifiedName="synchra.Riskmanagement:Risk#name"
+							type="tl.core:String"
+						/>
+						<field
+							attribute="description"
+							fullQualifiedName="synchra.Riskmanagement:Risk#description"
+							type="tl.model.wysiwyg:Html"
+						/>
+						<field
+							attribute="riskHasexpectedAmountOfLoss"
+							fullQualifiedName="synchra.Riskmanagement:Risk#riskHasexpectedAmountOfLoss"
+							type="synchra.Riskmanagement:ExpectedAmountOfLoss"
+						/>
+						<field
+							attribute="probability"
+							fullQualifiedName="synchra.Riskmanagement:Risk#probability"
+							type="synchra.Riskmanagement:EventRisk"
+						/>
+						<field
+							attribute="hasClass"
+							fullQualifiedName="synchra.Riskmanagement:Risk#hasClass"
+							type="synchra.Riskmanagement:RiskClass"
+						/>
+						<separator/>
+						<field
+							attribute="riskHasexpectedAmountOfLossAfter"
+							fullQualifiedName="synchra.Riskmanagement:Risk#riskHasexpectedAmountOfLossAfter"
+							type="synchra.Riskmanagement:ExpectedAmountOfLoss"
+						/>
+						<field
+							attribute="probabilityAfter"
+							fullQualifiedName="synchra.Riskmanagement:Risk#probabilityAfter"
+							type="synchra.Riskmanagement:EventRisk"
+						/>
+						<field
+							attribute="hasClassAfter"
+							fullQualifiedName="synchra.Riskmanagement:Risk#hasClassAfter"
+							type="synchra.Riskmanagement:RiskClass"
+						/>
+						<separator/>
+						<field
+							attribute="requiresTasks"
+							fullQualifiedName="synchra.Riskmanagement:Risk#requiresTasks"
+							type="synchra.Riskmanagement:TaskForRisks"
+						/>
+						<field
+							attribute="riskForComponent"
+							fullQualifiedName="synchra.Riskmanagement:Risk#riskForComponent"
+							type="synchra.Bom:Component"
+						/>
+						<field
+							attribute="techTasksTrue"
+							fullQualifiedName="synchra.Riskmanagement:Risk#techTasksTrue"
+							type="tl.core:Boolean"
+						/>
+					</form>
+				</form-definition>
+			</annotations>
+			<attributes>
+				<reference name="probability"
+					kind="forwards"
+					navigate="true"
+					type="EventRisk"
+				/>
+				<property name="name"
+					mandatory="true"
+					type="tl.core:String"
+				/>
+				<property name="description"
+					type="tl.model.wysiwyg:Html"
+				/>
+				<reference name="riskHasexpectedAmountOfLoss"
+					kind="forwards"
+					navigate="true"
+					type="ExpectedAmountOfLoss"
+				/>
+				<reference name="riskForComponent"
+					inverse-reference="compIsAffectedByRisk"
+					kind="forwards"
+					multiple="true"
+					navigate="true"
+					ordered="true"
+					type="synchra.Bom:Component"
+				/>
+				<reference name="requiresTasks"
+					composite="true"
+					kind="forwards"
+					multiple="true"
+					navigate="true"
+					ordered="true"
+					type="TaskForRisks"
+				/>
+				<property name="colorAsString"
+					type="tl.core:String"
+				>
+					<annotations>
+						<storage-algorithm>
+							<query>
+								<expr><![CDATA[w -> switch{
+// Definition der grünen Kombinationen
+    $w.get(`synchra.Riskmanagement:Risk#probability`) == `synchra.Riskmanagement:EventRisk#verylow` && $w.get(`synchra.Riskmanagement:Risk#riskHasexpectedAmountOfLoss`) ==`synchra.Riskmanagement:ExpectedAmountOfLoss#low`:"grün";
+    $w.get(`synchra.Riskmanagement:Risk#probability`) == `synchra.Riskmanagement:EventRisk#verylow` && $w.get(`synchra.Riskmanagement:Risk#riskHasexpectedAmountOfLoss`) ==`synchra.Riskmanagement:ExpectedAmountOfLoss#medium`:"grün";
+    $w.get(`synchra.Riskmanagement:Risk#probability`) == `synchra.Riskmanagement:EventRisk#low` && $w.get(`synchra.Riskmanagement:Risk#riskHasexpectedAmountOfLoss`) ==`synchra.Riskmanagement:ExpectedAmountOfLoss#low`:"grün";
+// Definition der gelben Kombinationen
+    $w.get(`synchra.Riskmanagement:Risk#probability`) == `synchra.Riskmanagement:EventRisk#verylow` && $w.get(`synchra.Riskmanagement:Risk#riskHasexpectedAmountOfLoss`) ==`synchra.Riskmanagement:ExpectedAmountOfLoss#high`:"gelb";
+    $w.get(`synchra.Riskmanagement:Risk#probability`) == `synchra.Riskmanagement:EventRisk#verylow` && $w.get(`synchra.Riskmanagement:Risk#riskHasexpectedAmountOfLoss`) ==`synchra.Riskmanagement:ExpectedAmountOfLoss#veryhigh`:"gelb";
+    $w.get(`synchra.Riskmanagement:Risk#probability`) == `synchra.Riskmanagement:EventRisk#low` && $w.get(`synchra.Riskmanagement:Risk#riskHasexpectedAmountOfLoss`) ==`synchra.Riskmanagement:ExpectedAmountOfLoss#veryhigh`:"gelb";
+    $w.get(`synchra.Riskmanagement:Risk#probability`) == `synchra.Riskmanagement:EventRisk#low` && $w.get(`synchra.Riskmanagement:Risk#riskHasexpectedAmountOfLoss`) ==`synchra.Riskmanagement:ExpectedAmountOfLoss#high`:"gelb";
+    $w.get(`synchra.Riskmanagement:Risk#probability`) == `synchra.Riskmanagement:EventRisk#low` && $w.get(`synchra.Riskmanagement:Risk#riskHasexpectedAmountOfLoss`) ==`synchra.Riskmanagement:ExpectedAmountOfLoss#medium`:"gelb";
+    $w.get(`synchra.Riskmanagement:Risk#probability`) == `synchra.Riskmanagement:EventRisk#Medium` && $w.get(`synchra.Riskmanagement:Risk#riskHasexpectedAmountOfLoss`) ==`synchra.Riskmanagement:ExpectedAmountOfLoss#low`:"gelb";
+    $w.get(`synchra.Riskmanagement:Risk#probability`) == `synchra.Riskmanagement:EventRisk#Medium` && $w.get(`synchra.Riskmanagement:Risk#riskHasexpectedAmountOfLoss`) ==`synchra.Riskmanagement:ExpectedAmountOfLoss#high`:"gelb";
+    $w.get(`synchra.Riskmanagement:Risk#probability`) == `synchra.Riskmanagement:EventRisk#Medium` && $w.get(`synchra.Riskmanagement:Risk#riskHasexpectedAmountOfLoss`) ==`synchra.Riskmanagement:ExpectedAmountOfLoss#medium`:"gelb";    
+    $w.get(`synchra.Riskmanagement:Risk#probability`) == `synchra.Riskmanagement:EventRisk#high` && $w.get(`synchra.Riskmanagement:Risk#riskHasexpectedAmountOfLoss`) ==`synchra.Riskmanagement:ExpectedAmountOfLoss#low`:"gelb";    
+    $w.get(`synchra.Riskmanagement:Risk#probability`) == `synchra.Riskmanagement:EventRisk#veryhigh` && $w.get(`synchra.Riskmanagement:Risk#riskHasexpectedAmountOfLoss`) ==`synchra.Riskmanagement:ExpectedAmountOfLoss#low`:"gelb";
+ // Definition der roten Kombinationen
+    $w.get(`synchra.Riskmanagement:Risk#probability`) == `synchra.Riskmanagement:EventRisk#Medium` && $w.get(`synchra.Riskmanagement:Risk#riskHasexpectedAmountOfLoss`) ==`synchra.Riskmanagement:ExpectedAmountOfLoss#veryhigh`:"rot";
+    $w.get(`synchra.Riskmanagement:Risk#probability`) == `synchra.Riskmanagement:EventRisk#high` && $w.get(`synchra.Riskmanagement:Risk#riskHasexpectedAmountOfLoss`) ==`synchra.Riskmanagement:ExpectedAmountOfLoss#veryhigh`:"rot";
+    $w.get(`synchra.Riskmanagement:Risk#probability`) == `synchra.Riskmanagement:EventRisk#high` && $w.get(`synchra.Riskmanagement:Risk#riskHasexpectedAmountOfLoss`) ==`synchra.Riskmanagement:ExpectedAmountOfLoss#high`:"rot";
+    $w.get(`synchra.Riskmanagement:Risk#probability`) == `synchra.Riskmanagement:EventRisk#high` && $w.get(`synchra.Riskmanagement:Risk#riskHasexpectedAmountOfLoss`) ==`synchra.Riskmanagement:ExpectedAmountOfLoss#medium`:"rot";
+    $w.get(`synchra.Riskmanagement:Risk#probability`) == `synchra.Riskmanagement:EventRisk#veryhigh` && $w.get(`synchra.Riskmanagement:Risk#riskHasexpectedAmountOfLoss`) ==`synchra.Riskmanagement:ExpectedAmountOfLoss#veryhigh`:"rot";
+    $w.get(`synchra.Riskmanagement:Risk#probability`) == `synchra.Riskmanagement:EventRisk#veryhigh` && $w.get(`synchra.Riskmanagement:Risk#riskHasexpectedAmountOfLoss`) ==`synchra.Riskmanagement:ExpectedAmountOfLoss#high`:"rot";
+    $w.get(`synchra.Riskmanagement:Risk#probability`) == `synchra.Riskmanagement:EventRisk#veryhigh` && $w.get(`synchra.Riskmanagement:Risk#riskHasexpectedAmountOfLoss`) ==`synchra.Riskmanagement:ExpectedAmountOfLoss#medium`:"rot";
+          
+     default: "Fehler, suchen!";
+     }]]></expr>
+							</query>
+						</storage-algorithm>
+					</annotations>
+				</property>
+				<reference name="hasClass"
+					kind="forwards"
+					navigate="true"
+					type="RiskClass"
+				>
+					<annotations>
+						<storage-algorithm>
+							<query>
+								<expr><![CDATA[w -> switch{
+// Definition der grünen Kombinationen
+    $w.get(`synchra.Riskmanagement:Risk#probability`) == `synchra.Riskmanagement:EventRisk#verylow` && $w.get(`synchra.Riskmanagement:Risk#riskHasexpectedAmountOfLoss`) ==`synchra.Riskmanagement:ExpectedAmountOfLoss#low`:`synchra.Riskmanagement:RiskClass#low`;
+    $w.get(`synchra.Riskmanagement:Risk#probability`) == `synchra.Riskmanagement:EventRisk#verylow` && $w.get(`synchra.Riskmanagement:Risk#riskHasexpectedAmountOfLoss`) ==`synchra.Riskmanagement:ExpectedAmountOfLoss#medium`:`synchra.Riskmanagement:RiskClass#low`;
+    $w.get(`synchra.Riskmanagement:Risk#probability`) == `synchra.Riskmanagement:EventRisk#low` && $w.get(`synchra.Riskmanagement:Risk#riskHasexpectedAmountOfLoss`) ==`synchra.Riskmanagement:ExpectedAmountOfLoss#low`:`synchra.Riskmanagement:RiskClass#low`;
+// Definition der gelben Kombinationen
+    $w.get(`synchra.Riskmanagement:Risk#probability`) == `synchra.Riskmanagement:EventRisk#verylow` && $w.get(`synchra.Riskmanagement:Risk#riskHasexpectedAmountOfLoss`) ==`synchra.Riskmanagement:ExpectedAmountOfLoss#high`:`synchra.Riskmanagement:RiskClass#middle`;
+    $w.get(`synchra.Riskmanagement:Risk#probability`) == `synchra.Riskmanagement:EventRisk#verylow` && $w.get(`synchra.Riskmanagement:Risk#riskHasexpectedAmountOfLoss`) ==`synchra.Riskmanagement:ExpectedAmountOfLoss#veryhigh`:`synchra.Riskmanagement:RiskClass#middle`;
+    $w.get(`synchra.Riskmanagement:Risk#probability`) == `synchra.Riskmanagement:EventRisk#low` && $w.get(`synchra.Riskmanagement:Risk#riskHasexpectedAmountOfLoss`) ==`synchra.Riskmanagement:ExpectedAmountOfLoss#veryhigh`: `synchra.Riskmanagement:RiskClass#middle`;
+    $w.get(`synchra.Riskmanagement:Risk#probability`) == `synchra.Riskmanagement:EventRisk#low` && $w.get(`synchra.Riskmanagement:Risk#riskHasexpectedAmountOfLoss`) ==`synchra.Riskmanagement:ExpectedAmountOfLoss#high`:`synchra.Riskmanagement:RiskClass#middle`;
+    $w.get(`synchra.Riskmanagement:Risk#probability`) == `synchra.Riskmanagement:EventRisk#low` && $w.get(`synchra.Riskmanagement:Risk#riskHasexpectedAmountOfLoss`) ==`synchra.Riskmanagement:ExpectedAmountOfLoss#medium`:`synchra.Riskmanagement:RiskClass#middle`;
+    $w.get(`synchra.Riskmanagement:Risk#probability`) == `synchra.Riskmanagement:EventRisk#Medium` && $w.get(`synchra.Riskmanagement:Risk#riskHasexpectedAmountOfLoss`) ==`synchra.Riskmanagement:ExpectedAmountOfLoss#low`:`synchra.Riskmanagement:RiskClass#middle`;
+    $w.get(`synchra.Riskmanagement:Risk#probability`) == `synchra.Riskmanagement:EventRisk#Medium` && $w.get(`synchra.Riskmanagement:Risk#riskHasexpectedAmountOfLoss`) ==`synchra.Riskmanagement:ExpectedAmountOfLoss#high`:`synchra.Riskmanagement:RiskClass#middle`;
+    $w.get(`synchra.Riskmanagement:Risk#probability`) == `synchra.Riskmanagement:EventRisk#Medium` && $w.get(`synchra.Riskmanagement:Risk#riskHasexpectedAmountOfLoss`) ==`synchra.Riskmanagement:ExpectedAmountOfLoss#medium`:`synchra.Riskmanagement:RiskClass#middle`;    
+    $w.get(`synchra.Riskmanagement:Risk#probability`) == `synchra.Riskmanagement:EventRisk#high` && $w.get(`synchra.Riskmanagement:Risk#riskHasexpectedAmountOfLoss`) ==`synchra.Riskmanagement:ExpectedAmountOfLoss#low`:`synchra.Riskmanagement:RiskClass#middle`;  
+    $w.get(`synchra.Riskmanagement:Risk#probability`) == `synchra.Riskmanagement:EventRisk#veryhigh` && $w.get(`synchra.Riskmanagement:Risk#riskHasexpectedAmountOfLoss`) ==`synchra.Riskmanagement:ExpectedAmountOfLoss#low`:`synchra.Riskmanagement:RiskClass#middle`;
+ // Definition der roten Kombinationen
+    $w.get(`synchra.Riskmanagement:Risk#probability`) == `synchra.Riskmanagement:EventRisk#Medium` && $w.get(`synchra.Riskmanagement:Risk#riskHasexpectedAmountOfLoss`) ==`synchra.Riskmanagement:ExpectedAmountOfLoss#veryhigh`:`synchra.Riskmanagement:RiskClass#high`;
+    $w.get(`synchra.Riskmanagement:Risk#probability`) == `synchra.Riskmanagement:EventRisk#high` && $w.get(`synchra.Riskmanagement:Risk#riskHasexpectedAmountOfLoss`) ==`synchra.Riskmanagement:ExpectedAmountOfLoss#veryhigh`:`synchra.Riskmanagement:RiskClass#high`;
+    $w.get(`synchra.Riskmanagement:Risk#probability`) == `synchra.Riskmanagement:EventRisk#high` && $w.get(`synchra.Riskmanagement:Risk#riskHasexpectedAmountOfLoss`) ==`synchra.Riskmanagement:ExpectedAmountOfLoss#high`:`synchra.Riskmanagement:RiskClass#high`;
+    $w.get(`synchra.Riskmanagement:Risk#probability`) == `synchra.Riskmanagement:EventRisk#high` && $w.get(`synchra.Riskmanagement:Risk#riskHasexpectedAmountOfLoss`) ==`synchra.Riskmanagement:ExpectedAmountOfLoss#medium`:`synchra.Riskmanagement:RiskClass#high`;
+    $w.get(`synchra.Riskmanagement:Risk#probability`) == `synchra.Riskmanagement:EventRisk#veryhigh` && $w.get(`synchra.Riskmanagement:Risk#riskHasexpectedAmountOfLoss`) ==`synchra.Riskmanagement:ExpectedAmountOfLoss#veryhigh`:`synchra.Riskmanagement:RiskClass#high`;
+    $w.get(`synchra.Riskmanagement:Risk#probability`) == `synchra.Riskmanagement:EventRisk#veryhigh` && $w.get(`synchra.Riskmanagement:Risk#riskHasexpectedAmountOfLoss`) ==`synchra.Riskmanagement:ExpectedAmountOfLoss#high`:`synchra.Riskmanagement:RiskClass#high`;
+    $w.get(`synchra.Riskmanagement:Risk#probability`) == `synchra.Riskmanagement:EventRisk#veryhigh` && $w.get(`synchra.Riskmanagement:Risk#riskHasexpectedAmountOfLoss`) ==`synchra.Riskmanagement:ExpectedAmountOfLoss#medium`:`synchra.Riskmanagement:RiskClass#high`;
+          
+     default: "Fehler, suchen!";
+     }]]></expr>
+							</query>
+						</storage-algorithm>
+					</annotations>
+				</reference>
+				<property name="index"
+					type="tl.core:Integer"
+				>
+					<annotations>
+						<storage-algorithm>
+							<query expr="x->$x.get(`synchra.Riskmanagement:Risk#lossAsNumber`) * $x.get(`synchra.Riskmanagement:Risk#probAsNumber`)/1000"/>
+						</storage-algorithm>
+					</annotations>
+				</property>
+				<property name="probAsNumber"
+					type="tl.core:Float"
+				>
+					<annotations>
+						<storage-algorithm>
+							<query>
+								<expr><![CDATA[e->switch{
+   $e.get(`synchra.Riskmanagement:Risk#probability`)==(`synchra.Riskmanagement:EventRisk#verylow`):10;
+   $e.get(`synchra.Riskmanagement:Risk#probability`)==(`synchra.Riskmanagement:EventRisk#low`):30;
+   $e.get(`synchra.Riskmanagement:Risk#probability`)==(`synchra.Riskmanagement:EventRisk#Medium`):50;
+   $e.get(`synchra.Riskmanagement:Risk#probability`)==(`synchra.Riskmanagement:EventRisk#high`):70;
+   $e.get(`synchra.Riskmanagement:Risk#probability`)==(`synchra.Riskmanagement:EventRisk#veryhigh`):90;
+   default: 0;
+   }]]></expr>
+							</query>
+						</storage-algorithm>
+					</annotations>
+				</property>
+				<property name="lossAsNumber"
+					type="tl.core:Float"
+				>
+					<annotations>
+						<storage-algorithm>
+							<query>
+								<expr><![CDATA[l->switch{
+    $l.get(`synchra.Riskmanagement:Risk#riskHasexpectedAmountOfLoss`)==(`synchra.Riskmanagement:ExpectedAmountOfLoss#low`):2;
+    $l.get(`synchra.Riskmanagement:Risk#riskHasexpectedAmountOfLoss`)==(`synchra.Riskmanagement:ExpectedAmountOfLoss#medium`):7;
+    $l.get(`synchra.Riskmanagement:Risk#riskHasexpectedAmountOfLoss`)==(`synchra.Riskmanagement:ExpectedAmountOfLoss#high`):50;
+    $l.get(`synchra.Riskmanagement:Risk#riskHasexpectedAmountOfLoss`)==(`synchra.Riskmanagement:ExpectedAmountOfLoss#veryhigh`):250;
+    default: 0;
+    }]]></expr>
+							</query>
+						</storage-algorithm>
+					</annotations>
+				</property>
+				<reference name="riskHasexpectedAmountOfLossAfter"
+					kind="forwards"
+					navigate="true"
+					type="ExpectedAmountOfLoss"
+				/>
+				<reference name="probabilityAfter"
+					kind="forwards"
+					navigate="true"
+					type="EventRisk"
+				/>
+				<reference name="hasClassAfter"
+					kind="forwards"
+					navigate="true"
+					type="RiskClass"
+				>
+					<annotations>
+						<storage-algorithm>
+							<query>
+								<expr><![CDATA[w -> switch{
+// Definition der grünen Kombinationen
+    $w.get(`synchra.Riskmanagement:Risk#probabilityAfter`) == `synchra.Riskmanagement:EventRisk#verylow` && $w.get(`synchra.Riskmanagement:Risk#riskHasexpectedAmountOfLossAfter`) ==`synchra.Riskmanagement:ExpectedAmountOfLoss#low`:`synchra.Riskmanagement:RiskClass#low`;
+    $w.get(`synchra.Riskmanagement:Risk#probabilityAfter`) == `synchra.Riskmanagement:EventRisk#verylow` && $w.get(`synchra.Riskmanagement:Risk#riskHasexpectedAmountOfLossAfter`) ==`synchra.Riskmanagement:ExpectedAmountOfLoss#medium`:`synchra.Riskmanagement:RiskClass#low`;
+    $w.get(`synchra.Riskmanagement:Risk#probabilityAfter`) == `synchra.Riskmanagement:EventRisk#low` && $w.get(`synchra.Riskmanagement:Risk#riskHasexpectedAmountOfLossAfter`) ==`synchra.Riskmanagement:ExpectedAmountOfLoss#low`:`synchra.Riskmanagement:RiskClass#low`;
+// Definition der gelben Kombinationen
+    $w.get(`synchra.Riskmanagement:Risk#probabilityAfter`) == `synchra.Riskmanagement:EventRisk#verylow` && $w.get(`synchra.Riskmanagement:Risk#riskHasexpectedAmountOfLossAfter`) ==`synchra.Riskmanagement:ExpectedAmountOfLoss#high`:`synchra.Riskmanagement:RiskClass#middle`;
+    $w.get(`synchra.Riskmanagement:Risk#probabilityAfter`) == `synchra.Riskmanagement:EventRisk#verylow` && $w.get(`synchra.Riskmanagement:Risk#riskHasexpectedAmountOfLossAfter`) ==`synchra.Riskmanagement:ExpectedAmountOfLoss#veryhigh`:`synchra.Riskmanagement:RiskClass#middle`;
+    $w.get(`synchra.Riskmanagement:Risk#probabilityAfter`) == `synchra.Riskmanagement:EventRisk#low` && $w.get(`synchra.Riskmanagement:Risk#riskHasexpectedAmountOfLossAfter`) ==`synchra.Riskmanagement:ExpectedAmountOfLoss#veryhigh`: `synchra.Riskmanagement:RiskClass#middle`;
+    $w.get(`synchra.Riskmanagement:Risk#probabilityAfter`) == `synchra.Riskmanagement:EventRisk#low` && $w.get(`synchra.Riskmanagement:Risk#riskHasexpectedAmountOfLossAfter`) ==`synchra.Riskmanagement:ExpectedAmountOfLoss#high`:`synchra.Riskmanagement:RiskClass#middle`;
+    $w.get(`synchra.Riskmanagement:Risk#probabilityAfter`) == `synchra.Riskmanagement:EventRisk#low` && $w.get(`synchra.Riskmanagement:Risk#riskHasexpectedAmountOfLossAfter`) ==`synchra.Riskmanagement:ExpectedAmountOfLoss#medium`:`synchra.Riskmanagement:RiskClass#middle`;
+    $w.get(`synchra.Riskmanagement:Risk#probabilityAfter`) == `synchra.Riskmanagement:EventRisk#Medium` && $w.get(`synchra.Riskmanagement:Risk#riskHasexpectedAmountOfLossAfter`) ==`synchra.Riskmanagement:ExpectedAmountOfLoss#low`:`synchra.Riskmanagement:RiskClass#middle`;
+    $w.get(`synchra.Riskmanagement:Risk#probabilityAfter`) == `synchra.Riskmanagement:EventRisk#Medium` && $w.get(`synchra.Riskmanagement:Risk#riskHasexpectedAmountOfLossAfter`) ==`synchra.Riskmanagement:ExpectedAmountOfLoss#high`:`synchra.Riskmanagement:RiskClass#middle`;
+    $w.get(`synchra.Riskmanagement:Risk#probabilityAfter`) == `synchra.Riskmanagement:EventRisk#Medium` && $w.get(`synchra.Riskmanagement:Risk#riskHasexpectedAmountOfLossAfter`) ==`synchra.Riskmanagement:ExpectedAmountOfLoss#medium`:`synchra.Riskmanagement:RiskClass#middle`;    
+    $w.get(`synchra.Riskmanagement:Risk#probabilityAfter`) == `synchra.Riskmanagement:EventRisk#high` && $w.get(`synchra.Riskmanagement:Risk#riskHasexpectedAmountOfLossAfter`) ==`synchra.Riskmanagement:ExpectedAmountOfLoss#low`:`synchra.Riskmanagement:RiskClass#middle`;  
+    $w.get(`synchra.Riskmanagement:Risk#probabilityAfter`) == `synchra.Riskmanagement:EventRisk#veryhigh` && $w.get(`synchra.Riskmanagement:Risk#riskHasexpectedAmountOfLossAfter`) ==`synchra.Riskmanagement:ExpectedAmountOfLoss#low`:`synchra.Riskmanagement:RiskClass#middle`;
+ // Definition der roten Kombinationen
+    $w.get(`synchra.Riskmanagement:Risk#probabilityAfter`) == `synchra.Riskmanagement:EventRisk#Medium` && $w.get(`synchra.Riskmanagement:Risk#riskHasexpectedAmountOfLossAfter`) ==`synchra.Riskmanagement:ExpectedAmountOfLoss#veryhigh`:`synchra.Riskmanagement:RiskClass#high`;
+    $w.get(`synchra.Riskmanagement:Risk#probabilityAfter`) == `synchra.Riskmanagement:EventRisk#high` && $w.get(`synchra.Riskmanagement:Risk#riskHasexpectedAmountOfLossAfter`) ==`synchra.Riskmanagement:ExpectedAmountOfLoss#veryhigh`:`synchra.Riskmanagement:RiskClass#high`;
+    $w.get(`synchra.Riskmanagement:Risk#probabilityAfter`) == `synchra.Riskmanagement:EventRisk#high` && $w.get(`synchra.Riskmanagement:Risk#riskHasexpectedAmountOfLossAfter`) ==`synchra.Riskmanagement:ExpectedAmountOfLoss#high`:`synchra.Riskmanagement:RiskClass#high`;
+    $w.get(`synchra.Riskmanagement:Risk#probabilityAfter`) == `synchra.Riskmanagement:EventRisk#high` && $w.get(`synchra.Riskmanagement:Risk#riskHasexpectedAmountOfLossAfter`) ==`synchra.Riskmanagement:ExpectedAmountOfLoss#medium`:`synchra.Riskmanagement:RiskClass#high`;
+    $w.get(`synchra.Riskmanagement:Risk#probabilityAfter`) == `synchra.Riskmanagement:EventRisk#veryhigh` && $w.get(`synchra.Riskmanagement:Risk#riskHasexpectedAmountOfLossAfter`) ==`synchra.Riskmanagement:ExpectedAmountOfLoss#veryhigh`:`synchra.Riskmanagement:RiskClass#high`;
+    $w.get(`synchra.Riskmanagement:Risk#probabilityAfter`) == `synchra.Riskmanagement:EventRisk#veryhigh` && $w.get(`synchra.Riskmanagement:Risk#riskHasexpectedAmountOfLossAfter`) ==`synchra.Riskmanagement:ExpectedAmountOfLoss#high`:`synchra.Riskmanagement:RiskClass#high`;
+    $w.get(`synchra.Riskmanagement:Risk#probabilityAfter`) == `synchra.Riskmanagement:EventRisk#veryhigh` && $w.get(`synchra.Riskmanagement:Risk#riskHasexpectedAmountOfLossAfter`) ==`synchra.Riskmanagement:ExpectedAmountOfLoss#medium`:`synchra.Riskmanagement:RiskClass#high`;
+          
+     default: `synchra.Riskmanagement:RiskClass#Mistake`;
+     }]]></expr>
+							</query>
+						</storage-algorithm>
+					</annotations>
+				</reference>
+				<property name="probAsNumberAfter"
+					type="tl.core:Float"
+				>
+					<annotations>
+						<storage-algorithm>
+							<query>
+								<expr><![CDATA[e->switch{
+   $e.get(`synchra.Riskmanagement:Risk#probabilityAfter`)==(`synchra.Riskmanagement:EventRisk#verylow`):10;
+   $e.get(`synchra.Riskmanagement:Risk#probabilityAfter`)==(`synchra.Riskmanagement:EventRisk#low`):30;
+   $e.get(`synchra.Riskmanagement:Risk#probabilityAfter`)==(`synchra.Riskmanagement:EventRisk#Medium`):50;
+   $e.get(`synchra.Riskmanagement:Risk#probabilityAfter`)==(`synchra.Riskmanagement:EventRisk#high`):70;
+   $e.get(`synchra.Riskmanagement:Risk#probabilityAfter`)==(`synchra.Riskmanagement:EventRisk#veryhigh`):90;
+   }]]></expr>
+							</query>
+						</storage-algorithm>
+					</annotations>
+				</property>
+				<property name="lossAsNumberAfter"
+					type="tl.core:Float"
+				>
+					<annotations>
+						<storage-algorithm>
+							<query>
+								<expr><![CDATA[l->switch{
+    $l.get(`synchra.Riskmanagement:Risk#riskHasexpectedAmountOfLossAfter`)==(`synchra.Riskmanagement:ExpectedAmountOfLoss#low`):2;
+    $l.get(`synchra.Riskmanagement:Risk#riskHasexpectedAmountOfLossAfter`)==(`synchra.Riskmanagement:ExpectedAmountOfLoss#medium`):7;
+    $l.get(`synchra.Riskmanagement:Risk#riskHasexpectedAmountOfLossAfter`)==(`synchra.Riskmanagement:ExpectedAmountOfLoss#high`):50;
+    $l.get(`synchra.Riskmanagement:Risk#riskHasexpectedAmountOfLossAfter`)==(`synchra.Riskmanagement:ExpectedAmountOfLoss#veryhigh`):250;
+    }]]></expr>
+							</query>
+						</storage-algorithm>
+					</annotations>
+				</property>
+				<property name="techTasksTrue"
+					type="tl.core:Boolean"
+				>
+					<annotations>
+						<storage-algorithm>
+							<query expr="x->$x.get(`synchra.Riskmanagement:Risk#requiresTasks`).get(`synchra.Riskmanagement:TaskForRisks#kindOfTask`).containsElement(`synchra.Riskmanagement:KindOfRiskTask#Technical`)"/>
+						</storage-algorithm>
+					</annotations>
+				</property>
+			</attributes>
+		</class>
+		<class name="TaskForRisks">
+			<generalizations>
+				<generalization type="tl.model:TLObject"/>
+			</generalizations>
+			<attributes>
+				<reference name="statusOfRiskTask"
+					kind="forwards"
+					mandatory="true"
+					navigate="true"
+					type="StatusOfRiskTask"
+				/>
+				<reference name="kindOfTask"
+					kind="forwards"
+					mandatory="true"
+					navigate="true"
+					type="KindOfRiskTask"
+				/>
+				<property name="name"
+					mandatory="true"
+					type="tl.core:String"
+				/>
+				<reference name="reducesCost"
+					kind="forwards"
+					navigate="true"
+					type="tl5.enum:tl.yesno"
+				/>
+				<reference name="reducesProbability"
+					kind="forwards"
+					navigate="true"
+					type="tl5.enum:tl.yesno"
+				/>
+				<reference name="willBeImplementedby"
+					kind="forwards"
+					multiple="true"
+					navigate="true"
+					type="synchra.Changemanagement:ChangeTask"
+				/>
+			</attributes>
+		</class>
+	</module>
+</model>

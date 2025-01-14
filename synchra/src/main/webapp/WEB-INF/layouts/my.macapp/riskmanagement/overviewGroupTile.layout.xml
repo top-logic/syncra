@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	final="true"
+	template="com.top_logic/tileGroup.template.xml"
+>
+	<arguments>
+		<name key="dynamic.f5581bdc-f602-4e48-b922-2f5610a4796f">
+			<en>Overview</en>
+			<de>Überblick</de>
+		</name>
+		<components>
+			<layout-reference resource="my.macapp/riskmanagement/table/tileLayout.layout.xml"/>
+			<layout-reference resource="my.macapp/riskmanagement/riskportfolio/tileLayout.layout.xml"/>
+			<layout-reference resource="my.macapp/riskmanagement/risksAfterTasks/tileLayout.layout.xml"/>
+		</components>
+	</arguments>
+</config:template-call>

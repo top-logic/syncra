@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	final="true"
+	template="com.top_logic/tab.template.xml"
+>
+	<arguments
+		helpID="ID_a1ab87c5_de18_45c7_a40c_9d34f4f2aeb2"
+		tabIcon="colored:tl-icon book"
+	>
+		<tabLabel key="dynamic.859fa164-a3d5-4922-8bfc-a2f6ee92570d">
+			<de>Stammdaten BaumGrid</de>
+		</tabLabel>
+		<components>
+			<layout-reference resource="my.macapp/stammdatenBaumGrid/innerLayout.layout.xml"/>
+		</components>
+	</arguments>
+</config:template-call>

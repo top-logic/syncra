@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	final="true"
+	template="com.top_logic/tab.template.xml"
+>
+	<arguments
+		helpID="ID_d85c8cb0_76ac_4fef_be06_8e10cdc5338a"
+		tabIcon="colored:tl-icon design-reload-alt"
+	>
+		<tabLabel key="dynamic.e4dec26a-2a0d-4517-910a-3d3887995284">
+			<en>Variants</en>
+			<de>Varianten und Variantenstücklisten</de>
+		</tabLabel>
+		<components>
+			<layout-reference resource="my.macapp/variants/innerLayout.layout.xml"/>
+		</components>
+	</arguments>
+</config:template-call>

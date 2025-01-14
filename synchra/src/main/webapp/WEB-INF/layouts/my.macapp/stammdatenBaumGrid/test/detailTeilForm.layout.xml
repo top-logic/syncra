@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	template="com.top_logic.element/form.template.xml"
+>
+	<arguments
+		defaultFor="PDX.Bom:AtomicPart"
+		model="selection(my.macapp/stammdatenBaumGrid/stammdatenBaumGridGrid.layout.xml#Grid)"
+		type="PDX.Bom:AtomicPart"
+	>
+		<name key="dynamic.01a37c29-54eb-4db8-854a-d8fd4e2004fe">
+			<en>Detail Teil</en>
+			<de>Detail Teil</de>
+		</name>
+		<forms>
+			<form type="PDX.Bom:AtomicPart">
+				<formDefinition>
+					<other-attributes/>
+					<field
+						attribute="name"
+						fullQualifiedName="PDX.Bom:Named#name"
+						type="tl.core:String"
+					/>
+					<field
+						attribute="price"
+						fullQualifiedName="PDX.Bom:Component#price"
+						type="tl.core:Float"
+					/>
+					<field
+						attribute="weight"
+						fullQualifiedName="PDX.Bom:Component#weight"
+						type="tl.core:Integer"
+					/>
+					<field
+						attribute="partName"
+						fullQualifiedName="PDX.Bom:Component#partName"
+						type="tl.core:String"
+					/>
+					<field
+						attribute="length"
+						fullQualifiedName="PDX.Bom:Component#length"
+						type="tl.core:Double"
+					/>
+					<field
+						attribute="partArt"
+						fullQualifiedName="PDX.Bom:Component#partArt"
+						type="PDX.Bom:PartArt"
+					/>
+					<field
+						attribute="etPicture"
+						fullQualifiedName="PDX.Bom:AtomicPart#etPicture"
+						type="tl.imagegallery:GalleryImage"
+					/>
+					<separator/>
+					<field
+						attribute="componentMayBeDeliveredBy"
+						fullQualifiedName="PDX.Bom:Component#componentMayBeDeliveredBy"
+						type="PDX.Vendormanagement:Vendor"
+					/>
+				</formDefinition>
+			</form>
+		</forms>
+	</arguments>
+</config:template-call>

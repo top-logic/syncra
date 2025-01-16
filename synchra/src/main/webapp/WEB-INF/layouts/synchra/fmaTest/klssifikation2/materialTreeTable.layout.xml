@@ -23,5 +23,10 @@
     $node.instanceOf(`fma:PartsGroup`):$node.get(`fma:PartsGroup#parts`);    
 }]]></children>
 		</modelBuilder>
+		<buttons>
+			<button id="ID_aa47da38_3b42_4874_9b3b_36666bb69077"
+				class="com.top_logic.layout.form.component.InvalidateCommand"
+			/>
+		</buttons>
 	</arguments>
 </config:template-call>

@@ -8,21 +8,21 @@
 	<arguments>
 		<components>
 			<layout-reference resource="com.top_logic.model.search/search/modelSearch.layout.xml"/>
+<!-- 
 			<layout-reference resource="synchra/productstructure/tabLayout.layout.xml"/>
 			<layout-reference resource="synchra/baugruppen/tabLayout.layout.xml"/>
 			<layout-reference resource="synchra/stammdatenBaumGrid/tabLayout.layout.xml"/>
 			<layout-reference resource="synchra/variants/tabLayout.layout.xml"/>
 			<layout-reference resource="synchra/variants1/tabLayout.layout.xml"/>
-			<layout-reference resource="admin/index.layout.xml"/>
 			<layout-reference resource="synchra/problemmanagement/tabLayout.layout.xml"/>
 			<layout-reference resource="synchra/riskmanagement/tabLayout.layout.xml"/>
 			<layout-reference resource="synchra/reporting/tabLayout.layout.xml"/>
 			<layout-reference resource="synchra/vendors/tabLayout.layout.xml"/>
 			<layout-reference resource="synchra/lieferantenverwaltung/tabLayout.layout.xml"/>
-<!-- 
 			<layout-reference resource="synchra/historie/tabLayout.layout.xml"/>
  -->			
 			<layout-reference resource="synchra/fmaTest/tabLayout.layout.xml"/>
+			<layout-reference resource="admin/index.layout.xml"/>
 		</components>
 		<dialogs>
 			<layout-reference resource="com.top_logic.monitoring/admin/technical/logs/logLines.sessionDialog.layout.xml"/>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	template="com.top_logic/treetable.template.xml"
+>
+	<arguments
+		defaultColumns="name,company,tType"
+		rootVisible="false"
+		type="fma:SinglePart,fma:PartCatalog"
+	>
+		<name key="dynamic.ebd584bf-ee72-4d84-bf72-5530b37aee51">
+			<de>Material</de>
+		</name>
+		<modelBuilder class="com.top_logic.model.search.providers.TreeModelByExpression"
+			nodePredicate="node->$node.instanceOf(`fma:PartCatalog`)"
+			parents="node->$node.referers(`fma:PartCatalog#materialGroups`)"
+			rootNode="`synchra.Bom#LIBRARIES`"
+		>
+			<children><![CDATA[node -> switch {
+    $node.instanceOf(`synchra.Bom:Libraries`): all(`fma:PartCatalog`);
+    $node.instanceOf(`fma:PartCatalog`):$node.get(`fma:PartCatalog#materialCompany`);
+    $node.instanceOf(`fma:PartsGroup`):$node.get(`fma:PartsGroup#parts`);    
+}]]></children>
+		</modelBuilder>
+	</arguments>
+</config:template-call>

@@ -7,7 +7,7 @@
 	<arguments>
 		<components>
 			<component class="com.top_logic.layout.editor.components.ComponentPlaceholder"
-				name="synchra/fMA4/tab1/componentPlaceholderLayout.layout.xml#placeholder"
+				name="synchra/fmaTest/singleParts/componentPlaceholderLayout1.layout.xml#placeholder"
 			/>
 		</components>
 	</arguments>

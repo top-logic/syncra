@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	template="com.top_logic.element/treegrid.template.xml"
+>
+	<arguments
+		defaultColumns="name,material,tType"
+		rootVisible="false"
+		type="fma:PartCatalog,fma:SinglePart"
+	>
+		<name key="dynamic.11a9f4d4-ab1a-4368-a6e8-0c8dfc54c709">
+			<de>Kataloge</de>
+		</name>
+		<modelBuilder class="com.top_logic.model.search.providers.TreeModelByExpression"
+			leafPredicate="node->$node.instanceOf(`fma:SinglePart`)"
+			nodePredicate="node->$node.instanceOf(`fma:PartCatalog`) or $node.instanceOf(`fma:SinglePart`)"
+			rootNode="`synchra.Bom#LIBRARIES`"
+		>
+			<children><![CDATA[node -> switch {
+    $node.instanceOf(`synchra.Bom:Libraries`): all(`fma:PartCatalog`);
+    $node.instanceOf(`fma:PartCatalog`):$node.get(`fma:PartCatalog#parts`);
+}]]></children>
+			<parents><![CDATA[node -> switch {
+    $node.instanceOf(`synchra.Bom:Libraries`): null;
+    $node.instanceOf(`fma:PartCatalog`):`synchra.Bom#LIBRARIES`;
+    $node.instanceOf(`fma:SinglePart`):$node.container();
+}]]></parents>
+		</modelBuilder>
+		<buttons>
+			<button id="exportExcelGrid"
+				class="com.top_logic.layout.table.export.StreamingExcelExportHandler"
+			/>
+			<button id="createNewRow"
+				class="com.top_logic.model.search.providers.GridCreateHandlerByExpression"
+				createContext="model -> $model"
+				initOperation="createContext -> newObject -> target -> $createContext.add(`fma:PartCatalog#parts`, $newObject)"
+				target="selection(self())"
+			>
+				<checkScopeProvider/>
+				<type-options class="com.top_logic.element.layout.create.AttributeBasedCreateTypeOptions"
+					attribute="fma:PartCatalog#parts"
+					owner="fma:PartCatalog"
+				/>
+			</button>
+		</buttons>
+	</arguments>
+</config:template-call>

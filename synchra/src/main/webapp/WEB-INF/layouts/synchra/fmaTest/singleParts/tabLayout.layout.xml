@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	template="com.top_logic/tab.template.xml"
+>
+	<arguments helpID="ID_4f6d8d24_7277_4fdc_9500_1c0dfc9a3011">
+		<tabLabel key="dynamic.bb5faacb-abb0-4115-a536-10ccd74721b5">
+			<en>SingleParts</en>
+			<de>Einzelteile</de>
+		</tabLabel>
+		<components>
+			<layout-reference resource="synchra/fmaTest/singleParts/innerLayout.layout.xml"/>
+		</components>
+	</arguments>
+</config:template-call>

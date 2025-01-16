@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<model xmlns="http://www.top-logic.com/ns/dynamic-types/6.0">
+	<module name="fma">
+		<enum name="CompanyStructure">
+			<classifier name="AG"/>
+			<classifier name="GmbH"/>
+			<classifier name="CoKG"/>
+		</enum>
+		<class name="Company">
+			<generalizations>
+				<generalization type="tl.model:TLObject"/>
+			</generalizations>
+			<attributes>
+				<property name="name"
+					mandatory="true"
+					type="tl.core:String"
+				/>
+				<reference name="structure"
+					kind="forwards"
+					mandatory="true"
+					navigate="true"
+					type="CompanyStructure"
+				/>
+			</attributes>
+		</class>
+		<class name="Material">
+			<generalizations>
+				<generalization type="tl.model:TLObject"/>
+			</generalizations>
+			<attributes>
+				<property name="name"
+					mandatory="true"
+					type="tl.core:String"
+				/>
+			</attributes>
+		</class>
+		<class name="PartCatalog">
+			<generalizations>
+				<generalization type="tl.model:TLObject"/>
+			</generalizations>
+			<attributes>
+				<property name="name"
+					mandatory="true"
+					type="tl.core:String"
+				/>
+				<reference name="parts"
+					composite="true"
+					kind="forwards"
+					multiple="true"
+					navigate="true"
+					type="SinglePart"
+				/>
+				<reference name="partGroups"
+					kind="forwards"
+					multiple="true"
+					navigate="true"
+					type="PartsGroup"
+				>
+					<annotations>
+						<storage-algorithm>
+							<query>
+								<expr><![CDATA[catalog -> 
+all(`fma:Company`).map( company -> 
+        new(`fma:PartsGroup`, transient: true)
+	..set(`fma:PartsGroup#name`, $company.get(`fma:Company#name`))
+	..set(`fma:PartsGroup#parts`, 
+	         $catalog.get(`fma:PartCatalog#parts`).filter(part -> $part.get(`fma:SinglePart#company`)==$company)
+	       )  
+)]]></expr>
+							</query>
+						</storage-algorithm>
+						<create-visibility value="hidden"/>
+						<visibility value="hidden"/>
+					</annotations>
+				</reference>
+				<reference name="materialGroups"
+					kind="forwards"
+					multiple="true"
+					navigate="true"
+					type="PartsGroup"
+				>
+					<annotations>
+						<storage-algorithm>
+							<query>
+								<expr><![CDATA[catalog -> 
+all(`fma:Material`).map( material -> 
+        new(`fma:PartsGroup`, transient: true)
+	..set(`fma:PartsGroup#name`, $material.get(`fma:Material#name`))
+	..set(`fma:PartsGroup#parts`, 
+	         $catalog.get(`fma:PartCatalog#parts`).filter(part -> $part.get(`fma:SinglePart#material`).containsElement($material))
+	       )  
+)
+]]></expr>
+							</query>
+						</storage-algorithm>
+						<create-visibility value="hidden"/>
+						<visibility value="hidden"/>
+					</annotations>
+				</reference>
+				<reference name="materialCompany"
+					kind="forwards"
+					multiple="true"
+					navigate="true"
+					type="PartsGroup"
+				>
+					<annotations>
+						<storage-algorithm>
+							<query>
+								<expr><![CDATA[catalog -> 
+all(`fma:Company`).map( company -> 
+    new(`fma:PartsGroup`, transient: true)
+	  ..set(`fma:PartsGroup#name`, $company.get(`fma:Company#name`))
+	  ..set(`fma:PartsGroup#parts`,      
+		  all(`fma:Material`).map( material -> 
+	         new(`fma:PartsGroup`, transient: true)
+		       ..set(`fma:PartsGroup#name`, $material.get(`fma:Material#name`))
+		       ..set(`fma:PartsGroup#parts`, 
+		         $catalog.get(`fma:PartCatalog#parts`).filter(
+		        	 part -> $part.get(`fma:SinglePart#material`).containsElement($material) && $part.get(`fma:SinglePart#company`)==$company
+		        )
+		   )  
+	    ) 
+     )
+)]]></expr>
+							</query>
+						</storage-algorithm>
+						<create-visibility value="hidden"/>
+						<visibility value="hidden"/>
+					</annotations>
+				</reference>
+			</attributes>
+		</class>
+		<class name="PartsGroup">
+			<generalizations>
+				<generalization type="tl.model:TLObject"/>
+			</generalizations>
+			<attributes>
+				<property name="name"
+					type="tl.core:String"
+				/>
+				<reference name="parts"
+					kind="forwards"
+					multiple="true"
+					navigate="true"
+					type="tl.model:TLObject"
+				/>
+			</attributes>
+		</class>
+		<class name="SinglePart">
+			<generalizations>
+				<generalization type="tl.model:TLObject"/>
+			</generalizations>
+			<attributes>
+				<property name="name"
+					mandatory="true"
+					type="tl.core:String"
+				/>
+				<reference name="company"
+					kind="forwards"
+					navigate="true"
+					type="Company"
+				/>
+				<reference name="material"
+					kind="forwards"
+					multiple="true"
+					navigate="true"
+					type="Material"
+				/>
+			</attributes>
+		</class>
+	</module>
+</model>

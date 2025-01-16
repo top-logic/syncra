@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	template="com.top_logic/tab.template.xml"
+>
+	<arguments helpID="ID_b02e9870_24d8_4eda_81f3_34038dd2fdbe">
+		<tabLabel key="dynamic.973c013b-8b8f-426c-91e0-4edd9ce28aa1">
+			<de>Materialien</de>
+		</tabLabel>
+		<components>
+			<layout-reference resource="synchra/fmaTest/partcatalogs/materialien/innerLayout.layout.xml"/>
+		</components>
+	</arguments>
+</config:template-call>

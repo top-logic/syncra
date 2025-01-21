@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	template="com.top_logic/tab.template.xml"
+>
+	<arguments helpID="ID_0f0c7b18_bc01_4ca2_8644_a0ebdf61d19d">
+		<tabLabel key="dynamic.29f99144-dba9-4d6b-ba02-a5eb6cbe056b">
+			<en>Build Groups</en>
+			<de>Baugruppen</de>
+		</tabLabel>
+		<components>
+			<layout-reference resource="synchra/products/buildGroups/innerLayout.layout.xml"/>
+		</components>
+	</arguments>
+</config:template-call>

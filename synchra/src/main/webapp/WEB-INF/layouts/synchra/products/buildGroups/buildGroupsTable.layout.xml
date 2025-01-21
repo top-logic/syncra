@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	template="com.top_logic/table.template.xml"
+>
+	<arguments
+		defaultColumns="_actions,consistsOf,used,name"
+		type="fma:ConstructionGroup"
+	>
+		<dialogs>
+			<layout-reference resource="synchra/products/buildGroups/createObject/dialog.layout.xml"/>
+			<layout-reference resource="synchra/products/buildGroups/properties/dialog.layout.xml"/>
+		</dialogs>
+		<name key="dynamic.bd1c2cc6-1cd5-4444-84d4-22e8621df330">
+			<en>Build Groups</en>
+			<de>Baugruppen</de>
+		</name>
+		<modelBuilder class="com.top_logic.model.search.providers.ListModelByExpression"
+			elements="model->all(`fma:ConstructionGroup`)"
+			supportsElement="element->$element.instanceOf(`fma:ConstructionGroup`)"
+		/>
+		<configurationProviders>
+			<configurationProvider class="com.top_logic.layout.table.provider.ButtonColumnProvider"
+				columnId="_actions"
+				columnLabel="class.com.top_logic.layout.editor.I18NConstants.DYNAMIC_COMPONENT.com.top_logic.model.search.tableWithDialogs.template.defaults.buttonColumn"
+				width="40px"
+			>
+				<buttons>
+					<button id="openEditDialog"
+						class="com.top_logic.tool.boundsec.OpenModalDialogCommandHandler"
+						dialog-name="synchra/products/buildGroups/properties/dialog.layout.xml#Dialog"
+						group="Write"
+						image="theme:ICONS_BUTTON_EDIT"
+						resourceKey="class.com.top_logic.layout.editor.I18NConstants.DYNAMIC_COMPONENT.com.top_logic.model.search.tableWithDialogs.template.defaults.edit"
+						targetComponent="synchra/products/buildGroups/properties/properties_Form_Form.layout.xml#Form"
+					>
+						<executability>
+							<rule class="com.top_logic.tool.execution.InViewModeExecutable"/>
+						</executability>
+						<postCreateActions>
+							<setEditMode>
+								<target name="synchra/products/buildGroups/properties/properties_Form_Form.layout.xml#Form"/>
+							</setEditMode>
+						</postCreateActions>
+					</button>
+				</buttons>
+			</configurationProvider>
+			<column-customizations/>
+			<configurationProvider class="com.top_logic.model.search.providers.ComputedColumnProviderByExpression"
+				accessor="row -> model -> $row.get(`fma:ConstructionGroup#consistsOf`).map(conn -> $conn.get(`fma:Connection#consistsOf`).get(`fma:Component#name`))"
+				columnId="ID_b39e6ab5_8a4c_4595_bc49_e4435ceb096a"
+				columnType="tl.core:String"
+			>
+				<columnLabel key="dynamic.3e817a64-a590-463b-b871-6cfdb976d0bc">
+					<en>consistsOf2</en>
+					<de>bestehtAus2</de>
+				</columnLabel>
+			</configurationProvider>
+			<configurationProvider class="com.top_logic.model.search.providers.ComputedColumnProviderByExpression"
+				accessor="row -> model -> $row.get(`fma:ConstructionGroup#used`).map(conn -> $conn.get(`fma:Connection#used`).get(`fma:Component#name`))"
+				columnId="ID_ddf78930_8d19_4b2e_a1eb_92e871cf397d"
+				columnType="tl.core:String"
+			>
+				<columnLabel key="dynamic.5842a7ca-4ce4-4823-be32-f4d2fbf94bca">
+					<en>used in 2</en>
+					<de>genutztIn2</de>
+				</columnLabel>
+			</configurationProvider>
+		</configurationProviders>
+		<buttons>
+			<button id="exportExcel"
+				class="com.top_logic.layout.table.export.ExcelExportHandler"
+			/>
+			<button id="deleteRow"
+				class="com.top_logic.layout.component.GenericDeleteCommandHandler"
+				target="selection(self())"
+			/>
+		</buttons>
+	</arguments>
+</config:template-call>

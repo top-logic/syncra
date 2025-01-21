@@ -24,6 +24,93 @@
 				/>
 			</attributes>
 		</class>
+		<interface name="Component">
+			<generalizations>
+				<generalization type="tl.model:TLObject"/>
+			</generalizations>
+			<attributes>
+				<property name="name"
+					mandatory="true"
+					type="tl.core:String"
+				/>
+				<reference name="used"
+					inverse-reference="consistsOf"
+					kind="backwards"
+					multiple="true"
+					navigate="true"
+					type="Connection"
+				/>
+			</attributes>
+		</interface>
+		<class name="ConstructionGroup">
+			<generalizations>
+				<generalization type="Component"/>
+			</generalizations>
+			<attributes>
+				<reference name="consistsOf"
+					composite="true"
+					inverse-reference="used"
+					kind="forwards"
+					multiple="true"
+					navigate="true"
+					type="Connection"
+				>
+					<annotations>
+						<constraints>
+							<constraint class="com.top_logic.model.util.NoAttributeCycle">
+								<additional-observed-references>
+									<additional-observed-reference name="consistsOf"
+										definition="fma:Connection"
+									/>
+								</additional-observed-references>
+							</constraint>
+						</constraints>
+					</annotations>
+				</reference>
+			</attributes>
+		</class>
+		<class name="SinglePart">
+			<generalizations>
+				<generalization type="Component"/>
+			</generalizations>
+			<attributes>
+				<reference name="company"
+					kind="forwards"
+					navigate="true"
+					type="Company"
+				/>
+				<reference name="material"
+					kind="forwards"
+					multiple="true"
+					navigate="true"
+					type="Material"
+				/>
+			</attributes>
+		</class>
+		<class name="Connection">
+			<generalizations>
+				<generalization type="tl.model:TLObject"/>
+			</generalizations>
+			<attributes>
+				<reference name="used"
+					aggregate="true"
+					inverse-reference="consistsOf"
+					kind="backwards"
+					navigate="true"
+					type="ConstructionGroup"
+				/>
+				<reference name="consistsOf"
+					inverse-reference="used"
+					kind="forwards"
+					mandatory="true"
+					navigate="true"
+					type="Component"
+				/>
+				<property name="position"
+					type="tl.core:String"
+				/>
+			</attributes>
+		</class>
 		<class name="Material">
 			<generalizations>
 				<generalization type="tl.model:TLObject"/>
@@ -147,25 +234,21 @@ all(`fma:Company`).map( company ->
 				/>
 			</attributes>
 		</class>
-		<class name="SinglePart">
+		<class name="Product">
 			<generalizations>
 				<generalization type="tl.model:TLObject"/>
 			</generalizations>
 			<attributes>
+				<reference name="buildGroup"
+					composite="true"
+					kind="forwards"
+					mandatory="true"
+					navigate="true"
+					type="ConstructionGroup"
+				/>
 				<property name="name"
 					mandatory="true"
 					type="tl.core:String"
-				/>
-				<reference name="company"
-					kind="forwards"
-					navigate="true"
-					type="Company"
-				/>
-				<reference name="material"
-					kind="forwards"
-					multiple="true"
-					navigate="true"
-					type="Material"
 				/>
 			</attributes>
 		</class>

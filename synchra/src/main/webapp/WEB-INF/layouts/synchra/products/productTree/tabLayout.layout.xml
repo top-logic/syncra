@@ -7,7 +7,7 @@
 	<arguments helpID="ID_9c344f68_4669_42ce_9478_9209430b1785">
 		<tabLabel key="dynamic.d68406ca-bbae-45a0-ae6e-64521bbc1579">
 			<en>Product Tree</en>
-			<de>Produktebaum</de>
+			<de>ProduktebaumOLD</de>
 		</tabLabel>
 		<components>
 			<layout-reference resource="synchra/products/productTree/innerLayout.layout.xml"/>

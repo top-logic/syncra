@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	template="com.top_logic/treetable.template.xml"
+>
+	<arguments
+		defaultColumns="name"
+		rootVisible="false"
+		type="fma:ComponentNode"
+	>
+		<name key="dynamic.6af66dc9-752b-47db-b95b-8a68cb569e12">
+			<en>Component Nodes</en>
+			<de>Komponentenknoten</de>
+		</name>
+		<modelBuilder class="com.top_logic.model.search.providers.TreeModelByExpression"
+			leafPredicate="false"
+			nodePredicate="node->$node.instanceOf(`fma:ComponentNode`)"
+			parents="node->$node.get(`fma:ComponentNode#parent`)"
+			rootNode="`synchra.Bom#LIBRARIES`"
+		>
+			<children><![CDATA[node -> switch {
+    $node.instanceOf(`synchra.Bom:Libraries`):  all(`fma:Product`).map(product ->
+      new(`fma:ComponentNode`, transient:true)
+        ..set(`fma:ComponentNode#component`, $product.get(`fma:Product#buildGroup`))
+        ..set(`fma:ComponentNode#parent`, null)
+        ..set(`fma:ComponentNode#connection`, null)
+        ..set(`fma:ComponentNode#product`, $product)
+   );    
+    $node.instanceOf(`fma:ComponentNode`):
+    $node.get(`fma:ComponentNode#component`).get(`fma:ConstructionGroup#consistsOf`).
+    filter(con -> $con.get(`fma:Connection#countries`).
+    			 map(c -> $c.get(`fma:Country#name`)).containsElement("Deutschland")).
+
+    map( con -> 
+      new(`fma:ComponentNode`, transient:true)
+      ..set(`fma:ComponentNode#component`, $con.get(`fma:Connection#consistsOf`))
+      ..set(`fma:ComponentNode#parent`, $node)
+      ..set(`fma:ComponentNode#connection`, $con)
+      ..set(`fma:ComponentNode#product`, $node.get(`fma:ComponentNode#product`))
+);
+}
+]]></children>
+		</modelBuilder>
+		<configurationProviders>
+			<configurationProvider class="com.top_logic.model.search.providers.ComputedColumnProviderByExpression"
+				accessor="row -> model -> $row.get(`fma:ComponentNode#component`).get(`fma:SinglePart#material`)"
+				columnId="ID_4f2fe934_4bf3_426e_bbe0_d73b0bf18cbf"
+				columnType="fma:Material"
+			>
+				<columnLabel key="dynamic.9d1bd9fc-36d4-4ff8-97a8-30310416f8b3">
+					<en>Material</en>
+					<de>Material</de>
+				</columnLabel>
+				<annotations>
+					<column-info>
+						<comparator class="com.top_logic.basic.col.ComparableComparator"/>
+					</column-info>
+				</annotations>
+			</configurationProvider>
+			<configurationProvider class="com.top_logic.model.search.providers.ComputedColumnProviderByExpression"
+				accessor="row -> model -> false ? 0:$row.get(`fma:ComponentNode#component`).get(`fma:Component#price`)"
+				columnId="ID_06457f75_4b0b_4e80_a7dc_0262a50bc7f3"
+				columnType="tl.core:Double"
+			>
+				<columnLabel key="dynamic.4d9c3695-c4f9-42b7-92ea-f6ab187fb89f">
+					<en>Price</en>
+					<de>Preis</de>
+				</columnLabel>
+			</configurationProvider>
+			<configurationProvider class="com.top_logic.model.search.providers.ComputedColumnProviderByExpression"
+				accessor="row -> model -> false ? 0:$row.get(`fma:ComponentNode#connection`).get(`fma:Connection#countries`)"
+				columnId="ID_d7cb9ace_d438_4d72_be15_b30495677e36"
+				columnType="fma:Country"
+			>
+				<columnLabel key="dynamic.67710a65-69fb-41f1-b33b-c4b67f6494b5">
+					<en>Countries</en>
+					<de>Länder</de>
+				</columnLabel>
+				<annotations>
+					<column-info>
+						<comparator class="com.top_logic.basic.col.ComparableComparator"/>
+					</column-info>
+				</annotations>
+			</configurationProvider>
+		</configurationProviders>
+		<buttons>
+			<button id="ID_42b93716_ea76_4f6d_bae7_e306851789d1"
+				class="com.top_logic.layout.form.component.InvalidateCommand"
+			/>
+		</buttons>
+	</arguments>
+</config:template-call>

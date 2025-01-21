@@ -40,6 +40,9 @@
 					navigate="true"
 					type="Connection"
 				/>
+				<property name="price"
+					type="tl.core:Double"
+				/>
 			</attributes>
 		</interface>
 		<class name="ConstructionGroup">
@@ -67,6 +70,16 @@
 						</constraints>
 					</annotations>
 				</reference>
+				<property name="price"
+					override="true"
+					type="tl.core:Double"
+				>
+					<annotations>
+						<storage-algorithm>
+							<query expr="grp -> $grp.get(`fma:ConstructionGroup#consistsOf`).get(`fma:Connection#consistsOf`).get(`fma:Component#price`).sum()"/>
+						</storage-algorithm>
+					</annotations>
+				</property>
 			</attributes>
 		</class>
 		<class name="SinglePart">
@@ -85,6 +98,64 @@
 					navigate="true"
 					type="Material"
 				/>
+			</attributes>
+		</class>
+		<class name="ComponentNode">
+			<generalizations>
+				<generalization type="tl.model:TLObject"/>
+			</generalizations>
+			<attributes>
+				<reference name="component"
+					kind="forwards"
+					mandatory="true"
+					navigate="true"
+					type="Component"
+				/>
+				<reference name="connection"
+					kind="forwards"
+					navigate="true"
+					type="Connection"
+				/>
+				<reference name="parent"
+					inverse-reference="children"
+					kind="forwards"
+					navigate="true"
+					type="ComponentNode"
+				/>
+				<property name="name"
+					type="tl.core:String"
+				>
+					<annotations>
+						<storage-algorithm>
+							<query expr="node -> $node.get(`fma:ComponentNode#component`).isEmpty() ?$node.get(`fma:ComponentNode#product`).get(`fma:Product#name`): $node.get(`fma:ComponentNode#component`).get(`fma:Component#name`)"/>
+						</storage-algorithm>
+					</annotations>
+				</property>
+				<reference name="product"
+					kind="forwards"
+					type="Product"
+				/>
+				<reference name="children"
+					inverse-reference="parent"
+					kind="backwards"
+					multiple="true"
+					navigate="true"
+					type="ComponentNode"
+				/>
+				<property name="price"
+					type="tl.core:Double"
+				>
+					<annotations>
+						<storage-algorithm>
+							<query>
+								<expr><![CDATA[node -> if( $node.get(`fma:ComponentNode#component`).instanceOf(`fma:SinglePart`),
+ $node.get(`fma:ComponentNode#component`).get(`fma:SinglePart#price`),
+ $node.get(`fma:ComponentNode#children`).get(`fma:ComponentNode#price`).sum()
+)]]></expr>
+							</query>
+						</storage-algorithm>
+					</annotations>
+				</property>
 			</attributes>
 		</class>
 		<class name="Connection">
@@ -107,6 +178,23 @@
 					type="Component"
 				/>
 				<property name="position"
+					type="tl.core:String"
+				/>
+				<reference name="countries"
+					kind="forwards"
+					multiple="true"
+					navigate="true"
+					type="Country"
+				/>
+			</attributes>
+		</class>
+		<class name="Country">
+			<generalizations>
+				<generalization type="tl.model:TLObject"/>
+			</generalizations>
+			<attributes>
+				<property name="name"
+					mandatory="true"
 					type="tl.core:String"
 				/>
 			</attributes>

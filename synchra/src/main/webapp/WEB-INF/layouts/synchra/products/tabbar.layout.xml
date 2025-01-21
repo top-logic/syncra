@@ -8,6 +8,7 @@
 		<components>
 			<layout-reference resource="synchra/products/products/tabLayout.layout.xml"/>
 			<layout-reference resource="synchra/products/buildGroups/tabLayout.layout.xml"/>
+			<layout-reference resource="synchra/products/componentNodes/tabLayout.layout.xml"/>
 			<layout-reference resource="synchra/products/productTree/tabLayout.layout.xml"/>
 		</components>
 	</arguments>

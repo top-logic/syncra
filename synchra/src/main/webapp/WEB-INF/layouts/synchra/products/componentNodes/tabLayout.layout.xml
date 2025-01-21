@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	template="com.top_logic/tab.template.xml"
+>
+	<arguments helpID="ID_55d5a2ec_123a_4d6e_b522_9b86a31ab7d6">
+		<tabLabel key="dynamic.7fdad3a2-791a-4918-a6b8-24437f177d8d">
+			<en>Component Nodes</en>
+			<de>Produktebaum</de>
+		</tabLabel>
+		<components>
+			<layout-reference resource="synchra/products/componentNodes/innerLayout.layout.xml"/>
+		</components>
+	</arguments>
+</config:template-call>

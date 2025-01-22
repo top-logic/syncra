@@ -49,6 +49,9 @@
 			<generalizations>
 				<generalization type="Component"/>
 			</generalizations>
+			<annotations>
+				<instance-presentation icon="css:fa-solid fa-object-group"/>
+			</annotations>
 			<attributes>
 				<reference name="consistsOf"
 					composite="true"
@@ -86,6 +89,9 @@
 			<generalizations>
 				<generalization type="Component"/>
 			</generalizations>
+			<annotations>
+				<instance-presentation icon="css:fa-solid fa-diamond"/>
+			</annotations>
 			<attributes>
 				<reference name="company"
 					kind="forwards"
@@ -185,6 +191,9 @@
 					multiple="true"
 					navigate="true"
 					type="Country"
+				/>
+				<property name="rule"
+					type="tl.core:String"
 				/>
 			</attributes>
 		</class>
@@ -336,6 +345,48 @@ all(`fma:Company`).map( company ->
 				/>
 				<property name="name"
 					mandatory="true"
+					type="tl.core:String"
+				/>
+			</attributes>
+		</class>
+		<class name="ProductSelection">
+			<generalizations>
+				<generalization type="tl.model:TLObject"/>
+			</generalizations>
+			<annotations>
+				<form-definition>
+					<form>
+						<field
+							attribute="product"
+							fullQualifiedName="fma:ProductSelection#product"
+							type="fma:Product"
+						/>
+						<field
+							attribute="rule"
+							fullQualifiedName="fma:ProductSelection#rule"
+							type="tl.core:String"
+						/>
+						<field
+							attribute="country"
+							fullQualifiedName="fma:ProductSelection#country"
+							type="fma:Country"
+						/>
+					</form>
+				</form-definition>
+			</annotations>
+			<attributes>
+				<reference name="product"
+					kind="forwards"
+					mandatory="true"
+					navigate="true"
+					type="Product"
+				/>
+				<reference name="country"
+					kind="forwards"
+					navigate="true"
+					type="Country"
+				/>
+				<property name="rule"
 					type="tl.core:String"
 				/>
 			</attributes>

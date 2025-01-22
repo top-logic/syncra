@@ -12,12 +12,12 @@
 			resourceKey="class.com.top_logic.model.search.providers.I18NConstants.CREATE_OBJECT_DEFAULT_LABEL"
 		/>
 		<typeOptions type="fma:Product"/>
-		<create-handler id="createRow">
-			<postCreateActions>
-				<setModel target="selection(synchra/products/products/productsTable.layout.xml#Table)">
-					<input/>
-				</setModel>
-			</postCreateActions>
+		<create-handler id="ID_afc6253e_adcf_4f60_bcea_71c31a87ddc6">
+			<linkOperation><![CDATA[con -> x -> y -> $x.set(`fma:Product#buildGroup`, 
+       new(`fma:ConstructionGroup`, transient: false)
+          ..set(`fma:ConstructionGroup#name`,"BG "+$x.get(`fma:Product#name`))
+    )      
+]]></linkOperation>
 		</create-handler>
 	</arguments>
 </config:template-call>

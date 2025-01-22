@@ -48,9 +48,9 @@
 			</configurationProvider>
 			<column-customizations/>
 			<configurationProvider class="com.top_logic.model.search.providers.ComputedColumnProviderByExpression"
-				accessor="row -> model -> $row.get(`fma:ConstructionGroup#consistsOf`).map(conn -> $conn.get(`fma:Connection#consistsOf`).get(`fma:Component#name`))"
+				accessor="row -> model -> $row.get(`fma:ConstructionGroup#consistsOf`).map(conn -> $conn.get(`fma:Connection#consistsOf`))"
 				columnId="ID_b39e6ab5_8a4c_4595_bc49_e4435ceb096a"
-				columnType="tl.core:String"
+				columnType="fma:Component"
 			>
 				<columnLabel key="dynamic.3e817a64-a590-463b-b871-6cfdb976d0bc">
 					<en>consistsOf2</en>
@@ -58,9 +58,9 @@
 				</columnLabel>
 			</configurationProvider>
 			<configurationProvider class="com.top_logic.model.search.providers.ComputedColumnProviderByExpression"
-				accessor="row -> model -> $row.get(`fma:ConstructionGroup#used`).map(conn -> $conn.get(`fma:Connection#used`).get(`fma:Component#name`))"
+				accessor="row -> model -> $row.get(`fma:ConstructionGroup#used`).map(conn -> $conn.get(`fma:Connection#used`))"
 				columnId="ID_ddf78930_8d19_4b2e_a1eb_92e871cf397d"
-				columnType="tl.core:String"
+				columnType="fma:Component"
 			>
 				<columnLabel key="dynamic.5842a7ca-4ce4-4823-be32-f4d2fbf94bca">
 					<en>used in 2</en>

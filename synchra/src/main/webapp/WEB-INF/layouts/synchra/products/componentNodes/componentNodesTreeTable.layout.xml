@@ -10,8 +10,8 @@
 		type="fma:ComponentNode"
 	>
 		<name key="dynamic.6af66dc9-752b-47db-b95b-8a68cb569e12">
-			<en>Component Nodes</en>
-			<de>Komponentenknoten</de>
+			<en>Produkt Tree</en>
+			<de>Produktbaum</de>
 		</name>
 		<modelBuilder class="com.top_logic.model.search.providers.TreeModelByExpression"
 			leafPredicate="false"
@@ -19,26 +19,30 @@
 			parents="node->$node.get(`fma:ComponentNode#parent`)"
 			rootNode="`synchra.Bom#LIBRARIES`"
 		>
-			<children><![CDATA[node -> switch {
-    $node.instanceOf(`synchra.Bom:Libraries`):  all(`fma:Product`).map(product ->
-      new(`fma:ComponentNode`, transient:true)
+			<children><![CDATA[node -> selection-> switch {
+    $selection==null: null;
+    $node.instanceOf(`synchra.Bom:Libraries`): 
+       all(`fma:Product`).map(product ->
+         new(`fma:ComponentNode`, transient:true)
         ..set(`fma:ComponentNode#component`, $product.get(`fma:Product#buildGroup`))
         ..set(`fma:ComponentNode#parent`, null)
         ..set(`fma:ComponentNode#connection`, null)
         ..set(`fma:ComponentNode#product`, $product)
-   );    
-    $node.instanceOf(`fma:ComponentNode`):
-    $node.get(`fma:ComponentNode#component`).get(`fma:ConstructionGroup#consistsOf`).
-    filter(con -> $con.get(`fma:Connection#countries`).
-    			 map(c -> $c.get(`fma:Country#name`)).containsElement("Deutschland")).
-
-    map( con -> 
-      new(`fma:ComponentNode`, transient:true)
-      ..set(`fma:ComponentNode#component`, $con.get(`fma:Connection#consistsOf`))
-      ..set(`fma:ComponentNode#parent`, $node)
-      ..set(`fma:ComponentNode#connection`, $con)
-      ..set(`fma:ComponentNode#product`, $node.get(`fma:ComponentNode#product`))
-);
+       )
+       .filter(node -> $node.get(`fma:ComponentNode#product`)==$selection.get(`fma:ProductSelection#product`));
+       
+    $node.instanceOf(`fma:ComponentNode`):{
+       rule = $selection.get(`fma:ProductSelection#rule`);
+       $node.get(`fma:ComponentNode#component`).get(`fma:ConstructionGroup#consistsOf`)
+            .filter( con -> $rule==null ? true : $con.get(`fma:Connection#rule`).stringContains($rule)   ) 
+            .map( con -> 
+                  new(`fma:ComponentNode`, transient:true)
+                    ..set(`fma:ComponentNode#component`, $con.get(`fma:Connection#consistsOf`))
+                    ..set(`fma:ComponentNode#parent`, $node)
+                    ..set(`fma:ComponentNode#connection`, $con)
+                    ..set(`fma:ComponentNode#product`, $node.get(`fma:ComponentNode#product`))
+            );
+     };
 }
 ]]></children>
 		</modelBuilder>
@@ -64,8 +68,8 @@
 				columnType="tl.core:Double"
 			>
 				<columnLabel key="dynamic.4d9c3695-c4f9-42b7-92ea-f6ab187fb89f">
-					<en>Price</en>
-					<de>Preis</de>
+					<en>Component-Price</en>
+					<de>Komponenten-Preis</de>
 				</columnLabel>
 			</configurationProvider>
 			<configurationProvider class="com.top_logic.model.search.providers.ComputedColumnProviderByExpression"
@@ -82,6 +86,16 @@
 						<comparator class="com.top_logic.basic.col.ComparableComparator"/>
 					</column-info>
 				</annotations>
+			</configurationProvider>
+			<configurationProvider class="com.top_logic.model.search.providers.ComputedColumnProviderByExpression"
+				accessor="row -> model -> false ? 0:$row.get(`fma:ComponentNode#connection`).get(`fma:Connection#rule`)"
+				columnId="ID_84ca2c86_e001_43e5_8556_c5a4358a4f5b"
+				columnType="tl.core:String"
+			>
+				<columnLabel key="dynamic.42bcd4a5-0625-49c2-a782-860143432be5">
+					<en>Rule</en>
+					<de>Regel</de>
+				</columnLabel>
 			</configurationProvider>
 		</configurationProviders>
 		<buttons>

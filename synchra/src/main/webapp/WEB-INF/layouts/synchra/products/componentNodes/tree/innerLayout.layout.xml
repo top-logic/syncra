@@ -6,7 +6,7 @@
 >
 	<arguments>
 		<components>
-			<layout-reference resource="synchra/products/productTree/productsTreeTable.layout.xml">
+			<layout-reference resource="synchra/products/componentNodes/tree/componentPlaceholderLayout.layout.xml">
 				<layoutInfo/>
 			</layout-reference>
 		</components>

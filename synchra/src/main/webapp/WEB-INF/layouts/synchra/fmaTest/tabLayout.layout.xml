@@ -6,10 +6,11 @@
 >
 	<arguments
 		helpID="ID_02781575_88a3_4b86_b767_ebdaf6473d61"
-		tabIcon="css:bi bi-2-square"
+		tabIcon="css:fa-solid fa-chart-pie"
 	>
 		<tabLabel key="dynamic.66be166f-772b-48d8-a4f9-b9106f775da0">
-			<de>FmaTest</de>
+			<en>Parts</en>
+			<de>Teile</de>
 		</tabLabel>
 		<components>
 			<layout-reference resource="synchra/fmaTest/innerLayout.layout.xml"/>

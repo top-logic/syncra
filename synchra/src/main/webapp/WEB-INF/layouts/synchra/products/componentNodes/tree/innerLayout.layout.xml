@@ -9,7 +9,7 @@
 			<layout-reference resource="synchra/products/componentNodes/tree/componentNodesTreeTable.layout.xml">
 				<layoutInfo/>
 			</layout-reference>
-			<layout-reference resource="synchra/products/componentNodes/tree/partListTable.layout.xml">
+			<layout-reference resource="synchra/products/componentNodes/tree/innerLayout1.layout.xml">
 				<layoutInfo/>
 			</layout-reference>
 		</components>

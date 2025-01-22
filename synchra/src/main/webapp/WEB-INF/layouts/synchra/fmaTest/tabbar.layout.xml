@@ -7,9 +7,7 @@
 	<arguments>
 		<components>
 			<layout-reference resource="synchra/fmaTest/partcatalogs/tabLayout.layout.xml"/>
-			<layout-reference resource="synchra/fmaTest/singleParts/tabLayout.layout.xml"/>
 			<layout-reference resource="synchra/fmaTest/baum/tabLayout.layout.xml"/>
-			<layout-reference resource="synchra/fmaTest/klassifikationsbaum/tabLayout.layout.xml"/>
 			<layout-reference resource="synchra/fmaTest/klssifikation2/tabLayout.layout.xml"/>
 		</components>
 	</arguments>

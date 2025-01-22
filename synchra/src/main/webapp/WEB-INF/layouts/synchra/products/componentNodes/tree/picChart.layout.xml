@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	template="com.top_logic.chart.chartjs/chartjs.template.xml"
+>
+	<arguments
+		model="rows(synchra/products/componentNodes/tree/partListTable.layout.xml#Table)"
+		showPopOut="true"
+	>
+		<name key="dynamic.3572b4bf-62de-4d09-af8a-4f0f7e0e9bd2">
+			<en>Costs by material</en>
+			<de>Kosten pro Material</de>
+		</name>
+		<data><![CDATA[rows -> {
+	'type': 'bar',
+	'data': {
+	    'labels': all(`fma:Material`),
+		'datasets': [
+		    {
+		        'label': 'Kosten pro Material',
+			    'data': 
+			    all(`fma:Material`)
+			       .map(material -> $rows.filter(
+			              row -> $row.get(`fma:PartsListEntry#part`).get(`fma:SinglePart#material`).containsElement($material)
+			              )
+			         )     
+			        .map(row -> $row.get(`fma:PartsListEntry#costs`).sum() )
+		    }
+		]
+	},
+	'options': {
+		'maintainAspectRatio': false,
+		'plugins': {
+            'colorschemes': {
+            	// See https://nagix.github.io/chartjs-plugin-colorschemes/colorchart.html
+                'scheme': 'tableau.Tableau10'
+            }
+        },
+		'scales': {
+		    'y': {
+			    'ticks': {
+			        'min': 0
+			    }
+		    },
+			'x': {
+				'gridLines': {
+					'offsetGridLines': true
+				}
+			}
+		}
+	}
+}]]></data>
+	</arguments>
+</config:template-call>

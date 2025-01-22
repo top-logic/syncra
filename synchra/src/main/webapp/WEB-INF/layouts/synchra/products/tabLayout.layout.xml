@@ -6,7 +6,7 @@
 >
 	<arguments
 		helpID="ID_87f08e8d_32af_44ec_957c_5d37112d27df"
-		tabIcon="css:fa-brands fa-product-hunt"
+		tabIcon="css:fa-solid fa-industry"
 	>
 		<tabLabel key="dynamic.95657413-5a40-4372-9384-5d4fdd59125a">
 			<en>Products</en>

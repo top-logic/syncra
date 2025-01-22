@@ -4,9 +4,12 @@
 	xmlns:config="http://www.top-logic.com/ns/config/6.0"
 	template="com.top_logic/layout.template.xml"
 >
-	<arguments>
+	<arguments orientation="VERTICAL">
 		<components>
-			<layout-reference resource="synchra/fmaTest/singleParts/componentPlaceholderLayout1.layout.xml">
+			<layout-reference resource="synchra/products/componentNodes/tree/partListTable.layout.xml">
+				<layoutInfo/>
+			</layout-reference>
+			<layout-reference resource="synchra/products/componentNodes/tree/picChart.layout.xml">
 				<layoutInfo/>
 			</layout-reference>
 		</components>

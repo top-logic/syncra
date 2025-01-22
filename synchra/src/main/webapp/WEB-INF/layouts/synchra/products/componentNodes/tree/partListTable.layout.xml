@@ -7,6 +7,7 @@
 	<arguments
 		defaultColumns="part,connections,singlePrice,count,costs"
 		model="selection(synchra/products/componentNodes/tree/componentNodesTreeTable.layout.xml#TreeTable)"
+		showPopOut="true"
 		type="fma:PartsListEntry"
 	>
 		<name key="dynamic.567df31a-b68e-4c96-baf8-47062db371e8">

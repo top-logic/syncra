@@ -9,9 +9,6 @@
 			<layout-reference resource="synchra/products/componentNodes/componentPlaceholderLayout.layout.xml">
 				<layoutInfo/>
 			</layout-reference>
-			<layout-reference resource="synchra/products/componentNodes/componentNodesTreeTable.layout.xml">
-				<layoutInfo/>
-			</layout-reference>
 			<layout-reference resource="synchra/products/componentNodes/tabbar.layout.xml">
 				<layoutInfo/>
 			</layout-reference>

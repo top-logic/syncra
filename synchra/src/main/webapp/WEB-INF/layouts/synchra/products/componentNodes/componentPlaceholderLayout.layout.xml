@@ -22,11 +22,11 @@
 				transaction="false"
 			>
 				<resourceKey key="dynamic.c890e5c2-35da-4766-9459-b7d3713ee339">
-					<en>Refresh</en>
-					<de>Aktualisieren</de>
+					<en>Show choice</en>
+					<de>Auswahl anzeigen</de>
 				</resourceKey>
 				<postCreateActions>
-					<setModel target="model(synchra/products/componentNodes/componentNodesTreeTable.layout.xml#TreeTable)">
+					<setModel target="model(synchra/products/componentNodes/tree/componentNodesTreeTable.layout.xml#TreeTable)">
 						<input/>
 					</setModel>
 				</postCreateActions>

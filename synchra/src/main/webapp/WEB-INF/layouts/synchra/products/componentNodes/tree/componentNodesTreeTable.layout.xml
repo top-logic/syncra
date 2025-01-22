@@ -5,7 +5,7 @@
 	template="com.top_logic/treetable.template.xml"
 >
 	<arguments
-		defaultColumns="name"
+		defaultColumns="name,price,ID_84ca2c86_e001_43e5_8556_c5a4358a4f5b,ID_4f2fe934_4bf3_426e_bbe0_d73b0bf18cbf,ID_06457f75_4b0b_4e80_a7dc_0262a50bc7f3"
 		rootVisible="false"
 		type="fma:ComponentNode"
 	>
@@ -63,7 +63,7 @@
 				</annotations>
 			</configurationProvider>
 			<configurationProvider class="com.top_logic.model.search.providers.ComputedColumnProviderByExpression"
-				accessor="row -> model -> false ? 0:$row.get(`fma:ComponentNode#component`).get(`fma:Component#price`)"
+				accessor="row -> model -> $row.get(`fma:ComponentNode#component`).get(`fma:Component#price`)"
 				columnId="ID_06457f75_4b0b_4e80_a7dc_0262a50bc7f3"
 				columnType="tl.core:Double"
 			>
@@ -73,7 +73,7 @@
 				</columnLabel>
 			</configurationProvider>
 			<configurationProvider class="com.top_logic.model.search.providers.ComputedColumnProviderByExpression"
-				accessor="row -> model -> false ? 0:$row.get(`fma:ComponentNode#connection`).get(`fma:Connection#countries`)"
+				accessor="row -> model -> $row.get(`fma:ComponentNode#connection`).get(`fma:Connection#countries`)"
 				columnId="ID_d7cb9ace_d438_4d72_be15_b30495677e36"
 				columnType="fma:Country"
 			>
@@ -88,7 +88,7 @@
 				</annotations>
 			</configurationProvider>
 			<configurationProvider class="com.top_logic.model.search.providers.ComputedColumnProviderByExpression"
-				accessor="row -> model -> false ? 0:$row.get(`fma:ComponentNode#connection`).get(`fma:Connection#rule`)"
+				accessor="row -> model -> $row.get(`fma:ComponentNode#connection`).get(`fma:Connection#rule`)"
 				columnId="ID_84ca2c86_e001_43e5_8556_c5a4358a4f5b"
 				columnType="tl.core:String"
 			>
@@ -97,11 +97,26 @@
 					<de>Regel</de>
 				</columnLabel>
 			</configurationProvider>
+			<configurationProvider class="com.top_logic.model.search.providers.ComputedColumnProviderByExpression"
+				accessor="row -> model -> $row.get(`fma:ComponentNode#connection`).get(`fma:Connection#position`)"
+				columnId="ID_3a6d7b67_89f8_4592_a5bf_433ce720d33e"
+				columnType="tl.core:String"
+			>
+				<columnLabel key="dynamic.4b2a2c9a-28fd-4d75-832e-50fbac059d87">
+					<en>Position</en>
+					<de>Lage</de>
+				</columnLabel>
+			</configurationProvider>
 		</configurationProviders>
 		<buttons>
-			<button id="ID_42b93716_ea76_4f6d_bae7_e306851789d1"
-				class="com.top_logic.layout.form.component.InvalidateCommand"
-			/>
+			<button id="ID_1efa6053_bab5_4514_9bb3_53fa4c7bda0f"
+				class="com.top_logic.layout.table.export.ExcelExportHandler"
+			>
+				<downloadNameKey key="dynamic.709c4bc7-2326-4b47-a4d1-567144c1578f">
+					<en>Product data</en>
+					<de>Produktdaten</de>
+				</downloadNameKey>
+			</button>
 		</buttons>
 	</arguments>
 </config:template-call>

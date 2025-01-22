@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	template="com.top_logic/table.template.xml"
+>
+	<arguments
+		defaultColumns="part,connections,singlePrice,count,costs"
+		model="selection(synchra/products/componentNodes/tree/componentNodesTreeTable.layout.xml#TreeTable)"
+		type="fma:PartsListEntry"
+	>
+		<name key="dynamic.567df31a-b68e-4c96-baf8-47062db371e8">
+			<en>Part List</en>
+			<de>Stückliste</de>
+		</name>
+		<modelBuilder class="com.top_logic.model.search.providers.ListModelByExpression"
+			supportsElement="true"
+		>
+			<elements><![CDATA[root -> {
+    nodes = $root.traverse(
+       descend: node ->  { $node.get(`fma:ComponentNode#children`) }, 
+       compose: result -> childResults -> node -> parent -> { 
+            $node.get(`fma:ComponentNode#component`).instanceOf(`fma:SinglePart`) ?  concat($node,$childResults.flatten()) : $childResults.flatten()
+       }
+    );
+   nodesByComponent = $nodes.groupBy(node -> $node.get(`fma:ComponentNode#component`));
+    $nodesByComponent
+     .map( entry -> 
+         new(`fma:PartsListEntry`,transient: true)
+           ..set(`fma:PartsListEntry#part`,$entry.getKey())
+           ..set(`fma:PartsListEntry#connections`,$entry.getValue())
+     )
+}]]></elements>
+		</modelBuilder>
+		<buttons>
+			<button id="exportExcel"
+				class="com.top_logic.layout.table.export.ExcelExportHandler"
+			>
+				<downloadNameKey key="dynamic.e83bc2fe-6a15-4fb4-bf6a-8dd159c1cbc9">
+					<en>PartsData</en>
+					<de>Stückliste</de>
+				</downloadNameKey>
+			</button>
+		</buttons>
+	</arguments>
+</config:template-call>

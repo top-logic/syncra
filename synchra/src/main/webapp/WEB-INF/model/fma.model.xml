@@ -331,10 +331,67 @@ all(`fma:Company`).map( company ->
 				/>
 			</attributes>
 		</class>
+		<class name="PartsListEntry">
+			<generalizations>
+				<generalization type="tl.model:TLObject"/>
+			</generalizations>
+			<attributes>
+				<reference name="part"
+					kind="forwards"
+					mandatory="true"
+					navigate="true"
+					type="SinglePart"
+				/>
+				<reference name="connections"
+					kind="forwards"
+					multiple="true"
+					navigate="true"
+					type="Connection"
+				/>
+				<property name="count"
+					type="tl.core:Integer"
+				>
+					<annotations>
+						<storage-algorithm>
+							<query expr="entry -> $entry.get(`fma:PartsListEntry#connections`).size()"/>
+						</storage-algorithm>
+					</annotations>
+				</property>
+				<property name="costs"
+					type="tl.core:Double"
+				>
+					<annotations>
+						<storage-algorithm>
+							<query expr="entry -> $entry.get(`fma:PartsListEntry#part`).get(`fma:SinglePart#price`) * $entry.get(`fma:PartsListEntry#count`)"/>
+						</storage-algorithm>
+					</annotations>
+				</property>
+				<property name="singlePrice"
+					type="tl.core:Double"
+				>
+					<annotations>
+						<storage-algorithm>
+							<query expr="entry -> $entry.get(`fma:PartsListEntry#part`).get(`fma:SinglePart#price`)"/>
+						</storage-algorithm>
+					</annotations>
+				</property>
+			</attributes>
+		</class>
 		<class name="Product">
 			<generalizations>
 				<generalization type="tl.model:TLObject"/>
 			</generalizations>
+			<annotations>
+				<form-definition>
+					<form>
+						<field
+							attribute="name"
+							fullQualifiedName="fma:Product#name"
+							type="tl.core:String"
+						/>
+					</form>
+				</form-definition>
+			</annotations>
 			<attributes>
 				<reference name="buildGroup"
 					composite="true"
@@ -365,11 +422,6 @@ all(`fma:Company`).map( company ->
 							attribute="rule"
 							fullQualifiedName="fma:ProductSelection#rule"
 							type="tl.core:String"
-						/>
-						<field
-							attribute="country"
-							fullQualifiedName="fma:ProductSelection#country"
-							type="fma:Country"
 						/>
 					</form>
 				</form-definition>

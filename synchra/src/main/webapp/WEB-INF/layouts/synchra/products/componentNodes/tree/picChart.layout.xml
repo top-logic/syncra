@@ -12,17 +12,20 @@
 			<en>Costs by material</en>
 			<de>Kosten pro Material</de>
 		</name>
-		<data><![CDATA[rows -> {
+		<data><![CDATA[rows -> 
+{
+    revision = $rows.isEmpty()? currentRevision(): $rows.elementAt(0).get(`fma:PartsListEntry#part`).revision();
+    materials = all(`fma:Material`).inRevision($revision);
+{
 	'type': 'bar',
 	'data': {
-	    'labels': all(`fma:Material`),
+	    'labels':  $materials ,
 		'datasets': [
 		    {
 		        'label': 'Kosten pro Material',
 			    'data': 
-			    all(`fma:Material`)
-			       .map(material -> $rows.filter(
-			              row -> $row.get(`fma:PartsListEntry#part`).get(`fma:SinglePart#material`).containsElement($material)
+			    $materials.map(material -> $rows.filter(
+			        row -> $row.get(`fma:PartsListEntry#part`).get(`fma:SinglePart#material`).containsElement($material)
 			              )
 			         )     
 			        .map(row -> $row.get(`fma:PartsListEntry#costs`).sum() )
@@ -50,6 +53,7 @@
 			}
 		}
 	}
+}
 }]]></data>
 	</arguments>
 </config:template-call>

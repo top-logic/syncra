@@ -21,16 +21,16 @@
 		>
 			<children><![CDATA[node -> selection-> switch {
     $selection==null: null;
-    $node.instanceOf(`synchra.Bom:Libraries`): 
-       all(`fma:Product`).map(product ->
-         new(`fma:ComponentNode`, transient:true)
-        ..set(`fma:ComponentNode#component`, $product.get(`fma:Product#buildGroup`))
-        ..set(`fma:ComponentNode#parent`, null)
-        ..set(`fma:ComponentNode#connection`, null)
-        ..set(`fma:ComponentNode#product`, $product)
-       )
-       .filter(node -> $node.get(`fma:ComponentNode#product`)==$selection.get(`fma:ProductSelection#product`));
-       
+    $node.instanceOf(`synchra.Bom:Libraries`): {
+        date = $selection.get(`fma:ProductSelection#referenceDate`);
+        revision = $date==null ?  currentRevision() : revisionAt($date);
+        product = $selection.get(`fma:ProductSelection#product`).inRevision($revision);
+        new(`fma:ComponentNode`, transient:true)
+            ..set(`fma:ComponentNode#component`, $product.get(`fma:Product#buildGroup`))
+            ..set(`fma:ComponentNode#parent`, null)
+            ..set(`fma:ComponentNode#connection`, null)
+            ..set(`fma:ComponentNode#product`, $product);
+       };
     $node.instanceOf(`fma:ComponentNode`):{
        rule = $selection.get(`fma:ProductSelection#rule`);
        $node.get(`fma:ComponentNode#component`).get(`fma:ConstructionGroup#consistsOf`)

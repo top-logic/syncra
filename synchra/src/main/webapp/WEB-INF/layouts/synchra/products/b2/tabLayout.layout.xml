@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	template="com.top_logic/tab.template.xml"
+>
+	<arguments helpID="ID_0618b403_e6da_4fce_826e_6f490f0c36f4">
+		<tabLabel key="dynamic.d5b0e3c2-a0c5-4877-b94d-7fd1b4d9b3f9">
+			<de>B2</de>
+		</tabLabel>
+		<components>
+			<layout-reference resource="synchra/products/b2/innerLayout.layout.xml"/>
+		</components>
+	</arguments>
+</config:template-call>

@@ -29,6 +29,7 @@
 		</components>
 		<dialogs>
 			<layout-reference resource="com.top_logic.monitoring/admin/technical/logs/logLines.sessionDialog.layout.xml"/>
+			<layout-reference resource="synchra/company/dialog.layout.xml"/>
 		</dialogs>
 	</arguments>
 </config:template-call>

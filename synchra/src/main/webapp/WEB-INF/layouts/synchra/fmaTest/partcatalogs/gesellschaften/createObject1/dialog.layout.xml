@@ -6,18 +6,12 @@
 >
 	<arguments>
 		<title title="class.com.top_logic.model.search.providers.I18NConstants.CREATE_OBJECT_DEFAULT_LABEL"/>
-		<open-handler id="addRow"
+		<open-handler id="addNewElement"
 			config:interface="com.top_logic.layout.editor.config.CreateDialogOpenHandlerConfig"
 			image="theme:ICONS_ADD_BUTTON"
 			resourceKey="class.com.top_logic.model.search.providers.I18NConstants.CREATE_OBJECT_DEFAULT_LABEL"
 		/>
 		<typeOptions type="fma:Company"/>
-		<create-handler id="createRow">
-			<postCreateActions>
-				<setModel target="selection(synchra/fmaTest/partcatalogs/gesellschaften/gesellschaftenTable.layout.xml#Table)">
-					<input/>
-				</setModel>
-			</postCreateActions>
-		</create-handler>
+		<create-handler id="createNewElement"/>
 	</arguments>
 </config:template-call>

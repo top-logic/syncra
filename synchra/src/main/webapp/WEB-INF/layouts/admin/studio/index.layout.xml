@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	final="true"
+	template="com.top_logic/legacyTabbar.template.xml"
+>
+	<arguments
+		helpIDLegacy="main.admin.studio.tabber"
+		z_legacy_componentName="studioView"
+		z_legacy_tabBarName="studioView_tabBar"
+		z_legacy_tabLabel="main.admin.studio.tabber"
+	>
+		<components>
+			<layout-reference resource="com.top_logic.element/admin/model/modelEditor/adminModel.layout.xml"/>
+			<layout-reference resource="com.top_logic.element/admin/model/dbAdmin/schemaTab.layout.xml"/>
+			<layout-reference resource="com.top_logic/admin/technical/services/servicesView.layout.xml"/>
+			<layout-reference resource="admin/studio/layoutEditor/tabLayout.layout.xml"/>
+			<layout-reference resource="com.top_logic.model.search/admin/scriptConsole.layout.xml"/>
+			<layout-reference resource="com.top_logic.doc/tl.doc.layout.xml"/>
+			<layout-reference resource="com.top_logic.layout.themeedit/themeEditorView.layout.xml"/>
+			<layout-reference resource="com.top_logic.bpe.app/tl/bpe/modeler/admin/workflowAdminView.layout.xml"/>
+		</components>
+	</arguments>
+</config:template-call>

@@ -6,7 +6,7 @@
 >
 	<arguments>
 		<components>
-			<layout-reference resource="synchra/fmaTest/partcatalogs/gesellschaften/innerLayout1.layout.xml">
+			<layout-reference resource="synchra/company/companyForm.layout.xml">
 				<layoutInfo/>
 			</layout-reference>
 		</components>

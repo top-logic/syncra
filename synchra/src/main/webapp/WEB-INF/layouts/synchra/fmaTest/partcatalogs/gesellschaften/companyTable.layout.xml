@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	template="com.top_logic/table.template.xml"
+>
+	<arguments
+		size="300px"
+		type="fma:Company"
+	>
+		<dialogs>
+			<layout-reference resource="synchra/fmaTest/partcatalogs/gesellschaften/createObject1/dialog.layout.xml"/>
+		</dialogs>
+		<name key="dynamic.4c2b2491-a864-4d5c-9926-a2e2818219a6">
+			<en>Company</en>
+			<de>Gesellschaften</de>
+		</name>
+		<modelBuilder class="com.top_logic.model.search.providers.ListModelByExpression"
+			elements="model->all(`fma:Company`)"
+			supportsElement="element->$element.instanceOf(`fma:Company`)"
+		/>
+		<buttons>
+			<button id="exportExcel"
+				class="com.top_logic.layout.table.export.ExcelExportHandler"
+			/>
+			<button id="deleteSelection"
+				class="com.top_logic.layout.component.GenericDeleteCommandHandler"
+				target="selection(self())"
+			/>
+		</buttons>
+	</arguments>
+</config:template-call>

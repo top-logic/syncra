@@ -5,7 +5,7 @@
 	template="com.top_logic/table.template.xml"
 >
 	<arguments
-		defaultColumns="name,ID_b39e6ab5_8a4c_4595_bc49_e4435ceb096a,ID_ddf78930_8d19_4b2e_a1eb_92e871cf397d"
+		defaultColumns="name,ID_b39e6ab5_8a4c_4595_bc49_e4435ceb096a"
 		type="fma:ConstructionGroup"
 	>
 		<dialogs>
@@ -63,8 +63,8 @@
 				columnType="fma:Component"
 			>
 				<columnLabel key="dynamic.5842a7ca-4ce4-4823-be32-f4d2fbf94bca">
-					<en>used in 2</en>
-					<de>genutztIn2</de>
+					<en>used in</en>
+					<de>genutztIn</de>
 				</columnLabel>
 			</configurationProvider>
 		</configurationProviders>

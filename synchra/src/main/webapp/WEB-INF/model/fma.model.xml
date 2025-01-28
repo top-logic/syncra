@@ -11,6 +11,49 @@
 			<generalizations>
 				<generalization type="tl.model:TLObject"/>
 			</generalizations>
+			<annotations>
+				<form-definition>
+					<form>
+						<static-html>
+							<content><![CDATA[<p><span style="font-size:36px"><strong>Details Firmenkontakt</strong></span></p>
+]]></content>
+						</static-html>
+						<group>
+							<field
+								attribute="name"
+								fullQualifiedName="fma:Company#name"
+								type="tl.core:String"
+							/>
+							<field
+								attribute="structure"
+								fullQualifiedName="fma:Company#structure"
+								type="fma:CompanyStructure"
+							/>
+							<label key="dynamic.5dae300d-1547-4871-840b-5455236645ad">
+								<en>Base Data</en>
+								<de>Basisdaten</de>
+							</label>
+						</group>
+						<group>
+							<field
+								attribute="contactPerson"
+								fullQualifiedName="fma:Company#contactPerson"
+								type="tl.core:String"
+							/>
+							<field
+								attribute="phone"
+								fullQualifiedName="fma:Company#phone"
+								type="tl.core:String"
+							/>
+							<label key="dynamic.305a3563-965b-402e-a044-c7c861b71154">
+								<en>Contact</en>
+								<de>Kontakt</de>
+							</label>
+						</group>
+						<other-attributes/>
+					</form>
+				</form-definition>
+			</annotations>
 			<attributes>
 				<property name="name"
 					mandatory="true"
@@ -21,6 +64,12 @@
 					mandatory="true"
 					navigate="true"
 					type="CompanyStructure"
+				/>
+				<property name="contactPerson"
+					type="tl.core:String"
+				/>
+				<property name="phone"
+					type="tl.core:String"
 				/>
 			</attributes>
 		</class>
@@ -384,6 +433,17 @@ all(`fma:Company`).map( company ->
 					<annotations>
 						<storage-algorithm>
 							<query expr="entry -> $entry.get(`fma:PartsListEntry#part`).get(`fma:SinglePart#material`)"/>
+						</storage-algorithm>
+					</annotations>
+				</reference>
+				<reference name="producer"
+					kind="forwards"
+					navigate="true"
+					type="Company"
+				>
+					<annotations>
+						<storage-algorithm>
+							<query expr="entry -> $entry.get(`fma:PartsListEntry#part`).get(`fma:SinglePart#company`)"/>
 						</storage-algorithm>
 					</annotations>
 				</reference>

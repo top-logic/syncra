@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	template="com.top_logic/dialog.template.xml"
+>
+	<arguments helpID="ID_63e27dfd_8c57_4e51_a0b3_a46493f5c391">
+		<title>
+			<title key="dynamic.ca05dc7a-3e50-45bc-b47b-9868a101d764">
+				<en>Company</en>
+				<de>Gesellschaft</de>
+			</title>
+		</title>
+		<open-handler id="ID_c394b0c8_8ae6_44a4_90d2_938fd04eff60"
+			config:interface="com.top_logic.layout.editor.config.DialogOpenHandlerConfig"
+			image="css:bi bi-balloon-heart"
+		>
+			<resourceKey key="dynamic.ca05dc7a-3e50-45bc-b47b-9868a101d764">
+				<en>Company</en>
+				<de>Gesellschaft</de>
+			</resourceKey>
+		</open-handler>
+		<components>
+			<layout-reference resource="synchra/company/innerLayout.layout.xml"/>
+		</components>
+	</arguments>
+</config:template-call>

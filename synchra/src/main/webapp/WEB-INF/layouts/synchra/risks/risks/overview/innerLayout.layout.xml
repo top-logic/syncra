@@ -4,12 +4,12 @@
 	xmlns:config="http://www.top-logic.com/ns/config/6.0"
 	template="com.top_logic/contentLayout.template.xml"
 >
-	<arguments>
+	<arguments orientation="VERTICAL">
 		<components>
-			<layout-reference resource="synchra/products/componentNodes/tree/componentNodesTreeTable.layout.xml">
+			<layout-reference resource="synchra/risks/risks/overview/risksPerCategoryChart.layout.xml">
 				<layoutInfo/>
-			</layout-reference>		
-			<layout-reference resource="synchra/products/componentNodes/tree/tabbar.layout.xml">
+			</layout-reference>
+			<layout-reference resource="synchra/risks/risks/overview/riskClassesAfterActivitiesChart.layout.xml">
 				<layoutInfo/>
 			</layout-reference>
 		</components>

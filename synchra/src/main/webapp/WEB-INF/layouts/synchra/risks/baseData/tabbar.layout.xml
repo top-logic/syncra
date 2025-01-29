@@ -10,6 +10,7 @@
 			<layout-reference resource="synchra/risks/baseData/amount/tabLayout.layout.xml"/>
 			<layout-reference resource="synchra/risks/baseData/riskClass/tabLayout.layout.xml"/>
 			<layout-reference resource="synchra/risks/baseData/color/tabLayout.layout.xml"/>
+			<layout-reference resource="synchra/risks/baseData/kinds/tabLayout.layout.xml"/>
 		</components>
 	</arguments>
 </config:template-call>

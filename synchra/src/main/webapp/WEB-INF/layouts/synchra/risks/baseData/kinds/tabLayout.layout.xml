@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	template="com.top_logic/tab.template.xml"
+>
+	<arguments helpID="ID_6327291f_cf69_4db6_a6ba_26fbe539b8fe">
+		<tabLabel key="dynamic.b39ac8b6-70aa-4a9f-9b3d-67fb21c19aa2">
+			<en>Kinds</en>
+			<de>Arten</de>
+		</tabLabel>
+		<components>
+			<layout-reference resource="synchra/risks/baseData/kinds/innerLayout.layout.xml"/>
+		</components>
+	</arguments>
+</config:template-call>

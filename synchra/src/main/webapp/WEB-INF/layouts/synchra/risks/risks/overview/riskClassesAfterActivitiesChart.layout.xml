@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	template="com.top_logic.chart.chartjs/chartjs.template.xml"
+>
+	<arguments model="rows(synchra/risks/risks/risksTable.layout.xml#Table)">
+		<name key="dynamic.33cd7d0c-a492-4544-b487-198441f5d4d3">
+			<en>Risk classes after activities</en>
+			<de>Risikoklasssen nach Maßnahmen</de>
+		</name>
+		<data><![CDATA[risks -> {
+   risksByColor = $risks.groupBy(risk -> $risk.get(`risk:Risk#colorAfterActivities`));
+   myLabels = $risksByColor.keySet().map(c ->$c.get(`risk:Color#name`));
+   myValues = $risksByColor.values().map(c ->$c.size());
+   myColors = $risksByColor.keySet().map(c ->$c.get(`risk:Color#rgb`));
+   
+{
+	'type': 'doughnut',
+	'data': {
+	    'labels': $myLabels,
+		'datasets': [
+		    {
+		        'label': 'Risiken',
+			    'data': $myValues,
+		        'backgroundColor': $myColors,
+                'hoverOffset':'4'
+            }
+		]
+	}
+}
+}
+]]></data>
+	</arguments>
+</config:template-call>

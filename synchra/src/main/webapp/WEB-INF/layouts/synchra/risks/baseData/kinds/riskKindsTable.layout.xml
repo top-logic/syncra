@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	template="com.top_logic/table.template.xml"
+>
+	<arguments
+		size="300px"
+		type="risk:RiskKind"
+	>
+		<dialogs>
+			<layout-reference resource="synchra/risks/baseData/kinds/createObject/dialog.layout.xml"/>
+		</dialogs>
+		<name key="dynamic.f8dd7bfb-0665-495f-a335-2e553b5c0d89">
+			<en>Risk kinds</en>
+			<de>Risikoarten</de>
+		</name>
+		<modelBuilder class="com.top_logic.model.search.providers.ListModelByExpression"
+			elements="model->all(`risk:RiskKind`)"
+			supportsElement="element->$element.instanceOf(`risk:RiskKind`)"
+		/>
+		<buttons>
+			<button id="exportExcel"
+				class="com.top_logic.layout.table.export.ExcelExportHandler"
+			/>
+			<button id="deleteSelection"
+				class="com.top_logic.layout.component.GenericDeleteCommandHandler"
+				target="selection(self())"
+			/>
+		</buttons>
+	</arguments>
+</config:template-call>

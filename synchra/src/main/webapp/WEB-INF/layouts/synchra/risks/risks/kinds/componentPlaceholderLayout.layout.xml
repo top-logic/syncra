@@ -7,7 +7,7 @@
 	<arguments>
 		<components>
 			<component class="com.top_logic.layout.editor.components.ComponentPlaceholder"
-				name="synchra/products/componentNodes/tree/componentPlaceholderLayout.layout.xml#placeholder"
+				name="synchra/risks/risks/kinds/componentPlaceholderLayout.layout.xml#placeholder"
 			/>
 		</components>
 	</arguments>

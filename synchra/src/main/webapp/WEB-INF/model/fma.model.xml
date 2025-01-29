@@ -7,6 +7,60 @@
 			<classifier name="GmbH"/>
 			<classifier name="CoKG"/>
 		</enum>
+		<class name="Activity">
+			<generalizations>
+				<generalization type="tl.model:TLObject"/>
+			</generalizations>
+			<annotations>
+				<form-definition>
+					<form>
+						<field
+							attribute="name"
+							fullQualifiedName="fma:Activity#name"
+							type="tl.core:String"
+						/>
+						<field
+							attribute="costs"
+							fullQualifiedName="fma:Activity#costs"
+							type="tl.core:Integer"
+						/>
+						<field
+							attribute="riskCostImpact"
+							fullQualifiedName="fma:Activity#riskCostImpact"
+							type="tl.core:Integer"
+						/>
+						<field
+							attribute="riskProbImpact"
+							fullQualifiedName="fma:Activity#riskProbImpact"
+							type="tl.core:Integer"
+						/>
+						<field
+							attribute="description"
+							fullQualifiedName="fma:Activity#description"
+							type="tl.model.wysiwyg:Html"
+						/>
+					</form>
+				</form-definition>
+			</annotations>
+			<attributes>
+				<property name="name"
+					mandatory="true"
+					type="tl.core:String"
+				/>
+				<property name="description"
+					type="tl.model.wysiwyg:Html"
+				/>
+				<property name="costs"
+					type="tl.core:Integer"
+				/>
+				<property name="riskCostImpact"
+					type="tl.core:Integer"
+				/>
+				<property name="riskProbImpact"
+					type="tl.core:Integer"
+				/>
+			</attributes>
+		</class>
 		<class name="Company">
 			<generalizations>
 				<generalization type="tl.model:TLObject"/>
@@ -91,6 +145,13 @@
 				/>
 				<property name="price"
 					type="tl.core:Double"
+				/>
+				<reference name="risks"
+					inverse-reference="components"
+					kind="backwards"
+					multiple="true"
+					navigate="true"
+					type="risk:Risk"
 				/>
 			</attributes>
 		</interface>

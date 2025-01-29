@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	template="com.top_logic/table.template.xml"
+>
+	<arguments
+		defaultColumns="name,description,createdAt,probability,amountOfLoss,creator,colorSpot,kinds,estimatedDamage,activities,damageAfterActivities,probAfterActivities,lossAfterActivities,riskClassAfterActivities,colorAfterActivities,colorSpotAfterActivities,components"
+		model="selection(synchra/products/componentNodes/tree/componentNodesTreeTable.layout.xml#TreeTable)"
+		type="risk:Risk"
+	>
+		<name key="dynamic.b6dd67bb-ab24-442b-a91f-6f03c740011c">
+			<en>Risks</en>
+			<de>Risiken</de>
+		</name>
+		<modelBuilder class="com.top_logic.model.search.providers.ListModelByExpression"
+			supportsElement="element->$element.instanceOf(`risk:Risk`)"
+		>
+			<elements><![CDATA[root -> {
+    $root.traverse(
+       descend: node ->  { $node.get(`fma:ComponentNode#children`) }, 
+       compose: result -> childResults -> node -> parent -> { 
+            concat( $node.get(`fma:ComponentNode#component`).get(`fma:Component#risks`) ,$childResults.flatten())
+       }
+    );
+}]]></elements>
+		</modelBuilder>
+		<buttons>
+			<button id="exportExcel"
+				class="com.top_logic.layout.table.export.ExcelExportHandler"
+			/>
+		</buttons>
+	</arguments>
+</config:template-call>

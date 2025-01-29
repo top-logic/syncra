@@ -146,6 +146,41 @@
 							type="tl.core:String"
 						/>
 						<field
+							attribute="estimatedDamage"
+							fullQualifiedName="risk:Risk#estimatedDamage"
+							type="tl.core:Integer"
+						/>
+						<field
+							attribute="probability"
+							fullQualifiedName="risk:Risk#probability"
+							type="risk:Probability"
+						/>
+						<field
+							attribute="amountOfLoss"
+							fullQualifiedName="risk:Risk#amountOfLoss"
+							type="risk:AmountOfLoss"
+						/>
+						<field
+							attribute="colorSpot"
+							fullQualifiedName="risk:Risk#colorSpot"
+							type="tl.util:Color"
+						/>
+						<field
+							attribute="kinds"
+							fullQualifiedName="risk:Risk#kinds"
+							type="risk:RiskKind"
+						/>
+						<field
+							attribute="description"
+							fullQualifiedName="risk:Risk#description"
+							type="tl.model.wysiwyg:Html"
+						/>
+						<field
+							attribute="components"
+							fullQualifiedName="risk:Risk#components"
+							type="fma:Component"
+						/>
+						<field
 							attribute="createdAt"
 							fullQualifiedName="risk:Risk#createdAt"
 							type="tl.core:DateTime"
@@ -156,35 +191,16 @@
 							type="tl.accounts:Person"
 						/>
 						<field
-							attribute="amountOfLoss"
-							fullQualifiedName="risk:Risk#amountOfLoss"
-							type="risk:AmountOfLoss"
+							attribute="activities"
+							fullQualifiedName="risk:Risk#activities"
+							type="fma:Activity"
 						/>
 						<field
-							attribute="probability"
-							fullQualifiedName="risk:Risk#probability"
-							type="risk:Probability"
-						/>
-						<field
-							attribute="riskClass"
-							fullQualifiedName="risk:Risk#riskClass"
-							type="risk:RiskClass"
-						/>
-						<field
-							attribute="color"
-							fullQualifiedName="risk:Risk#color"
-							type="risk:Color"
-						/>
-						<field
-							attribute="colorSpot"
-							fullQualifiedName="risk:Risk#colorSpot"
+							attribute="colorSpotAfterActivities"
+							fullQualifiedName="risk:Risk#colorSpotAfterActivities"
 							type="tl.util:Color"
 						/>
-						<field
-							attribute="description"
-							fullQualifiedName="risk:Risk#description"
-							type="tl.model.wysiwyg:Html"
-						/>
+						<other-attributes/>
 					</form>
 				</form-definition>
 			</annotations>
@@ -213,10 +229,24 @@
 				/>
 				<reference name="amountOfLoss"
 					kind="forwards"
-					mandatory="true"
 					navigate="true"
 					type="AmountOfLoss"
-				/>
+				>
+					<annotations>
+						<storage-algorithm>
+							<query>
+								<expr><![CDATA[r -> all(`risk:AmountOfLoss`)
+.filter( a -> $a.get(`risk:AmountOfLoss#min`)<= $r.get(`risk:Risk#estimatedDamage`) 
+             && $r.get(`risk:Risk#estimatedDamage`) < $a.get(`risk:AmountOfLoss#max`) 
+      )
+
+
+
+]]></expr>
+							</query>
+						</storage-algorithm>
+					</annotations>
+				</reference>
 				<reference name="creator"
 					kind="forwards"
 					navigate="true"
@@ -254,6 +284,8 @@
 						<storage-algorithm>
 							<query expr="r -> $r.get(`risk:Risk#riskClass`).get(`risk:RiskClass#color`)"/>
 						</storage-algorithm>
+						<visibility value="hidden"/>
+						<create-visibility value="hidden"/>
 					</annotations>
 				</reference>
 				<property name="colorSpot"
@@ -263,8 +295,125 @@
 						<storage-algorithm>
 							<query expr="risk -> $risk.get(`risk:Risk#color`).get(`risk:Color#color`)"/>
 						</storage-algorithm>
+						<create-visibility value="hidden"/>
+						<visibility value="read-only"/>
 					</annotations>
 				</property>
+				<reference name="kinds"
+					kind="forwards"
+					multiple="true"
+					navigate="true"
+					type="RiskKind"
+				/>
+				<property name="estimatedDamage"
+					mandatory="true"
+					type="tl.core:Integer"
+				>
+					<annotations>
+						<value-range min="0.0"/>
+					</annotations>
+				</property>
+				<reference name="activities"
+					kind="forwards"
+					multiple="true"
+					navigate="true"
+					type="fma:Activity"
+				/>
+				<property name="damageAfterActivities"
+					type="tl.core:Integer"
+				>
+					<annotations>
+						<storage-algorithm>
+							<query>
+								<expr><![CDATA[risk -> $risk.get(`risk:Risk#estimatedDamage`) - 
+        $risk.get(`risk:Risk#activities`).map(a -> $a.get(`fma:Activity#riskCostImpact`)).sum()]]></expr>
+							</query>
+						</storage-algorithm>
+					</annotations>
+				</property>
+				<reference name="probAfterActivities"
+					kind="forwards"
+					navigate="true"
+					type="Probability"
+				>
+					<annotations>
+						<storage-algorithm>
+							<query>
+								<expr><![CDATA[r -> {
+  val = $r.get(`risk:Risk#probability`).get(`risk:Probability#max`)  -
+     $r.get(`risk:Risk#activities`).map(a -> $a.get(`fma:Activity#riskProbImpact`)).sum();
+   val = $val<0 ? 0 : $val;
+   val = $val>99? 99: $val;
+   all(`risk:Probability`)
+    .filter( p -> $p.get(`risk:Probability#min`)<= $val
+             && $val < $p.get(`risk:Probability#max`) 
+      )
+    }
+]]></expr>
+							</query>
+						</storage-algorithm>
+					</annotations>
+				</reference>
+				<reference name="lossAfterActivities"
+					kind="forwards"
+					navigate="true"
+					type="AmountOfLoss"
+				>
+					<annotations>
+						<storage-algorithm>
+							<query>
+								<expr><![CDATA[r -> all(`risk:AmountOfLoss`)
+.filter( a -> $a.get(`risk:AmountOfLoss#min`)<= $r.get(`risk:Risk#damageAfterActivities`) 
+             && $r.get(`risk:Risk#damageAfterActivities`) < $a.get(`risk:AmountOfLoss#max`) 
+      )]]></expr>
+							</query>
+						</storage-algorithm>
+					</annotations>
+				</reference>
+				<reference name="riskClassAfterActivities"
+					kind="forwards"
+					navigate="true"
+					type="RiskClass"
+				>
+					<annotations>
+						<storage-algorithm>
+							<query>
+								<expr><![CDATA[r -> all(`risk:RiskClass`)
+        .filter(c -> $c.get(`risk:RiskClass#probability`) == $r.get(`risk:Risk#probAfterActivities`) 
+                  && $c.get(`risk:RiskClass#amountOfLoss`) == $r.get(`risk:Risk#lossAfterActivities`))]]></expr>
+							</query>
+						</storage-algorithm>
+					</annotations>
+				</reference>
+				<reference name="colorAfterActivities"
+					kind="forwards"
+					navigate="true"
+					type="Color"
+				>
+					<annotations>
+						<storage-algorithm>
+							<query expr="r -> $r.get(`risk:Risk#riskClassAfterActivities`).get(`risk:RiskClass#color`)"/>
+						</storage-algorithm>
+					</annotations>
+				</reference>
+				<property name="colorSpotAfterActivities"
+					type="tl.util:Color"
+				>
+					<annotations>
+						<storage-algorithm>
+							<query expr="risk -> $risk.get(`risk:Risk#colorAfterActivities`).get(`risk:Color#color`)"/>
+						</storage-algorithm>
+						<create-visibility value="hidden"/>
+						<visibility value="read-only"/>
+					</annotations>
+				</property>
+				<reference name="components"
+					inverse-reference="risks"
+					kind="forwards"
+					multiple="true"
+					navigate="true"
+					type="fma:Component"
+				/>
 			</attributes>
 		</class>
 		<class name="RiskClass">
@@ -301,6 +450,20 @@
 						<reference-display value="radio-inline"/>
 					</annotations>
 				</reference>
+			</attributes>
+		</class>
+		<class name="RiskKind">
+			<generalizations>
+				<generalization type="tl.model:TLObject"/>
+			</generalizations>
+			<attributes>
+				<property name="name"
+					mandatory="true"
+					type="tl.model.i18n:I18NString"
+				/>
+				<property name="description"
+					type="tl.model.i18n:I18NHtml"
+				/>
 			</attributes>
 		</class>
 	</module>

@@ -34,7 +34,7 @@
     $node.instanceOf(`fma:ComponentNode`):{
        rule = $selection.get(`fma:ProductSelection#rule`);
        $node.get(`fma:ComponentNode#component`).get(`fma:ConstructionGroup#consistsOf`)
-            .filter( con -> $rule==null ? true : $con.get(`fma:Connection#rule`).stringContains($rule)   ) 
+            .filter( con -> $rule==null ? true : ( $con.get(`fma:Connection#rule`).stringContains($rule) ||  $con.get(`fma:Connection#rule`).isEmpty() )  ) 
             .map( con -> 
                   new(`fma:ComponentNode`, transient:true)
                     ..set(`fma:ComponentNode#component`, $con.get(`fma:Connection#consistsOf`))
@@ -105,6 +105,16 @@
 				<columnLabel key="dynamic.4b2a2c9a-28fd-4d75-832e-50fbac059d87">
 					<en>Position</en>
 					<de>Lage</de>
+				</columnLabel>
+			</configurationProvider>
+			<configurationProvider class="com.top_logic.model.search.providers.ComputedColumnProviderByExpression"
+				accessor="row -> model -> $row.get(`fma:ComponentNode#component`).get(`fma:Component#risks`)"
+				columnId="ID_830dcae4_5dc2_40fe_b25d_4d4d5b537401"
+				columnType="risk:Risk"
+			>
+				<columnLabel key="dynamic.22c8ab2a-2551-43c1-a15d-5419a3f6de1c">
+					<en>Risks</en>
+					<de>Risiken</de>
 				</columnLabel>
 			</configurationProvider>
 		</configurationProviders>

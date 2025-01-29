@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	template="com.top_logic/tab.template.xml"
+>
+	<arguments helpID="ID_388bd83b_fc0b_4a4e_8dd0_170d72542f85">
+		<tabLabel key="dynamic.941ccfa1-7727-44d1-bd3e-002273ad0079">
+			<en>Color</en>
+			<de>Farben</de>
+		</tabLabel>
+		<components>
+			<layout-reference resource="synchra/risks/baseData/color/innerLayout.layout.xml"/>
+		</components>
+	</arguments>
+</config:template-call>

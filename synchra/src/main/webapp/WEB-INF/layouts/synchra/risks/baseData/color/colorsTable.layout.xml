@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	template="com.top_logic/table.template.xml"
+>
+	<arguments
+		size="300px"
+		type="risk:Color"
+	>
+		<dialogs>
+			<layout-reference resource="synchra/risks/baseData/color/createObject/dialog.layout.xml"/>
+		</dialogs>
+		<name key="dynamic.e650ec99-ed82-49b3-9393-14eee92a92c9">
+			<en>Colors</en>
+			<de>Farben</de>
+		</name>
+		<modelBuilder class="com.top_logic.model.search.providers.ListModelByExpression"
+			elements="model->all(`risk:Color`)"
+			supportsElement="element->$element.instanceOf(`risk:Color`)"
+		/>
+		<buttons>
+			<button id="exportExcel"
+				class="com.top_logic.layout.table.export.ExcelExportHandler"
+			/>
+			<button id="deleteSelection"
+				class="com.top_logic.layout.component.GenericDeleteCommandHandler"
+				target="selection(self())"
+			/>
+		</buttons>
+	</arguments>
+</config:template-call>

@@ -7,7 +7,7 @@
 	<arguments helpID="ID_b3598c83_d30a_47a9_b644_04ab4dea333a">
 		<tabLabel key="dynamic.f262b3e9-e85c-44af-9d24-46f520afb183">
 			<en>Part list</en>
-			<de>Stückliste1</de>
+			<de>Stückliste</de>
 		</tabLabel>
 		<components>
 			<layout-reference resource="synchra/products/componentNodes/tree/partList/innerLayout.layout.xml"/>

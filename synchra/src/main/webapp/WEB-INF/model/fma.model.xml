@@ -100,6 +100,29 @@
 			</generalizations>
 			<annotations>
 				<instance-presentation icon="css:fa-solid fa-object-group"/>
+				<form-definition>
+					<form>
+						<static-html>
+							<content><![CDATA[<p><span style="font-size:36px"><strong>Details Baugruppe</strong></span></p>
+]]></content>
+						</static-html>
+						<other-attributes/>
+						<field
+							attribute="name"
+							fullQualifiedName="fma:Component#name"
+							type="tl.core:String"
+						/>
+						<field
+							attribute="consistsOf"
+							fullQualifiedName="fma:ConstructionGroup#consistsOf"
+							type="fma:Connection"
+						>
+							<annotations>
+								<label-position value="hide-label"/>
+							</annotations>
+						</field>
+					</form>
+				</form-definition>
 			</annotations>
 			<attributes>
 				<reference name="consistsOf"

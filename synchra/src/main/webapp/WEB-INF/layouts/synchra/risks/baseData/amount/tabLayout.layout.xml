@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	template="com.top_logic/tab.template.xml"
+>
+	<arguments helpID="ID_0d17a3c7_54ff_40d1_9b33_bdc39c490485">
+		<tabLabel key="dynamic.02f42aca-fd03-4af6-9bc7-8cb105b7da61">
+			<en>Amount</en>
+			<de>Schadenshöhe</de>
+		</tabLabel>
+		<components>
+			<layout-reference resource="synchra/risks/baseData/amount/innerLayout.layout.xml"/>
+		</components>
+	</arguments>
+</config:template-call>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	template="com.top_logic/tab.template.xml"
+>
+	<arguments helpID="ID_2a861b14_375d_400e_8ed1_caaca5af7672">
+		<tabLabel key="dynamic.70337803-5bf2-499e-99d6-a45b438d1b70">
+			<en>Base data</en>
+			<de>Stammdaten</de>
+		</tabLabel>
+		<components>
+			<layout-reference resource="synchra/risks/baseData/innerLayout.layout.xml"/>
+		</components>
+	</arguments>
+</config:template-call>

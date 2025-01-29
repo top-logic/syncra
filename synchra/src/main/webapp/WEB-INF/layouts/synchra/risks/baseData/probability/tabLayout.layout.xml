@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	template="com.top_logic/tab.template.xml"
+>
+	<arguments helpID="ID_9a4f9084_f172_49be_a7e3_9fb2e12878d6">
+		<tabLabel key="dynamic.4515992a-b5d8-4dec-9c32-312c761f9906">
+			<en>Probability</en>
+			<de>Eintrittswahrscheinlichkeit</de>
+		</tabLabel>
+		<components>
+			<layout-reference resource="synchra/risks/baseData/probability/innerLayout.layout.xml"/>
+		</components>
+	</arguments>
+</config:template-call>

@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<model xmlns="http://www.top-logic.com/ns/dynamic-types/6.0">
+	<module name="risk">
+		<class name="AmountOfLoss">
+			<generalizations>
+				<generalization type="tl.model:TLObject"/>
+			</generalizations>
+			<annotations>
+				<form-definition>
+					<form>
+						<other-attributes/>
+						<field
+							attribute="name"
+							fullQualifiedName="risk:AmountOfLoss#name"
+							type="tl.model.i18n:I18NString"
+						/>
+						<field
+							attribute="min"
+							fullQualifiedName="risk:AmountOfLoss#min"
+							type="tl.core:Integer"
+						/>
+						<field
+							attribute="max"
+							fullQualifiedName="risk:AmountOfLoss#max"
+							type="tl.core:Integer"
+						/>
+						<field
+							attribute="description"
+							fullQualifiedName="risk:AmountOfLoss#description"
+							type="tl.model.i18n:I18NHtml"
+						/>
+					</form>
+				</form-definition>
+			</annotations>
+			<attributes>
+				<property name="name"
+					mandatory="true"
+					type="tl.model.i18n:I18NString"
+				/>
+				<property name="description"
+					type="tl.model.i18n:I18NHtml"
+				/>
+				<property name="min"
+					type="tl.core:Integer"
+				/>
+				<property name="max"
+					type="tl.core:Integer"
+				/>
+			</attributes>
+		</class>
+		<class name="Color">
+			<generalizations>
+				<generalization type="tl.model:TLObject"/>
+			</generalizations>
+			<attributes>
+				<property name="name"
+					type="tl.model.i18n:I18NString"
+				/>
+				<property name="color"
+					type="tl.util:Color"
+				/>
+				<property name="rgb"
+					type="tl.core:String"
+				/>
+			</attributes>
+		</class>
+		<class name="Probability">
+			<generalizations>
+				<generalization type="tl.model:TLObject"/>
+			</generalizations>
+			<annotations>
+				<form-definition>
+					<form>
+						<field
+							attribute="name"
+							fullQualifiedName="risk:Probability#name"
+							type="tl.model.i18n:I18NString"
+						/>
+						<group>
+							<field
+								attribute="min"
+								fullQualifiedName="risk:Probability#min"
+								type="tl.core:Integer"
+							/>
+							<field
+								attribute="max"
+								fullQualifiedName="risk:Probability#max"
+								type="tl.core:Integer"
+							/>
+							<label key="dynamic.d941e2ee-2765-4fa1-ac1b-8569296ee254">
+								<en>Probabilities</en>
+								<de>Wahrscheinlichkeiten</de>
+							</label>
+						</group>
+						<field
+							attribute="description"
+							fullQualifiedName="risk:Probability#description"
+							type="tl.model.i18n:I18NHtml"
+						/>
+					</form>
+				</form-definition>
+			</annotations>
+			<attributes>
+				<property name="name"
+					mandatory="true"
+					type="tl.model.i18n:I18NString"
+				/>
+				<property name="description"
+					type="tl.model.i18n:I18NHtml"
+				/>
+				<property name="min"
+					mandatory="true"
+					type="tl.core:Integer"
+				>
+					<annotations>
+						<value-range
+							max="100.0"
+							min="0.0"
+						/>
+					</annotations>
+				</property>
+				<property name="max"
+					mandatory="true"
+					type="tl.core:Integer"
+				>
+					<annotations>
+						<value-range
+							max="100.0"
+							min="0.0"
+						/>
+					</annotations>
+				</property>
+			</attributes>
+		</class>
+		<class name="Risk">
+			<generalizations>
+				<generalization type="tl.model:TLObject"/>
+			</generalizations>
+			<annotations>
+				<form-definition>
+					<form>
+						<field
+							attribute="name"
+							fullQualifiedName="risk:Risk#name"
+							type="tl.core:String"
+						/>
+						<field
+							attribute="createdAt"
+							fullQualifiedName="risk:Risk#createdAt"
+							type="tl.core:DateTime"
+						/>
+						<field
+							attribute="creator"
+							fullQualifiedName="risk:Risk#creator"
+							type="tl.accounts:Person"
+						/>
+						<field
+							attribute="amountOfLoss"
+							fullQualifiedName="risk:Risk#amountOfLoss"
+							type="risk:AmountOfLoss"
+						/>
+						<field
+							attribute="probability"
+							fullQualifiedName="risk:Risk#probability"
+							type="risk:Probability"
+						/>
+						<field
+							attribute="riskClass"
+							fullQualifiedName="risk:Risk#riskClass"
+							type="risk:RiskClass"
+						/>
+						<field
+							attribute="color"
+							fullQualifiedName="risk:Risk#color"
+							type="risk:Color"
+						/>
+						<field
+							attribute="colorSpot"
+							fullQualifiedName="risk:Risk#colorSpot"
+							type="tl.util:Color"
+						/>
+						<field
+							attribute="description"
+							fullQualifiedName="risk:Risk#description"
+							type="tl.model.wysiwyg:Html"
+						/>
+					</form>
+				</form-definition>
+			</annotations>
+			<attributes>
+				<property name="name"
+					mandatory="true"
+					type="tl.core:String"
+				/>
+				<property name="description"
+					type="tl.model.wysiwyg:Html"
+				/>
+				<property name="createdAt"
+					type="tl.core:DateTime"
+				>
+					<annotations>
+						<storage-algorithm>
+							<query expr="r -> $r.createRevision().get(`tl.core:Revision#date`)"/>
+						</storage-algorithm>
+					</annotations>
+				</property>
+				<reference name="probability"
+					kind="forwards"
+					mandatory="true"
+					navigate="true"
+					type="Probability"
+				/>
+				<reference name="amountOfLoss"
+					kind="forwards"
+					mandatory="true"
+					navigate="true"
+					type="AmountOfLoss"
+				/>
+				<reference name="creator"
+					kind="forwards"
+					navigate="true"
+					type="tl.accounts:Person"
+				>
+					<annotations>
+						<storage-algorithm>
+							<query expr="r -> $r.createRevision().get(`tl.core:Revision#author`)"/>
+						</storage-algorithm>
+					</annotations>
+				</reference>
+				<reference name="riskClass"
+					kind="forwards"
+					navigate="true"
+					type="RiskClass"
+				>
+					<annotations>
+						<storage-algorithm>
+							<query>
+								<expr><![CDATA[r -> all(`risk:RiskClass`)
+        .filter(c -> $c.get(`risk:RiskClass#probability`) == $r.get(`risk:Risk#probability`) 
+                  && $c.get(`risk:RiskClass#amountOfLoss`) == $r.get(`risk:Risk#amountOfLoss`))]]></expr>
+							</query>
+						</storage-algorithm>
+						<visibility value="hidden"/>
+						<create-visibility value="hidden"/>
+					</annotations>
+				</reference>
+				<reference name="color"
+					kind="forwards"
+					navigate="true"
+					type="Color"
+				>
+					<annotations>
+						<storage-algorithm>
+							<query expr="r -> $r.get(`risk:Risk#riskClass`).get(`risk:RiskClass#color`)"/>
+						</storage-algorithm>
+					</annotations>
+				</reference>
+				<property name="colorSpot"
+					type="tl.util:Color"
+				>
+					<annotations>
+						<storage-algorithm>
+							<query expr="risk -> $risk.get(`risk:Risk#color`).get(`risk:Color#color`)"/>
+						</storage-algorithm>
+					</annotations>
+				</property>
+			</attributes>
+		</class>
+		<class name="RiskClass">
+			<generalizations>
+				<generalization type="tl.model:TLObject"/>
+			</generalizations>
+			<attributes>
+				<reference name="probability"
+					kind="forwards"
+					mandatory="true"
+					navigate="true"
+					type="Probability"
+				>
+					<annotations>
+						<reference-display value="radio"/>
+					</annotations>
+				</reference>
+				<reference name="amountOfLoss"
+					kind="forwards"
+					navigate="true"
+					type="AmountOfLoss"
+				>
+					<annotations>
+						<reference-display value="radio-inline"/>
+					</annotations>
+				</reference>
+				<reference name="color"
+					kind="forwards"
+					mandatory="true"
+					navigate="true"
+					type="Color"
+				>
+					<annotations>
+						<reference-display value="radio-inline"/>
+					</annotations>
+				</reference>
+			</attributes>
+		</class>
+	</module>
+</model>

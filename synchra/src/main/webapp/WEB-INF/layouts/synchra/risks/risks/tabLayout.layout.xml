@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	template="com.top_logic/tab.template.xml"
+>
+	<arguments helpID="ID_bb2a9974_5c04_4900_b7d9_75c89099c47e">
+		<tabLabel key="dynamic.0f6b5133-f246-4734-9562-35a917c0c001">
+			<en>Risks</en>
+			<de>Risiken</de>
+		</tabLabel>
+		<components>
+			<layout-reference resource="synchra/risks/risks/innerLayout.layout.xml"/>
+		</components>
+	</arguments>
+</config:template-call>

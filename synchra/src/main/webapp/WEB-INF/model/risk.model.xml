@@ -2,6 +2,13 @@
 
 <model xmlns="http://www.top-logic.com/ns/dynamic-types/6.0">
 	<module name="risk">
+		<annotations>
+			<package-binding
+				implementation-package="com.top_logic.synchra.risk.implementation"
+				interface-package="com.top_logic.synchra.risk.interfaces"
+			/>
+			<factory value="com.top_logic.synchra.risk.RiskFactory"/>
+		</annotations>
 		<class name="AmountOfLoss">
 			<generalizations>
 				<generalization type="tl.model:TLObject"/>
@@ -145,31 +152,60 @@
 							fullQualifiedName="risk:Risk#name"
 							type="tl.core:String"
 						/>
+						<separator/>
 						<field
 							attribute="estimatedDamage"
 							fullQualifiedName="risk:Risk#estimatedDamage"
 							type="tl.core:Integer"
 						/>
 						<field
-							attribute="probability"
-							fullQualifiedName="risk:Risk#probability"
-							type="risk:Probability"
+							attribute="estimatedProbability"
+							fullQualifiedName="risk:Risk#estimatedProbability"
+							type="tl.core:Integer"
 						/>
-						<field
-							attribute="amountOfLoss"
-							fullQualifiedName="risk:Risk#amountOfLoss"
-							type="risk:AmountOfLoss"
-						/>
-						<field
-							attribute="colorSpot"
-							fullQualifiedName="risk:Risk#colorSpot"
-							type="tl.util:Color"
-						/>
-						<field
-							attribute="kinds"
-							fullQualifiedName="risk:Risk#kinds"
-							type="risk:RiskKind"
-						/>
+						<separator/>
+						<group>
+							<field
+								attribute="amountOfLoss"
+								fullQualifiedName="risk:Risk#amountOfLoss"
+								type="risk:AmountOfLoss"
+							/>
+							<field
+								attribute="probability"
+								fullQualifiedName="risk:Risk#probability"
+								type="risk:Probability"
+							/>
+							<field
+								attribute="colorSpot"
+								fullQualifiedName="risk:Risk#colorSpot"
+								type="tl.util:Color"
+							/>
+							<label key="dynamic.457007d2-33cc-4cd8-bb7e-60b180f472fa">
+								<en>Classifikation</en>
+								<de>Klassifikation</de>
+							</label>
+						</group>
+						<group>
+							<field
+								attribute="lossAfterActivities"
+								fullQualifiedName="risk:Risk#lossAfterActivities"
+								type="risk:AmountOfLoss"
+							/>
+							<field
+								attribute="probAfterActivities"
+								fullQualifiedName="risk:Risk#probAfterActivities"
+								type="risk:Probability"
+							/>
+							<field
+								attribute="colorSpotAfterActivities"
+								fullQualifiedName="risk:Risk#colorSpotAfterActivities"
+								type="tl.util:Color"
+							/>
+							<label key="dynamic.3b95560f-3423-47b5-afd6-a47373bd748e">
+								<en>After activities</en>
+								<de>Nach Maßnahmen</de>
+							</label>
+						</group>
 						<field
 							attribute="description"
 							fullQualifiedName="risk:Risk#description"
@@ -186,21 +222,22 @@
 							type="tl.core:DateTime"
 						/>
 						<field
-							attribute="creator"
-							fullQualifiedName="risk:Risk#creator"
-							type="tl.accounts:Person"
-						/>
-						<field
 							attribute="activities"
 							fullQualifiedName="risk:Risk#activities"
 							type="fma:Activity"
 						/>
 						<field
-							attribute="colorSpotAfterActivities"
-							fullQualifiedName="risk:Risk#colorSpotAfterActivities"
-							type="tl.util:Color"
+							attribute="originator"
+							fullQualifiedName="risk:Risk#originator"
+							type="tl.accounts:Person"
 						/>
-						<other-attributes/>
+						<frame/>
+						<separator/>
+						<field
+							attribute="kinds"
+							fullQualifiedName="risk:Risk#kinds"
+							type="risk:RiskKind"
+						/>
 					</form>
 				</form-definition>
 			</annotations>
@@ -223,10 +260,20 @@
 				</property>
 				<reference name="probability"
 					kind="forwards"
-					mandatory="true"
 					navigate="true"
 					type="Probability"
-				/>
+				>
+					<annotations>
+						<storage-algorithm>
+							<query>
+								<expr><![CDATA[r -> all(`risk:Probability`)
+.filter( a -> $a.get(`risk:Probability#min`)<= $r.get(`risk:Risk#estimatedProbability`) 
+             && $r.get(`risk:Risk#estimatedProbability`) < $a.get(`risk:Probability#max`) 
+      )]]></expr>
+							</query>
+						</storage-algorithm>
+					</annotations>
+				</reference>
 				<reference name="amountOfLoss"
 					kind="forwards"
 					navigate="true"
@@ -244,17 +291,6 @@
 
 ]]></expr>
 							</query>
-						</storage-algorithm>
-					</annotations>
-				</reference>
-				<reference name="creator"
-					kind="forwards"
-					navigate="true"
-					type="tl.accounts:Person"
-				>
-					<annotations>
-						<storage-algorithm>
-							<query expr="r -> $r.createRevision().get(`tl.core:Revision#author`)"/>
 						</storage-algorithm>
 					</annotations>
 				</reference>
@@ -325,8 +361,11 @@
 					<annotations>
 						<storage-algorithm>
 							<query>
-								<expr><![CDATA[risk -> $risk.get(`risk:Risk#estimatedDamage`) - 
-        $risk.get(`risk:Risk#activities`).map(a -> $a.get(`fma:Activity#riskCostImpact`)).sum()]]></expr>
+								<expr><![CDATA[risk -> {
+val = $risk.get(`risk:Risk#estimatedDamage`) - 
+        $risk.get(`risk:Risk#activities`).map(a -> $a.get(`fma:Activity#riskCostImpact`)).sum();
+        $val<0? 0 : $val;
+        }]]></expr>
 							</query>
 						</storage-algorithm>
 					</annotations>
@@ -340,7 +379,7 @@
 						<storage-algorithm>
 							<query>
 								<expr><![CDATA[r -> {
-  val = $r.get(`risk:Risk#probability`).get(`risk:Probability#max`)  -
+  val = $r.get(`risk:Risk#estimatedProbability`)  -
      $r.get(`risk:Risk#activities`).map(a -> $a.get(`fma:Activity#riskProbImpact`)).sum();
    val = $val<0 ? 0 : $val;
    val = $val>99? 99: $val;
@@ -414,6 +453,28 @@
 					navigate="true"
 					type="fma:Component"
 				/>
+				<reference name="originator"
+					kind="forwards"
+					navigate="true"
+					type="tl.accounts:Person"
+				>
+					<annotations>
+						<storage-algorithm>
+							<query expr="r -> $r.createRevision().get(`tl.core:Revision#author`)"/>
+						</storage-algorithm>
+					</annotations>
+				</reference>
+				<property name="estimatedProbability"
+					mandatory="true"
+					type="tl.core:Integer"
+				>
+					<annotations>
+						<value-range
+							max="99.0"
+							min="1.0"
+						/>
+					</annotations>
+				</property>
 			</attributes>
 		</class>
 		<class name="RiskClass">

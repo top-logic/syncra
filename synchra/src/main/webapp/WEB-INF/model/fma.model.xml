@@ -2,6 +2,13 @@
 
 <model xmlns="http://www.top-logic.com/ns/dynamic-types/6.0">
 	<module name="fma">
+				<annotations>
+			<package-binding
+				implementation-package="com.top_logic.synchra.model.implementation"
+				interface-package="com.top_logic.synchra.model.interfaces"
+			/>
+			<factory value="com.top_logic.synchra.model.ModelFactory"/>
+		</annotations>
 		<enum name="CompanyStructure">
 			<classifier name="AG"/>
 			<classifier name="GmbH"/>

@@ -43,6 +43,16 @@
 					owner="fma:PartCatalog"
 				/>
 			</button>
+			
+			<button id="importCatalogs"
+				class="com.top_logic.synchra.util.OpenImportCatalogsDialog"
+				group="Write"
+			>
+				<executability>
+					<reference rule-id="InViewMode"/>
+				</executability>
+			</button>			
+			
 		</buttons>
 	</arguments>
 </config:template-call>

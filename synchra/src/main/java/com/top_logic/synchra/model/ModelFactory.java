@@ -49,6 +49,13 @@ public class ModelFactory extends com.top_logic.element.meta.kbbased.AbstractEle
 	}
 
 	/**
+	 * Lookup {@link com.top_logic.synchra.model.interfaces.Activity#ACTIVITY_ID_ATTR} of {@link com.top_logic.synchra.model.interfaces.Activity}.
+	 */
+	public static com.top_logic.model.TLProperty getActivityIdActivityAttr() {
+		return (com.top_logic.model.TLProperty) getActivityType().getPart(com.top_logic.synchra.model.interfaces.Activity.ACTIVITY_ID_ATTR);
+	}
+
+	/**
 	 * Lookup {@link com.top_logic.synchra.model.interfaces.Activity#COSTS_ATTR} of {@link com.top_logic.synchra.model.interfaces.Activity}.
 	 */
 	public static com.top_logic.model.TLProperty getCostsActivityAttr() {
@@ -168,6 +175,13 @@ public class ModelFactory extends com.top_logic.element.meta.kbbased.AbstractEle
 	}
 
 	/**
+	 * Lookup {@link com.top_logic.synchra.model.interfaces.ConstructionGroup#CONSTRUCTION_GROUP_ID_ATTR} of {@link com.top_logic.synchra.model.interfaces.ConstructionGroup}.
+	 */
+	public static com.top_logic.model.TLProperty getConstructionGroupIdConstructionGroupAttr() {
+		return (com.top_logic.model.TLProperty) getConstructionGroupType().getPart(com.top_logic.synchra.model.interfaces.ConstructionGroup.CONSTRUCTION_GROUP_ID_ATTR);
+	}
+
+	/**
 	 * Lookup {@link com.top_logic.synchra.model.interfaces.ConstructionGroup#PRICE_ATTR} of {@link com.top_logic.synchra.model.interfaces.ConstructionGroup}.
 	 */
 	public static com.top_logic.model.TLProperty getPriceConstructionGroupAttr() {
@@ -182,6 +196,13 @@ public class ModelFactory extends com.top_logic.element.meta.kbbased.AbstractEle
 	}
 
 	/**
+	 * Lookup {@link com.top_logic.synchra.model.interfaces.SinglePart#CATALOG_ATTR} of {@link com.top_logic.synchra.model.interfaces.SinglePart}.
+	 */
+	public static com.top_logic.model.TLReference getCatalogSinglePartAttr() {
+		return (com.top_logic.model.TLReference) getSinglePartType().getPart(com.top_logic.synchra.model.interfaces.SinglePart.CATALOG_ATTR);
+	}
+
+	/**
 	 * Lookup {@link com.top_logic.synchra.model.interfaces.SinglePart#COMPANY_ATTR} of {@link com.top_logic.synchra.model.interfaces.SinglePart}.
 	 */
 	public static com.top_logic.model.TLReference getCompanySinglePartAttr() {
@@ -193,6 +214,13 @@ public class ModelFactory extends com.top_logic.element.meta.kbbased.AbstractEle
 	 */
 	public static com.top_logic.model.TLReference getMaterialSinglePartAttr() {
 		return (com.top_logic.model.TLReference) getSinglePartType().getPart(com.top_logic.synchra.model.interfaces.SinglePart.MATERIAL_ATTR);
+	}
+
+	/**
+	 * Lookup {@link com.top_logic.synchra.model.interfaces.SinglePart#PART_NUMBER_ATTR} of {@link com.top_logic.synchra.model.interfaces.SinglePart}.
+	 */
+	public static com.top_logic.model.TLProperty getPartNumberSinglePartAttr() {
+		return (com.top_logic.model.TLProperty) getSinglePartType().getPart(com.top_logic.synchra.model.interfaces.SinglePart.PART_NUMBER_ATTR);
 	}
 
 	/**

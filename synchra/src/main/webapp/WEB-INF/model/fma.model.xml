@@ -2,7 +2,7 @@
 
 <model xmlns="http://www.top-logic.com/ns/dynamic-types/6.0">
 	<module name="fma">
-				<annotations>
+		<annotations>
 			<package-binding
 				implementation-package="com.top_logic.synchra.model.implementation"
 				interface-package="com.top_logic.synchra.model.interfaces"
@@ -66,6 +66,20 @@
 				<property name="riskProbImpact"
 					type="tl.core:Integer"
 				/>
+				<property name="activityId"
+					type="tl.core:String"
+				>
+					<annotations>
+						<default-value>
+							<provider class="com.top_logic.element.structured.util.NumberHandlerDefaultProvider"
+								pattern="M-%NUMBER%"
+								sequence-name="Massnahmen"
+							/>
+						</default-value>
+						<visibility value="read-only"/>
+						<create-visibility value="read-only"/>
+					</annotations>
+				</property>
 			</attributes>
 		</class>
 		<class name="Company">
@@ -160,6 +174,9 @@
 					navigate="true"
 					type="risk:Risk"
 				/>
+				<property name="componentID"
+					type="tl.core:String"
+				/>
 			</attributes>
 		</interface>
 		<class name="ConstructionGroup">
@@ -223,6 +240,35 @@
 						</storage-algorithm>
 					</annotations>
 				</property>
+				<property name="constructionGroupId"
+					type="tl.core:String"
+				>
+					<annotations>
+						<default-value>
+							<provider class="com.top_logic.element.structured.util.NumberHandlerDefaultProvider"
+								pattern="BG-%NUMBER%"
+								sequence-name="Baugruppe"
+							/>
+						</default-value>
+						<create-visibility value="read-only"/>
+						<visibility value="read-only"/>
+					</annotations>
+				</property>
+				<property name="componentID"
+					override="true"
+					type="tl.core:String"
+				>
+					<annotations>
+						<default-value>
+							<provider class="com.top_logic.element.structured.util.NumberHandlerDefaultProvider"
+								pattern="BG-%NUMBER%"
+								sequence-name="Komponente"
+							/>
+						</default-value>
+						<create-visibility value="read-only"/>
+						<visibility value="read-only"/>
+					</annotations>
+				</property>
 			</attributes>
 		</class>
 		<class name="SinglePart">
@@ -244,6 +290,42 @@
 					navigate="true"
 					type="Material"
 				/>
+				<reference name="catalog"
+					aggregate="true"
+					inverse-reference="parts"
+					kind="backwards"
+					navigate="true"
+					type="PartCatalog"
+				/>
+				<property name="partNumber"
+					type="tl.core:String"
+				>
+					<annotations>
+						<default-value>
+							<provider class="com.top_logic.element.structured.util.NumberHandlerDefaultProvider"
+								pattern="T-%NUMBER%"
+								sequence-name="Teile"
+							/>
+						</default-value>
+						<create-visibility value="read-only"/>
+						<visibility value="read-only"/>
+					</annotations>
+				</property>
+				<property name="componentID"
+					override="true"
+					type="tl.core:String"
+				>
+					<annotations>
+						<default-value>
+							<provider class="com.top_logic.element.structured.util.NumberHandlerDefaultProvider"
+								pattern="T-%NUMBER%"
+								sequence-name="Komponente"
+							/>
+						</default-value>
+						<create-visibility value="read-only"/>
+						<visibility value="read-only"/>
+					</annotations>
+				</property>
 			</attributes>
 		</class>
 		<class name="ComponentNode">
@@ -370,6 +452,7 @@
 				/>
 				<reference name="parts"
 					composite="true"
+					inverse-reference="catalog"
 					kind="forwards"
 					multiple="true"
 					navigate="true"
@@ -567,6 +650,20 @@ all(`fma:Company`).map( company ->
 					mandatory="true"
 					type="tl.core:String"
 				/>
+				<property name="productId"
+					type="tl.core:String"
+				>
+					<annotations>
+						<default-value>
+							<provider class="com.top_logic.element.structured.util.NumberHandlerDefaultProvider"
+								pattern="P-%NUMBER%"
+								sequence-name="Produkt"
+							/>
+						</default-value>
+						<create-visibility value="read-only"/>
+						<visibility value="read-only"/>
+					</annotations>
+				</property>
 			</attributes>
 		</class>
 		<class name="ProductSelection">

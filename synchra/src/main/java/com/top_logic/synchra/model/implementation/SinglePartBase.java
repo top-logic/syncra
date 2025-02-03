@@ -18,6 +18,15 @@ public interface SinglePartBase extends com.top_logic.synchra.model.interfaces.C
 	String SINGLE_PART_TYPE = "SinglePart";
 
 	/**
+	 * Part <code>catalog</code> of <code>SinglePart</code>
+	 * 
+	 * <p>
+	 * Declared as <code>fma:PartCatalog</code> in configuration.
+	 * </p>
+	 */
+	String CATALOG_ATTR = "catalog";
+
+	/**
 	 * Part <code>company</code> of <code>SinglePart</code>
 	 * 
 	 * <p>
@@ -34,6 +43,22 @@ public interface SinglePartBase extends com.top_logic.synchra.model.interfaces.C
 	 * </p>
 	 */
 	String MATERIAL_ATTR = "material";
+
+	/**
+	 * Part <code>partNumber</code> of <code>SinglePart</code>
+	 * 
+	 * <p>
+	 * Declared as <code>tl.core:String</code> in configuration.
+	 * </p>
+	 */
+	String PART_NUMBER_ATTR = "partNumber";
+
+	/**
+	 * Getter for part {@link #CATALOG_ATTR}.
+	 */
+	default com.top_logic.synchra.model.interfaces.PartCatalog getCatalog() {
+		return (com.top_logic.synchra.model.interfaces.PartCatalog) tValueByName(CATALOG_ATTR);
+	}
 
 	/**
 	 * Getter for part {@link #COMPANY_ATTR}.
@@ -90,6 +115,20 @@ public interface SinglePartBase extends com.top_logic.synchra.model.interfaces.C
 	 */
 	default void removeMaterial(com.top_logic.synchra.model.interfaces.Material oldValue) {
 		tRemoveByName(MATERIAL_ATTR, oldValue);
+	}
+
+	/**
+	 * Getter for part {@link #PART_NUMBER_ATTR}.
+	 */
+	default String getPartNumber() {
+		return (String) tValueByName(PART_NUMBER_ATTR);
+	}
+
+	/**
+	 * Setter for part {@link #PART_NUMBER_ATTR}.
+	 */
+	default void setPartNumber(String newValue) {
+		tUpdateByName(PART_NUMBER_ATTR, newValue);
 	}
 
 }

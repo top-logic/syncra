@@ -475,6 +475,20 @@ val = $risk.get(`risk:Risk#estimatedDamage`) -
 						/>
 					</annotations>
 				</property>
+				<property name="riskId"
+					type="tl.core:String"
+				>
+					<annotations>
+						<default-value>
+							<provider class="com.top_logic.element.structured.util.NumberHandlerDefaultProvider"
+								pattern="R-%NUMBER%"
+								sequence-name="Risiko"
+							/>
+						</default-value>
+						<visibility value="read-only"/>
+						<create-visibility value="read-only"/>
+					</annotations>
+				</property>
 			</attributes>
 		</class>
 		<class name="RiskClass">

@@ -22,7 +22,7 @@ public class CatalogsImportCommand implements Command {
 	public HandlerResult executeCommand(DisplayContext context) {
 		BinaryContent data = _importCatalogsDialog.getUploadField().getDataItem();
 
-		CatalogImporter importer = new CatalogImporter(data);
+		SynchraImporter importer = new SynchraImporter(data);
 		// read data
 		importer.run();
 

@@ -18,6 +18,15 @@ public interface ActivityBase extends com.top_logic.model.TLNamed {
 	String ACTIVITY_TYPE = "Activity";
 
 	/**
+	 * Part <code>activityId</code> of <code>Activity</code>
+	 * 
+	 * <p>
+	 * Declared as <code>tl.core:String</code> in configuration.
+	 * </p>
+	 */
+	String ACTIVITY_ID_ATTR = "activityId";
+
+	/**
 	 * Part <code>costs</code> of <code>Activity</code>
 	 * 
 	 * <p>
@@ -61,6 +70,20 @@ public interface ActivityBase extends com.top_logic.model.TLNamed {
 	 * </p>
 	 */
 	String RISK_PROB_IMPACT_ATTR = "riskProbImpact";
+
+	/**
+	 * Getter for part {@link #ACTIVITY_ID_ATTR}.
+	 */
+	default String getActivityId() {
+		return (String) tValueByName(ACTIVITY_ID_ATTR);
+	}
+
+	/**
+	 * Setter for part {@link #ACTIVITY_ID_ATTR}.
+	 */
+	default void setActivityId(String newValue) {
+		tUpdateByName(ACTIVITY_ID_ATTR, newValue);
+	}
 
 	/**
 	 * Getter for part {@link #COSTS_ATTR}.

@@ -204,6 +204,13 @@ public class RiskFactory extends com.top_logic.element.meta.kbbased.AbstractElem
 	}
 
 	/**
+	 * Lookup {@link com.top_logic.synchra.risk.interfaces.Risk#ESTIMATED_PROBABILITY_ATTR} of {@link com.top_logic.synchra.risk.interfaces.Risk}.
+	 */
+	public static com.top_logic.model.TLProperty getEstimatedProbabilityRiskAttr() {
+		return (com.top_logic.model.TLProperty) getRiskType().getPart(com.top_logic.synchra.risk.interfaces.Risk.ESTIMATED_PROBABILITY_ATTR);
+	}
+
+	/**
 	 * Lookup {@link com.top_logic.synchra.risk.interfaces.Risk#KINDS_ATTR} of {@link com.top_logic.synchra.risk.interfaces.Risk}.
 	 */
 	public static com.top_logic.model.TLReference getKindsRiskAttr() {
@@ -257,6 +264,13 @@ public class RiskFactory extends com.top_logic.element.meta.kbbased.AbstractElem
 	 */
 	public static com.top_logic.model.TLReference getRiskClassAfterActivitiesRiskAttr() {
 		return (com.top_logic.model.TLReference) getRiskType().getPart(com.top_logic.synchra.risk.interfaces.Risk.RISK_CLASS_AFTER_ACTIVITIES_ATTR);
+	}
+
+	/**
+	 * Lookup {@link com.top_logic.synchra.risk.interfaces.Risk#RISK_ID_ATTR} of {@link com.top_logic.synchra.risk.interfaces.Risk}.
+	 */
+	public static com.top_logic.model.TLProperty getRiskIdRiskAttr() {
+		return (com.top_logic.model.TLProperty) getRiskType().getPart(com.top_logic.synchra.risk.interfaces.Risk.RISK_ID_ATTR);
 	}
 
 	/**

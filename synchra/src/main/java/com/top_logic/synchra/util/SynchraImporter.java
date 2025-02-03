@@ -27,27 +27,26 @@ import com.top_logic.model.TLProperty;
 import com.top_logic.model.TLReference;
 import com.top_logic.model.TLStructuredTypePart;
 import com.top_logic.synchra.model.ModelFactory;
+import com.top_logic.synchra.model.interfaces.Activity;
 import com.top_logic.synchra.model.interfaces.Company;
+import com.top_logic.synchra.model.interfaces.ConstructionGroup;
 import com.top_logic.synchra.model.interfaces.Material;
 import com.top_logic.synchra.model.interfaces.PartCatalog;
+import com.top_logic.synchra.model.interfaces.Product;
 import com.top_logic.synchra.model.interfaces.SinglePart;
+import com.top_logic.synchra.risk.RiskFactory;
+import com.top_logic.synchra.risk.interfaces.Risk;
 
 public class SynchraImporter extends POIExcelImporter {
 
 
 
-	private static final TLClass MATERIAL = ModelFactory.getMaterialType();
 
 	private static final Set<AttributeImport> MATERIAL_ATTS =
 		new SetBuilder<AttributeImport>().add(new PropertyImport(ModelFactory.getNameMaterialAttr())).toSet();
 
-	private static final TLClass CATALOG = ModelFactory.getPartCatalogType();
-
 	private static final Set<AttributeImport> CATALOG_ATTS =
 		new SetBuilder<AttributeImport>().add(new PropertyImport(ModelFactory.getNamePartCatalogAttr())).toSet();
-
-
-	private static final TLClass GESELLSCHAFT = ModelFactory.getCompanyType();
 
 	private static final Set<AttributeImport> GESELLSCHAFT_ATTS =
 		new SetBuilder<AttributeImport>()
@@ -60,6 +59,16 @@ public class SynchraImporter extends POIExcelImporter {
 
 	private static final TLClass TEIL = ModelFactory.getSinglePartType();
 
+	private static final Set<AttributeImport> PRODUKT_ATTS =
+		new SetBuilder<AttributeImport>().add(new PropertyImport(ModelFactory.getNameProductAttr())).toSet();
+
+	private static final Set<AttributeImport> ACTIVITY_ATTS = new SetBuilder<AttributeImport>()
+		.add(new PropertyImport(ModelFactory.getNameActivityAttr()))
+		.add(new PropertyImport(ModelFactory.getCostsActivityAttr()))
+		.add(new PropertyImport(ModelFactory.getRiskProbImpactActivityAttr()))
+		.add(new PropertyImport(ModelFactory.getRiskCostImpactActivityAttr()))
+		.toSet();
+
 
 	private TypeImporter _materialImporter;
 	private TypeImporter _catalogImporter;
@@ -67,6 +76,12 @@ public class SynchraImporter extends POIExcelImporter {
 	private TypeImporter _partsImporter;
 
 	private Map<String, TypeImporter> _typeImporters;
+
+	private TypeImporter _productImporter;
+
+	private TypeImporter _riskImporter;
+
+	private TypeImporter _activityImporter;
 	
 	
 	public SynchraImporter(BinaryContent importSource) {
@@ -77,21 +92,49 @@ public class SynchraImporter extends POIExcelImporter {
 	private void setupTypeImporters() {
 		_typeImporters = new HashMap<>();
 
-		_materialImporter = new TypeImporter(MATERIAL, Material.class, MATERIAL_ATTS, Material.NAME);
-		_catalogImporter = new TypeImporter(CATALOG, PartCatalog.class, CATALOG_ATTS, PartCatalog.NAME);
-		_companyImporter = new TypeImporter(GESELLSCHAFT, Company.class, GESELLSCHAFT_ATTS, Company.NAME);		
+		_materialImporter =
+			new TypeImporter(ModelFactory.getMaterialType(), Material.class, MATERIAL_ATTS, Material.NAME);
+		_catalogImporter =
+			new TypeImporter(ModelFactory.getPartCatalogType(), PartCatalog.class, CATALOG_ATTS, PartCatalog.NAME);
+		_companyImporter =
+			new TypeImporter(ModelFactory.getCompanyType(), Company.class, GESELLSCHAFT_ATTS, Company.NAME);
 		Set<AttributeImport> teileAttrs = getTeileAttrs(_materialImporter, _catalogImporter, _companyImporter);
 
 		_partsImporter = new TypeImporter(TEIL, SinglePart.class, teileAttrs, SinglePart.NAME);
+
+		_productImporter =
+			new ProductImporter(ModelFactory.getProductType(), Product.class, PRODUKT_ATTS, Product.NAME);
+
+		_activityImporter =
+			new TypeImporter(ModelFactory.getActivityType(), Activity.class, ACTIVITY_ATTS, Activity.NAME);
+
+		Set<AttributeImport> riskAttrs = getRiskAttrs(_activityImporter);
+		_riskImporter =
+			new TypeImporter(RiskFactory.getRiskType(), Risk.class, riskAttrs, Risk.NAME);
+
+
 
 		registerImporter(_materialImporter);
 		registerImporter(_catalogImporter);
 		registerImporter(_companyImporter);
 		registerImporter(_partsImporter);
+		registerImporter(_productImporter);
+		registerImporter(_riskImporter);
+		registerImporter(_activityImporter);
 	}
 	
 	private void registerImporter(TypeImporter importer) {
 		_typeImporters.put(importer.getSheetName(), importer);
+	}
+
+	private Set<AttributeImport> getRiskAttrs(TypeImporter activityImporter) {
+		ValueProvider activityValueProvider = new ObjectValueProvider(activityImporter);
+		return new SetBuilder<AttributeImport>()
+			.add(new PropertyImport(RiskFactory.getNameRiskAttr()))
+			.add(new PropertyImport(RiskFactory.getEstimatedDamageRiskAttr()))
+			.add(new PropertyImport(RiskFactory.getEstimatedProbabilityRiskAttr()))
+			.add(new ReferenceImport(RiskFactory.getActivitiesRiskAttr(), activityValueProvider))
+			.toSet();
 	}
 
 	private Set<AttributeImport> getTeileAttrs(TypeImporter materialImporter, TypeImporter catalogImporter,
@@ -120,6 +163,9 @@ public class SynchraImporter extends POIExcelImporter {
 		_catalogImporter.checkData();
 		_companyImporter.checkData();
 		_partsImporter.checkData();
+		_productImporter.checkData();
+		_riskImporter.checkData();
+		_activityImporter.checkData();
 	}
 
 	public void performImport() {
@@ -127,6 +173,9 @@ public class SynchraImporter extends POIExcelImporter {
 		_catalogImporter.performImport();
 		_companyImporter.performImport();
 		_partsImporter.performImport();
+		_productImporter.performImport();
+		_activityImporter.performImport();
+		_riskImporter.performImport();
 	}
 
 	/**
@@ -206,16 +255,24 @@ public class SynchraImporter extends POIExcelImporter {
 			}
 			for (List<Object> values : _importData.values()) {
 				int idCol = _attributesByName.get(_idAttribute).getColumn();
-				String id = values.get(idCol).toString();
+				String id = values.get(idCol).toString().trim();
 				TLObject existingObject = existing.get(id);
 				if (existingObject == null) {
 					existingObject = ModelFactory.getInstance().createObject(_tlClass);
 					for (AttributeImport ad : _attributesByName.values()) {
 						ad.performImport(existingObject, values);
 					}
+					afterCreation(existingObject);
 				}
 				_imported.put(id, existingObject);
 			}
+		}
+
+		/**
+		 * @param newObject
+		 *        the new created object
+		 */
+		public void afterCreation(TLObject newObject) {
 		}
 
 		public TLObject get(String id) {
@@ -330,7 +387,17 @@ public class SynchraImporter extends POIExcelImporter {
 
 		@Override
 		public Object get(Object excelValue) {
-			return _importer.get((String) excelValue);
+			String rawValue = (String) excelValue;
+			String[] split = rawValue.split(",");
+			if (split.length > 1) {
+				List<Object> res = new ArrayList();
+				for (String val : split) {
+					res.add(_importer.get(val.trim()));
+				}
+				return res;
+			} else {
+				return _importer.get(split[0]);
+			}
 		}
 	}
 
@@ -444,6 +511,32 @@ public class SynchraImporter extends POIExcelImporter {
 
 		public DerivedTLTypePart getPart() {
 			return _part;
+		}
+
+	}
+
+	private static class ProductImporter extends TypeImporter {
+
+		public ProductImporter(TLClass tlClass, Class type, Set<AttributeImport> attributes, String idAttribute) {
+			super(tlClass, type, attributes, idAttribute);
+		}
+
+		/**
+		 * @param newObject
+		 *        the new created object
+		 */
+		@Override
+		public void afterCreation(TLObject newObject) {
+			Product product = (Product) newObject;
+			
+			// create constructionGroup for the new product
+			ConstructionGroup constructionGroup = ModelFactory.getInstance().createConstructionGroup();
+			constructionGroup.setName("BG " + product.getName());
+			product.setBuildGroup(constructionGroup);
+//			con -> x -> y -> $x.set(`fma:Product#buildGroup`, 
+//				new(`fma:ConstructionGroup`, transient: false)
+//				..set(`fma:ConstructionGroup#name`,"BG "+$x.get(`fma:Product#name`))
+//					)    
 		}
 
 	}

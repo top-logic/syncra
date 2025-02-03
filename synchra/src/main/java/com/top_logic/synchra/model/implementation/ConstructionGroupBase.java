@@ -27,13 +27,12 @@ public interface ConstructionGroupBase extends com.top_logic.synchra.model.inter
 	String CONSISTS_OF_ATTR = "consistsOf";
 
 	/**
-	 * Part <code>constructionGroupId</code> of <code>ConstructionGroup</code>
-	 * 
-	 * <p>
-	 * Declared as <code>tl.core:String</code> in configuration.
-	 * </p>
+	 * Getter for part {@link #COMPONENT_ID_ATTR}.
 	 */
-	String CONSTRUCTION_GROUP_ID_ATTR = "constructionGroupId";
+	@Override
+	default String getComponentID() {
+		return (String) tValueByName(COMPONENT_ID_ATTR);
+	}
 
 	/**
 	 * Getter for part {@link #CONSISTS_OF_ATTR}.
@@ -76,20 +75,6 @@ public interface ConstructionGroupBase extends com.top_logic.synchra.model.inter
 	 */
 	default void removeConsistsOf(com.top_logic.synchra.model.interfaces.Connection oldValue) {
 		tRemoveByName(CONSISTS_OF_ATTR, oldValue);
-	}
-
-	/**
-	 * Getter for part {@link #CONSTRUCTION_GROUP_ID_ATTR}.
-	 */
-	default String getConstructionGroupId() {
-		return (String) tValueByName(CONSTRUCTION_GROUP_ID_ATTR);
-	}
-
-	/**
-	 * Setter for part {@link #CONSTRUCTION_GROUP_ID_ATTR}.
-	 */
-	default void setConstructionGroupId(String newValue) {
-		tUpdateByName(CONSTRUCTION_GROUP_ID_ATTR, newValue);
 	}
 
 	/**

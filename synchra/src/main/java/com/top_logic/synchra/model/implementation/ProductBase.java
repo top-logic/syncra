@@ -36,6 +36,15 @@ public interface ProductBase extends com.top_logic.model.TLNamed {
 	String NAME_ATTR = "name";
 
 	/**
+	 * Part <code>productId</code> of <code>Product</code>
+	 * 
+	 * <p>
+	 * Declared as <code>tl.core:String</code> in configuration.
+	 * </p>
+	 */
+	String PRODUCT_ID_ATTR = "productId";
+
+	/**
 	 * Getter for part {@link #BUILD_GROUP_ATTR}.
 	 */
 	default com.top_logic.synchra.model.interfaces.ConstructionGroup getBuildGroup() {
@@ -47,6 +56,20 @@ public interface ProductBase extends com.top_logic.model.TLNamed {
 	 */
 	default void setBuildGroup(com.top_logic.synchra.model.interfaces.ConstructionGroup newValue) {
 		tUpdateByName(BUILD_GROUP_ATTR, newValue);
+	}
+
+	/**
+	 * Getter for part {@link #PRODUCT_ID_ATTR}.
+	 */
+	default String getProductId() {
+		return (String) tValueByName(PRODUCT_ID_ATTR);
+	}
+
+	/**
+	 * Setter for part {@link #PRODUCT_ID_ATTR}.
+	 */
+	default void setProductId(String newValue) {
+		tUpdateByName(PRODUCT_ID_ATTR, newValue);
 	}
 
 }

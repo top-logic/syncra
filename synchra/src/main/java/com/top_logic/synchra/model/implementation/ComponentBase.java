@@ -18,6 +18,15 @@ public interface ComponentBase extends com.top_logic.model.TLNamed {
 	String COMPONENT_TYPE = "Component";
 
 	/**
+	 * Part <code>componentID</code> of <code>Component</code>
+	 * 
+	 * <p>
+	 * Declared as <code>tl.core:String</code> in configuration.
+	 * </p>
+	 */
+	String COMPONENT_ID_ATTR = "componentID";
+
+	/**
 	 * Part <code>name</code> of <code>Component</code>
 	 * 
 	 * <p>
@@ -52,6 +61,20 @@ public interface ComponentBase extends com.top_logic.model.TLNamed {
 	 * </p>
 	 */
 	String USED_ATTR = "used";
+
+	/**
+	 * Getter for part {@link #COMPONENT_ID_ATTR}.
+	 */
+	default String getComponentID() {
+		return (String) tValueByName(COMPONENT_ID_ATTR);
+	}
+
+	/**
+	 * Setter for part {@link #COMPONENT_ID_ATTR}.
+	 */
+	default void setComponentID(String newValue) {
+		tUpdateByName(COMPONENT_ID_ATTR, newValue);
+	}
 
 	/**
 	 * Getter for part {@link #PRICE_ATTR}.

@@ -9,6 +9,10 @@
 			/>
 			<factory value="com.top_logic.synchra.model.ModelFactory"/>
 		</annotations>
+		<enum name="ActivityKind">
+			<classifier name="TECHNICAL"/>
+			<classifier name="ORGANISATORIC"/>
+		</enum>
 		<enum name="CompanyStructure">
 			<classifier name="AG"/>
 			<classifier name="GmbH"/>
@@ -40,6 +44,11 @@
 							attribute="riskProbImpact"
 							fullQualifiedName="fma:Activity#riskProbImpact"
 							type="tl.core:Integer"
+						/>
+						<field
+							attribute="kind"
+							fullQualifiedName="fma:Activity#kind"
+							type="fma:ActivityKind"
 						/>
 						<field
 							attribute="description"
@@ -80,6 +89,18 @@
 						<create-visibility value="read-only"/>
 					</annotations>
 				</property>
+				<reference name="kind"
+					kind="forwards"
+					mandatory="true"
+					navigate="true"
+					type="ActivityKind"
+				>
+					<annotations>
+						<default-value>
+							<classifier value="TECHNICAL"/>
+						</default-value>
+					</annotations>
+				</reference>
 			</attributes>
 		</class>
 		<class name="Company">
@@ -240,20 +261,6 @@
 						</storage-algorithm>
 					</annotations>
 				</property>
-				<property name="constructionGroupId"
-					type="tl.core:String"
-				>
-					<annotations>
-						<default-value>
-							<provider class="com.top_logic.element.structured.util.NumberHandlerDefaultProvider"
-								pattern="BG-%NUMBER%"
-								sequence-name="Baugruppe"
-							/>
-						</default-value>
-						<create-visibility value="read-only"/>
-						<visibility value="read-only"/>
-					</annotations>
-				</property>
 				<property name="componentID"
 					override="true"
 					type="tl.core:String"
@@ -297,20 +304,6 @@
 					navigate="true"
 					type="PartCatalog"
 				/>
-				<property name="partNumber"
-					type="tl.core:String"
-				>
-					<annotations>
-						<default-value>
-							<provider class="com.top_logic.element.structured.util.NumberHandlerDefaultProvider"
-								pattern="T-%NUMBER%"
-								sequence-name="Teile"
-							/>
-						</default-value>
-						<create-visibility value="read-only"/>
-						<visibility value="read-only"/>
-					</annotations>
-				</property>
 				<property name="componentID"
 					override="true"
 					type="tl.core:String"
@@ -621,6 +614,32 @@ all(`fma:Company`).map( company ->
 						</storage-algorithm>
 					</annotations>
 				</reference>
+			</attributes>
+		</class>
+		<class name="Problem">
+			<generalizations>
+				<generalization type="tl.model:TLObject"/>
+			</generalizations>
+			<attributes>
+				<property name="name"
+					mandatory="true"
+					type="tl.core:String"
+				/>
+				<property name="description"
+					type="tl.model.wysiwyg:Html"
+				/>
+				<reference name="components"
+					kind="forwards"
+					multiple="true"
+					navigate="true"
+					type="Component"
+				/>
+				<reference name="solvingActivities"
+					kind="forwards"
+					multiple="true"
+					navigate="true"
+					type="Activity"
+				/>
 			</attributes>
 		</class>
 		<class name="Product">

@@ -45,6 +45,15 @@ public interface ActivityBase extends com.top_logic.model.TLNamed {
 	String DESCRIPTION_ATTR = "description";
 
 	/**
+	 * Part <code>kind</code> of <code>Activity</code>
+	 * 
+	 * <p>
+	 * Declared as <code>fma:ActivityKind</code> in configuration.
+	 * </p>
+	 */
+	String KIND_ATTR = "kind";
+
+	/**
 	 * Part <code>name</code> of <code>Activity</code>
 	 * 
 	 * <p>
@@ -111,6 +120,20 @@ public interface ActivityBase extends com.top_logic.model.TLNamed {
 	 */
 	default void setDescription(com.top_logic.layout.wysiwyg.ui.StructuredText newValue) {
 		tUpdateByName(DESCRIPTION_ATTR, newValue);
+	}
+
+	/**
+	 * Getter for part {@link #KIND_ATTR}.
+	 */
+	default com.top_logic.model.TLClassifier getKind() {
+		return (com.top_logic.model.TLClassifier) tValueByName(KIND_ATTR);
+	}
+
+	/**
+	 * Setter for part {@link #KIND_ATTR}.
+	 */
+	default void setKind(com.top_logic.model.TLClassifier newValue) {
+		tUpdateByName(KIND_ATTR, newValue);
 	}
 
 	/**

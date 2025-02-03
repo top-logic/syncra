@@ -22,6 +22,21 @@ public class ModelFactory extends com.top_logic.element.meta.kbbased.AbstractEle
 	public static final String FMA_STRUCTURE = "fma";
 
 	/**
+	 * Name of the enumeration <code>ActivityKind</code> in module {@value #FMA_STRUCTURE}.
+	 */
+	public static final String ACTIVITY_KIND_ENUM = "ActivityKind";
+
+	/**
+	 * Name of the classifier <code>ORGANISATORIC</code> in enumeration {@value #ACTIVITY_KIND_ENUM}.
+	 */
+	public static final String ORGANISATORIC_ACTIVITY_KIND_CLASSIFIER = "ORGANISATORIC";
+
+	/**
+	 * Name of the classifier <code>TECHNICAL</code> in enumeration {@value #ACTIVITY_KIND_ENUM}.
+	 */
+	public static final String TECHNICAL_ACTIVITY_KIND_CLASSIFIER = "TECHNICAL";
+
+	/**
 	 * Name of the enumeration <code>CompanyStructure</code> in module {@value #FMA_STRUCTURE}.
 	 */
 	public static final String COMPANY_STRUCTURE_ENUM = "CompanyStructure";
@@ -67,6 +82,13 @@ public class ModelFactory extends com.top_logic.element.meta.kbbased.AbstractEle
 	 */
 	public static com.top_logic.model.TLProperty getDescriptionActivityAttr() {
 		return (com.top_logic.model.TLProperty) getActivityType().getPart(com.top_logic.synchra.model.interfaces.Activity.DESCRIPTION_ATTR);
+	}
+
+	/**
+	 * Lookup {@link com.top_logic.synchra.model.interfaces.Activity#KIND_ATTR} of {@link com.top_logic.synchra.model.interfaces.Activity}.
+	 */
+	public static com.top_logic.model.TLReference getKindActivityAttr() {
+		return (com.top_logic.model.TLReference) getActivityType().getPart(com.top_logic.synchra.model.interfaces.Activity.KIND_ATTR);
 	}
 
 	/**
@@ -133,6 +155,13 @@ public class ModelFactory extends com.top_logic.element.meta.kbbased.AbstractEle
 	}
 
 	/**
+	 * Lookup {@link com.top_logic.synchra.model.interfaces.Component#COMPONENT_ID_ATTR} of {@link com.top_logic.synchra.model.interfaces.Component}.
+	 */
+	public static com.top_logic.model.TLProperty getComponentIDComponentAttr() {
+		return (com.top_logic.model.TLProperty) getComponentType().getPart(com.top_logic.synchra.model.interfaces.Component.COMPONENT_ID_ATTR);
+	}
+
+	/**
 	 * Lookup {@link com.top_logic.synchra.model.interfaces.Component#NAME_ATTR} of {@link com.top_logic.synchra.model.interfaces.Component}.
 	 */
 	public static com.top_logic.model.TLProperty getNameComponentAttr() {
@@ -168,17 +197,17 @@ public class ModelFactory extends com.top_logic.element.meta.kbbased.AbstractEle
 	}
 
 	/**
+	 * Lookup {@link com.top_logic.synchra.model.interfaces.ConstructionGroup#COMPONENT_ID_ATTR} of {@link com.top_logic.synchra.model.interfaces.ConstructionGroup}.
+	 */
+	public static com.top_logic.model.TLProperty getComponentIDConstructionGroupAttr() {
+		return (com.top_logic.model.TLProperty) getConstructionGroupType().getPart(com.top_logic.synchra.model.interfaces.ConstructionGroup.COMPONENT_ID_ATTR);
+	}
+
+	/**
 	 * Lookup {@link com.top_logic.synchra.model.interfaces.ConstructionGroup#CONSISTS_OF_ATTR} of {@link com.top_logic.synchra.model.interfaces.ConstructionGroup}.
 	 */
 	public static com.top_logic.model.TLReference getConsistsOfConstructionGroupAttr() {
 		return (com.top_logic.model.TLReference) getConstructionGroupType().getPart(com.top_logic.synchra.model.interfaces.ConstructionGroup.CONSISTS_OF_ATTR);
-	}
-
-	/**
-	 * Lookup {@link com.top_logic.synchra.model.interfaces.ConstructionGroup#CONSTRUCTION_GROUP_ID_ATTR} of {@link com.top_logic.synchra.model.interfaces.ConstructionGroup}.
-	 */
-	public static com.top_logic.model.TLProperty getConstructionGroupIdConstructionGroupAttr() {
-		return (com.top_logic.model.TLProperty) getConstructionGroupType().getPart(com.top_logic.synchra.model.interfaces.ConstructionGroup.CONSTRUCTION_GROUP_ID_ATTR);
 	}
 
 	/**
@@ -210,17 +239,17 @@ public class ModelFactory extends com.top_logic.element.meta.kbbased.AbstractEle
 	}
 
 	/**
+	 * Lookup {@link com.top_logic.synchra.model.interfaces.SinglePart#COMPONENT_ID_ATTR} of {@link com.top_logic.synchra.model.interfaces.SinglePart}.
+	 */
+	public static com.top_logic.model.TLProperty getComponentIDSinglePartAttr() {
+		return (com.top_logic.model.TLProperty) getSinglePartType().getPart(com.top_logic.synchra.model.interfaces.SinglePart.COMPONENT_ID_ATTR);
+	}
+
+	/**
 	 * Lookup {@link com.top_logic.synchra.model.interfaces.SinglePart#MATERIAL_ATTR} of {@link com.top_logic.synchra.model.interfaces.SinglePart}.
 	 */
 	public static com.top_logic.model.TLReference getMaterialSinglePartAttr() {
 		return (com.top_logic.model.TLReference) getSinglePartType().getPart(com.top_logic.synchra.model.interfaces.SinglePart.MATERIAL_ATTR);
-	}
-
-	/**
-	 * Lookup {@link com.top_logic.synchra.model.interfaces.SinglePart#PART_NUMBER_ATTR} of {@link com.top_logic.synchra.model.interfaces.SinglePart}.
-	 */
-	public static com.top_logic.model.TLProperty getPartNumberSinglePartAttr() {
-		return (com.top_logic.model.TLProperty) getSinglePartType().getPart(com.top_logic.synchra.model.interfaces.SinglePart.PART_NUMBER_ATTR);
 	}
 
 	/**
@@ -469,6 +498,41 @@ public class ModelFactory extends com.top_logic.element.meta.kbbased.AbstractEle
 	}
 
 	/**
+	 * Lookup {@link com.top_logic.synchra.model.interfaces.Problem} type.
+	 */
+	public static com.top_logic.model.TLClass getProblemType() {
+		return (com.top_logic.model.TLClass) com.top_logic.util.model.ModelService.getApplicationModel().getModule(FMA_STRUCTURE).getType(com.top_logic.synchra.model.interfaces.Problem.PROBLEM_TYPE);
+	}
+
+	/**
+	 * Lookup {@link com.top_logic.synchra.model.interfaces.Problem#COMPONENTS_ATTR} of {@link com.top_logic.synchra.model.interfaces.Problem}.
+	 */
+	public static com.top_logic.model.TLReference getComponentsProblemAttr() {
+		return (com.top_logic.model.TLReference) getProblemType().getPart(com.top_logic.synchra.model.interfaces.Problem.COMPONENTS_ATTR);
+	}
+
+	/**
+	 * Lookup {@link com.top_logic.synchra.model.interfaces.Problem#DESCRIPTION_ATTR} of {@link com.top_logic.synchra.model.interfaces.Problem}.
+	 */
+	public static com.top_logic.model.TLProperty getDescriptionProblemAttr() {
+		return (com.top_logic.model.TLProperty) getProblemType().getPart(com.top_logic.synchra.model.interfaces.Problem.DESCRIPTION_ATTR);
+	}
+
+	/**
+	 * Lookup {@link com.top_logic.synchra.model.interfaces.Problem#NAME_ATTR} of {@link com.top_logic.synchra.model.interfaces.Problem}.
+	 */
+	public static com.top_logic.model.TLProperty getNameProblemAttr() {
+		return (com.top_logic.model.TLProperty) getProblemType().getPart(com.top_logic.synchra.model.interfaces.Problem.NAME_ATTR);
+	}
+
+	/**
+	 * Lookup {@link com.top_logic.synchra.model.interfaces.Problem#SOLVING_ACTIVITIES_ATTR} of {@link com.top_logic.synchra.model.interfaces.Problem}.
+	 */
+	public static com.top_logic.model.TLReference getSolvingActivitiesProblemAttr() {
+		return (com.top_logic.model.TLReference) getProblemType().getPart(com.top_logic.synchra.model.interfaces.Problem.SOLVING_ACTIVITIES_ATTR);
+	}
+
+	/**
 	 * Lookup {@link com.top_logic.synchra.model.interfaces.Product} type.
 	 */
 	public static com.top_logic.model.TLClass getProductType() {
@@ -487,6 +551,13 @@ public class ModelFactory extends com.top_logic.element.meta.kbbased.AbstractEle
 	 */
 	public static com.top_logic.model.TLProperty getNameProductAttr() {
 		return (com.top_logic.model.TLProperty) getProductType().getPart(com.top_logic.synchra.model.interfaces.Product.NAME_ATTR);
+	}
+
+	/**
+	 * Lookup {@link com.top_logic.synchra.model.interfaces.Product#PRODUCT_ID_ATTR} of {@link com.top_logic.synchra.model.interfaces.Product}.
+	 */
+	public static com.top_logic.model.TLProperty getProductIdProductAttr() {
+		return (com.top_logic.model.TLProperty) getProductType().getPart(com.top_logic.synchra.model.interfaces.Product.PRODUCT_ID_ATTR);
 	}
 
 	/**
@@ -522,6 +593,27 @@ public class ModelFactory extends com.top_logic.element.meta.kbbased.AbstractEle
 	 */
 	public static com.top_logic.model.TLProperty getRuleProductSelectionAttr() {
 		return (com.top_logic.model.TLProperty) getProductSelectionType().getPart(com.top_logic.synchra.model.interfaces.ProductSelection.RULE_ATTR);
+	}
+
+	/**
+	 * Lookup {@value #ACTIVITY_KIND_ENUM} enumeration.
+	 */
+	public static com.top_logic.model.TLEnumeration getActivityKindEnum() {
+		return (com.top_logic.model.TLEnumeration) com.top_logic.util.model.ModelService.getApplicationModel().getModule(FMA_STRUCTURE).getType(ACTIVITY_KIND_ENUM);
+	}
+
+	/**
+	 * Lookup classifier {@value #ORGANISATORIC_ACTIVITY_KIND_CLASSIFIER} of enumeration {@value #ACTIVITY_KIND_ENUM}.
+	 */
+	public static com.top_logic.model.TLClassifier getORGANISATORICActivityKindClassifier() {
+		return getActivityKindEnum().getClassifier(ORGANISATORIC_ACTIVITY_KIND_CLASSIFIER);
+	}
+
+	/**
+	 * Lookup classifier {@value #TECHNICAL_ACTIVITY_KIND_CLASSIFIER} of enumeration {@value #ACTIVITY_KIND_ENUM}.
+	 */
+	public static com.top_logic.model.TLClassifier getTECHNICALActivityKindClassifier() {
+		return getActivityKindEnum().getClassifier(TECHNICAL_ACTIVITY_KIND_CLASSIFIER);
 	}
 
 	/**
@@ -704,6 +796,19 @@ public class ModelFactory extends com.top_logic.element.meta.kbbased.AbstractEle
 	public static final String KO_NAME_PARTS_LIST_ENTRY = "GenericObject";
 
 	/**
+	 * Name of type <code>Problem</code> in structure {@link #FMA_STRUCTURE}.
+	 * 
+	 * @deprecated Use {@link com.top_logic.synchra.model.interfaces.Problem#PROBLEM_TYPE}.
+	 */
+	@Deprecated
+	public static final String PROBLEM_NODE = com.top_logic.synchra.model.interfaces.Problem.PROBLEM_TYPE;
+
+	/**
+	 * Storage table name of {@link #PROBLEM_NODE} objects.
+	 */
+	public static final String KO_NAME_PROBLEM = "GenericObject";
+
+	/**
 	 * Name of type <code>Product</code> in structure {@link #FMA_STRUCTURE}.
 	 * 
 	 * @deprecated Use {@link com.top_logic.synchra.model.interfaces.Product#PRODUCT_TYPE}.
@@ -882,6 +987,20 @@ public class ModelFactory extends com.top_logic.element.meta.kbbased.AbstractEle
 	 */
 	public final com.top_logic.synchra.model.interfaces.PartsListEntry createPartsListEntry() {
 		return createPartsListEntry(null);
+	}
+
+	/**
+	 * Create an instance of {@link com.top_logic.synchra.model.interfaces.Problem} type.
+	 */
+	public final com.top_logic.synchra.model.interfaces.Problem createProblem(com.top_logic.model.TLObject context) {
+		return (com.top_logic.synchra.model.interfaces.Problem) createObject(getProblemType(), context);
+	}
+
+	/**
+	 * Create an instance of {@link com.top_logic.synchra.model.interfaces.Problem} type.
+	 */
+	public final com.top_logic.synchra.model.interfaces.Problem createProblem() {
+		return createProblem(null);
 	}
 
 	/**

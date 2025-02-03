@@ -8,6 +8,8 @@ import com.top_logic.element.meta.MetaElementUtil;
 import com.top_logic.model.TLClass;
 import com.top_logic.model.TLNamed;
 import com.top_logic.model.TLObject;
+import com.top_logic.synchra.model.ModelFactory;
+import com.top_logic.synchra.model.interfaces.ConstructionGroup;
 import com.top_logic.synchra.risk.RiskFactory;
 import com.top_logic.synchra.risk.interfaces.AmountOfLoss;
 import com.top_logic.synchra.risk.interfaces.Color;
@@ -44,6 +46,13 @@ public class AttributedUtil {
 	 */
 	public static List<Probability> getProbabilities() {
 		return getAllInstancesOfType(RiskFactory.getProbabilityType(), Probability.class);
+	}
+
+	/**
+	 * @return all known {@link ConstructionGroup}s.
+	 */
+	public static List<ConstructionGroup> getConstructionGroups() {
+		return getAllInstancesOfType(ModelFactory.getConstructionGroupType(), ConstructionGroup.class);
 	}
 
 	/**

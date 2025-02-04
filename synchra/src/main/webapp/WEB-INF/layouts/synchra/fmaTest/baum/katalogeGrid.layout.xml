@@ -43,16 +43,17 @@
 					owner="fma:PartCatalog"
 				/>
 			</button>
-			
 			<button id="importCatalogs"
 				class="com.top_logic.synchra.util.OpenImportCatalogsDialog"
+				executability="InViewMode"
 				group="Write"
+				image="css:fa-solid fa-file-import"
 			>
-				<executability>
-					<reference rule-id="InViewMode"/>
-				</executability>
-			</button>			
-			
+				<resourceKey key="dynamic.659fe5c1-02b9-4560-9146-31e154fe76b9">
+					<en>Import data</en>
+					<de>Daten importieren</de>
+				</resourceKey>
+			</button>
 		</buttons>
 	</arguments>
 </config:template-call>

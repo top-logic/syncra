@@ -1,10 +1,14 @@
 package com.top_logic.synchra.util;
 
+import java.util.List;
+
 import com.top_logic.basic.io.BinaryContent;
 import com.top_logic.knowledge.service.PersistencyLayer;
 import com.top_logic.knowledge.service.Transaction;
 import com.top_logic.layout.DisplayContext;
 import com.top_logic.layout.basic.Command;
+import com.top_logic.synchra.importer.SynchraImporter;
+import com.top_logic.synchra.importer.TypeImporter;
 import com.top_logic.tool.boundsec.HandlerResult;
 
 /**
@@ -22,7 +26,9 @@ public class CatalogsImportCommand implements Command {
 	public HandlerResult executeCommand(DisplayContext context) {
 		BinaryContent data = _importCatalogsDialog.getUploadField().getDataItem();
 
-		SynchraImporter importer = new SynchraImporter(data);
+		List<TypeImporter> importers = _importCatalogsDialog.getImporters();
+
+		SynchraImporter importer = new SynchraImporter(data, importers);
 		// read data
 		importer.run();
 

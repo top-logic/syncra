@@ -16,6 +16,7 @@ import com.top_logic.layout.messagebox.MessageBox;
 import com.top_logic.layout.messagebox.MessageBox.ButtonType;
 import com.top_logic.layout.messagebox.SimpleFormDialog;
 import com.top_logic.mig.html.layout.LayoutComponent;
+import com.top_logic.synchra.importer.TypeImporter;
 import com.top_logic.tool.boundsec.compound.gui.admin.rolesProfile.RolesProfileUploadFieldListener;
 import com.top_logic.util.Resources;
 
@@ -26,14 +27,18 @@ public class ImportCatalogsDialog extends SimpleFormDialog {
 
 	private final LayoutComponent _catalogGrid;
 
+	private List<TypeImporter> _importers;
+
 	/**
 	 * Creates a {@link I18NConstants}.
+	 * 
 	 */
-	public ImportCatalogsDialog(LayoutComponent catalogGrid) {
+	public ImportCatalogsDialog(LayoutComponent catalogGrid, List<TypeImporter> importers) {
 		super(I18NConstants.IMPORT_CATALOGS_DIALOG,
 			DisplayDimension.dim(380, DisplayUnit.PIXEL),
 			DisplayDimension.dim(210, DisplayUnit.PIXEL));
 		_catalogGrid = catalogGrid;
+		_importers = importers;
 	}
 
 	@Override
@@ -64,6 +69,10 @@ public class ImportCatalogsDialog extends SimpleFormDialog {
 	 */
 	protected LayoutComponent getCatalogGrid() {
 		return _catalogGrid;
+	}
+
+	protected List<TypeImporter> getImporters() {
+		return _importers;
 	}
 
 	/**

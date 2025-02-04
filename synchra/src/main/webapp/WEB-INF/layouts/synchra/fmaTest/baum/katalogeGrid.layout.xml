@@ -53,6 +53,53 @@
 					<en>Import data</en>
 					<de>Daten importieren</de>
 				</resourceKey>
+				<importers>
+					<importer class="com.top_logic.synchra.importer.TypeImporter" 
+						id-attributes ="name"
+						tl-class="fma:Material" >
+						<attributes>
+							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport" property="fma:Material#name" />
+						</attributes>
+					</importer>
+					<importer class="com.top_logic.synchra.importer.TypeImporter" 
+						id-attributes ="name"
+						tl-class="fma:PartCatalog" >
+						<attributes>
+							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport" property="fma:PartCatalog#name" />
+						</attributes>
+					</importer>
+
+					<importer class="com.top_logic.synchra.importer.TypeImporter" 
+						id-attributes ="name"
+						tl-class="fma:Company" >
+						<attributes>
+							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport" property="fma:Company#name" />
+							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport" property="fma:Company#contactPerson" />
+							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport" property="fma:Company#phone" />
+							<attribute class="com.top_logic.synchra.importer.attribute.ReferenceImport" part="fma:Company#structure" >
+								<value-transformer class="com.top_logic.synchra.importer.transformer.TLEnumerationTransformer"  enumeration="fma:CompanyStructure"/>
+							</attribute>
+						</attributes>
+					</importer>
+					
+					<importer class="com.top_logic.synchra.importer.ProductImporter" 
+						id-attributes ="name"
+						tl-class="fma:Product" >
+						<attributes>
+							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport" property="fma:Product#name" />
+						</attributes>
+					</importer>
+					<importer class="com.top_logic.synchra.importer.TypeImporter" 
+						id-attributes ="name"
+						tl-class="fma:Activity" >
+						<attributes>
+							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport" property="fma:Activity#name" />
+							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport" property="fma:Activity#costs" />
+							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport" property="fma:Activity#riskProbImpact" />
+							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport" property="fma:Activity#riskCostImpact" />
+						</attributes>
+					</importer>
+				</importers>
 			</button>
 		</buttons>
 	</arguments>

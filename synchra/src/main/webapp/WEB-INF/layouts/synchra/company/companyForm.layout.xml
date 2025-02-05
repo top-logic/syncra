@@ -4,7 +4,7 @@
 	xmlns:config="http://www.top-logic.com/ns/config/6.0"
 	template="com.top_logic.element/form.template.xml"
 >
-	<arguments defaultFor="fma:Company">
+	<arguments defaultFor="syn:Company">
 		<name key="dynamic.2d136857-e976-4f33-8cb0-3534e0e5afac">
 			<en>Company</en>
 			<de>Gesellschaft</de>

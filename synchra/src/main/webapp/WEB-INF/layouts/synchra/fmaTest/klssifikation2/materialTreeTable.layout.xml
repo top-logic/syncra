@@ -7,20 +7,20 @@
 	<arguments
 		defaultColumns="name,company,tType"
 		rootVisible="false"
-		type="fma:SinglePart,fma:PartCatalog"
+		type="syn:SinglePart,syn:PartCatalog"
 	>
 		<name key="dynamic.ebd584bf-ee72-4d84-bf72-5530b37aee51">
 			<de>Material</de>
 		</name>
 		<modelBuilder class="com.top_logic.model.search.providers.TreeModelByExpression"
-			nodePredicate="node->$node.instanceOf(`fma:PartCatalog`)"
-			parents="node->$node.referers(`fma:PartCatalog#materialGroups`)"
+			nodePredicate="node->$node.instanceOf(`syn:PartCatalog`)"
+			parents="node->$node.referers(`syn:PartCatalog#materialGroups`)"
 			rootNode="`synchra.Bom#LIBRARIES`"
 		>
 			<children><![CDATA[node -> switch {
-    $node.instanceOf(`synchra.Bom:Libraries`): all(`fma:PartCatalog`);
-    $node.instanceOf(`fma:PartCatalog`):$node.get(`fma:PartCatalog#materialCompany`);
-    $node.instanceOf(`fma:PartsGroup`):$node.get(`fma:PartsGroup#parts`);    
+    $node.instanceOf(`synchra.Bom:Libraries`): all(`syn:PartCatalog`);
+    $node.instanceOf(`syn:PartCatalog`):$node.get(`syn:PartCatalog#materialCompany`);
+    $node.instanceOf(`syn:PartsGroup`):$node.get(`syn:PartsGroup#parts`);    
 }]]></children>
 		</modelBuilder>
 		<buttons>

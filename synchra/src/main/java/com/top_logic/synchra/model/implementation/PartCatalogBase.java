@@ -21,7 +21,7 @@ public interface PartCatalogBase extends com.top_logic.model.TLNamed {
 	 * Part <code>materialCompany</code> of <code>PartCatalog</code>
 	 * 
 	 * <p>
-	 * Declared as <code>fma:PartsGroup</code> in configuration.
+	 * Declared as <code>syn:PartsGroup</code> in configuration.
 	 * </p>
 	 */
 	String MATERIAL_COMPANY_ATTR = "materialCompany";
@@ -30,7 +30,7 @@ public interface PartCatalogBase extends com.top_logic.model.TLNamed {
 	 * Part <code>materialGroups</code> of <code>PartCatalog</code>
 	 * 
 	 * <p>
-	 * Declared as <code>fma:PartsGroup</code> in configuration.
+	 * Declared as <code>syn:PartsGroup</code> in configuration.
 	 * </p>
 	 */
 	String MATERIAL_GROUPS_ATTR = "materialGroups";
@@ -48,7 +48,7 @@ public interface PartCatalogBase extends com.top_logic.model.TLNamed {
 	 * Part <code>partGroups</code> of <code>PartCatalog</code>
 	 * 
 	 * <p>
-	 * Declared as <code>fma:PartsGroup</code> in configuration.
+	 * Declared as <code>syn:PartsGroup</code> in configuration.
 	 * </p>
 	 */
 	String PART_GROUPS_ATTR = "partGroups";
@@ -57,7 +57,7 @@ public interface PartCatalogBase extends com.top_logic.model.TLNamed {
 	 * Part <code>parts</code> of <code>PartCatalog</code>
 	 * 
 	 * <p>
-	 * Declared as <code>fma:SinglePart</code> in configuration.
+	 * Declared as <code>syn:SinglePart</code> in configuration.
 	 * </p>
 	 */
 	String PARTS_ATTR = "parts";

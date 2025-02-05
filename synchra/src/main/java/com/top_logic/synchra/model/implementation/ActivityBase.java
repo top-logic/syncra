@@ -48,7 +48,7 @@ public interface ActivityBase extends com.top_logic.model.TLNamed {
 	 * Part <code>kind</code> of <code>Activity</code>
 	 * 
 	 * <p>
-	 * Declared as <code>fma:ActivityKind</code> in configuration.
+	 * Declared as <code>syn:ActivityKind</code> in configuration.
 	 * </p>
 	 */
 	String KIND_ATTR = "kind";

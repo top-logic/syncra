@@ -18,9 +18,9 @@
 		>
 			<elements><![CDATA[root -> {
     $root.traverse(
-       descend: node ->  { $node.get(`fma:ComponentNode#children`) }, 
+       descend: node ->  { $node.get(`syn:ComponentNode#children`) }, 
        compose: result -> childResults -> node -> parent -> { 
-            concat( $node.get(`fma:ComponentNode#component`).get(`fma:Component#risks`) ,$childResults.flatten())
+            concat( $node.get(`syn:ComponentNode#component`).get(`syn:Component#risks`) ,$childResults.flatten())
        }
     );
 }]]></elements>

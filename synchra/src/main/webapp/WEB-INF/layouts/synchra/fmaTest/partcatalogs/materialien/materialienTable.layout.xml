@@ -6,7 +6,7 @@
 >
 	<arguments
 		defaultColumns="_actions,name"
-		type="fma:Material"
+		type="syn:Material"
 	>
 		<dialogs>
 			<layout-reference resource="synchra/fmaTest/partcatalogs/materialien/createObject/dialog.layout.xml"/>
@@ -16,8 +16,8 @@
 			<de>Materialien</de>
 		</name>
 		<modelBuilder class="com.top_logic.model.search.providers.ListModelByExpression"
-			elements="model->all(`fma:Material`)"
-			supportsElement="element->$element.instanceOf(`fma:Material`)"
+			elements="model->all(`syn:Material`)"
+			supportsElement="element->$element.instanceOf(`syn:Material`)"
 		/>
 		<configurationProviders>
 			<configurationProvider class="com.top_logic.layout.table.provider.ButtonColumnProvider"

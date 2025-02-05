@@ -6,7 +6,7 @@
 >
 	<arguments
 		size="300px"
-		type="fma:Company"
+		type="syn:Company"
 	>
 		<dialogs>
 			<layout-reference resource="synchra/fmaTest/partcatalogs/gesellschaften/createObject1/dialog.layout.xml"/>
@@ -16,8 +16,8 @@
 			<de>Gesellschaften</de>
 		</name>
 		<modelBuilder class="com.top_logic.model.search.providers.ListModelByExpression"
-			elements="model->all(`fma:Company`)"
-			supportsElement="element->$element.instanceOf(`fma:Company`)"
+			elements="model->all(`syn:Company`)"
+			supportsElement="element->$element.instanceOf(`syn:Company`)"
 		/>
 		<buttons>
 			<button id="exportExcel"

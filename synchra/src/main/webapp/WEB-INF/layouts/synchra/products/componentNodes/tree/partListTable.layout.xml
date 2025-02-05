@@ -8,7 +8,7 @@
 		defaultColumns="part,connections,singlePrice,count,costs"
 		model="selection(synchra/products/componentNodes/tree/componentNodesTreeTable.layout.xml#TreeTable)"
 		showPopOut="true"
-		type="fma:PartsListEntry"
+		type="syn:PartsListEntry"
 	>
 		<name key="dynamic.567df31a-b68e-4c96-baf8-47062db371e8">
 			<en>Part List</en>
@@ -19,17 +19,17 @@
 		>
 			<elements><![CDATA[root -> {
     nodes = $root.traverse(
-       descend: node ->  { $node.get(`fma:ComponentNode#children`) }, 
+       descend: node ->  { $node.get(`syn:ComponentNode#children`) }, 
        compose: result -> childResults -> node -> parent -> { 
-            $node.get(`fma:ComponentNode#component`).instanceOf(`fma:SinglePart`) ?  concat($node,$childResults.flatten()) : $childResults.flatten()
+            $node.get(`syn:ComponentNode#component`).instanceOf(`syn:SinglePart`) ?  concat($node,$childResults.flatten()) : $childResults.flatten()
        }
     );
-   nodesByComponent = $nodes.groupBy(node -> $node.get(`fma:ComponentNode#component`));
+   nodesByComponent = $nodes.groupBy(node -> $node.get(`syn:ComponentNode#component`));
     $nodesByComponent
      .map( entry -> 
-         new(`fma:PartsListEntry`,transient: true)
-           ..set(`fma:PartsListEntry#part`,$entry.getKey())
-           ..set(`fma:PartsListEntry#connections`,$entry.getValue())
+         new(`syn:PartsListEntry`,transient: true)
+           ..set(`syn:PartsListEntry#part`,$entry.getKey())
+           ..set(`syn:PartsListEntry#connections`,$entry.getValue())
      )
 }]]></elements>
 		</modelBuilder>

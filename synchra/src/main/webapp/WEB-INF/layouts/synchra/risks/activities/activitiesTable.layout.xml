@@ -6,7 +6,7 @@
 >
 	<arguments
 		size="300px"
-		type="fma:Activity"
+		type="syn:Activity"
 	>
 		<dialogs>
 			<layout-reference resource="synchra/risks/activities/createObject/dialog.layout.xml"/>
@@ -16,8 +16,8 @@
 			<de>Maßnahmen</de>
 		</name>
 		<modelBuilder class="com.top_logic.model.search.providers.ListModelByExpression"
-			elements="model->all(`fma:Activity`)"
-			supportsElement="element->$element.instanceOf(`fma:Activity`)"
+			elements="model->all(`syn:Activity`)"
+			supportsElement="element->$element.instanceOf(`syn:Activity`)"
 		/>
 		<buttons>
 			<button id="exportExcel"

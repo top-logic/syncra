@@ -21,7 +21,7 @@ public interface PartsListEntryBase extends com.top_logic.model.TLObject {
 	 * Part <code>connections</code> of <code>PartsListEntry</code>
 	 * 
 	 * <p>
-	 * Declared as <code>fma:Connection</code> in configuration.
+	 * Declared as <code>syn:Connection</code> in configuration.
 	 * </p>
 	 */
 	String CONNECTIONS_ATTR = "connections";
@@ -48,7 +48,7 @@ public interface PartsListEntryBase extends com.top_logic.model.TLObject {
 	 * Part <code>materials</code> of <code>PartsListEntry</code>
 	 * 
 	 * <p>
-	 * Declared as <code>fma:Material</code> in configuration.
+	 * Declared as <code>syn:Material</code> in configuration.
 	 * </p>
 	 */
 	String MATERIALS_ATTR = "materials";
@@ -57,7 +57,7 @@ public interface PartsListEntryBase extends com.top_logic.model.TLObject {
 	 * Part <code>part</code> of <code>PartsListEntry</code>
 	 * 
 	 * <p>
-	 * Declared as <code>fma:SinglePart</code> in configuration.
+	 * Declared as <code>syn:SinglePart</code> in configuration.
 	 * </p>
 	 */
 	String PART_ATTR = "part";
@@ -66,7 +66,7 @@ public interface PartsListEntryBase extends com.top_logic.model.TLObject {
 	 * Part <code>producer</code> of <code>PartsListEntry</code>
 	 * 
 	 * <p>
-	 * Declared as <code>fma:Company</code> in configuration.
+	 * Declared as <code>syn:Company</code> in configuration.
 	 * </p>
 	 */
 	String PRODUCER_ATTR = "producer";

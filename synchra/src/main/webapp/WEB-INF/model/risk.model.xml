@@ -214,7 +214,7 @@
 						<field
 							attribute="components"
 							fullQualifiedName="risk:Risk#components"
-							type="fma:Component"
+							type="syn:Component"
 						/>
 						<field
 							attribute="createdAt"
@@ -224,7 +224,7 @@
 						<field
 							attribute="activities"
 							fullQualifiedName="risk:Risk#activities"
-							type="fma:Activity"
+							type="syn:Activity"
 						/>
 						<field
 							attribute="originator"
@@ -353,7 +353,7 @@
 					kind="forwards"
 					multiple="true"
 					navigate="true"
-					type="fma:Activity"
+					type="syn:Activity"
 				/>
 				<property name="damageAfterActivities"
 					type="tl.core:Integer"
@@ -363,7 +363,7 @@
 							<query>
 								<expr><![CDATA[risk -> {
 val = $risk.get(`risk:Risk#estimatedDamage`) - 
-        $risk.get(`risk:Risk#activities`).map(a -> $a.get(`fma:Activity#riskCostImpact`)).sum();
+        $risk.get(`risk:Risk#activities`).map(a -> $a.get(`syn:Activity#riskCostImpact`)).sum();
         $val<0? 0 : $val;
         }]]></expr>
 							</query>
@@ -380,7 +380,7 @@ val = $risk.get(`risk:Risk#estimatedDamage`) -
 							<query>
 								<expr><![CDATA[r -> {
   val = $r.get(`risk:Risk#estimatedProbability`)  -
-     $r.get(`risk:Risk#activities`).map(a -> $a.get(`fma:Activity#riskProbImpact`)).sum();
+     $r.get(`risk:Risk#activities`).map(a -> $a.get(`syn:Activity#riskProbImpact`)).sum();
    val = $val<0 ? 0 : $val;
    val = $val>99? 99: $val;
    all(`risk:Probability`)
@@ -451,7 +451,7 @@ val = $risk.get(`risk:Risk#estimatedDamage`) -
 					kind="forwards"
 					multiple="true"
 					navigate="true"
-					type="fma:Component"
+					type="syn:Component"
 				/>
 				<reference name="originator"
 					kind="forwards"

@@ -21,7 +21,7 @@ public interface ConnectionBase extends com.top_logic.model.TLObject {
 	 * Part <code>consistsOf</code> of <code>Connection</code>
 	 * 
 	 * <p>
-	 * Declared as <code>fma:Component</code> in configuration.
+	 * Declared as <code>syn:Component</code> in configuration.
 	 * </p>
 	 */
 	String CONSISTS_OF_ATTR = "consistsOf";
@@ -30,7 +30,7 @@ public interface ConnectionBase extends com.top_logic.model.TLObject {
 	 * Part <code>countries</code> of <code>Connection</code>
 	 * 
 	 * <p>
-	 * Declared as <code>fma:Country</code> in configuration.
+	 * Declared as <code>syn:Country</code> in configuration.
 	 * </p>
 	 */
 	String COUNTRIES_ATTR = "countries";
@@ -57,7 +57,7 @@ public interface ConnectionBase extends com.top_logic.model.TLObject {
 	 * Part <code>used</code> of <code>Connection</code>
 	 * 
 	 * <p>
-	 * Declared as <code>fma:ConstructionGroup</code> in configuration.
+	 * Declared as <code>syn:ConstructionGroup</code> in configuration.
 	 * </p>
 	 */
 	String USED_ATTR = "used";

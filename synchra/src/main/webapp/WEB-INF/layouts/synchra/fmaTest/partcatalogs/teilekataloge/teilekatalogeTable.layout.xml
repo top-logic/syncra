@@ -6,7 +6,7 @@
 >
 	<arguments
 		defaultColumns="_actions,name,parts"
-		type="fma:PartCatalog"
+		type="syn:PartCatalog"
 	>
 		<dialogs>
 			<layout-reference resource="synchra/fmaTest/partcatalogs/teilekataloge/createObject/dialog.layout.xml"/>
@@ -16,8 +16,8 @@
 			<de>Teilekataloge</de>
 		</name>
 		<modelBuilder class="com.top_logic.model.search.providers.ListModelByExpression"
-			elements="model->all(`fma:PartCatalog`)"
-			supportsElement="element->$element.instanceOf(`fma:PartCatalog`)"
+			elements="model->all(`syn:PartCatalog`)"
+			supportsElement="element->$element.instanceOf(`syn:PartCatalog`)"
 		/>
 		<configurationProviders>
 			<configurationProvider class="com.top_logic.layout.table.provider.ButtonColumnProvider"

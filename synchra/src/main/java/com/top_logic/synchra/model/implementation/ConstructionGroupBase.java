@@ -21,7 +21,7 @@ public interface ConstructionGroupBase extends com.top_logic.synchra.model.inter
 	 * Part <code>consistsOf</code> of <code>ConstructionGroup</code>
 	 * 
 	 * <p>
-	 * Declared as <code>fma:Connection</code> in configuration.
+	 * Declared as <code>syn:Connection</code> in configuration.
 	 * </p>
 	 */
 	String CONSISTS_OF_ATTR = "consistsOf";

@@ -6,7 +6,7 @@
 >
 	<arguments
 		defaultColumns="_actions,buildGroup,name"
-		type="fma:Product"
+		type="syn:Product"
 	>
 		<dialogs>
 			<layout-reference resource="synchra/products/products/createObject/dialog.layout.xml"/>
@@ -17,8 +17,8 @@
 			<de>Produkte</de>
 		</name>
 		<modelBuilder class="com.top_logic.model.search.providers.ListModelByExpression"
-			elements="model->all(`fma:Product`)"
-			supportsElement="element->$element.instanceOf(`fma:Product`)"
+			elements="model->all(`syn:Product`)"
+			supportsElement="element->$element.instanceOf(`syn:Product`)"
 		/>
 		<configurationProviders>
 			<configurationProvider class="com.top_logic.layout.table.provider.ButtonColumnProvider"

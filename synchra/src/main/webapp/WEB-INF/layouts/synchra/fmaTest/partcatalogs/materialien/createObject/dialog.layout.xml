@@ -11,7 +11,7 @@
 			image="theme:ICONS_ADD_BUTTON"
 			resourceKey="class.com.top_logic.model.search.providers.I18NConstants.CREATE_OBJECT_DEFAULT_LABEL"
 		/>
-		<typeOptions type="fma:Material"/>
+		<typeOptions type="syn:Material"/>
 		<create-handler id="createRow">
 			<postCreateActions>
 				<setModel target="selection(synchra/fmaTest/partcatalogs/materialien/materialienTable.layout.xml#Table)">

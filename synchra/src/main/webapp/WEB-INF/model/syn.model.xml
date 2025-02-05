@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 
 <model xmlns="http://www.top-logic.com/ns/dynamic-types/6.0">
-	<module name="fma">
+	<module name="syn">
 		<annotations>
 			<package-binding
 				implementation-package="com.top_logic.synchra.model.implementation"
@@ -27,32 +27,32 @@
 					<form>
 						<field
 							attribute="name"
-							fullQualifiedName="fma:Activity#name"
+							fullQualifiedName="syn:Activity#name"
 							type="tl.core:String"
 						/>
 						<field
 							attribute="costs"
-							fullQualifiedName="fma:Activity#costs"
+							fullQualifiedName="syn:Activity#costs"
 							type="tl.core:Integer"
 						/>
 						<field
 							attribute="riskCostImpact"
-							fullQualifiedName="fma:Activity#riskCostImpact"
+							fullQualifiedName="syn:Activity#riskCostImpact"
 							type="tl.core:Integer"
 						/>
 						<field
 							attribute="riskProbImpact"
-							fullQualifiedName="fma:Activity#riskProbImpact"
+							fullQualifiedName="syn:Activity#riskProbImpact"
 							type="tl.core:Integer"
 						/>
 						<field
 							attribute="kind"
-							fullQualifiedName="fma:Activity#kind"
-							type="fma:ActivityKind"
+							fullQualifiedName="syn:Activity#kind"
+							type="syn:ActivityKind"
 						/>
 						<field
 							attribute="description"
-							fullQualifiedName="fma:Activity#description"
+							fullQualifiedName="syn:Activity#description"
 							type="tl.model.wysiwyg:Html"
 						/>
 					</form>
@@ -117,13 +117,13 @@
 						<group>
 							<field
 								attribute="name"
-								fullQualifiedName="fma:Company#name"
+								fullQualifiedName="syn:Company#name"
 								type="tl.core:String"
 							/>
 							<field
 								attribute="structure"
-								fullQualifiedName="fma:Company#structure"
-								type="fma:CompanyStructure"
+								fullQualifiedName="syn:Company#structure"
+								type="syn:CompanyStructure"
 							/>
 							<label key="dynamic.5dae300d-1547-4871-840b-5455236645ad">
 								<en>Base Data</en>
@@ -133,12 +133,12 @@
 						<group>
 							<field
 								attribute="contactPerson"
-								fullQualifiedName="fma:Company#contactPerson"
+								fullQualifiedName="syn:Company#contactPerson"
 								type="tl.core:String"
 							/>
 							<field
 								attribute="phone"
-								fullQualifiedName="fma:Company#phone"
+								fullQualifiedName="syn:Company#phone"
 								type="tl.core:String"
 							/>
 							<label key="dynamic.305a3563-965b-402e-a044-c7c861b71154">
@@ -215,13 +215,13 @@
 						<other-attributes/>
 						<field
 							attribute="name"
-							fullQualifiedName="fma:Component#name"
+							fullQualifiedName="syn:Component#name"
 							type="tl.core:String"
 						/>
 						<field
 							attribute="consistsOf"
-							fullQualifiedName="fma:ConstructionGroup#consistsOf"
-							type="fma:Connection"
+							fullQualifiedName="syn:ConstructionGroup#consistsOf"
+							type="syn:Connection"
 						>
 							<annotations>
 								<label-position value="hide-label"/>
@@ -244,7 +244,7 @@
 							<constraint class="com.top_logic.model.util.NoAttributeCycle">
 								<additional-observed-references>
 									<additional-observed-reference name="consistsOf"
-										definition="fma:Connection"
+										definition="syn:Connection"
 									/>
 								</additional-observed-references>
 							</constraint>
@@ -257,7 +257,7 @@
 				>
 					<annotations>
 						<storage-algorithm>
-							<query expr="grp -> $grp.get(`fma:ConstructionGroup#consistsOf`).get(`fma:Connection#consistsOf`).get(`fma:Component#price`).sum()"/>
+							<query expr="grp -> $grp.get(`syn:ConstructionGroup#consistsOf`).get(`syn:Connection#consistsOf`).get(`syn:Component#price`).sum()"/>
 						</storage-algorithm>
 					</annotations>
 				</property>
@@ -348,7 +348,7 @@
 				>
 					<annotations>
 						<storage-algorithm>
-							<query expr="node -> $node.get(`fma:ComponentNode#component`).isEmpty() ?$node.get(`fma:ComponentNode#product`).get(`fma:Product#name`): $node.get(`fma:ComponentNode#component`).get(`fma:Component#name`)"/>
+							<query expr="node -> $node.get(`syn:ComponentNode#component`).isEmpty() ?$node.get(`syn:ComponentNode#product`).get(`syn:Product#name`): $node.get(`syn:ComponentNode#component`).get(`syn:Component#name`)"/>
 						</storage-algorithm>
 					</annotations>
 				</property>
@@ -369,9 +369,9 @@
 					<annotations>
 						<storage-algorithm>
 							<query>
-								<expr><![CDATA[node -> if( $node.get(`fma:ComponentNode#component`).instanceOf(`fma:SinglePart`),
- $node.get(`fma:ComponentNode#component`).get(`fma:SinglePart#price`),
- $node.get(`fma:ComponentNode#children`).get(`fma:ComponentNode#price`).sum()
+								<expr><![CDATA[node -> if( $node.get(`syn:ComponentNode#component`).instanceOf(`syn:SinglePart`),
+ $node.get(`syn:ComponentNode#component`).get(`syn:SinglePart#price`),
+ $node.get(`syn:ComponentNode#children`).get(`syn:ComponentNode#price`).sum()
 )]]></expr>
 							</query>
 						</storage-algorithm>
@@ -461,11 +461,11 @@
 						<storage-algorithm>
 							<query>
 								<expr><![CDATA[catalog -> 
-all(`fma:Company`).map( company -> 
-        new(`fma:PartsGroup`, transient: true)
-	..set(`fma:PartsGroup#name`, $company.get(`fma:Company#name`))
-	..set(`fma:PartsGroup#parts`, 
-	         $catalog.get(`fma:PartCatalog#parts`).filter(part -> $part.get(`fma:SinglePart#company`)==$company)
+all(`syn:Company`).map( company -> 
+        new(`syn:PartsGroup`, transient: true)
+	..set(`syn:PartsGroup#name`, $company.get(`syn:Company#name`))
+	..set(`syn:PartsGroup#parts`, 
+	         $catalog.get(`syn:PartCatalog#parts`).filter(part -> $part.get(`syn:SinglePart#company`)==$company)
 	       )  
 )]]></expr>
 							</query>
@@ -484,11 +484,11 @@ all(`fma:Company`).map( company ->
 						<storage-algorithm>
 							<query>
 								<expr><![CDATA[catalog -> 
-all(`fma:Material`).map( material -> 
-        new(`fma:PartsGroup`, transient: true)
-	..set(`fma:PartsGroup#name`, $material.get(`fma:Material#name`))
-	..set(`fma:PartsGroup#parts`, 
-	         $catalog.get(`fma:PartCatalog#parts`).filter(part -> $part.get(`fma:SinglePart#material`).containsElement($material))
+all(`syn:Material`).map( material -> 
+        new(`syn:PartsGroup`, transient: true)
+	..set(`syn:PartsGroup#name`, $material.get(`syn:Material#name`))
+	..set(`syn:PartsGroup#parts`, 
+	         $catalog.get(`syn:PartCatalog#parts`).filter(part -> $part.get(`syn:SinglePart#material`).containsElement($material))
 	       )  
 )
 ]]></expr>
@@ -508,16 +508,16 @@ all(`fma:Material`).map( material ->
 						<storage-algorithm>
 							<query>
 								<expr><![CDATA[catalog -> 
-all(`fma:Company`).map( company -> 
-    new(`fma:PartsGroup`, transient: true)
-	  ..set(`fma:PartsGroup#name`, $company.get(`fma:Company#name`))
-	  ..set(`fma:PartsGroup#parts`,      
-		  all(`fma:Material`).map( material -> 
-	         new(`fma:PartsGroup`, transient: true)
-		       ..set(`fma:PartsGroup#name`, $material.get(`fma:Material#name`))
-		       ..set(`fma:PartsGroup#parts`, 
-		         $catalog.get(`fma:PartCatalog#parts`).filter(
-		        	 part -> $part.get(`fma:SinglePart#material`).containsElement($material) && $part.get(`fma:SinglePart#company`)==$company
+all(`syn:Company`).map( company -> 
+    new(`syn:PartsGroup`, transient: true)
+	  ..set(`syn:PartsGroup#name`, $company.get(`syn:Company#name`))
+	  ..set(`syn:PartsGroup#parts`,      
+		  all(`syn:Material`).map( material -> 
+	         new(`syn:PartsGroup`, transient: true)
+		       ..set(`syn:PartsGroup#name`, $material.get(`syn:Material#name`))
+		       ..set(`syn:PartsGroup#parts`, 
+		         $catalog.get(`syn:PartCatalog#parts`).filter(
+		        	 part -> $part.get(`syn:SinglePart#material`).containsElement($material) && $part.get(`syn:SinglePart#company`)==$company
 		        )
 		   )  
 	    ) 
@@ -569,7 +569,7 @@ all(`fma:Company`).map( company ->
 				>
 					<annotations>
 						<storage-algorithm>
-							<query expr="entry -> $entry.get(`fma:PartsListEntry#connections`).size()"/>
+							<query expr="entry -> $entry.get(`syn:PartsListEntry#connections`).size()"/>
 						</storage-algorithm>
 					</annotations>
 				</property>
@@ -578,7 +578,7 @@ all(`fma:Company`).map( company ->
 				>
 					<annotations>
 						<storage-algorithm>
-							<query expr="entry -> $entry.get(`fma:PartsListEntry#part`).get(`fma:SinglePart#price`) * $entry.get(`fma:PartsListEntry#count`)"/>
+							<query expr="entry -> $entry.get(`syn:PartsListEntry#part`).get(`syn:SinglePart#price`) * $entry.get(`syn:PartsListEntry#count`)"/>
 						</storage-algorithm>
 					</annotations>
 				</property>
@@ -587,7 +587,7 @@ all(`fma:Company`).map( company ->
 				>
 					<annotations>
 						<storage-algorithm>
-							<query expr="entry -> $entry.get(`fma:PartsListEntry#part`).get(`fma:SinglePart#price`)"/>
+							<query expr="entry -> $entry.get(`syn:PartsListEntry#part`).get(`syn:SinglePart#price`)"/>
 						</storage-algorithm>
 					</annotations>
 				</property>
@@ -599,7 +599,7 @@ all(`fma:Company`).map( company ->
 				>
 					<annotations>
 						<storage-algorithm>
-							<query expr="entry -> $entry.get(`fma:PartsListEntry#part`).get(`fma:SinglePart#material`)"/>
+							<query expr="entry -> $entry.get(`syn:PartsListEntry#part`).get(`syn:SinglePart#material`)"/>
 						</storage-algorithm>
 					</annotations>
 				</reference>
@@ -610,7 +610,7 @@ all(`fma:Company`).map( company ->
 				>
 					<annotations>
 						<storage-algorithm>
-							<query expr="entry -> $entry.get(`fma:PartsListEntry#part`).get(`fma:SinglePart#company`)"/>
+							<query expr="entry -> $entry.get(`syn:PartsListEntry#part`).get(`syn:SinglePart#company`)"/>
 						</storage-algorithm>
 					</annotations>
 				</reference>
@@ -651,7 +651,7 @@ all(`fma:Company`).map( company ->
 					<form>
 						<field
 							attribute="name"
-							fullQualifiedName="fma:Product#name"
+							fullQualifiedName="syn:Product#name"
 							type="tl.core:String"
 						/>
 					</form>
@@ -694,17 +694,17 @@ all(`fma:Company`).map( company ->
 					<form>
 						<field
 							attribute="product"
-							fullQualifiedName="fma:ProductSelection#product"
-							type="fma:Product"
+							fullQualifiedName="syn:ProductSelection#product"
+							type="syn:Product"
 						/>
 						<field
 							attribute="rule"
-							fullQualifiedName="fma:ProductSelection#rule"
+							fullQualifiedName="syn:ProductSelection#rule"
 							type="tl.core:String"
 						/>
 						<field
 							attribute="referenceDate"
-							fullQualifiedName="fma:ProductSelection#referenceDate"
+							fullQualifiedName="syn:ProductSelection#referenceDate"
 							type="tl.core:DateTime"
 						/>
 					</form>

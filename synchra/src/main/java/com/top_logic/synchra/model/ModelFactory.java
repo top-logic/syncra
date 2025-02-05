@@ -6,7 +6,7 @@
 package com.top_logic.synchra.model;
 
 /**
- * Factory for <code>fma</code> objects.
+ * Factory for <code>syn</code> objects.
  * 
  * <p>
  * Note: this is generated code. Do not modify. Instead, create a subclass and register this in the module system.
@@ -17,12 +17,12 @@ package com.top_logic.synchra.model;
 public class ModelFactory extends com.top_logic.element.meta.kbbased.AbstractElementFactory {
 
 	/**
-	 * Name of the structure <code>fma</code> defined by {@link ModelFactory}.
+	 * Name of the structure <code>syn</code> defined by {@link ModelFactory}.
 	 */
-	public static final String FMA_STRUCTURE = "fma";
+	public static final String SYN_STRUCTURE = "syn";
 
 	/**
-	 * Name of the enumeration <code>ActivityKind</code> in module {@value #FMA_STRUCTURE}.
+	 * Name of the enumeration <code>ActivityKind</code> in module {@value #SYN_STRUCTURE}.
 	 */
 	public static final String ACTIVITY_KIND_ENUM = "ActivityKind";
 
@@ -37,7 +37,7 @@ public class ModelFactory extends com.top_logic.element.meta.kbbased.AbstractEle
 	public static final String TECHNICAL_ACTIVITY_KIND_CLASSIFIER = "TECHNICAL";
 
 	/**
-	 * Name of the enumeration <code>CompanyStructure</code> in module {@value #FMA_STRUCTURE}.
+	 * Name of the enumeration <code>CompanyStructure</code> in module {@value #SYN_STRUCTURE}.
 	 */
 	public static final String COMPANY_STRUCTURE_ENUM = "CompanyStructure";
 
@@ -60,7 +60,7 @@ public class ModelFactory extends com.top_logic.element.meta.kbbased.AbstractEle
 	 * Lookup {@link com.top_logic.synchra.model.interfaces.Activity} type.
 	 */
 	public static com.top_logic.model.TLClass getActivityType() {
-		return (com.top_logic.model.TLClass) com.top_logic.util.model.ModelService.getApplicationModel().getModule(FMA_STRUCTURE).getType(com.top_logic.synchra.model.interfaces.Activity.ACTIVITY_TYPE);
+		return (com.top_logic.model.TLClass) com.top_logic.util.model.ModelService.getApplicationModel().getModule(SYN_STRUCTURE).getType(com.top_logic.synchra.model.interfaces.Activity.ACTIVITY_TYPE);
 	}
 
 	/**
@@ -116,7 +116,7 @@ public class ModelFactory extends com.top_logic.element.meta.kbbased.AbstractEle
 	 * Lookup {@link com.top_logic.synchra.model.interfaces.Company} type.
 	 */
 	public static com.top_logic.model.TLClass getCompanyType() {
-		return (com.top_logic.model.TLClass) com.top_logic.util.model.ModelService.getApplicationModel().getModule(FMA_STRUCTURE).getType(com.top_logic.synchra.model.interfaces.Company.COMPANY_TYPE);
+		return (com.top_logic.model.TLClass) com.top_logic.util.model.ModelService.getApplicationModel().getModule(SYN_STRUCTURE).getType(com.top_logic.synchra.model.interfaces.Company.COMPANY_TYPE);
 	}
 
 	/**
@@ -151,7 +151,7 @@ public class ModelFactory extends com.top_logic.element.meta.kbbased.AbstractEle
 	 * Lookup {@link com.top_logic.synchra.model.interfaces.Component} type.
 	 */
 	public static com.top_logic.model.TLClass getComponentType() {
-		return (com.top_logic.model.TLClass) com.top_logic.util.model.ModelService.getApplicationModel().getModule(FMA_STRUCTURE).getType(com.top_logic.synchra.model.interfaces.Component.COMPONENT_TYPE);
+		return (com.top_logic.model.TLClass) com.top_logic.util.model.ModelService.getApplicationModel().getModule(SYN_STRUCTURE).getType(com.top_logic.synchra.model.interfaces.Component.COMPONENT_TYPE);
 	}
 
 	/**
@@ -193,7 +193,7 @@ public class ModelFactory extends com.top_logic.element.meta.kbbased.AbstractEle
 	 * Lookup {@link com.top_logic.synchra.model.interfaces.ConstructionGroup} type.
 	 */
 	public static com.top_logic.model.TLClass getConstructionGroupType() {
-		return (com.top_logic.model.TLClass) com.top_logic.util.model.ModelService.getApplicationModel().getModule(FMA_STRUCTURE).getType(com.top_logic.synchra.model.interfaces.ConstructionGroup.CONSTRUCTION_GROUP_TYPE);
+		return (com.top_logic.model.TLClass) com.top_logic.util.model.ModelService.getApplicationModel().getModule(SYN_STRUCTURE).getType(com.top_logic.synchra.model.interfaces.ConstructionGroup.CONSTRUCTION_GROUP_TYPE);
 	}
 
 	/**
@@ -221,7 +221,7 @@ public class ModelFactory extends com.top_logic.element.meta.kbbased.AbstractEle
 	 * Lookup {@link com.top_logic.synchra.model.interfaces.SinglePart} type.
 	 */
 	public static com.top_logic.model.TLClass getSinglePartType() {
-		return (com.top_logic.model.TLClass) com.top_logic.util.model.ModelService.getApplicationModel().getModule(FMA_STRUCTURE).getType(com.top_logic.synchra.model.interfaces.SinglePart.SINGLE_PART_TYPE);
+		return (com.top_logic.model.TLClass) com.top_logic.util.model.ModelService.getApplicationModel().getModule(SYN_STRUCTURE).getType(com.top_logic.synchra.model.interfaces.SinglePart.SINGLE_PART_TYPE);
 	}
 
 	/**
@@ -256,7 +256,7 @@ public class ModelFactory extends com.top_logic.element.meta.kbbased.AbstractEle
 	 * Lookup {@link com.top_logic.synchra.model.interfaces.ComponentNode} type.
 	 */
 	public static com.top_logic.model.TLClass getComponentNodeType() {
-		return (com.top_logic.model.TLClass) com.top_logic.util.model.ModelService.getApplicationModel().getModule(FMA_STRUCTURE).getType(com.top_logic.synchra.model.interfaces.ComponentNode.COMPONENT_NODE_TYPE);
+		return (com.top_logic.model.TLClass) com.top_logic.util.model.ModelService.getApplicationModel().getModule(SYN_STRUCTURE).getType(com.top_logic.synchra.model.interfaces.ComponentNode.COMPONENT_NODE_TYPE);
 	}
 
 	/**
@@ -312,7 +312,7 @@ public class ModelFactory extends com.top_logic.element.meta.kbbased.AbstractEle
 	 * Lookup {@link com.top_logic.synchra.model.interfaces.Connection} type.
 	 */
 	public static com.top_logic.model.TLClass getConnectionType() {
-		return (com.top_logic.model.TLClass) com.top_logic.util.model.ModelService.getApplicationModel().getModule(FMA_STRUCTURE).getType(com.top_logic.synchra.model.interfaces.Connection.CONNECTION_TYPE);
+		return (com.top_logic.model.TLClass) com.top_logic.util.model.ModelService.getApplicationModel().getModule(SYN_STRUCTURE).getType(com.top_logic.synchra.model.interfaces.Connection.CONNECTION_TYPE);
 	}
 
 	/**
@@ -354,7 +354,7 @@ public class ModelFactory extends com.top_logic.element.meta.kbbased.AbstractEle
 	 * Lookup {@link com.top_logic.synchra.model.interfaces.Country} type.
 	 */
 	public static com.top_logic.model.TLClass getCountryType() {
-		return (com.top_logic.model.TLClass) com.top_logic.util.model.ModelService.getApplicationModel().getModule(FMA_STRUCTURE).getType(com.top_logic.synchra.model.interfaces.Country.COUNTRY_TYPE);
+		return (com.top_logic.model.TLClass) com.top_logic.util.model.ModelService.getApplicationModel().getModule(SYN_STRUCTURE).getType(com.top_logic.synchra.model.interfaces.Country.COUNTRY_TYPE);
 	}
 
 	/**
@@ -368,7 +368,7 @@ public class ModelFactory extends com.top_logic.element.meta.kbbased.AbstractEle
 	 * Lookup {@link com.top_logic.synchra.model.interfaces.Material} type.
 	 */
 	public static com.top_logic.model.TLClass getMaterialType() {
-		return (com.top_logic.model.TLClass) com.top_logic.util.model.ModelService.getApplicationModel().getModule(FMA_STRUCTURE).getType(com.top_logic.synchra.model.interfaces.Material.MATERIAL_TYPE);
+		return (com.top_logic.model.TLClass) com.top_logic.util.model.ModelService.getApplicationModel().getModule(SYN_STRUCTURE).getType(com.top_logic.synchra.model.interfaces.Material.MATERIAL_TYPE);
 	}
 
 	/**
@@ -382,7 +382,7 @@ public class ModelFactory extends com.top_logic.element.meta.kbbased.AbstractEle
 	 * Lookup {@link com.top_logic.synchra.model.interfaces.PartCatalog} type.
 	 */
 	public static com.top_logic.model.TLClass getPartCatalogType() {
-		return (com.top_logic.model.TLClass) com.top_logic.util.model.ModelService.getApplicationModel().getModule(FMA_STRUCTURE).getType(com.top_logic.synchra.model.interfaces.PartCatalog.PART_CATALOG_TYPE);
+		return (com.top_logic.model.TLClass) com.top_logic.util.model.ModelService.getApplicationModel().getModule(SYN_STRUCTURE).getType(com.top_logic.synchra.model.interfaces.PartCatalog.PART_CATALOG_TYPE);
 	}
 
 	/**
@@ -424,7 +424,7 @@ public class ModelFactory extends com.top_logic.element.meta.kbbased.AbstractEle
 	 * Lookup {@link com.top_logic.synchra.model.interfaces.PartsGroup} type.
 	 */
 	public static com.top_logic.model.TLClass getPartsGroupType() {
-		return (com.top_logic.model.TLClass) com.top_logic.util.model.ModelService.getApplicationModel().getModule(FMA_STRUCTURE).getType(com.top_logic.synchra.model.interfaces.PartsGroup.PARTS_GROUP_TYPE);
+		return (com.top_logic.model.TLClass) com.top_logic.util.model.ModelService.getApplicationModel().getModule(SYN_STRUCTURE).getType(com.top_logic.synchra.model.interfaces.PartsGroup.PARTS_GROUP_TYPE);
 	}
 
 	/**
@@ -445,7 +445,7 @@ public class ModelFactory extends com.top_logic.element.meta.kbbased.AbstractEle
 	 * Lookup {@link com.top_logic.synchra.model.interfaces.PartsListEntry} type.
 	 */
 	public static com.top_logic.model.TLClass getPartsListEntryType() {
-		return (com.top_logic.model.TLClass) com.top_logic.util.model.ModelService.getApplicationModel().getModule(FMA_STRUCTURE).getType(com.top_logic.synchra.model.interfaces.PartsListEntry.PARTS_LIST_ENTRY_TYPE);
+		return (com.top_logic.model.TLClass) com.top_logic.util.model.ModelService.getApplicationModel().getModule(SYN_STRUCTURE).getType(com.top_logic.synchra.model.interfaces.PartsListEntry.PARTS_LIST_ENTRY_TYPE);
 	}
 
 	/**
@@ -501,7 +501,7 @@ public class ModelFactory extends com.top_logic.element.meta.kbbased.AbstractEle
 	 * Lookup {@link com.top_logic.synchra.model.interfaces.Problem} type.
 	 */
 	public static com.top_logic.model.TLClass getProblemType() {
-		return (com.top_logic.model.TLClass) com.top_logic.util.model.ModelService.getApplicationModel().getModule(FMA_STRUCTURE).getType(com.top_logic.synchra.model.interfaces.Problem.PROBLEM_TYPE);
+		return (com.top_logic.model.TLClass) com.top_logic.util.model.ModelService.getApplicationModel().getModule(SYN_STRUCTURE).getType(com.top_logic.synchra.model.interfaces.Problem.PROBLEM_TYPE);
 	}
 
 	/**
@@ -536,7 +536,7 @@ public class ModelFactory extends com.top_logic.element.meta.kbbased.AbstractEle
 	 * Lookup {@link com.top_logic.synchra.model.interfaces.Product} type.
 	 */
 	public static com.top_logic.model.TLClass getProductType() {
-		return (com.top_logic.model.TLClass) com.top_logic.util.model.ModelService.getApplicationModel().getModule(FMA_STRUCTURE).getType(com.top_logic.synchra.model.interfaces.Product.PRODUCT_TYPE);
+		return (com.top_logic.model.TLClass) com.top_logic.util.model.ModelService.getApplicationModel().getModule(SYN_STRUCTURE).getType(com.top_logic.synchra.model.interfaces.Product.PRODUCT_TYPE);
 	}
 
 	/**
@@ -564,7 +564,7 @@ public class ModelFactory extends com.top_logic.element.meta.kbbased.AbstractEle
 	 * Lookup {@link com.top_logic.synchra.model.interfaces.ProductSelection} type.
 	 */
 	public static com.top_logic.model.TLClass getProductSelectionType() {
-		return (com.top_logic.model.TLClass) com.top_logic.util.model.ModelService.getApplicationModel().getModule(FMA_STRUCTURE).getType(com.top_logic.synchra.model.interfaces.ProductSelection.PRODUCT_SELECTION_TYPE);
+		return (com.top_logic.model.TLClass) com.top_logic.util.model.ModelService.getApplicationModel().getModule(SYN_STRUCTURE).getType(com.top_logic.synchra.model.interfaces.ProductSelection.PRODUCT_SELECTION_TYPE);
 	}
 
 	/**
@@ -599,7 +599,7 @@ public class ModelFactory extends com.top_logic.element.meta.kbbased.AbstractEle
 	 * Lookup {@value #ACTIVITY_KIND_ENUM} enumeration.
 	 */
 	public static com.top_logic.model.TLEnumeration getActivityKindEnum() {
-		return (com.top_logic.model.TLEnumeration) com.top_logic.util.model.ModelService.getApplicationModel().getModule(FMA_STRUCTURE).getType(ACTIVITY_KIND_ENUM);
+		return (com.top_logic.model.TLEnumeration) com.top_logic.util.model.ModelService.getApplicationModel().getModule(SYN_STRUCTURE).getType(ACTIVITY_KIND_ENUM);
 	}
 
 	/**
@@ -620,7 +620,7 @@ public class ModelFactory extends com.top_logic.element.meta.kbbased.AbstractEle
 	 * Lookup {@value #COMPANY_STRUCTURE_ENUM} enumeration.
 	 */
 	public static com.top_logic.model.TLEnumeration getCompanyStructureEnum() {
-		return (com.top_logic.model.TLEnumeration) com.top_logic.util.model.ModelService.getApplicationModel().getModule(FMA_STRUCTURE).getType(COMPANY_STRUCTURE_ENUM);
+		return (com.top_logic.model.TLEnumeration) com.top_logic.util.model.ModelService.getApplicationModel().getModule(SYN_STRUCTURE).getType(COMPANY_STRUCTURE_ENUM);
 	}
 
 	/**
@@ -645,7 +645,7 @@ public class ModelFactory extends com.top_logic.element.meta.kbbased.AbstractEle
 	}
 
 	/**
-	 * Name of type <code>Activity</code> in structure {@link #FMA_STRUCTURE}.
+	 * Name of type <code>Activity</code> in structure {@link #SYN_STRUCTURE}.
 	 * 
 	 * @deprecated Use {@link com.top_logic.synchra.model.interfaces.Activity#ACTIVITY_TYPE}.
 	 */
@@ -658,7 +658,7 @@ public class ModelFactory extends com.top_logic.element.meta.kbbased.AbstractEle
 	public static final String KO_NAME_ACTIVITY = "GenericObject";
 
 	/**
-	 * Name of type <code>Company</code> in structure {@link #FMA_STRUCTURE}.
+	 * Name of type <code>Company</code> in structure {@link #SYN_STRUCTURE}.
 	 * 
 	 * @deprecated Use {@link com.top_logic.synchra.model.interfaces.Company#COMPANY_TYPE}.
 	 */
@@ -671,7 +671,7 @@ public class ModelFactory extends com.top_logic.element.meta.kbbased.AbstractEle
 	public static final String KO_NAME_COMPANY = "GenericObject";
 
 	/**
-	 * Name of type <code>Component</code> in structure {@link #FMA_STRUCTURE}.
+	 * Name of type <code>Component</code> in structure {@link #SYN_STRUCTURE}.
 	 * 
 	 * @deprecated Use {@link com.top_logic.synchra.model.interfaces.Component#COMPONENT_TYPE}.
 	 */
@@ -679,7 +679,7 @@ public class ModelFactory extends com.top_logic.element.meta.kbbased.AbstractEle
 	public static final String COMPONENT_NODE = com.top_logic.synchra.model.interfaces.Component.COMPONENT_TYPE;
 
 	/**
-	 * Name of type <code>ConstructionGroup</code> in structure {@link #FMA_STRUCTURE}.
+	 * Name of type <code>ConstructionGroup</code> in structure {@link #SYN_STRUCTURE}.
 	 * 
 	 * @deprecated Use {@link com.top_logic.synchra.model.interfaces.ConstructionGroup#CONSTRUCTION_GROUP_TYPE}.
 	 */
@@ -692,7 +692,7 @@ public class ModelFactory extends com.top_logic.element.meta.kbbased.AbstractEle
 	public static final String KO_NAME_CONSTRUCTION_GROUP = "GenericObject";
 
 	/**
-	 * Name of type <code>SinglePart</code> in structure {@link #FMA_STRUCTURE}.
+	 * Name of type <code>SinglePart</code> in structure {@link #SYN_STRUCTURE}.
 	 * 
 	 * @deprecated Use {@link com.top_logic.synchra.model.interfaces.SinglePart#SINGLE_PART_TYPE}.
 	 */
@@ -705,7 +705,7 @@ public class ModelFactory extends com.top_logic.element.meta.kbbased.AbstractEle
 	public static final String KO_NAME_SINGLE_PART = "GenericObject";
 
 	/**
-	 * Name of type <code>ComponentNode</code> in structure {@link #FMA_STRUCTURE}.
+	 * Name of type <code>ComponentNode</code> in structure {@link #SYN_STRUCTURE}.
 	 * 
 	 * @deprecated Use {@link com.top_logic.synchra.model.interfaces.ComponentNode#COMPONENT_NODE_TYPE}.
 	 */
@@ -718,7 +718,7 @@ public class ModelFactory extends com.top_logic.element.meta.kbbased.AbstractEle
 	public static final String KO_NAME_COMPONENT_NODE = "GenericObject";
 
 	/**
-	 * Name of type <code>Connection</code> in structure {@link #FMA_STRUCTURE}.
+	 * Name of type <code>Connection</code> in structure {@link #SYN_STRUCTURE}.
 	 * 
 	 * @deprecated Use {@link com.top_logic.synchra.model.interfaces.Connection#CONNECTION_TYPE}.
 	 */
@@ -731,7 +731,7 @@ public class ModelFactory extends com.top_logic.element.meta.kbbased.AbstractEle
 	public static final String KO_NAME_CONNECTION = "GenericObject";
 
 	/**
-	 * Name of type <code>Country</code> in structure {@link #FMA_STRUCTURE}.
+	 * Name of type <code>Country</code> in structure {@link #SYN_STRUCTURE}.
 	 * 
 	 * @deprecated Use {@link com.top_logic.synchra.model.interfaces.Country#COUNTRY_TYPE}.
 	 */
@@ -744,7 +744,7 @@ public class ModelFactory extends com.top_logic.element.meta.kbbased.AbstractEle
 	public static final String KO_NAME_COUNTRY = "GenericObject";
 
 	/**
-	 * Name of type <code>Material</code> in structure {@link #FMA_STRUCTURE}.
+	 * Name of type <code>Material</code> in structure {@link #SYN_STRUCTURE}.
 	 * 
 	 * @deprecated Use {@link com.top_logic.synchra.model.interfaces.Material#MATERIAL_TYPE}.
 	 */
@@ -757,7 +757,7 @@ public class ModelFactory extends com.top_logic.element.meta.kbbased.AbstractEle
 	public static final String KO_NAME_MATERIAL = "GenericObject";
 
 	/**
-	 * Name of type <code>PartCatalog</code> in structure {@link #FMA_STRUCTURE}.
+	 * Name of type <code>PartCatalog</code> in structure {@link #SYN_STRUCTURE}.
 	 * 
 	 * @deprecated Use {@link com.top_logic.synchra.model.interfaces.PartCatalog#PART_CATALOG_TYPE}.
 	 */
@@ -770,7 +770,7 @@ public class ModelFactory extends com.top_logic.element.meta.kbbased.AbstractEle
 	public static final String KO_NAME_PART_CATALOG = "GenericObject";
 
 	/**
-	 * Name of type <code>PartsGroup</code> in structure {@link #FMA_STRUCTURE}.
+	 * Name of type <code>PartsGroup</code> in structure {@link #SYN_STRUCTURE}.
 	 * 
 	 * @deprecated Use {@link com.top_logic.synchra.model.interfaces.PartsGroup#PARTS_GROUP_TYPE}.
 	 */
@@ -783,7 +783,7 @@ public class ModelFactory extends com.top_logic.element.meta.kbbased.AbstractEle
 	public static final String KO_NAME_PARTS_GROUP = "GenericObject";
 
 	/**
-	 * Name of type <code>PartsListEntry</code> in structure {@link #FMA_STRUCTURE}.
+	 * Name of type <code>PartsListEntry</code> in structure {@link #SYN_STRUCTURE}.
 	 * 
 	 * @deprecated Use {@link com.top_logic.synchra.model.interfaces.PartsListEntry#PARTS_LIST_ENTRY_TYPE}.
 	 */
@@ -796,7 +796,7 @@ public class ModelFactory extends com.top_logic.element.meta.kbbased.AbstractEle
 	public static final String KO_NAME_PARTS_LIST_ENTRY = "GenericObject";
 
 	/**
-	 * Name of type <code>Problem</code> in structure {@link #FMA_STRUCTURE}.
+	 * Name of type <code>Problem</code> in structure {@link #SYN_STRUCTURE}.
 	 * 
 	 * @deprecated Use {@link com.top_logic.synchra.model.interfaces.Problem#PROBLEM_TYPE}.
 	 */
@@ -809,7 +809,7 @@ public class ModelFactory extends com.top_logic.element.meta.kbbased.AbstractEle
 	public static final String KO_NAME_PROBLEM = "GenericObject";
 
 	/**
-	 * Name of type <code>Product</code> in structure {@link #FMA_STRUCTURE}.
+	 * Name of type <code>Product</code> in structure {@link #SYN_STRUCTURE}.
 	 * 
 	 * @deprecated Use {@link com.top_logic.synchra.model.interfaces.Product#PRODUCT_TYPE}.
 	 */
@@ -822,7 +822,7 @@ public class ModelFactory extends com.top_logic.element.meta.kbbased.AbstractEle
 	public static final String KO_NAME_PRODUCT = "GenericObject";
 
 	/**
-	 * Name of type <code>ProductSelection</code> in structure {@link #FMA_STRUCTURE}.
+	 * Name of type <code>ProductSelection</code> in structure {@link #SYN_STRUCTURE}.
 	 * 
 	 * @deprecated Use {@link com.top_logic.synchra.model.interfaces.ProductSelection#PRODUCT_SELECTION_TYPE}.
 	 */
@@ -1035,6 +1035,6 @@ public class ModelFactory extends com.top_logic.element.meta.kbbased.AbstractEle
 	 * The singleton instance of {@link ModelFactory}.
 	 */
 	public static ModelFactory getInstance() {
-		return (ModelFactory) com.top_logic.element.model.DynamicModelService.getFactoryFor(FMA_STRUCTURE);
+		return (ModelFactory) com.top_logic.element.model.DynamicModelService.getFactoryFor(SYN_STRUCTURE);
 	}
 }

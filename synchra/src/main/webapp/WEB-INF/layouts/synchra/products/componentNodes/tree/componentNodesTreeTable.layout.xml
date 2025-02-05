@@ -7,7 +7,7 @@
 	<arguments
 		defaultColumns="name,price,ID_84ca2c86_e001_43e5_8556_c5a4358a4f5b,ID_4f2fe934_4bf3_426e_bbe0_d73b0bf18cbf,ID_06457f75_4b0b_4e80_a7dc_0262a50bc7f3"
 		rootVisible="false"
-		type="fma:ComponentNode"
+		type="syn:ComponentNode"
 	>
 		<name key="dynamic.6af66dc9-752b-47db-b95b-8a68cb569e12">
 			<en>Produkt Tree</en>
@@ -15,32 +15,32 @@
 		</name>
 		<modelBuilder class="com.top_logic.model.search.providers.TreeModelByExpression"
 			leafPredicate="false"
-			nodePredicate="node->$node.instanceOf(`fma:ComponentNode`)"
-			parents="node->$node.get(`fma:ComponentNode#parent`)"
+			nodePredicate="node->$node.instanceOf(`syn:ComponentNode`)"
+			parents="node->$node.get(`syn:ComponentNode#parent`)"
 			rootNode="`synchra.Bom#LIBRARIES`"
 		>
 			<children><![CDATA[node -> selection-> switch {
     $selection==null: null;
     $node.instanceOf(`synchra.Bom:Libraries`): {
-        date = $selection.get(`fma:ProductSelection#referenceDate`);
+        date = $selection.get(`syn:ProductSelection#referenceDate`);
         revision = $date==null ?  currentRevision() : revisionAt($date);
-        product = $selection.get(`fma:ProductSelection#product`).inRevision($revision);
-        new(`fma:ComponentNode`, transient:true)
-            ..set(`fma:ComponentNode#component`, $product.get(`fma:Product#buildGroup`))
-            ..set(`fma:ComponentNode#parent`, null)
-            ..set(`fma:ComponentNode#connection`, null)
-            ..set(`fma:ComponentNode#product`, $product);
+        product = $selection.get(`syn:ProductSelection#product`).inRevision($revision);
+        new(`syn:ComponentNode`, transient:true)
+            ..set(`syn:ComponentNode#component`, $product.get(`syn:Product#buildGroup`))
+            ..set(`syn:ComponentNode#parent`, null)
+            ..set(`syn:ComponentNode#connection`, null)
+            ..set(`syn:ComponentNode#product`, $product);
        };
-    $node.instanceOf(`fma:ComponentNode`):{
-       rule = $selection.get(`fma:ProductSelection#rule`);
-       $node.get(`fma:ComponentNode#component`).get(`fma:ConstructionGroup#consistsOf`)
-            .filter( con -> $rule==null ? true : ( $con.get(`fma:Connection#rule`).stringContains($rule) ||  $con.get(`fma:Connection#rule`).isEmpty() )  ) 
+    $node.instanceOf(`syn:ComponentNode`):{
+       rule = $selection.get(`syn:ProductSelection#rule`);
+       $node.get(`syn:ComponentNode#component`).get(`syn:ConstructionGroup#consistsOf`)
+            .filter( con -> $rule==null ? true : ( $con.get(`syn:Connection#rule`).stringContains($rule) ||  $con.get(`syn:Connection#rule`).isEmpty() )  ) 
             .map( con -> 
-                  new(`fma:ComponentNode`, transient:true)
-                    ..set(`fma:ComponentNode#component`, $con.get(`fma:Connection#consistsOf`))
-                    ..set(`fma:ComponentNode#parent`, $node)
-                    ..set(`fma:ComponentNode#connection`, $con)
-                    ..set(`fma:ComponentNode#product`, $node.get(`fma:ComponentNode#product`))
+                  new(`syn:ComponentNode`, transient:true)
+                    ..set(`syn:ComponentNode#component`, $con.get(`syn:Connection#consistsOf`))
+                    ..set(`syn:ComponentNode#parent`, $node)
+                    ..set(`syn:ComponentNode#connection`, $con)
+                    ..set(`syn:ComponentNode#product`, $node.get(`syn:ComponentNode#product`))
             );
      };
 }
@@ -48,9 +48,9 @@
 		</modelBuilder>
 		<configurationProviders>
 			<configurationProvider class="com.top_logic.model.search.providers.ComputedColumnProviderByExpression"
-				accessor="row -> model -> $row.get(`fma:ComponentNode#component`).get(`fma:SinglePart#material`)"
+				accessor="row -> model -> $row.get(`syn:ComponentNode#component`).get(`syn:SinglePart#material`)"
 				columnId="ID_4f2fe934_4bf3_426e_bbe0_d73b0bf18cbf"
-				columnType="fma:Material"
+				columnType="syn:Material"
 			>
 				<columnLabel key="dynamic.9d1bd9fc-36d4-4ff8-97a8-30310416f8b3">
 					<en>Material</en>
@@ -63,7 +63,7 @@
 				</annotations>
 			</configurationProvider>
 			<configurationProvider class="com.top_logic.model.search.providers.ComputedColumnProviderByExpression"
-				accessor="row -> model -> $row.get(`fma:ComponentNode#component`).get(`fma:Component#price`)"
+				accessor="row -> model -> $row.get(`syn:ComponentNode#component`).get(`syn:Component#price`)"
 				columnId="ID_06457f75_4b0b_4e80_a7dc_0262a50bc7f3"
 				columnType="tl.core:Double"
 			>
@@ -73,9 +73,9 @@
 				</columnLabel>
 			</configurationProvider>
 			<configurationProvider class="com.top_logic.model.search.providers.ComputedColumnProviderByExpression"
-				accessor="row -> model -> $row.get(`fma:ComponentNode#connection`).get(`fma:Connection#countries`)"
+				accessor="row -> model -> $row.get(`syn:ComponentNode#connection`).get(`syn:Connection#countries`)"
 				columnId="ID_d7cb9ace_d438_4d72_be15_b30495677e36"
-				columnType="fma:Country"
+				columnType="syn:Country"
 			>
 				<columnLabel key="dynamic.67710a65-69fb-41f1-b33b-c4b67f6494b5">
 					<en>Countries</en>
@@ -88,7 +88,7 @@
 				</annotations>
 			</configurationProvider>
 			<configurationProvider class="com.top_logic.model.search.providers.ComputedColumnProviderByExpression"
-				accessor="row -> model -> $row.get(`fma:ComponentNode#connection`).get(`fma:Connection#rule`)"
+				accessor="row -> model -> $row.get(`syn:ComponentNode#connection`).get(`syn:Connection#rule`)"
 				columnId="ID_84ca2c86_e001_43e5_8556_c5a4358a4f5b"
 				columnType="tl.core:String"
 			>
@@ -98,7 +98,7 @@
 				</columnLabel>
 			</configurationProvider>
 			<configurationProvider class="com.top_logic.model.search.providers.ComputedColumnProviderByExpression"
-				accessor="row -> model -> $row.get(`fma:ComponentNode#connection`).get(`fma:Connection#position`)"
+				accessor="row -> model -> $row.get(`syn:ComponentNode#connection`).get(`syn:Connection#position`)"
 				columnId="ID_3a6d7b67_89f8_4592_a5bf_433ce720d33e"
 				columnType="tl.core:String"
 			>
@@ -108,7 +108,7 @@
 				</columnLabel>
 			</configurationProvider>
 			<configurationProvider class="com.top_logic.model.search.providers.ComputedColumnProviderByExpression"
-				accessor="row -> model -> $row.get(`fma:ComponentNode#component`).get(`fma:Component#risks`)"
+				accessor="row -> model -> $row.get(`syn:ComponentNode#component`).get(`syn:Component#risks`)"
 				columnId="ID_830dcae4_5dc2_40fe_b25d_4d4d5b537401"
 				columnType="risk:Risk"
 			>

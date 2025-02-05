@@ -21,7 +21,7 @@ public interface ProductBase extends com.top_logic.model.TLNamed {
 	 * Part <code>buildGroup</code> of <code>Product</code>
 	 * 
 	 * <p>
-	 * Declared as <code>fma:ConstructionGroup</code> in configuration.
+	 * Declared as <code>syn:ConstructionGroup</code> in configuration.
 	 * </p>
 	 */
 	String BUILD_GROUP_ATTR = "buildGroup";

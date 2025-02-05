@@ -21,7 +21,7 @@ public interface ProblemBase extends com.top_logic.model.TLNamed {
 	 * Part <code>components</code> of <code>Problem</code>
 	 * 
 	 * <p>
-	 * Declared as <code>fma:Component</code> in configuration.
+	 * Declared as <code>syn:Component</code> in configuration.
 	 * </p>
 	 */
 	String COMPONENTS_ATTR = "components";
@@ -48,7 +48,7 @@ public interface ProblemBase extends com.top_logic.model.TLNamed {
 	 * Part <code>solvingActivities</code> of <code>Problem</code>
 	 * 
 	 * <p>
-	 * Declared as <code>fma:Activity</code> in configuration.
+	 * Declared as <code>syn:Activity</code> in configuration.
 	 * </p>
 	 */
 	String SOLVING_ACTIVITIES_ATTR = "solvingActivities";

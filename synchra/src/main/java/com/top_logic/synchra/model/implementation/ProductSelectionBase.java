@@ -21,7 +21,7 @@ public interface ProductSelectionBase extends com.top_logic.model.TLObject {
 	 * Part <code>country</code> of <code>ProductSelection</code>
 	 * 
 	 * <p>
-	 * Declared as <code>fma:Country</code> in configuration.
+	 * Declared as <code>syn:Country</code> in configuration.
 	 * </p>
 	 */
 	String COUNTRY_ATTR = "country";
@@ -30,7 +30,7 @@ public interface ProductSelectionBase extends com.top_logic.model.TLObject {
 	 * Part <code>product</code> of <code>ProductSelection</code>
 	 * 
 	 * <p>
-	 * Declared as <code>fma:Product</code> in configuration.
+	 * Declared as <code>syn:Product</code> in configuration.
 	 * </p>
 	 */
 	String PRODUCT_ATTR = "product";

@@ -27,9 +27,9 @@ public class ProductImporter extends TypeImporter {
 		// store it in the session
 		register(constructionGroup);
 
-		// con -> x -> y -> $x.set(`fma:Product#buildGroup`,
-		// new(`fma:ConstructionGroup`, transient: false)
-		// ..set(`fma:ConstructionGroup#name`,"BG "+$x.get(`fma:Product#name`))
+		// con -> x -> y -> $x.set(`syn:Product#buildGroup`,
+		// new(`syn:ConstructionGroup`, transient: false)
+		// ..set(`syn:ConstructionGroup#name`,"BG "+$x.get(`syn:Product#name`))
 		// )
 	}
 

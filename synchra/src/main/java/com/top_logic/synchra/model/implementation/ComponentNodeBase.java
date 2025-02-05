@@ -21,7 +21,7 @@ public interface ComponentNodeBase extends com.top_logic.model.TLNamed {
 	 * Part <code>children</code> of <code>ComponentNode</code>
 	 * 
 	 * <p>
-	 * Declared as <code>fma:ComponentNode</code> in configuration.
+	 * Declared as <code>syn:ComponentNode</code> in configuration.
 	 * </p>
 	 */
 	String CHILDREN_ATTR = "children";
@@ -30,7 +30,7 @@ public interface ComponentNodeBase extends com.top_logic.model.TLNamed {
 	 * Part <code>component</code> of <code>ComponentNode</code>
 	 * 
 	 * <p>
-	 * Declared as <code>fma:Component</code> in configuration.
+	 * Declared as <code>syn:Component</code> in configuration.
 	 * </p>
 	 */
 	String COMPONENT_ATTR = "component";
@@ -39,7 +39,7 @@ public interface ComponentNodeBase extends com.top_logic.model.TLNamed {
 	 * Part <code>connection</code> of <code>ComponentNode</code>
 	 * 
 	 * <p>
-	 * Declared as <code>fma:Connection</code> in configuration.
+	 * Declared as <code>syn:Connection</code> in configuration.
 	 * </p>
 	 */
 	String CONNECTION_ATTR = "connection";
@@ -57,7 +57,7 @@ public interface ComponentNodeBase extends com.top_logic.model.TLNamed {
 	 * Part <code>parent</code> of <code>ComponentNode</code>
 	 * 
 	 * <p>
-	 * Declared as <code>fma:ComponentNode</code> in configuration.
+	 * Declared as <code>syn:ComponentNode</code> in configuration.
 	 * </p>
 	 */
 	String PARENT_ATTR = "parent";
@@ -75,7 +75,7 @@ public interface ComponentNodeBase extends com.top_logic.model.TLNamed {
 	 * Part <code>product</code> of <code>ComponentNode</code>
 	 * 
 	 * <p>
-	 * Declared as <code>fma:Product</code> in configuration.
+	 * Declared as <code>syn:Product</code> in configuration.
 	 * </p>
 	 */
 	String PRODUCT_ATTR = "product";

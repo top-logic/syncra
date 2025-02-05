@@ -48,7 +48,7 @@ public interface CompanyBase extends com.top_logic.model.TLNamed {
 	 * Part <code>structure</code> of <code>Company</code>
 	 * 
 	 * <p>
-	 * Declared as <code>fma:CompanyStructure</code> in configuration.
+	 * Declared as <code>syn:CompanyStructure</code> in configuration.
 	 * </p>
 	 */
 	String STRUCTURE_ATTR = "structure";

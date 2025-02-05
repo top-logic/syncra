@@ -12,7 +12,7 @@
             		<bundle name="model.synchra.Riskmanagement.messages"/>
             		<bundle name="model.synchra.Changemanagement.messages"/>
             		<bundle name="model.synchra.Vendormanagement.messages"/>
-            		<bundle name="model.fma.messages"/>
+            		<bundle name="model.syn.messages"/>
             		<bundle name="model.risk.messages"/>
 				</bundles>
 			</instance>
@@ -34,14 +34,14 @@
 	          <declaration file="/WEB-INF/model/synchra.Riskmanagement.model.xml"/>
 	          <declaration file="/WEB-INF/model/synchra.Changemanagement.model.xml"/>
 	          <declaration file="/WEB-INF/model/synchra.Vendormanagement.model.xml"/>
-	          <declaration file="/WEB-INF/model/fma.model.xml"/>
+	          <declaration file="/WEB-INF/model/syn.model.xml"/>
 	          <declaration file="/WEB-INF/model/risk.model.xml"/>
 	        </declarations>
 	       <settings>
 				<module name="risk">
 					<factory value="com.top_logic.synchra.risk.RiskFactory"/>
 				</module>
-				<module name="fma">
+				<module name="syn">
 					<factory value="com.top_logic.synchra.model.ModelFactory"/>
 				</module>
 	        </settings>

@@ -57,7 +57,7 @@ public interface ComponentBase extends com.top_logic.model.TLNamed {
 	 * Part <code>used</code> of <code>Component</code>
 	 * 
 	 * <p>
-	 * Declared as <code>fma:Connection</code> in configuration.
+	 * Declared as <code>syn:Connection</code> in configuration.
 	 * </p>
 	 */
 	String USED_ATTR = "used";

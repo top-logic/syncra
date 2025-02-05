@@ -21,7 +21,7 @@ public interface RiskBase extends com.top_logic.model.TLNamed {
 	 * Part <code>activities</code> of <code>Risk</code>
 	 * 
 	 * <p>
-	 * Declared as <code>fma:Activity</code> in configuration.
+	 * Declared as <code>syn:Activity</code> in configuration.
 	 * </p>
 	 */
 	String ACTIVITIES_ATTR = "activities";
@@ -75,7 +75,7 @@ public interface RiskBase extends com.top_logic.model.TLNamed {
 	 * Part <code>components</code> of <code>Risk</code>
 	 * 
 	 * <p>
-	 * Declared as <code>fma:Component</code> in configuration.
+	 * Declared as <code>syn:Component</code> in configuration.
 	 * </p>
 	 */
 	String COMPONENTS_ATTR = "components";

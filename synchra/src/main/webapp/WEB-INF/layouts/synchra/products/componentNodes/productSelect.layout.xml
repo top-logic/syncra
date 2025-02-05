@@ -4,13 +4,13 @@
 	xmlns:config="http://www.top-logic.com/ns/config/6.0"
 	template="com.top_logic.element/settings.template.xml"
 >
-	<arguments type="fma:ProductSelection">
+	<arguments type="syn:ProductSelection">
 		<name key="dynamic.4ce8e139-5d2d-49ac-ba27-67f3de58557b">
 			<en>Selection</en>
 			<de>Produktfilter</de>
 		</name>
 		<model class="com.top_logic.model.search.providers.TransformLinkingByExpression"
-			function="output -> if ($output == null, new(`fma:ProductSelection`, transient: true), $output.copy())"
+			function="output -> if ($output == null, new(`syn:ProductSelection`, transient: true), $output.copy())"
 			input="output(self())"
 		/>
 		<buttons>

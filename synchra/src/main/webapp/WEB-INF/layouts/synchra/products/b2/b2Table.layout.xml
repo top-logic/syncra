@@ -6,7 +6,7 @@
 >
 	<arguments
 		size="300px"
-		type="fma:ConstructionGroup"
+		type="syn:ConstructionGroup"
 	>
 		<dialogs>
 			<layout-reference resource="synchra/products/b2/createObject/dialog.layout.xml"/>
@@ -15,8 +15,8 @@
 			<de>B2</de>
 		</name>
 		<modelBuilder class="com.top_logic.model.search.providers.ListModelByExpression"
-			elements="model->all(`fma:ConstructionGroup`)"
-			supportsElement="element->$element.instanceOf(`fma:ConstructionGroup`)"
+			elements="model->all(`syn:ConstructionGroup`)"
+			supportsElement="element->$element.instanceOf(`syn:ConstructionGroup`)"
 		/>
 		<buttons>
 			<button id="exportExcel"

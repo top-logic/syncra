@@ -21,7 +21,7 @@ public interface SinglePartBase extends com.top_logic.synchra.model.interfaces.C
 	 * Part <code>catalog</code> of <code>SinglePart</code>
 	 * 
 	 * <p>
-	 * Declared as <code>fma:PartCatalog</code> in configuration.
+	 * Declared as <code>syn:PartCatalog</code> in configuration.
 	 * </p>
 	 */
 	String CATALOG_ATTR = "catalog";
@@ -30,7 +30,7 @@ public interface SinglePartBase extends com.top_logic.synchra.model.interfaces.C
 	 * Part <code>company</code> of <code>SinglePart</code>
 	 * 
 	 * <p>
-	 * Declared as <code>fma:Company</code> in configuration.
+	 * Declared as <code>syn:Company</code> in configuration.
 	 * </p>
 	 */
 	String COMPANY_ATTR = "company";
@@ -39,7 +39,7 @@ public interface SinglePartBase extends com.top_logic.synchra.model.interfaces.C
 	 * Part <code>material</code> of <code>SinglePart</code>
 	 * 
 	 * <p>
-	 * Declared as <code>fma:Material</code> in configuration.
+	 * Declared as <code>syn:Material</code> in configuration.
 	 * </p>
 	 */
 	String MATERIAL_ATTR = "material";

@@ -11,11 +11,11 @@
 			image="theme:ICONS_ADD_BUTTON"
 			resourceKey="class.com.top_logic.model.search.providers.I18NConstants.CREATE_OBJECT_DEFAULT_LABEL"
 		/>
-		<typeOptions type="fma:Product"/>
+		<typeOptions type="syn:Product"/>
 		<create-handler id="ID_afc6253e_adcf_4f60_bcea_71c31a87ddc6">
-			<linkOperation><![CDATA[con -> x -> y -> $x.set(`fma:Product#buildGroup`, 
-       new(`fma:ConstructionGroup`, transient: false)
-          ..set(`fma:ConstructionGroup#name`,"BG "+$x.get(`fma:Product#name`))
+			<linkOperation><![CDATA[con -> x -> y -> $x.set(`syn:Product#buildGroup`, 
+       new(`syn:ConstructionGroup`, transient: false)
+          ..set(`syn:ConstructionGroup#name`,"BG "+$x.get(`syn:Product#name`))
     )      
 ]]></linkOperation>
 		</create-handler>

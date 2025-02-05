@@ -260,7 +260,7 @@
 							<goal>generate-java</goal>
 						</goals>
 						<configuration>
-							<modules>fma</modules>
+							<modules>syn</modules>
 						</configuration>
 					</execution>
 				

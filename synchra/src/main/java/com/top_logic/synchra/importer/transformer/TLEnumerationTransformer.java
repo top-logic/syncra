@@ -5,7 +5,7 @@ import com.top_logic.basic.config.PolymorphicConfiguration;
 import com.top_logic.model.TLClassifier;
 import com.top_logic.model.TLEnumeration;
 import com.top_logic.synchra.importer.ImportSession;
-import com.top_logic.synchra.importer.SynchraImporter;
+import com.top_logic.synchra.importer.ImportUtil;
 import com.top_logic.util.model.ModelService;
 
 /**
@@ -36,7 +36,7 @@ public class TLEnumerationTransformer implements ValueTransformer {
 	@Override
 	public Object get(Object excelValue) {
 		for (TLClassifier cl : _tlEnumeration.getClassifiers()) {
-			if (SynchraImporter.label(cl).equals(excelValue)) {
+			if (ImportUtil.label(cl).equals(excelValue)) {
 				return cl;
 			}
 		}

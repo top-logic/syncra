@@ -5,7 +5,7 @@ import java.util.List;
 import com.top_logic.model.DerivedTLTypePart;
 import com.top_logic.model.TLObject;
 import com.top_logic.synchra.importer.ImportSession;
-import com.top_logic.synchra.importer.SynchraImporter;
+import com.top_logic.synchra.importer.ImportUtil;
 import com.top_logic.synchra.importer.transformer.ValueTransformer;
 
 public abstract class AttributeImport {
@@ -47,7 +47,7 @@ public abstract class AttributeImport {
 	 * @return the german name of the part
 	 */
 	public String getHeaderName() {
-		return SynchraImporter.label(_part);
+		return ImportUtil.label(_part);
 	}
 
 	public String getName() {

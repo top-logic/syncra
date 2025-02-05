@@ -58,14 +58,14 @@
 						id-attributes ="name"
 						tl-class="fma:Material" >
 						<attributes>
-							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport" property="fma:Material#name" />
+							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport" name="fma:Material#name" />
 						</attributes>
 					</importer>
 					<importer class="com.top_logic.synchra.importer.TypeImporter" 
 						id-attributes ="name"
 						tl-class="fma:PartCatalog" >
 						<attributes>
-							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport" property="fma:PartCatalog#name" />
+							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport" name="fma:PartCatalog#name" />
 						</attributes>
 					</importer>
 
@@ -73,11 +73,29 @@
 						id-attributes ="name"
 						tl-class="fma:Company" >
 						<attributes>
-							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport" property="fma:Company#name" />
-							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport" property="fma:Company#contactPerson" />
-							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport" property="fma:Company#phone" />
-							<attribute class="com.top_logic.synchra.importer.attribute.ReferenceImport" part="fma:Company#structure" >
+							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport" name="fma:Company#name" />
+							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport" name="fma:Company#contactPerson" />
+							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport" name="fma:Company#phone" />
+							<attribute class="com.top_logic.synchra.importer.attribute.ReferenceImport" name="fma:Company#structure" >
 								<value-transformer class="com.top_logic.synchra.importer.transformer.TLEnumerationTransformer"  enumeration="fma:CompanyStructure"/>
+							</attribute>
+						</attributes>
+					</importer>
+
+					<importer class="com.top_logic.synchra.importer.TypeImporter" 
+						id-attributes ="name"
+						tl-class="fma:SinglePart" >
+						<attributes>
+							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport" name="fma:SinglePart#name" />
+							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport" name="fma:SinglePart#price" />
+							<attribute class="com.top_logic.synchra.importer.attribute.ReferenceImport" name="fma:SinglePart#material" >
+								<value-transformer class="com.top_logic.synchra.importer.transformer.TLObjectTransformer"  tl-class="fma:Material" id-attribute ="name"/>
+							</attribute>
+							<attribute class="com.top_logic.synchra.importer.attribute.ReferenceImport" name="fma:SinglePart#catalog" >
+								<value-transformer class="com.top_logic.synchra.importer.transformer.TLObjectTransformer"  tl-class="fma:PartCatalog" id-attribute ="name"/>
+							</attribute>
+							<attribute class="com.top_logic.synchra.importer.attribute.ReferenceImport" name="fma:SinglePart#company" >
+								<value-transformer class="com.top_logic.synchra.importer.transformer.TLObjectTransformer"  tl-class="fma:Company" id-attribute ="name"/>
 							</attribute>
 						</attributes>
 					</importer>
@@ -86,17 +104,61 @@
 						id-attributes ="name"
 						tl-class="fma:Product" >
 						<attributes>
-							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport" property="fma:Product#name" />
+							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport" name="fma:Product#name" />
 						</attributes>
 					</importer>
+					
 					<importer class="com.top_logic.synchra.importer.TypeImporter" 
 						id-attributes ="name"
 						tl-class="fma:Activity" >
 						<attributes>
-							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport" property="fma:Activity#name" />
-							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport" property="fma:Activity#costs" />
-							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport" property="fma:Activity#riskProbImpact" />
-							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport" property="fma:Activity#riskCostImpact" />
+							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport" name="fma:Activity#name" />
+							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport" name="fma:Activity#costs" />
+							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport" name="fma:Activity#riskProbImpact" />
+							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport" name="fma:Activity#riskCostImpact" />
+						</attributes>
+					</importer>
+					
+					
+					<importer class="com.top_logic.synchra.importer.TypeImporter" 
+						id-attributes ="name"
+						tl-class="risk:Risk" >
+						<attributes>
+							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport" name="risk:Risk#name" />
+							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport" name="risk:Risk#estimatedDamage" />
+							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport" name="risk:Risk#estimatedProbability" />
+							<attribute class="com.top_logic.synchra.importer.attribute.ReferenceImport" name="risk:Risk#activities" >
+								<value-transformer class="com.top_logic.synchra.importer.transformer.TLObjectTransformer"  tl-class="fma:Activity" id-attribute ="name"/>
+							</attribute>
+						</attributes>
+					</importer>					
+					
+					<importer class="com.top_logic.synchra.importer.TypeImporter" 
+						id-attributes ="name"
+						tl-class="fma:Problem" >
+						<attributes>
+							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport" name="fma:Problem#name" />
+							<attribute class="com.top_logic.synchra.importer.attribute.ReferenceImport" name="fma:Problem#solvingActivities" >
+								<value-transformer class="com.top_logic.synchra.importer.transformer.TLObjectTransformer"  tl-class="fma:Activity" id-attribute ="name"/>
+							</attribute>
+							<attribute class="com.top_logic.synchra.importer.attribute.ReferenceImport" name="fma:Problem#components" >
+								<value-transformer class="com.top_logic.synchra.importer.transformer.TLObjectTransformer"  tl-class="fma:SinglePart" id-attribute ="name"/>
+							</attribute>
+						</attributes>
+					</importer>
+
+					<importer class="com.top_logic.synchra.importer.TypeImporter" 
+						id-attributes ="consistsOf,used,rule,position"
+						tl-class="fma:Connection" >
+						<attributes>
+							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport" name="fma:Connection#position" />
+							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport" name="fma:Connection#rule" />
+							<attribute class="com.top_logic.synchra.importer.attribute.ReferenceImport" name="fma:Connection#consistsOf" >
+								<value-transformer class="com.top_logic.synchra.importer.transformer.TLObjectTransformer"  tl-class="fma:Component" id-attribute ="name" create-tl-class="fma:ConstructionGroup"/>
+							</attribute>
+							<attribute class="com.top_logic.synchra.importer.attribute.ReferenceImport" name="fma:Connection#used" >
+								<value-transformer class="com.top_logic.synchra.importer.transformer.TLObjectTransformer"  tl-class="fma:ConstructionGroup" id-attribute ="name" />
+							</attribute>
 						</attributes>
 					</importer>
 				</importers>

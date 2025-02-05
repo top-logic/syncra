@@ -23,7 +23,6 @@ import com.top_logic.model.TLNamed;
 import com.top_logic.model.TLObject;
 import com.top_logic.synchra.importer.attribute.AttributeImport;
 import com.top_logic.synchra.model.ModelFactory;
-import com.top_logic.util.model.ModelService;
 
 public class TypeImporter {
 
@@ -59,7 +58,9 @@ public class TypeImporter {
 	}
 
 	public TypeImporter(InstantiationContext context, Config config) {
-		this(getTlClass(config.getTlClass()), getAttributes(context, config), config.getIdAttributes());
+		_tlClass = ImportUtil.getTlClass(config.getTlClass());
+		_idAttributes = config.getIdAttributes();
+		initAttributes(getAttributes(context, config));
 	}
 
 	private static Set<AttributeImport> getAttributes(InstantiationContext context, Config config) {
@@ -71,15 +72,9 @@ public class TypeImporter {
 		return attributes;
 	}
 
-	public static TLClass getTlClass(String tlClassString) {
-		String[] split = tlClassString.split(":");
-		return (TLClass) ModelService.getApplicationModel().getModule(split[0]).getType(split[1]);
-	}
 
-	public TypeImporter(TLClass tlClass, Set<AttributeImport> attributes, List<String> idAttributes) {
-		_tlClass = tlClass;
-		_idAttributes = idAttributes;
-		initAttributes(attributes);
+	protected ImportSession getSession() {
+		return _session;
 	}
 
 	public void prepare(ImportSession session) {
@@ -107,7 +102,7 @@ public class TypeImporter {
 	
 
 	public String getSheetName() {
-		return SynchraImporter.label(_tlClass);
+		return ImportUtil.label(_tlClass);
 	}
 
 	/**
@@ -150,7 +145,7 @@ public class TypeImporter {
 	}
 
 	public void performImport() {
-		Set<TLObject> all = _session.getAllInstancesOfType(_tlClass);
+		Set<TLObject> all = getSession().getAllInstancesOfType(_tlClass);
 		Map<String, TLObject> existing = new HashMap<>();
 		for(TLObject obj : all) {
 			existing.put(asIdString(obj), obj);
@@ -164,11 +159,14 @@ public class TypeImporter {
 					ad.performImport(existingObject, values);
 				}
 				afterCreation(existingObject);
-				_session.register(existingObject);
+				register(existingObject);
 			}
 		}
 	}
 
+	protected void register(TLObject existingObject) {
+		getSession().register(existingObject);
+	}
 
 	/**
 	 * @param newObject

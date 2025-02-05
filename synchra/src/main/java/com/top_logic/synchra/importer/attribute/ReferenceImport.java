@@ -6,12 +6,11 @@ import java.util.List;
 
 import com.top_logic.basic.config.InstantiationContext;
 import com.top_logic.basic.config.PolymorphicConfiguration;
-import com.top_logic.model.TLClass;
 import com.top_logic.model.TLObject;
 import com.top_logic.model.TLReference;
 import com.top_logic.model.TLStructuredTypePart;
+import com.top_logic.synchra.importer.ImportUtil;
 import com.top_logic.synchra.importer.transformer.ValueTransformer;
-import com.top_logic.util.model.ModelService;
 
 /**
  * used to import a reference. The {@link ValueTransformer} must provide the referenced object(s).
@@ -20,27 +19,13 @@ import com.top_logic.util.model.ModelService;
 public class ReferenceImport extends AttributeImport {
 
 	public interface Config extends PolymorphicConfiguration {
-		String getPart();
+		String getName();
 
 		PolymorphicConfiguration<ValueTransformer> getValueTransformer();
 	}
 
 	public ReferenceImport(InstantiationContext context, Config config) {
-		this(getPart(config.getPart()), context.getInstance(config.getValueTransformer()));
-	}
-
-	private static TLReference getPart(String part) {
-		String[] moduleAndClassAndName = part.split(":");
-		String module = moduleAndClassAndName[0];
-		String[] classAndName = moduleAndClassAndName[1].split("#");
-		String type = classAndName[0];
-		String attribute = classAndName[1];
-		TLClass tlClass = (TLClass) ModelService.getApplicationModel().getModule(module).getType(type);
-		return (TLReference) tlClass.getPart(attribute);
-	}
-
-	public ReferenceImport(TLReference part, ValueTransformer valueTransformer) {
-		super(part, valueTransformer);
+		super(ImportUtil.getPart(config.getName()), context.getInstance(config.getValueTransformer()));
 	}
 
 	@Override

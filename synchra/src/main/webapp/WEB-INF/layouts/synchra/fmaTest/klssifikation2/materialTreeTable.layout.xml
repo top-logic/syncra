@@ -5,7 +5,7 @@
 	template="com.top_logic/treetable.template.xml"
 >
 	<arguments
-		defaultColumns="name,company,tType"
+		defaultColumns="name,componentID,material,price,company"
 		rootVisible="false"
 		type="syn:SinglePart,syn:PartCatalog"
 	>

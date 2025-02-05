@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<model xmlns="http://www.top-logic.com/ns/dynamic-types/6.0">
+	<module name="kpi">
+		<interface name="AbstractValuation">
+			<generalizations>
+				<generalization type="tl.model:TLObject"/>
+			</generalizations>
+			<attributes>
+				<reference name="kpi"
+					kind="forwards"
+					mandatory="true"
+					navigate="true"
+					type="Kpi"
+				/>
+				<property name="value"
+					mandatory="true"
+					type="tl.core:Double"
+				/>
+			</attributes>
+		</interface>
+		<class name="InitialValuation">
+			<generalizations>
+				<generalization type="AbstractValuation"/>
+			</generalizations>
+		</class>
+		<class name="Valuation">
+			<generalizations>
+				<generalization type="AbstractValuation"/>
+			</generalizations>
+		</class>
+		<class name="Kpi">
+			<generalizations>
+				<generalization type="tl.model:TLObject"/>
+			</generalizations>
+			<attributes>
+				<property name="name"
+					type="tl.core:String"
+				/>
+				<reference name="unit"
+					kind="forwards"
+					mandatory="true"
+					navigate="true"
+					type="tl.units:AbstractUnit"
+				/>
+			</attributes>
+		</class>
+	</module>
+</model>

@@ -2,6 +2,7 @@ package com.top_logic.synchra.importer;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -28,6 +29,11 @@ public class ImportSession {
 	public void register(TLObject obj) {
 		TLClass tlClass = (TLClass) obj.tType();
 		MapUtil.addObjectToSet(_newObjects, tlClass, obj);
+
+		List<TLClass> generalizations = tlClass.getGeneralizations();
+		for (TLClass gen : generalizations) {
+			MapUtil.addObjectToSet(_newObjects, gen, obj);
+		}
 	}
 
 	/**

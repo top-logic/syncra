@@ -5,7 +5,8 @@
 	template="com.top_logic.element/treegrid.template.xml"
 >
 	<arguments
-		defaultColumns="name,material,tType"
+		defaultColumns="name,componentID,material,price,company"
+		defaultSelection="false"
 		rootVisible="false"
 		type="syn:PartCatalog,syn:SinglePart"
 	>
@@ -54,110 +55,210 @@
 					<de>Daten importieren</de>
 				</resourceKey>
 				<importers>
-					<importer class="com.top_logic.synchra.importer.TypeImporter" 
-						id-attributes ="name"
-						tl-class="syn:Material" >
+					<importer
+						id-attributes="name"
+						tl-class="kpi:Kpi"
+					>
 						<attributes>
-							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport" name="syn:Material#name" />
-						</attributes>
-					</importer>
-					<importer class="com.top_logic.synchra.importer.TypeImporter" 
-						id-attributes ="name"
-						tl-class="syn:PartCatalog" >
-						<attributes>
-							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport" name="syn:PartCatalog#name" />
-						</attributes>
-					</importer>
-
-					<importer class="com.top_logic.synchra.importer.TypeImporter" 
-						id-attributes ="name"
-						tl-class="syn:Company" >
-						<attributes>
-							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport" name="syn:Company#name" />
-							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport" name="syn:Company#contactPerson" />
-							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport" name="syn:Company#phone" />
-							<attribute class="com.top_logic.synchra.importer.attribute.ReferenceImport" name="syn:Company#structure" >
-								<value-transformer class="com.top_logic.synchra.importer.transformer.TLEnumerationTransformer"  enumeration="syn:CompanyStructure"/>
+							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport"
+								name="kpi:Kpi#name"
+							/>
+							<attribute class="com.top_logic.synchra.importer.attribute.ReferenceImport"
+								name="kpi:Kpi#unit"
+							>
+								<value-transformer class="com.top_logic.synchra.importer.transformer.TLObjectTransformer"
+									id-attribute="name"
+									tl-class="tl.units:AbstractUnit"
+								/>
 							</attribute>
 						</attributes>
 					</importer>
-
-					<importer class="com.top_logic.synchra.importer.TypeImporter" 
-						id-attributes ="name"
-						tl-class="syn:SinglePart" >
+					<importer
+						id-attributes="name"
+						tl-class="syn:Material"
+					>
 						<attributes>
-							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport" name="syn:SinglePart#name" />
-							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport" name="syn:SinglePart#price" />
-							<attribute class="com.top_logic.synchra.importer.attribute.ReferenceImport" name="syn:SinglePart#material" >
-								<value-transformer class="com.top_logic.synchra.importer.transformer.TLObjectTransformer"  tl-class="syn:Material" id-attribute ="name"/>
-							</attribute>
-							<attribute class="com.top_logic.synchra.importer.attribute.ReferenceImport" name="syn:SinglePart#catalog" >
-								<value-transformer class="com.top_logic.synchra.importer.transformer.TLObjectTransformer"  tl-class="syn:PartCatalog" id-attribute ="name"/>
-							</attribute>
-							<attribute class="com.top_logic.synchra.importer.attribute.ReferenceImport" name="syn:SinglePart#company" >
-								<value-transformer class="com.top_logic.synchra.importer.transformer.TLObjectTransformer"  tl-class="syn:Company" id-attribute ="name"/>
+							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport"
+								name="syn:Material#name"
+							/>
+						</attributes>
+					</importer>
+					<importer
+						id-attributes="name"
+						tl-class="syn:PartCatalog"
+					>
+						<attributes>
+							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport"
+								name="syn:PartCatalog#name"
+							/>
+						</attributes>
+					</importer>
+					<importer
+						id-attributes="name"
+						tl-class="syn:Company"
+					>
+						<attributes>
+							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport"
+								name="syn:Company#name"
+							/>
+							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport"
+								name="syn:Company#contactPerson"
+							/>
+							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport"
+								name="syn:Company#phone"
+							/>
+							<attribute class="com.top_logic.synchra.importer.attribute.ReferenceImport"
+								name="syn:Company#structure"
+							>
+								<value-transformer class="com.top_logic.synchra.importer.transformer.TLEnumerationTransformer"
+									enumeration="syn:CompanyStructure"
+								/>
 							</attribute>
 						</attributes>
 					</importer>
-					
-					<importer class="com.top_logic.synchra.importer.ProductImporter" 
-						id-attributes ="name"
-						tl-class="syn:Product" >
+					<importer
+						id-attributes="name"
+						tl-class="syn:SinglePart"
+					>
 						<attributes>
-							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport" name="syn:Product#name" />
-						</attributes>
-					</importer>
-					
-					<importer class="com.top_logic.synchra.importer.TypeImporter" 
-						id-attributes ="name"
-						tl-class="syn:Activity" >
-						<attributes>
-							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport" name="syn:Activity#name" />
-							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport" name="syn:Activity#costs" />
-							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport" name="syn:Activity#riskProbImpact" />
-							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport" name="syn:Activity#riskCostImpact" />
-						</attributes>
-					</importer>
-					
-					
-					<importer class="com.top_logic.synchra.importer.TypeImporter" 
-						id-attributes ="name"
-						tl-class="risk:Risk" >
-						<attributes>
-							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport" name="risk:Risk#name" />
-							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport" name="risk:Risk#estimatedDamage" />
-							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport" name="risk:Risk#estimatedProbability" />
-							<attribute class="com.top_logic.synchra.importer.attribute.ReferenceImport" name="risk:Risk#activities" >
-								<value-transformer class="com.top_logic.synchra.importer.transformer.TLObjectTransformer"  tl-class="syn:Activity" id-attribute ="name"/>
+							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport"
+								name="syn:SinglePart#name"
+							/>
+							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport"
+								name="syn:SinglePart#price"
+							/>
+							<attribute class="com.top_logic.synchra.importer.attribute.ReferenceImport"
+								name="syn:SinglePart#material"
+							>
+								<value-transformer class="com.top_logic.synchra.importer.transformer.TLObjectTransformer"
+									id-attribute="name"
+									tl-class="syn:Material"
+								/>
 							</attribute>
-						</attributes>
-					</importer>					
-					
-					<importer class="com.top_logic.synchra.importer.TypeImporter" 
-						id-attributes ="name"
-						tl-class="syn:Problem" >
-						<attributes>
-							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport" name="syn:Problem#name" />
-							<attribute class="com.top_logic.synchra.importer.attribute.ReferenceImport" name="syn:Problem#solvingActivities" >
-								<value-transformer class="com.top_logic.synchra.importer.transformer.TLObjectTransformer"  tl-class="syn:Activity" id-attribute ="name"/>
+							<attribute class="com.top_logic.synchra.importer.attribute.ReferenceImport"
+								name="syn:SinglePart#catalog"
+							>
+								<value-transformer class="com.top_logic.synchra.importer.transformer.TLObjectTransformer"
+									id-attribute="name"
+									tl-class="syn:PartCatalog"
+								/>
 							</attribute>
-							<attribute class="com.top_logic.synchra.importer.attribute.ReferenceImport" name="syn:Problem#components" >
-								<value-transformer class="com.top_logic.synchra.importer.transformer.TLObjectTransformer"  tl-class="syn:SinglePart" id-attribute ="name"/>
+							<attribute class="com.top_logic.synchra.importer.attribute.ReferenceImport"
+								name="syn:SinglePart#company"
+							>
+								<value-transformer class="com.top_logic.synchra.importer.transformer.TLObjectTransformer"
+									id-attribute="name"
+									tl-class="syn:Company"
+								/>
 							</attribute>
 						</attributes>
 					</importer>
-
-					<importer class="com.top_logic.synchra.importer.TypeImporter" 
-						id-attributes ="consistsOf,used,rule,position"
-						tl-class="syn:Connection" >
+					<importer class="com.top_logic.synchra.importer.ProductImporter"
+						id-attributes="name"
+						tl-class="syn:Product"
+					>
 						<attributes>
-							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport" name="syn:Connection#position" />
-							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport" name="syn:Connection#rule" />
-							<attribute class="com.top_logic.synchra.importer.attribute.ReferenceImport" name="syn:Connection#consistsOf" >
-								<value-transformer class="com.top_logic.synchra.importer.transformer.TLObjectTransformer"  tl-class="syn:Component" id-attribute ="name" create-tl-class="syn:ConstructionGroup"/>
+							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport"
+								name="syn:Product#name"
+							/>
+						</attributes>
+					</importer>
+					<importer
+						id-attributes="name"
+						tl-class="syn:Activity"
+					>
+						<attributes>
+							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport"
+								name="syn:Activity#name"
+							/>
+							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport"
+								name="syn:Activity#costs"
+							/>
+							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport"
+								name="syn:Activity#riskProbImpact"
+							/>
+							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport"
+								name="syn:Activity#riskCostImpact"
+							/>
+						</attributes>
+					</importer>
+					<importer
+						id-attributes="name"
+						tl-class="risk:Risk"
+					>
+						<attributes>
+							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport"
+								name="risk:Risk#name"
+							/>
+							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport"
+								name="risk:Risk#estimatedDamage"
+							/>
+							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport"
+								name="risk:Risk#estimatedProbability"
+							/>
+							<attribute class="com.top_logic.synchra.importer.attribute.ReferenceImport"
+								name="risk:Risk#activities"
+							>
+								<value-transformer class="com.top_logic.synchra.importer.transformer.TLObjectTransformer"
+									id-attribute="name"
+									tl-class="syn:Activity"
+								/>
 							</attribute>
-							<attribute class="com.top_logic.synchra.importer.attribute.ReferenceImport" name="syn:Connection#used" >
-								<value-transformer class="com.top_logic.synchra.importer.transformer.TLObjectTransformer"  tl-class="syn:ConstructionGroup" id-attribute ="name" />
+						</attributes>
+					</importer>
+					<importer
+						id-attributes="name"
+						tl-class="syn:Problem"
+					>
+						<attributes>
+							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport"
+								name="syn:Problem#name"
+							/>
+							<attribute class="com.top_logic.synchra.importer.attribute.ReferenceImport"
+								name="syn:Problem#solvingActivities"
+							>
+								<value-transformer class="com.top_logic.synchra.importer.transformer.TLObjectTransformer"
+									id-attribute="name"
+									tl-class="syn:Activity"
+								/>
+							</attribute>
+							<attribute class="com.top_logic.synchra.importer.attribute.ReferenceImport"
+								name="syn:Problem#components"
+							>
+								<value-transformer class="com.top_logic.synchra.importer.transformer.TLObjectTransformer"
+									id-attribute="name"
+									tl-class="syn:SinglePart"
+								/>
+							</attribute>
+						</attributes>
+					</importer>
+					<importer
+						id-attributes="consistsOf,used,rule,position"
+						tl-class="syn:Connection"
+					>
+						<attributes>
+							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport"
+								name="syn:Connection#position"
+							/>
+							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport"
+								name="syn:Connection#rule"
+							/>
+							<attribute class="com.top_logic.synchra.importer.attribute.ReferenceImport"
+								name="syn:Connection#consistsOf"
+							>
+								<value-transformer class="com.top_logic.synchra.importer.transformer.TLObjectTransformer"
+									create-tl-class="syn:ConstructionGroup"
+									id-attribute="name"
+									tl-class="syn:Component"
+								/>
+							</attribute>
+							<attribute class="com.top_logic.synchra.importer.attribute.ReferenceImport"
+								name="syn:Connection#used"
+							>
+								<value-transformer class="com.top_logic.synchra.importer.transformer.TLObjectTransformer"
+									id-attribute="name"
+									tl-class="syn:ConstructionGroup"
+								/>
 							</attribute>
 						</attributes>
 					</importer>

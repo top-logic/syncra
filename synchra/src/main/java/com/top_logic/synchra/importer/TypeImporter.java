@@ -110,7 +110,7 @@ public class TypeImporter {
 	 * 
 	 * @param obj
 	 *        the existing object
-	 * @return a string representing a primary key for the obejct
+	 * @return a string representing a primary key for the object
 	 */
 	protected String asIdString(TLObject obj) {
 		List<String> idParts = new ArrayList<>();
@@ -119,7 +119,12 @@ public class TypeImporter {
 			if (val instanceof TLNamed) {
 				idParts.add(((TLNamed) obj).getName().trim());
 			} else {
-				idParts.add(val.toString().trim());
+				if (val == null) {
+					idParts.add("null");
+				}
+				else {
+					idParts.add(val.toString().trim());
+				}
 			}
 		}
 		return StringServices.toString(idParts, "-");

@@ -14,6 +14,7 @@
             		<bundle name="model.synchra.Vendormanagement.messages"/>
             		<bundle name="model.syn.messages"/>
             		<bundle name="model.risk.messages"/>
+            		<bundle name="model.kpi.messages"/>
 				</bundles>
 			</instance>
 		</config>
@@ -36,6 +37,7 @@
 	          <declaration file="/WEB-INF/model/synchra.Vendormanagement.model.xml"/>
 	          <declaration file="/WEB-INF/model/syn.model.xml"/>
 	          <declaration file="/WEB-INF/model/risk.model.xml"/>
+	          <declaration file="/WEB-INF/model/kpi.model.xml"/>
 	        </declarations>
 	       <settings>
 				<module name="risk">

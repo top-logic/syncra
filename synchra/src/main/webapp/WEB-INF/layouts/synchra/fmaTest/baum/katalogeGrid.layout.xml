@@ -262,6 +262,44 @@
 							</attribute>
 						</attributes>
 					</importer>
+					
+					
+					<importer
+						id-attributes="activity,kpi,valuated"
+						tl-class="kpi:Valuation"
+					>
+						<attributes>
+							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport"
+								name="kpi:Valuation#value"
+							/>
+							<attribute class="com.top_logic.synchra.importer.attribute.ReferenceImport"
+								name="kpi:Valuation#activity"
+							>
+								<value-transformer class="com.top_logic.synchra.importer.transformer.TLObjectTransformer"
+									id-attribute="name"
+									tl-class="syn:Activity"
+								/>
+							</attribute>
+							<attribute class="com.top_logic.synchra.importer.attribute.ReferenceImport"
+								name="kpi:Valuation#kpi"
+							>
+								<value-transformer class="com.top_logic.synchra.importer.transformer.TLObjectTransformer"
+									id-attribute="name"
+									tl-class="kpi:Kpi"
+								/>
+							</attribute>
+							<attribute class="com.top_logic.synchra.importer.attribute.ReferenceImport"
+								name="kpi:Valuation#valuated"
+							>
+								<value-transformer class="com.top_logic.synchra.importer.transformer.TLObjectTransformer"
+									id-attribute="name"
+									tl-class="kpi:KpiAware"
+								/>
+							</attribute>
+						</attributes>
+					</importer>
+
+					
 				</importers>
 			</button>
 		</buttons>

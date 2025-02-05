@@ -5,7 +5,8 @@
 	template="com.top_logic/table.template.xml"
 >
 	<arguments
-		defaultColumns="name,ID_b39e6ab5_8a4c_4595_bc49_e4435ceb096a"
+		defaultColumns="_actions,name,ID_b39e6ab5_8a4c_4595_bc49_e4435ceb096a,ID_ddf78930_8d19_4b2e_a1eb_92e871cf397d"
+		defaultSelection="false"
 		type="syn:ConstructionGroup"
 	>
 		<dialogs>

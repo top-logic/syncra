@@ -55,6 +55,11 @@
 							fullQualifiedName="syn:Activity#description"
 							type="tl.model.wysiwyg:Html"
 						/>
+						<field
+							attribute="valuations"
+							fullQualifiedName="syn:Activity#valuations"
+							type="kpi:Valuation"
+						/>
 					</form>
 				</form-definition>
 			</annotations>
@@ -62,7 +67,13 @@
 				<property name="name"
 					mandatory="true"
 					type="tl.core:String"
-				/>
+				>
+					<annotations>
+						<default-value>
+							<string value="Initialbewertung"/>
+						</default-value>
+					</annotations>
+				</property>
 				<property name="description"
 					type="tl.model.wysiwyg:Html"
 				/>
@@ -101,6 +112,13 @@
 						</default-value>
 					</annotations>
 				</reference>
+				<reference name="valuations"
+					composite="true"
+					kind="forwards"
+					multiple="true"
+					navigate="true"
+					type="kpi:Valuation"
+				/>
 			</attributes>
 		</class>
 		<class name="Company">
@@ -172,6 +190,7 @@
 		<interface name="Component">
 			<generalizations>
 				<generalization type="tl.model:TLObject"/>
+				<generalization type="kpi:KpiAware"/>
 			</generalizations>
 			<attributes>
 				<property name="name"

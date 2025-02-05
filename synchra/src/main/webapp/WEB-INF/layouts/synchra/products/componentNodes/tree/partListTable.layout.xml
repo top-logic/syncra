@@ -6,6 +6,7 @@
 >
 	<arguments
 		defaultColumns="part,connections,singlePrice,count,costs"
+		defaultSelection="false"
 		model="selection(synchra/products/componentNodes/tree/componentNodesTreeTable.layout.xml#TreeTable)"
 		showPopOut="true"
 		type="syn:PartsListEntry"

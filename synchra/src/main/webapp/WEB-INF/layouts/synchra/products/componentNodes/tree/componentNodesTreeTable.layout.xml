@@ -56,11 +56,6 @@
 					<en>Material</en>
 					<de>Material</de>
 				</columnLabel>
-				<annotations>
-					<column-info>
-						<comparator class="com.top_logic.basic.col.ComparableComparator"/>
-					</column-info>
-				</annotations>
 			</configurationProvider>
 			<configurationProvider class="com.top_logic.model.search.providers.ComputedColumnProviderByExpression"
 				accessor="row -> model -> $row.get(`syn:ComponentNode#component`).get(`syn:Component#price`)"

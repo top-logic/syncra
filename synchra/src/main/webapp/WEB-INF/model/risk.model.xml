@@ -143,6 +143,7 @@
 		<class name="Risk">
 			<generalizations>
 				<generalization type="tl.model:TLObject"/>
+				<generalization type="kpi:KpiAware"/>
 			</generalizations>
 			<annotations>
 				<form-definition>

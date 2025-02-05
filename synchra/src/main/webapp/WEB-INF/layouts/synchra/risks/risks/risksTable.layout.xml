@@ -5,6 +5,8 @@
 	template="com.top_logic/table.template.xml"
 >
 	<arguments
+		defaultColumns="name,colorSpot"
+		defaultSelection="false"
 		size="300px"
 		type="risk:Risk"
 	>

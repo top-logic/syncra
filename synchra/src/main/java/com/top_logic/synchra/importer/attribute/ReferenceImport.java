@@ -2,14 +2,17 @@ package com.top_logic.synchra.importer.attribute;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
+import java.util.Map;
 
+import com.top_logic.basic.StringServices;
 import com.top_logic.basic.config.InstantiationContext;
 import com.top_logic.basic.config.PolymorphicConfiguration;
+import com.top_logic.model.TLClass;
 import com.top_logic.model.TLObject;
 import com.top_logic.model.TLReference;
 import com.top_logic.model.TLStructuredTypePart;
 import com.top_logic.synchra.importer.ImportUtil;
+import com.top_logic.synchra.importer.transformer.ReferenceTransformer;
 import com.top_logic.synchra.importer.transformer.ValueTransformer;
 
 /**
@@ -19,25 +22,56 @@ import com.top_logic.synchra.importer.transformer.ValueTransformer;
 public class ReferenceImport extends AttributeImport {
 
 	public interface Config extends PolymorphicConfiguration {
+
+		/**
+		 * @return the name of the attribute to import, full qualified
+		 */
 		String getName();
 
-		PolymorphicConfiguration<ValueTransformer> getValueTransformer();
+		/**
+		 * @return the name of the {@link TLClass} to which the transformer transforms
+		 */
+		String getTlClass();
+
+		/**
+		 * @return the name of the {@link TLClass} to which the transformer creates when no object
+		 *         is existing if no create class is given no objects are created
+		 */
+		String getCreateTlClass();
+
+		/**
+		 * @return the name of the attribute which provides the primary key
+		 */
+		String getIdAttribute();
 	}
 
 	public ReferenceImport(InstantiationContext context, Config config) {
-		super(ImportUtil.getPart(config.getName()), context.getInstance(config.getValueTransformer()));
+		super(ImportUtil.getPart(config.getName()), getTransformer(config));
+	}
+
+	private static ReferenceTransformer getTransformer(Config config) {
+		TLClass tlClass = ImportUtil.getTlClass(config.getTlClass());
+		String idAttribute = config.getIdAttribute();
+		String createClassName = config.getCreateTlClass();
+		TLClass tlCreateClass = null;
+		if (!StringServices.isEmpty(createClassName)) {
+			tlCreateClass = ImportUtil.getTlClass(createClassName);
+		}
+		return new ReferenceTransformer(tlClass, idAttribute, tlCreateClass);
 	}
 
 	@Override
-	public void performImport(TLObject object, List<Object> values) {
+	public void performImport(TLObject object, Map<Integer, Object> values) {
 
 		Object excelValue = values.get(getColumn());
-		Object importValue = getImportValue(excelValue);
-		if (getPart().isBackwards()) {
-			TLStructuredTypePart directAttribute = getPart().getOpposite();
-			((TLObject) importValue).tAdd(directAttribute, object);
-		} else {
-			object.tUpdateByName(getName(), importValue);
+		if (excelValue != null) {
+			Object importValue = getImportValue(excelValue);
+			if (getPart().isBackwards()) {
+				TLStructuredTypePart directAttribute = getPart().getOpposite();
+				((TLObject) importValue).tAdd(directAttribute, object);
+			} else {
+				object.tUpdateByName(getName(), importValue);
+			}
 		}
 	}
 

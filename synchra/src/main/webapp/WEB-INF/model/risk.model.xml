@@ -145,6 +145,7 @@
 				<generalization type="kpi:KpiAware"/>
 			</generalizations>
 			<annotations>
+				<instance-presentation icon="css:bi bi-exclamation-triangle"/>
 				<form-definition>
 					<form>
 						<field
@@ -153,18 +154,18 @@
 							type="tl.core:String"
 						/>
 						<separator/>
-						<field
-							attribute="estimatedDamage"
-							fullQualifiedName="risk:Risk#estimatedDamage"
-							type="tl.core:Integer"
-						/>
-						<field
-							attribute="estimatedProbability"
-							fullQualifiedName="risk:Risk#estimatedProbability"
-							type="tl.core:Integer"
-						/>
 						<separator/>
 						<group>
+							<field
+								attribute="estimatedDamage"
+								fullQualifiedName="risk:Risk#estimatedDamage"
+								type="tl.core:Integer"
+							/>
+							<field
+								attribute="estimatedProbability"
+								fullQualifiedName="risk:Risk#estimatedProbability"
+								type="tl.core:Integer"
+							/>
 							<field
 								attribute="amountOfLoss"
 								fullQualifiedName="risk:Risk#amountOfLoss"
@@ -186,6 +187,16 @@
 							</label>
 						</group>
 						<group>
+							<field
+								attribute="damageAfterActivities"
+								fullQualifiedName="risk:Risk#damageAfterActivities"
+								type="tl.core:Integer"
+							/>
+							<field
+								attribute="probabilityAfterActivities"
+								fullQualifiedName="risk:Risk#probabilityAfterActivities"
+								type="tl.core:Integer"
+							/>
 							<field
 								attribute="lossAfterActivities"
 								fullQualifiedName="risk:Risk#lossAfterActivities"
@@ -234,13 +245,17 @@
 						<frame/>
 						<separator/>
 						<field
-							attribute="kinds"
-							fullQualifiedName="risk:Risk#kinds"
-							type="risk:RiskKind"
-						/>
+							attribute="valuations"
+							fullQualifiedName="kpi:KpiAware#valuations"
+							type="kpi:AbstractValuation"
+						>
+							<annotations>
+								<reference-display value="table"/>
+								<label-position value="hide-label"/>
+							</annotations>
+						</field>
 					</form>
 				</form-definition>
-				<instance-presentation icon="css:bi bi-exclamation-triangle"/>
 			</annotations>
 			<attributes>
 				<property name="name"

@@ -22,6 +22,9 @@ import com.top_logic.model.TLClass;
 import com.top_logic.model.TLNamed;
 import com.top_logic.model.TLObject;
 import com.top_logic.synchra.importer.attribute.AttributeImport;
+import com.top_logic.synchra.importer.attribute.ClassificationImport;
+import com.top_logic.synchra.importer.attribute.PropertyImport;
+import com.top_logic.synchra.importer.attribute.ReferenceImport;
 import com.top_logic.synchra.model.ModelFactory;
 
 public class TypeImporter {
@@ -30,7 +33,7 @@ public class TypeImporter {
 
 	private Map<String, AttributeImport> _attributesByName;
 
-	private Map<Integer, List<Object>> _importData;
+	private Map<Integer, Map<Integer, Object>> _importData;
 
 	private Map<String, AttributeImport> _attributesByHeaderName;
 
@@ -45,9 +48,19 @@ public class TypeImporter {
 		String getTlClass();
 
 		/**
-		 * @return a list of {@link AttributeImport} to import
+		 * @return a list of {@link ClassificationImport} to import
 		 */
-		List<PolymorphicConfiguration<AttributeImport>> getAttributes();
+		List<PolymorphicConfiguration<ClassificationImport>> getClassifications();
+
+		/**
+		 * @return a list of {@link PropertyImport} to import
+		 */
+		List<PolymorphicConfiguration<PropertyImport>> getProperties();
+
+		/**
+		 * @return a list of {@link ReferenceImport} to import
+		 */
+		List<PolymorphicConfiguration<ReferenceImport>> getReferences();
 
 		/**
 		 * @return names of attributes that build the primary key of an object.
@@ -65,9 +78,14 @@ public class TypeImporter {
 
 	private static Set<AttributeImport> getAttributes(InstantiationContext context, Config config) {
 		Set<AttributeImport> attributes = new HashSet<>();
-		for (PolymorphicConfiguration<AttributeImport> tif : config.getAttributes()) {
-			AttributeImport instance = context.getInstance(tif);
-			attributes.add(instance);
+		for (PolymorphicConfiguration<PropertyImport> tif : config.getProperties()) {
+			attributes.add(context.getInstance(tif));
+		}
+		for (PolymorphicConfiguration<ReferenceImport> tif : config.getReferences()) {
+			attributes.add(context.getInstance(tif));
+		}
+		for (PolymorphicConfiguration<ClassificationImport> tif : config.getClassifications()) {
+			attributes.add(context.getInstance(tif));
 		}
 		return attributes;
 	}
@@ -135,16 +153,13 @@ public class TypeImporter {
 	 *        values holding data for a primary key
 	 * @return extracted primary key from the values
 	 */
-	private String getAsId(List<Object> values) {
+	private String getAsId(Map<Integer, Object> values) {
 		List<String> idParts = new ArrayList<>();
 		for (String idAttr : _idAttributes) {
 			int idCol = _attributesByName.get(idAttr).getColumn();
-			if (idCol >= values.size()) {
-				// empty column may be not read by excel reader
-				idParts.add("");
-			} else {
-				idParts.add(values.get(idCol).toString().trim());
-			}
+			Object val = values.get(idCol);
+			val = val == null ? "" : val;
+			idParts.add(val.toString().trim());
 		}
 		return StringServices.toString(idParts, "-");
 	}
@@ -155,7 +170,8 @@ public class TypeImporter {
 		for(TLObject obj : all) {
 			existing.put(asIdString(obj), obj);
 		}
-		for (List<Object> values : _importData.values()) {
+		for (Map<Integer, Object> values : _importData.values()) {
+
 			String id = getAsId(values);
 			TLObject existingObject = existing.get(id);
 			if (existingObject == null) {
@@ -185,15 +201,15 @@ public class TypeImporter {
 
 	public void addRow(Row row) {
 		int rowNum = row.getRowNum();
-		List<Object> values = new ArrayList<>();
+		Map<Integer, Object> values = new HashMap<>();
 		for (int i = row.getFirstCellNum(); i < row.getLastCellNum(); i++) {
 			Cell cell = row.getCell(i);
 			if (cell != null) {
 				CellType cellType = cell.getCellType();
 				if (CellType.STRING == cellType) {
-					values.add(cell.getStringCellValue());
+					values.put(i, cell.getStringCellValue());
 				} else if (CellType.NUMERIC == cellType) {
-					values.add(cell.getNumericCellValue());
+					values.put(i, cell.getNumericCellValue());
 				} else if (CellType.BLANK == cellType) {
 					// ignore
 				} else {

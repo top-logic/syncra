@@ -49,21 +49,20 @@
 							attribute="valuations"
 							fullQualifiedName="syn:Activity#valuations"
 							type="kpi:Valuation"
-						/>
+						>
+							<annotations>
+								<main-properties properties="kpi,valuated,value"/>
+							</annotations>
+						</field>
 					</form>
 				</form-definition>
+				<instance-presentation icon="css:bi bi-activity"/>
 			</annotations>
 			<attributes>
 				<property name="name"
 					mandatory="true"
 					type="tl.core:String"
-				>
-					<annotations>
-						<default-value>
-							<string value="Initialbewertung"/>
-						</default-value>
-					</annotations>
-				</property>
+				/>
 				<property name="description"
 					type="tl.model.wysiwyg:Html"
 				/>
@@ -208,11 +207,57 @@
 					<annotations>
 						<storage-algorithm>
 							<query>
-								<expr><![CDATA[comp -> $comp.get(`syn:Component#price`) + 
-        $comp.get(`syn:Component#valuations`).filter(
-        v -> $v.get(`kpi:AbstractValuation#kpi`).get(`kpi:Kpi#name`).equals("Preis")).
-        map(v -> $v.get(`kpi:AbstractValuation#value`)).sum()
+								<expr><![CDATA[comp -> $comp.get(`syn:Component#price`) + $comp.get(`syn:Component#priceActivityContribution`)
         ]]></expr>
+							</query>
+						</storage-algorithm>
+					</annotations>
+				</property>
+				<reference name="pictures"
+					bag="true"
+					kind="forwards"
+					multiple="true"
+					navigate="true"
+					ordered="true"
+					type="tl.imagegallery:GalleryImage"
+				/>
+				<property name="weight"
+					type="tl.core:Double"
+				/>
+				<property name="weightAfterActivities"
+					type="tl.core:Double"
+				>
+					<annotations>
+						<storage-algorithm>
+							<query>
+								<expr><![CDATA[comp -> $comp.get(`syn:Component#weight`) + $comp.get(`syn:Component#weightActivityContribution`)
+       ]]></expr>
+							</query>
+						</storage-algorithm>
+					</annotations>
+				</property>
+				<property name="priceActivityContribution"
+					type="tl.core:Double"
+				>
+					<annotations>
+						<storage-algorithm>
+							<query>
+								<expr><![CDATA[comp -> $comp.get(`syn:Component#valuations`).filter(
+        v -> $v.get(`kpi:AbstractValuation#kpi`).get(`kpi:Kpi#name`).equals("Preis")).
+        map(v -> $v.get(`kpi:AbstractValuation#value`)).sum()]]></expr>
+							</query>
+						</storage-algorithm>
+					</annotations>
+				</property>
+				<property name="weightActivityContribution"
+					type="tl.core:Double"
+				>
+					<annotations>
+						<storage-algorithm>
+							<query>
+								<expr><![CDATA[comp -> $comp.get(`syn:Component#valuations`).filter(
+        v -> $v.get(`kpi:AbstractValuation#kpi`).get(`kpi:Kpi#name`).equals("Gewicht")).
+        map(v -> $v.get(`kpi:AbstractValuation#value`)).sum()]]></expr>
 							</query>
 						</storage-algorithm>
 					</annotations>
@@ -293,6 +338,46 @@
 						</default-value>
 						<create-visibility value="read-only"/>
 						<visibility value="read-only"/>
+					</annotations>
+				</property>
+				<property name="weight"
+					override="true"
+					type="tl.core:Double"
+				>
+					<annotations>
+						<storage-algorithm>
+							<query expr="grp -> $grp.get(`syn:ConstructionGroup#consistsOf`).get(`syn:Connection#consistsOf`).get(`syn:Component#weight`).sum()"/>
+						</storage-algorithm>
+					</annotations>
+				</property>
+				<property name="priceAfterActivities"
+					override="true"
+					type="tl.core:Double"
+				>
+					<annotations>
+						<storage-algorithm>
+							<query>
+								<expr><![CDATA[grp -> $grp.get(`syn:ConstructionGroup#consistsOf`).get(`syn:Connection#consistsOf`).get(`syn:Component#priceAfterActivities`).sum() + 
+         $grp.get(`syn:Component#valuations`).filter(
+        v -> $v.get(`kpi:AbstractValuation#kpi`).get(`kpi:Kpi#name`).equals("Preis")).
+        map(v -> $v.get(`kpi:AbstractValuation#value`)).sum()]]></expr>
+							</query>
+						</storage-algorithm>
+					</annotations>
+				</property>
+				<property name="weightAfterActivities"
+					override="true"
+					type="tl.core:Double"
+				>
+					<annotations>
+						<storage-algorithm>
+							<query>
+								<expr><![CDATA[grp -> $grp.get(`syn:ConstructionGroup#consistsOf`).get(`syn:Connection#consistsOf`).get(`syn:Component#weightAfterActivities`).sum() + 
+         $grp.get(`syn:Component#valuations`).filter(
+        v -> $v.get(`kpi:AbstractValuation#kpi`).get(`kpi:Kpi#name`).equals("Gewicht")).
+        map(v -> $v.get(`kpi:AbstractValuation#value`)).sum()]]></expr>
+							</query>
+						</storage-algorithm>
 					</annotations>
 				</property>
 			</attributes>
@@ -393,6 +478,29 @@
  $node.get(`syn:ComponentNode#children`).get(`syn:ComponentNode#price`).sum()
 )]]></expr>
 							</query>
+						</storage-algorithm>
+					</annotations>
+				</property>
+				<property name="priceAfterActivities"
+					type="tl.core:Double"
+				>
+					<annotations>
+						<storage-algorithm>
+							<query>
+								<expr><![CDATA[node -> if( $node.get(`syn:ComponentNode#component`).instanceOf(`syn:SinglePart`),
+ $node.get(`syn:ComponentNode#component`).get(`syn:SinglePart#price`),
+ $node.get(`syn:ComponentNode#children`).get(`syn:ComponentNode#priceAfterActivities`).sum()
+) + $node.get(`syn:ComponentNode#priceActivityContribution`)]]></expr>
+							</query>
+						</storage-algorithm>
+					</annotations>
+				</property>
+				<property name="priceActivityContribution"
+					type="tl.core:Double"
+				>
+					<annotations>
+						<storage-algorithm>
+							<query expr="node -> $node.get(`syn:ComponentNode#component`).get(`syn:Component#priceActivityContribution`)"/>
 						</storage-algorithm>
 					</annotations>
 				</property>

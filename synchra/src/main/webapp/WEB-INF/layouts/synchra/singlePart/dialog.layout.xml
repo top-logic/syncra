@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	template="com.top_logic/dialog.template.xml"
+>
+	<arguments helpID="ID_4c405b7d_e95e_499f_99ff_f73fd4962628">
+		<title>
+			<title key="dynamic.8ed80aaa-52ef-48fe-b3fe-c32c49bed90d">
+				<en>Single part</en>
+				<de>Einzelteil</de>
+			</title>
+		</title>
+		<open-handler id="ID_2b53e3b5_2880_4fee_997d_fec8e74d42a5"
+			config:interface="com.top_logic.layout.editor.config.DialogOpenHandlerConfig"
+		>
+			<resourceKey key="dynamic.8ed80aaa-52ef-48fe-b3fe-c32c49bed90d">
+				<en>Single part</en>
+				<de>Einzelteil</de>
+			</resourceKey>
+		</open-handler>
+		<components>
+			<layout-reference resource="synchra/singlePart/innerLayout.layout.xml"/>
+		</components>
+	</arguments>
+</config:template-call>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	template="com.top_logic.element/form.template.xml"
+>
+	<arguments defaultFor="syn:SinglePart">
+		<name key="dynamic.54096088-0e09-4e2f-a202-1e2fa36151f2">
+			<en>Single Part</en>
+			<de>Einzelteil</de>
+		</name>
+	</arguments>
+</config:template-call>

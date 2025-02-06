@@ -1,6 +1,6 @@
 package com.top_logic.synchra.importer.attribute;
 
-import java.util.List;
+import java.util.Map;
 
 import com.top_logic.model.DerivedTLTypePart;
 import com.top_logic.model.TLObject;
@@ -25,7 +25,7 @@ public abstract class AttributeImport {
 		_col = -10;
 	}
 
-	public abstract void performImport(TLObject object, List<Object> values);
+	public abstract void performImport(TLObject object, Map<Integer, Object> values);
 
 	protected Object getImportValue(Object excelValue) {
 		return _valueProvider.get(excelValue);
@@ -60,7 +60,6 @@ public abstract class AttributeImport {
 
 	public void prepare(ImportSession session) {
 		_valueProvider.prepare(session);
-
 	}
 
 }

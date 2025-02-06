@@ -1,10 +1,7 @@
 package com.top_logic.synchra.importer.transformer;
 
-import com.top_logic.basic.config.InstantiationContext;
-import com.top_logic.basic.config.PolymorphicConfiguration;
 import com.top_logic.model.TLClassifier;
 import com.top_logic.model.TLEnumeration;
-import com.top_logic.synchra.importer.ImportSession;
 import com.top_logic.synchra.importer.ImportUtil;
 import com.top_logic.util.model.ModelService;
 
@@ -12,20 +9,12 @@ import com.top_logic.util.model.ModelService;
  * uses the given {@link TLEnumeration} for finding the import value. The german name of the
  * enumeration elements is used to find the right value
  */
-public class TLEnumerationTransformer implements ValueTransformer {
-
-	public interface Config extends PolymorphicConfiguration {
-		String getEnumeration();
-	}
+public class ClassificationTransformer implements ValueTransformer {
 
 	private TLEnumeration _tlEnumeration;
 
-	public TLEnumerationTransformer(InstantiationContext context, Config config) {
-		this(getEnumeration(config.getEnumeration()));
-	}
-
-	public TLEnumerationTransformer(TLEnumeration tlEnumeration) {
-		_tlEnumeration = tlEnumeration;
+	public ClassificationTransformer(String enumName) {
+		_tlEnumeration = getEnumeration(enumName);
 	}
 
 	private static TLEnumeration getEnumeration(String enumName) {
@@ -43,9 +32,4 @@ public class TLEnumerationTransformer implements ValueTransformer {
 		return null;
 	}
 
-	@Override
-	public void prepare(ImportSession session) {
-		// does nothing
-
-	}
 }

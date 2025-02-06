@@ -25,10 +25,6 @@ public class ImportUtil {
 	public static DerivedTLTypePart getDerivedPart(String part) {
 		String[] moduleAndClassAndName = part.split(":");
 		String module = moduleAndClassAndName[0];
-		if (moduleAndClassAndName.length == 1) {
-			int i = 0;
-			i++;
-		}
 		String[] classAndName = moduleAndClassAndName[1].split("#");
 		String type = classAndName[0];
 		String attribute = classAndName[1];

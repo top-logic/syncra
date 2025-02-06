@@ -12,7 +12,24 @@
 					mandatory="true"
 					navigate="true"
 					type="Kpi"
-				/>
+				>
+					<annotations>
+						<options>
+							<options-by-expression>
+								<function><![CDATA[v -> {
+    val = $v.get(`kpi:AbstractValuation#valuated`);
+    if($val==null,
+        all(`kpi:Kpi`),
+        if($val.instanceOf(`risk:Risk`),
+            all(`kpi:Kpi`).filter( k -> $k.get(`kpi:Kpi#name`).equals("Schaden") || $k.get(`kpi:Kpi#name`).equals("ETW")),
+            all(`kpi:Kpi`).filter( k -> $k.get(`kpi:Kpi#name`).equals("Preis") || $k.get(`kpi:Kpi#name`).equals("Gewicht")),
+         )
+    )     
+}]]></function>
+							</options-by-expression>
+						</options>
+					</annotations>
+				</reference>
 				<property name="value"
 					mandatory="true"
 					type="tl.core:Double"
@@ -23,7 +40,25 @@
 					mandatory="true"
 					navigate="true"
 					type="KpiAware"
-				/>
+				>
+					<annotations>
+						<options>
+							<options-by-expression>
+								<function><![CDATA[v -> {
+    kpi = $v.get(`kpi:AbstractValuation#kpi`);
+    if($kpi==null,
+        all(`kpi:KpiAware`),
+        if( $kpi.get(`kpi:Kpi#name`).equals("Schaden") || $kpi.get(`kpi:Kpi#name`).equals("ETW"),
+            all(`risk:Risk`),
+            all(`syn:Component`)
+         )
+    )    
+}
+]]></function>
+							</options-by-expression>
+						</options>
+					</annotations>
+				</reference>
 			</attributes>
 		</interface>
 		<class name="Valuation">

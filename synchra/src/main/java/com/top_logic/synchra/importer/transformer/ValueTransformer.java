@@ -19,5 +19,7 @@ public interface ValueTransformer {
 	 * @param session
 	 *        the session to use from now on
 	 */
-	void prepare(ImportSession session);
+	default void prepare(ImportSession session) {
+		// does nothing by default
+	};
 }

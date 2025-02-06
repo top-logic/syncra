@@ -6,19 +6,21 @@ import com.top_logic.basic.config.InstantiationContext;
 import com.top_logic.basic.config.PolymorphicConfiguration;
 import com.top_logic.model.TLObject;
 import com.top_logic.synchra.importer.ImportUtil;
-import com.top_logic.synchra.importer.transformer.IdentityTransformer;
+import com.top_logic.synchra.importer.transformer.ClassificationTransformer;
 
-/**
- * used to import a simple property like String or Double
- */
-public class PropertyImport extends AttributeImport {
+public class ClassificationImport extends AttributeImport {
 
 	public interface Config extends PolymorphicConfiguration {
 		String getName();
+		String getEnumeration();
 	}
 
-	public PropertyImport(InstantiationContext context, Config config) {
-		super(ImportUtil.getProperty(config.getName()), IdentityTransformer.INSTANCE);
+	public ClassificationImport(InstantiationContext context, Config config) {
+		super(ImportUtil.getPart(config.getName()), getTransformer(config));
+	}
+
+	private static ClassificationTransformer getTransformer(Config config) {
+		return new ClassificationTransformer(config.getEnumeration());
 	}
 
 	@Override
@@ -27,4 +29,5 @@ public class PropertyImport extends AttributeImport {
 		Object importValue = getImportValue(excelValue);
 		object.tUpdateByName(getName(), importValue);
 	}
+
 }

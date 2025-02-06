@@ -142,7 +142,6 @@
 		</class>
 		<class name="Risk">
 			<generalizations>
-				<generalization type="tl.model:TLObject"/>
 				<generalization type="kpi:KpiAware"/>
 			</generalizations>
 			<annotations>
@@ -241,6 +240,7 @@
 						/>
 					</form>
 				</form-definition>
+				<instance-presentation icon="css:bi bi-exclamation-triangle"/>
 			</annotations>
 			<attributes>
 				<property name="name"
@@ -355,7 +355,13 @@
 					multiple="true"
 					navigate="true"
 					type="syn:Activity"
-				/>
+				>
+					<annotations>
+						<storage-algorithm>
+							<query expr="r -> $r.get(`risk:Risk#valuations`).get(`kpi:Valuation#activity`)"/>
+						</storage-algorithm>
+					</annotations>
+				</reference>
 				<property name="damageAfterActivities"
 					type="tl.core:Integer"
 				>
@@ -363,10 +369,15 @@
 						<storage-algorithm>
 							<query>
 								<expr><![CDATA[risk -> {
-val = $risk.get(`risk:Risk#estimatedDamage`) - 
-        $risk.get(`risk:Risk#activities`).map(a -> $a.get(`syn:Activity#riskCostImpact`)).sum();
+val = $risk.get(`risk:Risk#estimatedDamage`) + 
+        $risk.get(`risk:Risk#valuations`).filter(
+        v -> $v.get(`kpi:AbstractValuation#kpi`).get(`kpi:Kpi#name`).equals("Schaden")).
+        map(v -> $v.get(`kpi:AbstractValuation#value`)).sum();
         $val<0? 0 : $val;
-        }]]></expr>
+        }
+        
+        
+        ]]></expr>
 							</query>
 						</storage-algorithm>
 					</annotations>
@@ -380,8 +391,7 @@ val = $risk.get(`risk:Risk#estimatedDamage`) -
 						<storage-algorithm>
 							<query>
 								<expr><![CDATA[r -> {
-  val = $r.get(`risk:Risk#estimatedProbability`)  -
-     $r.get(`risk:Risk#activities`).map(a -> $a.get(`syn:Activity#riskProbImpact`)).sum();
+  val = $r.get(`risk:Risk#probabilityAfterActivities`);
    val = $val<0 ? 0 : $val;
    val = $val>99? 99: $val;
    all(`risk:Probability`)
@@ -488,6 +498,23 @@ val = $risk.get(`risk:Risk#estimatedDamage`) -
 						</default-value>
 						<visibility value="read-only"/>
 						<create-visibility value="read-only"/>
+					</annotations>
+				</property>
+				<property name="probabilityAfterActivities"
+					type="tl.core:Integer"
+				>
+					<annotations>
+						<storage-algorithm>
+							<query>
+								<expr><![CDATA[risk -> {
+val = $risk.get(`risk:Risk#estimatedProbability`) + 
+        $risk.get(`risk:Risk#valuations`).filter(
+        v -> $v.get(`kpi:AbstractValuation#kpi`).get(`kpi:Kpi#name`).equals("ETW")).
+        map(v -> $v.get(`kpi:AbstractValuation#value`)).sum();
+        $val<0? 0 : $val;
+        }]]></expr>
+							</query>
+						</storage-algorithm>
 					</annotations>
 				</property>
 			</attributes>

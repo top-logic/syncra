@@ -174,12 +174,6 @@
 							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport"
 								name="syn:Activity#costs"
 							/>
-							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport"
-								name="syn:Activity#riskProbImpact"
-							/>
-							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport"
-								name="syn:Activity#riskCostImpact"
-							/>
 						</attributes>
 					</importer>
 					<importer
@@ -196,14 +190,6 @@
 							<attribute class="com.top_logic.synchra.importer.attribute.PropertyImport"
 								name="risk:Risk#estimatedProbability"
 							/>
-							<attribute class="com.top_logic.synchra.importer.attribute.ReferenceImport"
-								name="risk:Risk#activities"
-							>
-								<value-transformer class="com.top_logic.synchra.importer.transformer.TLObjectTransformer"
-									id-attribute="name"
-									tl-class="syn:Activity"
-								/>
-							</attribute>
 						</attributes>
 					</importer>
 					<importer

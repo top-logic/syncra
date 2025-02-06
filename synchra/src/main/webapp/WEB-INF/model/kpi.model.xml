@@ -2,13 +2,6 @@
 
 <model xmlns="http://www.top-logic.com/ns/dynamic-types/6.0">
 	<module name="kpi">
-		<annotations>
-			<singletons>
-				<singleton name="INITIAL"
-					type="syn:Activity"
-				/>
-			</singletons>
-		</annotations>
 		<interface name="AbstractValuation">
 			<generalizations>
 				<generalization type="tl.model:TLObject"/>
@@ -25,6 +18,7 @@
 					type="tl.core:Double"
 				/>
 				<reference name="valuated"
+					inverse-reference="valuations"
 					kind="forwards"
 					mandatory="true"
 					navigate="true"
@@ -36,6 +30,15 @@
 			<generalizations>
 				<generalization type="AbstractValuation"/>
 			</generalizations>
+			<attributes>
+				<reference name="activity"
+					aggregate="true"
+					inverse-reference="valuations"
+					kind="backwards"
+					navigate="true"
+					type="syn:Activity"
+				/>
+			</attributes>
 		</class>
 		<class name="Kpi">
 			<generalizations>
@@ -57,6 +60,15 @@
 			<generalizations>
 				<generalization type="tl.model:TLObject"/>
 			</generalizations>
+			<attributes>
+				<reference name="valuations"
+					inverse-reference="valuated"
+					kind="backwards"
+					multiple="true"
+					navigate="true"
+					type="AbstractValuation"
+				/>
+			</attributes>
 		</interface>
 	</module>
 </model>

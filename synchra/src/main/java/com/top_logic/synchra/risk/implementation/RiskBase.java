@@ -180,6 +180,15 @@ public interface RiskBase extends com.top_logic.model.TLNamed {
 	String PROBABILITY_ATTR = "probability";
 
 	/**
+	 * Part <code>probabilityAfterActivities</code> of <code>Risk</code>
+	 * 
+	 * <p>
+	 * Declared as <code>tl.core:Integer</code> in configuration.
+	 * </p>
+	 */
+	String PROBABILITY_AFTER_ACTIVITIES_ATTR = "probabilityAfterActivities";
+
+	/**
 	 * Part <code>riskClass</code> of <code>Risk</code>
 	 * 
 	 * <p>
@@ -212,41 +221,6 @@ public interface RiskBase extends com.top_logic.model.TLNamed {
 	@SuppressWarnings("unchecked")
 	default java.util.Set<? extends com.top_logic.synchra.model.interfaces.Activity> getActivities() {
 		return (java.util.Set<? extends com.top_logic.synchra.model.interfaces.Activity>) tValueByName(ACTIVITIES_ATTR);
-	}
-
-	/**
-	 * Live view of the {@link #ACTIVITIES_ATTR} part.
-	 * <p>
-	 * Changes to this {@link java.util.Collection} change directly the attribute value.
-	 * The caller has to take care of the transaction handling.
-	 * </p>
-	 */
-	default java.util.Set<com.top_logic.synchra.model.interfaces.Activity> getActivitiesModifiable() {
-		com.top_logic.model.TLStructuredTypePart attribute = tType().getPart(ACTIVITIES_ATTR);
-		@SuppressWarnings("unchecked")
-		java.util.Set<com.top_logic.synchra.model.interfaces.Activity> result = (java.util.Set<com.top_logic.synchra.model.interfaces.Activity>) com.top_logic.element.meta.kbbased.WrapperMetaAttributeUtil.getLiveCollection(this, attribute);
-		return result;
-	}
-
-	/**
-	 * Setter for part {@link #ACTIVITIES_ATTR}.
-	 */
-	default void setActivities(java.util.Set<com.top_logic.synchra.model.interfaces.Activity> newValue) {
-		tUpdateByName(ACTIVITIES_ATTR, newValue);
-	}
-
-	/**
-	 * Adds a value to the {@link #ACTIVITIES_ATTR} reference.
-	 */
-	default void addActivity(com.top_logic.synchra.model.interfaces.Activity newValue) {
-		tAddByName(ACTIVITIES_ATTR, newValue);
-	}
-
-	/**
-	 * Removes the given value from the {@link #ACTIVITIES_ATTR} reference.
-	 */
-	default void removeActivity(com.top_logic.synchra.model.interfaces.Activity oldValue) {
-		tRemoveByName(ACTIVITIES_ATTR, oldValue);
 	}
 
 	/**
@@ -452,6 +426,13 @@ public interface RiskBase extends com.top_logic.model.TLNamed {
 	 */
 	default com.top_logic.synchra.risk.interfaces.Probability getProbability() {
 		return (com.top_logic.synchra.risk.interfaces.Probability) tValueByName(PROBABILITY_ATTR);
+	}
+
+	/**
+	 * Getter for part {@link #PROBABILITY_AFTER_ACTIVITIES_ATTR}.
+	 */
+	default Integer getProbabilityAfterActivities() {
+		return (Integer) tValueByName(PROBABILITY_AFTER_ACTIVITIES_ATTR);
 	}
 
 	/**

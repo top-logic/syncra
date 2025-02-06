@@ -63,22 +63,13 @@ public interface ActivityBase extends com.top_logic.model.TLNamed {
 	String NAME_ATTR = "name";
 
 	/**
-	 * Part <code>riskCostImpact</code> of <code>Activity</code>
+	 * Part <code>valuations</code> of <code>Activity</code>
 	 * 
 	 * <p>
-	 * Declared as <code>tl.core:Integer</code> in configuration.
+	 * Declared as <code>kpi:Valuation</code> in configuration.
 	 * </p>
 	 */
-	String RISK_COST_IMPACT_ATTR = "riskCostImpact";
-
-	/**
-	 * Part <code>riskProbImpact</code> of <code>Activity</code>
-	 * 
-	 * <p>
-	 * Declared as <code>tl.core:Integer</code> in configuration.
-	 * </p>
-	 */
-	String RISK_PROB_IMPACT_ATTR = "riskProbImpact";
+	String VALUATIONS_ATTR = "valuations";
 
 	/**
 	 * Getter for part {@link #ACTIVITY_ID_ATTR}.
@@ -137,31 +128,46 @@ public interface ActivityBase extends com.top_logic.model.TLNamed {
 	}
 
 	/**
-	 * Getter for part {@link #RISK_COST_IMPACT_ATTR}.
+	 * Getter for part {@link #VALUATIONS_ATTR}.
 	 */
-	default Integer getRiskCostImpact() {
-		return (Integer) tValueByName(RISK_COST_IMPACT_ATTR);
+	@SuppressWarnings("unchecked")
+	default java.util.Set<? extends com.top_logic.model.TLObject> getValuations() {
+		return (java.util.Set<? extends com.top_logic.model.TLObject>) tValueByName(VALUATIONS_ATTR);
 	}
 
 	/**
-	 * Setter for part {@link #RISK_COST_IMPACT_ATTR}.
+	 * Live view of the {@link #VALUATIONS_ATTR} part.
+	 * <p>
+	 * Changes to this {@link java.util.Collection} change directly the attribute value.
+	 * The caller has to take care of the transaction handling.
+	 * </p>
 	 */
-	default void setRiskCostImpact(Integer newValue) {
-		tUpdateByName(RISK_COST_IMPACT_ATTR, newValue);
+	default java.util.Set<com.top_logic.model.TLObject> getValuationsModifiable() {
+		com.top_logic.model.TLStructuredTypePart attribute = tType().getPart(VALUATIONS_ATTR);
+		@SuppressWarnings("unchecked")
+		java.util.Set<com.top_logic.model.TLObject> result = (java.util.Set<com.top_logic.model.TLObject>) com.top_logic.element.meta.kbbased.WrapperMetaAttributeUtil.getLiveCollection(this, attribute);
+		return result;
 	}
 
 	/**
-	 * Getter for part {@link #RISK_PROB_IMPACT_ATTR}.
+	 * Setter for part {@link #VALUATIONS_ATTR}.
 	 */
-	default Integer getRiskProbImpact() {
-		return (Integer) tValueByName(RISK_PROB_IMPACT_ATTR);
+	default void setValuations(java.util.Set<com.top_logic.model.TLObject> newValue) {
+		tUpdateByName(VALUATIONS_ATTR, newValue);
 	}
 
 	/**
-	 * Setter for part {@link #RISK_PROB_IMPACT_ATTR}.
+	 * Adds a value to the {@link #VALUATIONS_ATTR} reference.
 	 */
-	default void setRiskProbImpact(Integer newValue) {
-		tUpdateByName(RISK_PROB_IMPACT_ATTR, newValue);
+	default void addValuation(com.top_logic.model.TLObject newValue) {
+		tAddByName(VALUATIONS_ATTR, newValue);
+	}
+
+	/**
+	 * Removes the given value from the {@link #VALUATIONS_ATTR} reference.
+	 */
+	default void removeValuation(com.top_logic.model.TLObject oldValue) {
+		tRemoveByName(VALUATIONS_ATTR, oldValue);
 	}
 
 }

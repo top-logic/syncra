@@ -28,8 +28,8 @@ public class OpenImportCatalogsDialog extends AbstractCommandHandler {
 	public OpenImportCatalogsDialog(InstantiationContext context, Config config) {
 		super(context, config);
 		_importers = new ArrayList<>();
-		for (PolymorphicConfiguration<TypeImporter> tif : config.getImporters()) {
-			_importers.add(context.getInstance(tif));
+		for (PolymorphicConfiguration<TypeImporter> typeImporter : config.getImporters()) {
+			_importers.add(context.getInstance(typeImporter));
 		}
 
 	}

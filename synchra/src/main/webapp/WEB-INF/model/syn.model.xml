@@ -36,16 +36,6 @@
 							type="tl.core:Integer"
 						/>
 						<field
-							attribute="riskCostImpact"
-							fullQualifiedName="syn:Activity#riskCostImpact"
-							type="tl.core:Integer"
-						/>
-						<field
-							attribute="riskProbImpact"
-							fullQualifiedName="syn:Activity#riskProbImpact"
-							type="tl.core:Integer"
-						/>
-						<field
 							attribute="kind"
 							fullQualifiedName="syn:Activity#kind"
 							type="syn:ActivityKind"
@@ -80,12 +70,6 @@
 				<property name="costs"
 					type="tl.core:Integer"
 				/>
-				<property name="riskCostImpact"
-					type="tl.core:Integer"
-				/>
-				<property name="riskProbImpact"
-					type="tl.core:Integer"
-				/>
 				<property name="activityId"
 					type="tl.core:String"
 				>
@@ -114,6 +98,7 @@
 				</reference>
 				<reference name="valuations"
 					composite="true"
+					inverse-reference="activity"
 					kind="forwards"
 					multiple="true"
 					navigate="true"
@@ -217,6 +202,21 @@
 				<property name="componentID"
 					type="tl.core:String"
 				/>
+				<property name="priceAfterActivities"
+					type="tl.core:Double"
+				>
+					<annotations>
+						<storage-algorithm>
+							<query>
+								<expr><![CDATA[comp -> $comp.get(`syn:Component#price`) + 
+        $comp.get(`syn:Component#valuations`).filter(
+        v -> $v.get(`kpi:AbstractValuation#kpi`).get(`kpi:Kpi#name`).equals("Preis")).
+        map(v -> $v.get(`kpi:AbstractValuation#value`)).sum()
+        ]]></expr>
+							</query>
+						</storage-algorithm>
+					</annotations>
+				</property>
 			</attributes>
 		</interface>
 		<class name="ConstructionGroup">

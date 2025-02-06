@@ -211,11 +211,13 @@ public class TypeImporter {
 	public void initHeaders(Row row) throws IOException {
 		for (int i = row.getFirstCellNum(); i < row.getLastCellNum(); i++) {
 			String value = row.getCell(i).getStringCellValue();
-			AttributeImport description = _attributesByHeaderName.get(value);
-			if (description == null) {
-				throw getException("Not allowed header: " + value);
+			if (!StringServices.isEmpty(value)) {
+				AttributeImport description = _attributesByHeaderName.get(value);
+				if (description == null) {
+					throw getException("Not allowed header: " + value);
+				}
+				description.setColumn(i);
 			}
-			description.setColumn(i);
 		}
 		for (AttributeImport ad : _attributesByName.values()) {
 			if (!ad.hasColumn()) {

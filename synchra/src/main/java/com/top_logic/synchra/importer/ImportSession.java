@@ -33,6 +33,10 @@ public class ImportSession {
 		List<TLClass> generalizations = tlClass.getGeneralizations();
 		for (TLClass gen : generalizations) {
 			MapUtil.addObjectToSet(_newObjects, gen, obj);
+			List<TLClass> generalizations2 = gen.getGeneralizations();
+			for (TLClass gen2 : generalizations2) {
+				MapUtil.addObjectToSet(_newObjects, gen2, obj);
+			}
 		}
 	}
 

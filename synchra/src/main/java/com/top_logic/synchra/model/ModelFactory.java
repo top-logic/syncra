@@ -99,17 +99,10 @@ public class ModelFactory extends com.top_logic.element.meta.kbbased.AbstractEle
 	}
 
 	/**
-	 * Lookup {@link com.top_logic.synchra.model.interfaces.Activity#RISK_COST_IMPACT_ATTR} of {@link com.top_logic.synchra.model.interfaces.Activity}.
+	 * Lookup {@link com.top_logic.synchra.model.interfaces.Activity#VALUATIONS_ATTR} of {@link com.top_logic.synchra.model.interfaces.Activity}.
 	 */
-	public static com.top_logic.model.TLProperty getRiskCostImpactActivityAttr() {
-		return (com.top_logic.model.TLProperty) getActivityType().getPart(com.top_logic.synchra.model.interfaces.Activity.RISK_COST_IMPACT_ATTR);
-	}
-
-	/**
-	 * Lookup {@link com.top_logic.synchra.model.interfaces.Activity#RISK_PROB_IMPACT_ATTR} of {@link com.top_logic.synchra.model.interfaces.Activity}.
-	 */
-	public static com.top_logic.model.TLProperty getRiskProbImpactActivityAttr() {
-		return (com.top_logic.model.TLProperty) getActivityType().getPart(com.top_logic.synchra.model.interfaces.Activity.RISK_PROB_IMPACT_ATTR);
+	public static com.top_logic.model.TLReference getValuationsActivityAttr() {
+		return (com.top_logic.model.TLReference) getActivityType().getPart(com.top_logic.synchra.model.interfaces.Activity.VALUATIONS_ATTR);
 	}
 
 	/**
@@ -173,6 +166,13 @@ public class ModelFactory extends com.top_logic.element.meta.kbbased.AbstractEle
 	 */
 	public static com.top_logic.model.TLProperty getPriceComponentAttr() {
 		return (com.top_logic.model.TLProperty) getComponentType().getPart(com.top_logic.synchra.model.interfaces.Component.PRICE_ATTR);
+	}
+
+	/**
+	 * Lookup {@link com.top_logic.synchra.model.interfaces.Component#PRICE_AFTER_ACTIVITIES_ATTR} of {@link com.top_logic.synchra.model.interfaces.Component}.
+	 */
+	public static com.top_logic.model.TLProperty getPriceAfterActivitiesComponentAttr() {
+		return (com.top_logic.model.TLProperty) getComponentType().getPart(com.top_logic.synchra.model.interfaces.Component.PRICE_AFTER_ACTIVITIES_ATTR);
 	}
 
 	/**

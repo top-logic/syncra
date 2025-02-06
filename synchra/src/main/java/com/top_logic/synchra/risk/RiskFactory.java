@@ -253,6 +253,13 @@ public class RiskFactory extends com.top_logic.element.meta.kbbased.AbstractElem
 	}
 
 	/**
+	 * Lookup {@link com.top_logic.synchra.risk.interfaces.Risk#PROBABILITY_AFTER_ACTIVITIES_ATTR} of {@link com.top_logic.synchra.risk.interfaces.Risk}.
+	 */
+	public static com.top_logic.model.TLProperty getProbabilityAfterActivitiesRiskAttr() {
+		return (com.top_logic.model.TLProperty) getRiskType().getPart(com.top_logic.synchra.risk.interfaces.Risk.PROBABILITY_AFTER_ACTIVITIES_ATTR);
+	}
+
+	/**
 	 * Lookup {@link com.top_logic.synchra.risk.interfaces.Risk#RISK_CLASS_ATTR} of {@link com.top_logic.synchra.risk.interfaces.Risk}.
 	 */
 	public static com.top_logic.model.TLReference getRiskClassRiskAttr() {

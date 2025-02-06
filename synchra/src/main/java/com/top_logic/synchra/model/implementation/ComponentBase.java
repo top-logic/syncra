@@ -45,6 +45,15 @@ public interface ComponentBase extends com.top_logic.model.TLNamed {
 	String PRICE_ATTR = "price";
 
 	/**
+	 * Part <code>priceAfterActivities</code> of <code>Component</code>
+	 * 
+	 * <p>
+	 * Declared as <code>tl.core:Double</code> in configuration.
+	 * </p>
+	 */
+	String PRICE_AFTER_ACTIVITIES_ATTR = "priceAfterActivities";
+
+	/**
 	 * Part <code>risks</code> of <code>Component</code>
 	 * 
 	 * <p>
@@ -88,6 +97,13 @@ public interface ComponentBase extends com.top_logic.model.TLNamed {
 	 */
 	default void setPrice(Double newValue) {
 		tUpdateByName(PRICE_ATTR, newValue);
+	}
+
+	/**
+	 * Getter for part {@link #PRICE_AFTER_ACTIVITIES_ATTR}.
+	 */
+	default Double getPriceAfterActivities() {
+		return (Double) tValueByName(PRICE_AFTER_ACTIVITIES_ATTR);
 	}
 
 	/**

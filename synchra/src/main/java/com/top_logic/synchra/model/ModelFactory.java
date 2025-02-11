@@ -400,13 +400,6 @@ public class ModelFactory extends com.top_logic.element.meta.kbbased.AbstractEle
 	}
 
 	/**
-	 * Lookup {@link com.top_logic.synchra.model.interfaces.Connection#RULE_ATTR} of {@link com.top_logic.synchra.model.interfaces.Connection}.
-	 */
-	public static com.top_logic.model.TLProperty getRuleConnectionAttr() {
-		return (com.top_logic.model.TLProperty) getConnectionType().getPart(com.top_logic.synchra.model.interfaces.Connection.RULE_ATTR);
-	}
-
-	/**
 	 * Lookup {@link com.top_logic.synchra.model.interfaces.Connection#USED_ATTR} of {@link com.top_logic.synchra.model.interfaces.Connection}.
 	 */
 	public static com.top_logic.model.TLReference getUsedConnectionAttr() {

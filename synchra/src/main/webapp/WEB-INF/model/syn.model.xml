@@ -528,9 +528,6 @@
 				<property name="position"
 					type="tl.core:String"
 				/>
-				<property name="rule"
-					type="tl.core:String"
-				/>
 			</attributes>
 		</class>
 		<class name="Material">
@@ -806,11 +803,6 @@ all(`syn:Company`).map( company ->
 							attribute="product"
 							fullQualifiedName="syn:ProductSelection#product"
 							type="syn:Product"
-						/>
-						<field
-							attribute="rule"
-							fullQualifiedName="syn:ProductSelection#rule"
-							type="tl.core:String"
 						/>
 						<field
 							attribute="referenceDate"

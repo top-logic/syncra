@@ -36,15 +36,6 @@ public interface ConnectionBase extends com.top_logic.model.TLObject {
 	String POSITION_ATTR = "position";
 
 	/**
-	 * Part <code>rule</code> of <code>Connection</code>
-	 * 
-	 * <p>
-	 * Declared as <code>tl.core:String</code> in configuration.
-	 * </p>
-	 */
-	String RULE_ATTR = "rule";
-
-	/**
 	 * Part <code>used</code> of <code>Connection</code>
 	 * 
 	 * <p>
@@ -79,20 +70,6 @@ public interface ConnectionBase extends com.top_logic.model.TLObject {
 	 */
 	default void setPosition(String newValue) {
 		tUpdateByName(POSITION_ATTR, newValue);
-	}
-
-	/**
-	 * Getter for part {@link #RULE_ATTR}.
-	 */
-	default String getRule() {
-		return (String) tValueByName(RULE_ATTR);
-	}
-
-	/**
-	 * Setter for part {@link #RULE_ATTR}.
-	 */
-	default void setRule(String newValue) {
-		tUpdateByName(RULE_ATTR, newValue);
 	}
 
 	/**

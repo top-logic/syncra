@@ -6,7 +6,7 @@
 >
 	<arguments orientation="VERTICAL">
 		<components>
-			<layout-reference resource="synchra/products/componentNodes/partsList/componentPlaceholderLayout1.layout.xml">
+			<layout-reference resource="synchra/products/componentNodes/partsList/componentNodeGrid.layout.xml">
 				<layoutInfo/>
 			</layout-reference>
 			<layout-reference resource="synchra/products/componentNodes/partsList/componentPlaceholderLayout2.layout.xml">

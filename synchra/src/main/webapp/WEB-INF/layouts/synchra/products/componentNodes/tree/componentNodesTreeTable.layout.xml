@@ -85,6 +85,17 @@
 					<de>Risiken</de>
 				</columnLabel>
 			</configurationProvider>
+			<configurationProvider class="com.top_logic.model.search.providers.ComputedColumnProviderByExpression"
+				accessor="row -> model -> $row.get(`syn:ComponentNode#component`).get(`syn:Component#goalPrice`)"
+				columnId="ID_16bb0e85_71ba_4973_9ea3_373261c3e4c3"
+				columnType="tl.core:Double"
+				updater="row -> val -> $row.get(`syn:ComponentNode#component`).set(`syn:Component#goalPrice`,$val)"
+			>
+				<columnLabel key="dynamic.5999a543-571b-46d5-8c73-4b1b122e9433">
+					<en>Goal price</en>
+					<de>Zielpreis</de>
+				</columnLabel>
+			</configurationProvider>
 		</configurationProviders>
 		<buttons>
 			<button id="ID_1efa6053_bab5_4514_9bb3_53fa4c7bda0f"

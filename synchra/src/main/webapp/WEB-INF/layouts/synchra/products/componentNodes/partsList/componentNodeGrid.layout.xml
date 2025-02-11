@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	template="com.top_logic.element/treegrid.template.xml"
+>
+	<arguments
+		defaultColumns="name,price"
+		model="output(synchra/products/componentNodes/productSelect.layout.xml#Form)"
+		rootVisible="false"
+		type="syn:ComponentNode"
+	>
+		<name key="dynamic.6a3cf484-3d31-47a3-b935-80ef3a3ec98a">
+			<en>Product tree2</en>
+			<de>Produktbaum2</de>
+		</name>
+		<modelBuilder class="com.top_logic.model.search.providers.TreeModelByExpression"
+			leafPredicate="node -> $node.instanceOf(`syn:ComponentNode`) &amp;&amp; $node.get(`syn:ComponentNode#component`).get(`syn:ConstructionGroup#consistsOf`).isEmpty()"
+			nodePredicate="node->$node.instanceOf(`syn:ComponentNode`)"
+			parents="node->$node.get(`syn:ComponentNode#parent`)"
+			rootNode="`synchra.Bom#LIBRARIES`"
+		>
+			<children><![CDATA[node -> model -> switch {
+    $model==null: null;
+    $node.instanceOf(`synchra.Bom:Libraries`): {
+        date = $model.get(`syn:ProductSelection#referenceDate`);
+        revision = $date==null ?  currentRevision() : revisionAt($date);
+        product = $model.get(`syn:ProductSelection#product`).inRevision($revision);
+        new(`syn:ComponentNode`, transient:true)
+            ..set(`syn:ComponentNode#component`, $product.get(`syn:Product#buildGroup`))
+            ..set(`syn:ComponentNode#parent`, null)
+            ..set(`syn:ComponentNode#connection`, null)
+            ..set(`syn:ComponentNode#product`, $product);
+       };
+    $node.instanceOf(`syn:ComponentNode`):{
+       $node.get(`syn:ComponentNode#component`).get(`syn:ConstructionGroup#consistsOf`)
+            .map( con -> 
+                  new(`syn:ComponentNode`, transient:true)
+                    ..set(`syn:ComponentNode#component`, $con.get(`syn:Connection#consistsOf`))
+                    ..set(`syn:ComponentNode#parent`, $node)
+                    ..set(`syn:ComponentNode#connection`, $con)
+                    ..set(`syn:ComponentNode#product`, $node.get(`syn:ComponentNode#product`))
+            );
+     };
+}]]></children>
+		</modelBuilder>
+		<configurationProviders>
+			<configurationProvider class="com.top_logic.model.search.providers.ComputedColumnProviderByExpression"
+				accessor="row -> model -> $row.get(`syn:ComponentNode#component`).get(`syn:Component#goalPrice`)"
+				columnId="ID_ffa682e0_678e_45e8_9782_bce1d090cf22"
+				columnType="tl.core:Double"
+				updater="row -> val -> $row.get(`syn:ComponentNode#component`).set(`syn:Component#goalPrice`,$val)"
+			>
+				<columnLabel key="dynamic.17934988-808b-4337-ad62-8bf5d001017c">
+					<en>Goal price</en>
+					<de>Zielpreis</de>
+				</columnLabel>
+			</configurationProvider>
+		</configurationProviders>
+		<editExecutability>
+			<rule-by-expression decision="true"/>
+		</editExecutability>
+		<buttons>
+			<button id="exportExcelGrid"
+				class="com.top_logic.layout.table.export.StreamingExcelExportHandler"
+			/>
+			<button id="createNewRow"
+				class="com.top_logic.model.search.providers.GridCreateHandlerByExpression"
+				createContext="model -> $model"
+				initOperation="createContext -> newObject -> target -> $createContext.add(`syn:ConstructionGroup#consistsOf`, $newObject)"
+				target="selection(self())"
+			>
+				<checkScopeProvider/>
+				<type-options class="com.top_logic.element.layout.create.AttributeBasedCreateTypeOptions"
+					attribute="syn:ConstructionGroup#consistsOf"
+					owner="syn:Component"
+				/>
+			</button>
+		</buttons>
+	</arguments>
+</config:template-call>

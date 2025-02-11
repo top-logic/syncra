@@ -36,6 +36,15 @@ public interface ComponentBase extends com.top_logic.model.TLNamed {
 	String NAME_ATTR = "name";
 
 	/**
+	 * Part <code>pictures</code> of <code>Component</code>
+	 * 
+	 * <p>
+	 * Declared as <code>tl.imagegallery:GalleryImage</code> in configuration.
+	 * </p>
+	 */
+	String PICTURES_ATTR = "pictures";
+
+	/**
 	 * Part <code>price</code> of <code>Component</code>
 	 * 
 	 * <p>
@@ -43,6 +52,15 @@ public interface ComponentBase extends com.top_logic.model.TLNamed {
 	 * </p>
 	 */
 	String PRICE_ATTR = "price";
+
+	/**
+	 * Part <code>priceActivityContribution</code> of <code>Component</code>
+	 * 
+	 * <p>
+	 * Declared as <code>tl.core:Double</code> in configuration.
+	 * </p>
+	 */
+	String PRICE_ACTIVITY_CONTRIBUTION_ATTR = "priceActivityContribution";
 
 	/**
 	 * Part <code>priceAfterActivities</code> of <code>Component</code>
@@ -72,6 +90,33 @@ public interface ComponentBase extends com.top_logic.model.TLNamed {
 	String USED_ATTR = "used";
 
 	/**
+	 * Part <code>weight</code> of <code>Component</code>
+	 * 
+	 * <p>
+	 * Declared as <code>tl.core:Double</code> in configuration.
+	 * </p>
+	 */
+	String WEIGHT_ATTR = "weight";
+
+	/**
+	 * Part <code>weightActivityContribution</code> of <code>Component</code>
+	 * 
+	 * <p>
+	 * Declared as <code>tl.core:Double</code> in configuration.
+	 * </p>
+	 */
+	String WEIGHT_ACTIVITY_CONTRIBUTION_ATTR = "weightActivityContribution";
+
+	/**
+	 * Part <code>weightAfterActivities</code> of <code>Component</code>
+	 * 
+	 * <p>
+	 * Declared as <code>tl.core:Double</code> in configuration.
+	 * </p>
+	 */
+	String WEIGHT_AFTER_ACTIVITIES_ATTR = "weightAfterActivities";
+
+	/**
 	 * Getter for part {@link #COMPONENT_ID_ATTR}.
 	 */
 	default String getComponentID() {
@@ -86,6 +131,35 @@ public interface ComponentBase extends com.top_logic.model.TLNamed {
 	}
 
 	/**
+	 * Getter for part {@link #PICTURES_ATTR}.
+	 */
+	@SuppressWarnings("unchecked")
+	default java.util.List<? extends com.top_logic.element.model.imagegallery.GalleryImage> getPictures() {
+		return (java.util.List<? extends com.top_logic.element.model.imagegallery.GalleryImage>) tValueByName(PICTURES_ATTR);
+	}
+
+	/**
+	 * Setter for part {@link #PICTURES_ATTR}.
+	 */
+	default void setPictures(java.util.List<com.top_logic.element.model.imagegallery.GalleryImage> newValue) {
+		tUpdateByName(PICTURES_ATTR, newValue);
+	}
+
+	/**
+	 * Adds a value to the {@link #PICTURES_ATTR} reference.
+	 */
+	default void addPicture(com.top_logic.element.model.imagegallery.GalleryImage newValue) {
+		tAddByName(PICTURES_ATTR, newValue);
+	}
+
+	/**
+	 * Removes the given value from the {@link #PICTURES_ATTR} reference.
+	 */
+	default void removePicture(com.top_logic.element.model.imagegallery.GalleryImage oldValue) {
+		tRemoveByName(PICTURES_ATTR, oldValue);
+	}
+
+	/**
 	 * Getter for part {@link #PRICE_ATTR}.
 	 */
 	default Double getPrice() {
@@ -97,6 +171,13 @@ public interface ComponentBase extends com.top_logic.model.TLNamed {
 	 */
 	default void setPrice(Double newValue) {
 		tUpdateByName(PRICE_ATTR, newValue);
+	}
+
+	/**
+	 * Getter for part {@link #PRICE_ACTIVITY_CONTRIBUTION_ATTR}.
+	 */
+	default Double getPriceActivityContribution() {
+		return (Double) tValueByName(PRICE_ACTIVITY_CONTRIBUTION_ATTR);
 	}
 
 	/**
@@ -120,6 +201,34 @@ public interface ComponentBase extends com.top_logic.model.TLNamed {
 	@SuppressWarnings("unchecked")
 	default java.util.Set<? extends com.top_logic.synchra.model.interfaces.Connection> getUsed() {
 		return (java.util.Set<? extends com.top_logic.synchra.model.interfaces.Connection>) tValueByName(USED_ATTR);
+	}
+
+	/**
+	 * Getter for part {@link #WEIGHT_ATTR}.
+	 */
+	default Double getWeight() {
+		return (Double) tValueByName(WEIGHT_ATTR);
+	}
+
+	/**
+	 * Setter for part {@link #WEIGHT_ATTR}.
+	 */
+	default void setWeight(Double newValue) {
+		tUpdateByName(WEIGHT_ATTR, newValue);
+	}
+
+	/**
+	 * Getter for part {@link #WEIGHT_ACTIVITY_CONTRIBUTION_ATTR}.
+	 */
+	default Double getWeightActivityContribution() {
+		return (Double) tValueByName(WEIGHT_ACTIVITY_CONTRIBUTION_ATTR);
+	}
+
+	/**
+	 * Getter for part {@link #WEIGHT_AFTER_ACTIVITIES_ATTR}.
+	 */
+	default Double getWeightAfterActivities() {
+		return (Double) tValueByName(WEIGHT_AFTER_ACTIVITIES_ATTR);
 	}
 
 }

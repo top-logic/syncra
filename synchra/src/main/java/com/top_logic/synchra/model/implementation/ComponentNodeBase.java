@@ -72,6 +72,24 @@ public interface ComponentNodeBase extends com.top_logic.model.TLNamed {
 	String PRICE_ATTR = "price";
 
 	/**
+	 * Part <code>priceActivityContribution</code> of <code>ComponentNode</code>
+	 * 
+	 * <p>
+	 * Declared as <code>tl.core:Double</code> in configuration.
+	 * </p>
+	 */
+	String PRICE_ACTIVITY_CONTRIBUTION_ATTR = "priceActivityContribution";
+
+	/**
+	 * Part <code>priceAfterActivities</code> of <code>ComponentNode</code>
+	 * 
+	 * <p>
+	 * Declared as <code>tl.core:Double</code> in configuration.
+	 * </p>
+	 */
+	String PRICE_AFTER_ACTIVITIES_ATTR = "priceAfterActivities";
+
+	/**
 	 * Part <code>product</code> of <code>ComponentNode</code>
 	 * 
 	 * <p>
@@ -135,6 +153,20 @@ public interface ComponentNodeBase extends com.top_logic.model.TLNamed {
 	 */
 	default Double getPrice() {
 		return (Double) tValueByName(PRICE_ATTR);
+	}
+
+	/**
+	 * Getter for part {@link #PRICE_ACTIVITY_CONTRIBUTION_ATTR}.
+	 */
+	default Double getPriceActivityContribution() {
+		return (Double) tValueByName(PRICE_ACTIVITY_CONTRIBUTION_ATTR);
+	}
+
+	/**
+	 * Getter for part {@link #PRICE_AFTER_ACTIVITIES_ATTR}.
+	 */
+	default Double getPriceAfterActivities() {
+		return (Double) tValueByName(PRICE_AFTER_ACTIVITIES_ATTR);
 	}
 
 	/**

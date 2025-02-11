@@ -528,24 +528,7 @@
 				<property name="position"
 					type="tl.core:String"
 				/>
-				<reference name="countries"
-					kind="forwards"
-					multiple="true"
-					navigate="true"
-					type="Country"
-				/>
 				<property name="rule"
-					type="tl.core:String"
-				/>
-			</attributes>
-		</class>
-		<class name="Country">
-			<generalizations>
-				<generalization type="tl.model:TLObject"/>
-			</generalizations>
-			<attributes>
-				<property name="name"
-					mandatory="true"
 					type="tl.core:String"
 				/>
 			</attributes>
@@ -843,11 +826,6 @@ all(`syn:Company`).map( company ->
 					mandatory="true"
 					navigate="true"
 					type="Product"
-				/>
-				<reference name="country"
-					kind="forwards"
-					navigate="true"
-					type="Country"
 				/>
 				<property name="rule"
 					type="tl.core:String"

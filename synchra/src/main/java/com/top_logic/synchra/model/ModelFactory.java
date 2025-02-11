@@ -162,10 +162,24 @@ public class ModelFactory extends com.top_logic.element.meta.kbbased.AbstractEle
 	}
 
 	/**
+	 * Lookup {@link com.top_logic.synchra.model.interfaces.Component#PICTURES_ATTR} of {@link com.top_logic.synchra.model.interfaces.Component}.
+	 */
+	public static com.top_logic.model.TLReference getPicturesComponentAttr() {
+		return (com.top_logic.model.TLReference) getComponentType().getPart(com.top_logic.synchra.model.interfaces.Component.PICTURES_ATTR);
+	}
+
+	/**
 	 * Lookup {@link com.top_logic.synchra.model.interfaces.Component#PRICE_ATTR} of {@link com.top_logic.synchra.model.interfaces.Component}.
 	 */
 	public static com.top_logic.model.TLProperty getPriceComponentAttr() {
 		return (com.top_logic.model.TLProperty) getComponentType().getPart(com.top_logic.synchra.model.interfaces.Component.PRICE_ATTR);
+	}
+
+	/**
+	 * Lookup {@link com.top_logic.synchra.model.interfaces.Component#PRICE_ACTIVITY_CONTRIBUTION_ATTR} of {@link com.top_logic.synchra.model.interfaces.Component}.
+	 */
+	public static com.top_logic.model.TLProperty getPriceActivityContributionComponentAttr() {
+		return (com.top_logic.model.TLProperty) getComponentType().getPart(com.top_logic.synchra.model.interfaces.Component.PRICE_ACTIVITY_CONTRIBUTION_ATTR);
 	}
 
 	/**
@@ -187,6 +201,27 @@ public class ModelFactory extends com.top_logic.element.meta.kbbased.AbstractEle
 	 */
 	public static com.top_logic.model.TLReference getUsedComponentAttr() {
 		return (com.top_logic.model.TLReference) getComponentType().getPart(com.top_logic.synchra.model.interfaces.Component.USED_ATTR);
+	}
+
+	/**
+	 * Lookup {@link com.top_logic.synchra.model.interfaces.Component#WEIGHT_ATTR} of {@link com.top_logic.synchra.model.interfaces.Component}.
+	 */
+	public static com.top_logic.model.TLProperty getWeightComponentAttr() {
+		return (com.top_logic.model.TLProperty) getComponentType().getPart(com.top_logic.synchra.model.interfaces.Component.WEIGHT_ATTR);
+	}
+
+	/**
+	 * Lookup {@link com.top_logic.synchra.model.interfaces.Component#WEIGHT_ACTIVITY_CONTRIBUTION_ATTR} of {@link com.top_logic.synchra.model.interfaces.Component}.
+	 */
+	public static com.top_logic.model.TLProperty getWeightActivityContributionComponentAttr() {
+		return (com.top_logic.model.TLProperty) getComponentType().getPart(com.top_logic.synchra.model.interfaces.Component.WEIGHT_ACTIVITY_CONTRIBUTION_ATTR);
+	}
+
+	/**
+	 * Lookup {@link com.top_logic.synchra.model.interfaces.Component#WEIGHT_AFTER_ACTIVITIES_ATTR} of {@link com.top_logic.synchra.model.interfaces.Component}.
+	 */
+	public static com.top_logic.model.TLProperty getWeightAfterActivitiesComponentAttr() {
+		return (com.top_logic.model.TLProperty) getComponentType().getPart(com.top_logic.synchra.model.interfaces.Component.WEIGHT_AFTER_ACTIVITIES_ATTR);
 	}
 
 	/**
@@ -215,6 +250,27 @@ public class ModelFactory extends com.top_logic.element.meta.kbbased.AbstractEle
 	 */
 	public static com.top_logic.model.TLProperty getPriceConstructionGroupAttr() {
 		return (com.top_logic.model.TLProperty) getConstructionGroupType().getPart(com.top_logic.synchra.model.interfaces.ConstructionGroup.PRICE_ATTR);
+	}
+
+	/**
+	 * Lookup {@link com.top_logic.synchra.model.interfaces.ConstructionGroup#PRICE_AFTER_ACTIVITIES_ATTR} of {@link com.top_logic.synchra.model.interfaces.ConstructionGroup}.
+	 */
+	public static com.top_logic.model.TLProperty getPriceAfterActivitiesConstructionGroupAttr() {
+		return (com.top_logic.model.TLProperty) getConstructionGroupType().getPart(com.top_logic.synchra.model.interfaces.ConstructionGroup.PRICE_AFTER_ACTIVITIES_ATTR);
+	}
+
+	/**
+	 * Lookup {@link com.top_logic.synchra.model.interfaces.ConstructionGroup#WEIGHT_ATTR} of {@link com.top_logic.synchra.model.interfaces.ConstructionGroup}.
+	 */
+	public static com.top_logic.model.TLProperty getWeightConstructionGroupAttr() {
+		return (com.top_logic.model.TLProperty) getConstructionGroupType().getPart(com.top_logic.synchra.model.interfaces.ConstructionGroup.WEIGHT_ATTR);
+	}
+
+	/**
+	 * Lookup {@link com.top_logic.synchra.model.interfaces.ConstructionGroup#WEIGHT_AFTER_ACTIVITIES_ATTR} of {@link com.top_logic.synchra.model.interfaces.ConstructionGroup}.
+	 */
+	public static com.top_logic.model.TLProperty getWeightAfterActivitiesConstructionGroupAttr() {
+		return (com.top_logic.model.TLProperty) getConstructionGroupType().getPart(com.top_logic.synchra.model.interfaces.ConstructionGroup.WEIGHT_AFTER_ACTIVITIES_ATTR);
 	}
 
 	/**
@@ -302,6 +358,20 @@ public class ModelFactory extends com.top_logic.element.meta.kbbased.AbstractEle
 	}
 
 	/**
+	 * Lookup {@link com.top_logic.synchra.model.interfaces.ComponentNode#PRICE_ACTIVITY_CONTRIBUTION_ATTR} of {@link com.top_logic.synchra.model.interfaces.ComponentNode}.
+	 */
+	public static com.top_logic.model.TLProperty getPriceActivityContributionComponentNodeAttr() {
+		return (com.top_logic.model.TLProperty) getComponentNodeType().getPart(com.top_logic.synchra.model.interfaces.ComponentNode.PRICE_ACTIVITY_CONTRIBUTION_ATTR);
+	}
+
+	/**
+	 * Lookup {@link com.top_logic.synchra.model.interfaces.ComponentNode#PRICE_AFTER_ACTIVITIES_ATTR} of {@link com.top_logic.synchra.model.interfaces.ComponentNode}.
+	 */
+	public static com.top_logic.model.TLProperty getPriceAfterActivitiesComponentNodeAttr() {
+		return (com.top_logic.model.TLProperty) getComponentNodeType().getPart(com.top_logic.synchra.model.interfaces.ComponentNode.PRICE_AFTER_ACTIVITIES_ATTR);
+	}
+
+	/**
 	 * Lookup {@link com.top_logic.synchra.model.interfaces.ComponentNode#PRODUCT_ATTR} of {@link com.top_logic.synchra.model.interfaces.ComponentNode}.
 	 */
 	public static com.top_logic.model.TLReference getProductComponentNodeAttr() {
@@ -323,13 +393,6 @@ public class ModelFactory extends com.top_logic.element.meta.kbbased.AbstractEle
 	}
 
 	/**
-	 * Lookup {@link com.top_logic.synchra.model.interfaces.Connection#COUNTRIES_ATTR} of {@link com.top_logic.synchra.model.interfaces.Connection}.
-	 */
-	public static com.top_logic.model.TLReference getCountriesConnectionAttr() {
-		return (com.top_logic.model.TLReference) getConnectionType().getPart(com.top_logic.synchra.model.interfaces.Connection.COUNTRIES_ATTR);
-	}
-
-	/**
 	 * Lookup {@link com.top_logic.synchra.model.interfaces.Connection#POSITION_ATTR} of {@link com.top_logic.synchra.model.interfaces.Connection}.
 	 */
 	public static com.top_logic.model.TLProperty getPositionConnectionAttr() {
@@ -348,20 +411,6 @@ public class ModelFactory extends com.top_logic.element.meta.kbbased.AbstractEle
 	 */
 	public static com.top_logic.model.TLReference getUsedConnectionAttr() {
 		return (com.top_logic.model.TLReference) getConnectionType().getPart(com.top_logic.synchra.model.interfaces.Connection.USED_ATTR);
-	}
-
-	/**
-	 * Lookup {@link com.top_logic.synchra.model.interfaces.Country} type.
-	 */
-	public static com.top_logic.model.TLClass getCountryType() {
-		return (com.top_logic.model.TLClass) com.top_logic.util.model.ModelService.getApplicationModel().getModule(SYN_STRUCTURE).getType(com.top_logic.synchra.model.interfaces.Country.COUNTRY_TYPE);
-	}
-
-	/**
-	 * Lookup {@link com.top_logic.synchra.model.interfaces.Country#NAME_ATTR} of {@link com.top_logic.synchra.model.interfaces.Country}.
-	 */
-	public static com.top_logic.model.TLProperty getNameCountryAttr() {
-		return (com.top_logic.model.TLProperty) getCountryType().getPart(com.top_logic.synchra.model.interfaces.Country.NAME_ATTR);
 	}
 
 	/**
@@ -568,13 +617,6 @@ public class ModelFactory extends com.top_logic.element.meta.kbbased.AbstractEle
 	}
 
 	/**
-	 * Lookup {@link com.top_logic.synchra.model.interfaces.ProductSelection#COUNTRY_ATTR} of {@link com.top_logic.synchra.model.interfaces.ProductSelection}.
-	 */
-	public static com.top_logic.model.TLReference getCountryProductSelectionAttr() {
-		return (com.top_logic.model.TLReference) getProductSelectionType().getPart(com.top_logic.synchra.model.interfaces.ProductSelection.COUNTRY_ATTR);
-	}
-
-	/**
 	 * Lookup {@link com.top_logic.synchra.model.interfaces.ProductSelection#PRODUCT_ATTR} of {@link com.top_logic.synchra.model.interfaces.ProductSelection}.
 	 */
 	public static com.top_logic.model.TLReference getProductProductSelectionAttr() {
@@ -729,19 +771,6 @@ public class ModelFactory extends com.top_logic.element.meta.kbbased.AbstractEle
 	 * Storage table name of {@link #CONNECTION_NODE} objects.
 	 */
 	public static final String KO_NAME_CONNECTION = "GenericObject";
-
-	/**
-	 * Name of type <code>Country</code> in structure {@link #SYN_STRUCTURE}.
-	 * 
-	 * @deprecated Use {@link com.top_logic.synchra.model.interfaces.Country#COUNTRY_TYPE}.
-	 */
-	@Deprecated
-	public static final String COUNTRY_NODE = com.top_logic.synchra.model.interfaces.Country.COUNTRY_TYPE;
-
-	/**
-	 * Storage table name of {@link #COUNTRY_NODE} objects.
-	 */
-	public static final String KO_NAME_COUNTRY = "GenericObject";
 
 	/**
 	 * Name of type <code>Material</code> in structure {@link #SYN_STRUCTURE}.
@@ -917,20 +946,6 @@ public class ModelFactory extends com.top_logic.element.meta.kbbased.AbstractEle
 	 */
 	public final com.top_logic.synchra.model.interfaces.Connection createConnection() {
 		return createConnection(null);
-	}
-
-	/**
-	 * Create an instance of {@link com.top_logic.synchra.model.interfaces.Country} type.
-	 */
-	public final com.top_logic.synchra.model.interfaces.Country createCountry(com.top_logic.model.TLObject context) {
-		return (com.top_logic.synchra.model.interfaces.Country) createObject(getCountryType(), context);
-	}
-
-	/**
-	 * Create an instance of {@link com.top_logic.synchra.model.interfaces.Country} type.
-	 */
-	public final com.top_logic.synchra.model.interfaces.Country createCountry() {
-		return createCountry(null);
 	}
 
 	/**

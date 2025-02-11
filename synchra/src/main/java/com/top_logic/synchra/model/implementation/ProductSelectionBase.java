@@ -18,15 +18,6 @@ public interface ProductSelectionBase extends com.top_logic.model.TLObject {
 	String PRODUCT_SELECTION_TYPE = "ProductSelection";
 
 	/**
-	 * Part <code>country</code> of <code>ProductSelection</code>
-	 * 
-	 * <p>
-	 * Declared as <code>syn:Country</code> in configuration.
-	 * </p>
-	 */
-	String COUNTRY_ATTR = "country";
-
-	/**
 	 * Part <code>product</code> of <code>ProductSelection</code>
 	 * 
 	 * <p>
@@ -52,20 +43,6 @@ public interface ProductSelectionBase extends com.top_logic.model.TLObject {
 	 * </p>
 	 */
 	String RULE_ATTR = "rule";
-
-	/**
-	 * Getter for part {@link #COUNTRY_ATTR}.
-	 */
-	default com.top_logic.synchra.model.interfaces.Country getCountry() {
-		return (com.top_logic.synchra.model.interfaces.Country) tValueByName(COUNTRY_ATTR);
-	}
-
-	/**
-	 * Setter for part {@link #COUNTRY_ATTR}.
-	 */
-	default void setCountry(com.top_logic.synchra.model.interfaces.Country newValue) {
-		tUpdateByName(COUNTRY_ATTR, newValue);
-	}
 
 	/**
 	 * Getter for part {@link #PRODUCT_ATTR}.

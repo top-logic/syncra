@@ -27,15 +27,6 @@ public interface ConnectionBase extends com.top_logic.model.TLObject {
 	String CONSISTS_OF_ATTR = "consistsOf";
 
 	/**
-	 * Part <code>countries</code> of <code>Connection</code>
-	 * 
-	 * <p>
-	 * Declared as <code>syn:Country</code> in configuration.
-	 * </p>
-	 */
-	String COUNTRIES_ATTR = "countries";
-
-	/**
 	 * Part <code>position</code> of <code>Connection</code>
 	 * 
 	 * <p>
@@ -74,49 +65,6 @@ public interface ConnectionBase extends com.top_logic.model.TLObject {
 	 */
 	default void setConsistsOf(com.top_logic.synchra.model.interfaces.Component newValue) {
 		tUpdateByName(CONSISTS_OF_ATTR, newValue);
-	}
-
-	/**
-	 * Getter for part {@link #COUNTRIES_ATTR}.
-	 */
-	@SuppressWarnings("unchecked")
-	default java.util.Set<? extends com.top_logic.synchra.model.interfaces.Country> getCountries() {
-		return (java.util.Set<? extends com.top_logic.synchra.model.interfaces.Country>) tValueByName(COUNTRIES_ATTR);
-	}
-
-	/**
-	 * Live view of the {@link #COUNTRIES_ATTR} part.
-	 * <p>
-	 * Changes to this {@link java.util.Collection} change directly the attribute value.
-	 * The caller has to take care of the transaction handling.
-	 * </p>
-	 */
-	default java.util.Set<com.top_logic.synchra.model.interfaces.Country> getCountriesModifiable() {
-		com.top_logic.model.TLStructuredTypePart attribute = tType().getPart(COUNTRIES_ATTR);
-		@SuppressWarnings("unchecked")
-		java.util.Set<com.top_logic.synchra.model.interfaces.Country> result = (java.util.Set<com.top_logic.synchra.model.interfaces.Country>) com.top_logic.element.meta.kbbased.WrapperMetaAttributeUtil.getLiveCollection(this, attribute);
-		return result;
-	}
-
-	/**
-	 * Setter for part {@link #COUNTRIES_ATTR}.
-	 */
-	default void setCountries(java.util.Set<com.top_logic.synchra.model.interfaces.Country> newValue) {
-		tUpdateByName(COUNTRIES_ATTR, newValue);
-	}
-
-	/**
-	 * Adds a value to the {@link #COUNTRIES_ATTR} reference.
-	 */
-	default void addCountry(com.top_logic.synchra.model.interfaces.Country newValue) {
-		tAddByName(COUNTRIES_ATTR, newValue);
-	}
-
-	/**
-	 * Removes the given value from the {@link #COUNTRIES_ATTR} reference.
-	 */
-	default void removeCountry(com.top_logic.synchra.model.interfaces.Country oldValue) {
-		tRemoveByName(COUNTRIES_ATTR, oldValue);
 	}
 
 	/**

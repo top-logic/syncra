@@ -68,21 +68,6 @@
 				</columnLabel>
 			</configurationProvider>
 			<configurationProvider class="com.top_logic.model.search.providers.ComputedColumnProviderByExpression"
-				accessor="row -> model -> $row.get(`syn:ComponentNode#connection`).get(`syn:Connection#countries`)"
-				columnId="ID_d7cb9ace_d438_4d72_be15_b30495677e36"
-				columnType="syn:Country"
-			>
-				<columnLabel key="dynamic.67710a65-69fb-41f1-b33b-c4b67f6494b5">
-					<en>Countries</en>
-					<de>Länder</de>
-				</columnLabel>
-				<annotations>
-					<column-info>
-						<comparator class="com.top_logic.basic.col.ComparableComparator"/>
-					</column-info>
-				</annotations>
-			</configurationProvider>
-			<configurationProvider class="com.top_logic.model.search.providers.ComputedColumnProviderByExpression"
 				accessor="row -> model -> $row.get(`syn:ComponentNode#connection`).get(`syn:Connection#rule`)"
 				columnId="ID_84ca2c86_e001_43e5_8556_c5a4358a4f5b"
 				columnType="tl.core:String"

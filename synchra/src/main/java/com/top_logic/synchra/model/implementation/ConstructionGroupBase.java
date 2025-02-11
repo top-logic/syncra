@@ -85,4 +85,28 @@ public interface ConstructionGroupBase extends com.top_logic.synchra.model.inter
 		return (Double) tValueByName(PRICE_ATTR);
 	}
 
+	/**
+	 * Getter for part {@link #PRICE_AFTER_ACTIVITIES_ATTR}.
+	 */
+	@Override
+	default Double getPriceAfterActivities() {
+		return (Double) tValueByName(PRICE_AFTER_ACTIVITIES_ATTR);
+	}
+
+	/**
+	 * Getter for part {@link #WEIGHT_ATTR}.
+	 */
+	@Override
+	default Double getWeight() {
+		return (Double) tValueByName(WEIGHT_ATTR);
+	}
+
+	/**
+	 * Getter for part {@link #WEIGHT_AFTER_ACTIVITIES_ATTR}.
+	 */
+	@Override
+	default Double getWeightAfterActivities() {
+		return (Double) tValueByName(WEIGHT_AFTER_ACTIVITIES_ATTR);
+	}
+
 }

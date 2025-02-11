@@ -170,12 +170,11 @@
 						</references>
 					</importer>
 					<importer
-						id-attributes="consistsOf,used,rule,position"
+						id-attributes="consistsOf,used,position"
 						tl-class="syn:Connection"
 					>
 						<properties>
 							<property name="syn:Connection#position"/>
-							<property name="syn:Connection#rule"/>
 						</properties>
 						<references>
 							<reference name="syn:Connection#consistsOf"

@@ -105,5 +105,144 @@
 				/>
 			</attributes>
 		</interface>
+		<class name="Progress">
+			<generalizations>
+				<generalization type="tl.model:TLObject"/>
+			</generalizations>
+			<annotations>
+				<form-definition>
+					<form>
+						<group>
+							<field
+								attribute="priceOld"
+								fullQualifiedName="kpi:Progress#priceOld"
+								type="tl.core:Double"
+							/>
+							<field
+								attribute="componentOld"
+								fullQualifiedName="kpi:Progress#componentOld"
+								type="syn:Component"
+							/>
+							<label key="dynamic.95fa19cb-c530-4413-80c8-4ee24fb7f304">
+								<de>Datum 1</de>
+							</label>
+						</group>
+						<group>
+							<field
+								attribute="priceNew"
+								fullQualifiedName="kpi:Progress#priceNew"
+								type="tl.core:Double"
+							/>
+							<field
+								attribute="componentNew"
+								fullQualifiedName="kpi:Progress#componentNew"
+								type="syn:Component"
+							/>
+							<label key="dynamic.1cdc5498-6bd0-4e2d-8fc6-0bd7f12b7931">
+								<en>Date 2</en>
+								<de>Datum 2</de>
+							</label>
+						</group>
+						<field
+							attribute="priceDifference"
+							fullQualifiedName="kpi:Progress#priceDifference"
+							type="tl.core:Double"
+						/>
+					</form>
+				</form-definition>
+			</annotations>
+			<attributes>
+				<property name="dateOld"
+					type="tl.core:DateTime"
+				/>
+				<property name="dateNew"
+					type="tl.core:DateTime"
+				/>
+				<property name="priceOld"
+					type="tl.core:Double"
+				>
+					<annotations>
+						<storage-algorithm>
+							<query>
+								<expr><![CDATA[sel -> {comp = $sel.get(`kpi:Progress#componentOld`);
+        $comp==null ? 0 : $comp.get(`syn:Component#price`);
+    }]]></expr>
+							</query>
+						</storage-algorithm>
+					</annotations>
+				</property>
+				<property name="priceNew"
+					type="tl.core:Double"
+				>
+					<annotations>
+						<storage-algorithm>
+							<query>
+								<expr><![CDATA[sel -> {comp = $sel.get(`kpi:Progress#componentNew`);
+        $comp==null ? 0 : $comp.get(`syn:Component#price`);
+    }]]></expr>
+							</query>
+						</storage-algorithm>
+					</annotations>
+				</property>
+				<reference name="component"
+					kind="forwards"
+					type="syn:Component"
+				/>
+				<reference name="componentOld"
+					kind="forwards"
+					navigate="true"
+					type="syn:Component"
+				>
+					<annotations>
+						<storage-algorithm>
+							<query>
+								<expr><![CDATA[sel -> {date = $sel.get(`kpi:Progress#dateOld`);
+        revision = $date==null ?  currentRevision() : revisionAt($date);
+        $sel.get(`kpi:Progress#component`).inRevision($revision);
+        }]]></expr>
+							</query>
+						</storage-algorithm>
+					</annotations>
+				</reference>
+				<reference name="componentNew"
+					kind="forwards"
+					navigate="true"
+					type="syn:Component"
+				>
+					<annotations>
+						<storage-algorithm>
+							<query>
+								<expr><![CDATA[sel -> {date = $sel.get(`kpi:Progress#dateNew`);
+        revision = $date==null ?  currentRevision() : revisionAt($date);
+        $sel.get(`kpi:Progress#component`).inRevision($revision);
+        }]]></expr>
+							</query>
+						</storage-algorithm>
+					</annotations>
+				</reference>
+				<property name="priceDifference"
+					type="tl.core:Double"
+				>
+					<annotations>
+						<storage-algorithm>
+							<query expr="p -> $p.get(`kpi:Progress#priceNew`)- $p.get(`kpi:Progress#priceOld`)"/>
+						</storage-algorithm>
+					</annotations>
+				</property>
+			</attributes>
+		</class>
+		<class name="TwoDates">
+			<generalizations>
+				<generalization type="tl.model:TLObject"/>
+			</generalizations>
+			<attributes>
+				<property name="dateOld"
+					type="tl.core:DateTime"
+				/>
+				<property name="dateNew"
+					type="tl.core:DateTime"
+				/>
+			</attributes>
+		</class>
 	</module>
 </model>

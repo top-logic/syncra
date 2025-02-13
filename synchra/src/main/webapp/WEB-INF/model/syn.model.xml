@@ -149,6 +149,11 @@
 							</label>
 						</group>
 						<other-attributes/>
+						<field
+							attribute="canDeliver"
+							fullQualifiedName="syn:Company#canDeliver"
+							type="syn:Component"
+						/>
 					</form>
 				</form-definition>
 			</annotations>
@@ -168,6 +173,14 @@
 				/>
 				<property name="phone"
 					type="tl.core:String"
+				/>
+				<reference name="canDeliver"
+					inverse-reference="canBeDelivered"
+					kind="forwards"
+					multiple="true"
+					navigate="true"
+					ordered="true"
+					type="Component"
 				/>
 			</attributes>
 		</class>
@@ -264,6 +277,20 @@
 				</property>
 				<property name="goalPrice"
 					type="tl.core:Double"
+				/>				
+				<reference name="isAffectedByProblem"
+					inverse-reference="isRelatedToComponent"
+					kind="backwards"
+					multiple="true"
+					navigate="true"
+					type="prob:Problem"
+				/>
+				<reference name="canBeDelivered"
+					inverse-reference="canDeliver"
+					kind="backwards"
+					multiple="true"
+					navigate="true"
+					type="Company"
 				/>
 			</attributes>
 		</interface>

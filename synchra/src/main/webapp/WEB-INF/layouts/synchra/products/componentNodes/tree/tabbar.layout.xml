@@ -8,6 +8,9 @@
 		<components>
 			<layout-reference resource="synchra/products/componentNodes/tree/partList/tabLayout.layout.xml"/>
 			<layout-reference resource="synchra/products/componentNodes/tree/risks/tabLayout.layout.xml"/>
+			<layout-reference resource="synchra/products/componentNodes/tree/progress/tabLayout.layout.xml"/>
+			<layout-reference resource="synchra/products/componentNodes/tree/trendDays/tabLayout.layout.xml"/>
+			<layout-reference resource="synchra/products/componentNodes/tree/last5Minutes/tabLayout.layout.xml"/>
 		</components>
 	</arguments>
 </config:template-call>

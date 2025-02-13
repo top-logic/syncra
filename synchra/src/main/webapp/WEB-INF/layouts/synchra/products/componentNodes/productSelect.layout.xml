@@ -10,7 +10,7 @@
 			<de>Produktfilter</de>
 		</name>
 		<model class="com.top_logic.model.search.providers.TransformLinkingByExpression"
-			function="output -> if ($output == null, new(`syn:ProductSelection`, transient: true), $output.copy())"
+			function="model -> if ($model == null, new(`syn:ProductSelection`, transient: true), $model.copy())"
 			input="output(self())"
 		/>
 		<buttons>
@@ -27,8 +27,7 @@
 				</resourceKey>
 				<postCreateActions>
 					<setModel target="model(synchra/products/componentNodes/tree/componentNodesTreeTable.layout.xml#TreeTable)">
-					</setModel>
-					<setModel target="model(synchra/products/componentNodes/partsList/componentNodeGrid.layout.xml#Grid)">
+						<input/>
 					</setModel>
 				</postCreateActions>
 			</button>

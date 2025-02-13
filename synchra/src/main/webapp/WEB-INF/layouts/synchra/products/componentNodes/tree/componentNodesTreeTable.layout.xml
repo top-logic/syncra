@@ -6,6 +6,7 @@
 >
 	<arguments
 		defaultColumns="name,price,ID_4f2fe934_4bf3_426e_bbe0_d73b0bf18cbf,ID_06457f75_4b0b_4e80_a7dc_0262a50bc7f3"
+		model="output(synchra/products/componentNodes/productSelect.layout.xml#Form)"
 		rootVisible="false"
 		type="syn:ComponentNode"
 	>

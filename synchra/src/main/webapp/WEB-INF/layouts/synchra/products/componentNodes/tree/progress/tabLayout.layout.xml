@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	template="com.top_logic/tab.template.xml"
+>
+	<arguments helpID="ID_769599b7_d9eb_4045_a171_e9121a6772aa">
+		<tabLabel key="dynamic.f23f5583-fe72-49ce-af51-b828fb29c889">
+			<en>Progress</en>
+			<de>Fortschritt</de>
+		</tabLabel>
+		<components>
+			<layout-reference resource="synchra/products/componentNodes/tree/progress/innerLayout.layout.xml"/>
+		</components>
+	</arguments>
+</config:template-call>

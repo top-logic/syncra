@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	template="com.top_logic/tab.template.xml"
+>
+	<arguments helpID="ID_e84ab1c8_176e_4529_b060_d07212e89944">
+		<tabLabel key="dynamic.ffa55451-d958-48ff-b53f-068aa5332a15">
+			<en>Trend Days</en>
+			<de>Verlauf Tage</de>
+		</tabLabel>
+		<components>
+			<layout-reference resource="synchra/products/componentNodes/tree/trendDays/innerLayout.layout.xml"/>
+		</components>
+	</arguments>
+</config:template-call>

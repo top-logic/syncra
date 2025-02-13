@@ -6,8 +6,8 @@
 >
 	<arguments helpID="ID_a4ba3740_f9cb_425f_bb51_a6523f7d7c4e">
 		<tabLabel key="dynamic.0d25da2f-03ee-4d90-923e-19188c7d1cac">
-			<en>Parts list</en>
-			<de>Stückliste</de>
+			<en>Development</en>
+			<de>Entwicklung</de>
 		</tabLabel>
 		<components>
 			<layout-reference resource="synchra/products/componentNodes/partsList/innerLayout.layout.xml"/>

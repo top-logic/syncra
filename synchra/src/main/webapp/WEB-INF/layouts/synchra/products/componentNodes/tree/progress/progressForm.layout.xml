@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	template="com.top_logic.model.search/genericForm.template.xml"
+>
+	<arguments>
+		<name key="dynamic.3303dfd0-4434-497f-9b33-337f1311ad02">
+			<en>Progress</en>
+			<de>Fortschritt</de>
+		</name>
+		<model class="com.top_logic.model.search.providers.TransformLinkingByExpression">
+			<combine>
+				<channel name="output">
+					<target name="synchra/products/componentNodes/tree/progress/settingsForm.layout.xml#Form"/>
+				</channel>
+				<channel name="selection">
+					<target name="synchra/products/componentNodes/tree/componentNodesTreeTable.layout.xml#TreeTable"/>
+				</channel>
+			</combine>
+			<function><![CDATA[sel -> model -> {
+other = $sel[0];
+comp = $sel[1].get(`syn:ComponentNode#component`);
+new(`kpi:Progress`,transient:true)
+..set(`kpi:Progress#component`,$comp)
+..set(`kpi:Progress#dateOld`,$other.get(`kpi:TwoDates#dateOld`))
+..set(`kpi:Progress#dateNew`,$other.get(`kpi:TwoDates#dateNew`))
+}]]></function>
+		</model>
+		<modelBuilder class="com.top_logic.model.search.providers.GenericFormBuilderByExpression"
+			formCreation="model -> $model"
+		/>
+	</arguments>
+</config:template-call>

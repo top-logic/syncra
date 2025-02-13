@@ -286,6 +286,11 @@
 							type="tl.core:String"
 						/>
 						<field
+							attribute="goalPrice"
+							fullQualifiedName="syn:Component#goalPrice"
+							type="tl.core:Double"
+						/>
+						<field
 							attribute="consistsOf"
 							fullQualifiedName="syn:ConstructionGroup#consistsOf"
 							type="syn:Connection"
@@ -828,6 +833,23 @@ all(`syn:Company`).map( company ->
 				<property name="referenceDate"
 					type="tl.core:DateTime"
 				/>
+				<reference name="productInRevision"
+					kind="forwards"
+					mandatory="true"
+					navigate="true"
+					type="Product"
+				>
+					<annotations>
+						<storage-algorithm>
+							<query>
+								<expr><![CDATA[sel -> {date = $sel.get(`syn:ProductSelection#referenceDate`);
+        revision = $date==null ?  currentRevision() : revisionAt($date);
+        $sel.get(`syn:ProductSelection#product`).inRevision($revision);
+        }]]></expr>
+							</query>
+						</storage-algorithm>
+					</annotations>
+				</reference>
 			</attributes>
 		</class>
 	</module>

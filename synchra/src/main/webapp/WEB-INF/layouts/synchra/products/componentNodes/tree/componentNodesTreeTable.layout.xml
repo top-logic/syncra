@@ -22,9 +22,7 @@
 			<children><![CDATA[node -> selection-> switch {
     $selection==null: null;
     $node.instanceOf(`synchra.Bom:Libraries`): {
-        date = $selection.get(`syn:ProductSelection#referenceDate`);
-        revision = $date==null ?  currentRevision() : revisionAt($date);
-        product = $selection.get(`syn:ProductSelection#product`).inRevision($revision);
+        product = $selection.get(`syn:ProductSelection#productInRevision`);
         new(`syn:ComponentNode`, transient:true)
             ..set(`syn:ComponentNode#component`, $product.get(`syn:Product#buildGroup`))
             ..set(`syn:ComponentNode#parent`, null)

@@ -7,5 +7,54 @@
 	<arguments name="class.com.top_logic.layout.editor.I18NConstants.DYNAMIC_COMPONENT.com.top_logic.model.search.tableWithForm.template.i18n.detail"
 		model="selection(synchra/fmaTest/partcatalogs/gesellschaften/companyTable.layout.xml#Table)"
 		type="syn:Company"
-	/>
+	>
+		<forms>
+			<form type="syn:Company">
+				<formDefinition>
+					<static-html>
+						<content><![CDATA[<p><span style="font-size:36px"><strong>Details Firmenkontakt</strong></span></p>
+]]></content>
+					</static-html>
+					<group>
+						<field
+							attribute="name"
+							fullQualifiedName="syn:Company#name"
+							type="tl.core:String"
+						/>
+						<field
+							attribute="structure"
+							fullQualifiedName="syn:Company#structure"
+							type="syn:CompanyStructure"
+						/>
+						<label key="dynamic.5dae300d-1547-4871-840b-5455236645ad">
+							<en>Base Data</en>
+							<de>Basisdaten</de>
+						</label>
+					</group>
+					<group>
+						<field
+							attribute="contactPerson"
+							fullQualifiedName="syn:Company#contactPerson"
+							type="tl.core:String"
+						/>
+						<field
+							attribute="phone"
+							fullQualifiedName="syn:Company#phone"
+							type="tl.core:String"
+						/>
+						<label key="dynamic.305a3563-965b-402e-a044-c7c861b71154">
+							<en>Contact</en>
+							<de>Kontakt</de>
+						</label>
+					</group>
+					<other-attributes/>
+					<field
+						attribute="canDeliver"
+						fullQualifiedName="syn:Company#canDeliver"
+						type="syn:Component"
+					/>
+				</formDefinition>
+			</form>
+		</forms>
+	</arguments>
 </config:template-call>

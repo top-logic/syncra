@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<model xmlns="http://www.top-logic.com/ns/dynamic-types/6.0">
+	<module name="prob">
+		<enum name="Problemstatus">
+			<classifier name="new"/>
+			<classifier name="inSolution"/>
+			<classifier name="solved"/>
+			<classifier name="notSolveable"/>
+		</enum>
+		<class name="Problem">
+			<generalizations>
+				<generalization type="tl.bpe.execution:ProcessExecution"/>
+			</generalizations>
+			<attributes>
+				<property name="name"
+					mandatory="true"
+					type="tl.core:String"
+				/>
+				<property name="description"
+					type="tl.model.wysiwyg:Html"
+				/>
+				<reference name="problemStatus"
+					kind="forwards"
+					navigate="true"
+					type="Problemstatus"
+				>
+					<annotations>
+						<default-value>
+							<classifier value="new"/>
+						</default-value>
+					</annotations>
+				</reference>
+				<reference name="isRelatedToComponent"
+					inverse-reference="isAffectedByProblem"
+					kind="forwards"
+					multiple="true"
+					navigate="true"
+					type="syn:Component"
+				/>
+				<reference name="isSolvedByActivity"
+					kind="forwards"
+					multiple="true"
+					navigate="true"
+					type="syn:Activity"
+				/>
+			</attributes>
+		</class>
+	</module>
+</model>

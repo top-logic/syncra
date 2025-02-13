@@ -6,14 +6,14 @@
 >
 	<arguments
 		size="300px"
-		type="syn:Company"
+		type="synchra.Vendormanagement:Vendor"
 	>
 		<dialogs>
 			<layout-reference resource="synchra/fmaTest/partcatalogs/gesellschaften/createObject1/dialog.layout.xml"/>
 		</dialogs>
 		<name key="dynamic.4c2b2491-a864-4d5c-9926-a2e2818219a6">
 			<en>Company</en>
-			<de>Gesellschaften</de>
+			<de>Lieferanten</de>
 		</name>
 		<modelBuilder class="com.top_logic.model.search.providers.ListModelByExpression"
 			elements="model->all(`syn:Company`)"

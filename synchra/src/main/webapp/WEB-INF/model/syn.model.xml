@@ -262,6 +262,9 @@
 						</storage-algorithm>
 					</annotations>
 				</property>
+				<property name="goalPrice"
+					type="tl.core:Double"
+				/>
 			</attributes>
 		</interface>
 		<class name="ConstructionGroup">

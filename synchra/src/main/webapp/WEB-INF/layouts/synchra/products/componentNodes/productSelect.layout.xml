@@ -27,7 +27,8 @@
 				</resourceKey>
 				<postCreateActions>
 					<setModel target="model(synchra/products/componentNodes/tree/componentNodesTreeTable.layout.xml#TreeTable)">
-						<input/>
+					</setModel>
+					<setModel target="model(synchra/products/componentNodes/partsList/componentNodeGrid.layout.xml#Grid)">
 					</setModel>
 				</postCreateActions>
 			</button>

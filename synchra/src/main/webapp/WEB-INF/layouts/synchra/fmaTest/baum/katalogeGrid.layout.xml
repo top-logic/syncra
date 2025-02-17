@@ -5,7 +5,7 @@
 	template="com.top_logic.element/treegrid.template.xml"
 >
 	<arguments
-		defaultColumns="name,componentID,material,price,company"
+		defaultColumns="name,componentID,material,price,company,suppliers,canBeDelivered"
 		defaultSelection="false"
 		rootVisible="false"
 		type="syn:PartCatalog,syn:SinglePart"

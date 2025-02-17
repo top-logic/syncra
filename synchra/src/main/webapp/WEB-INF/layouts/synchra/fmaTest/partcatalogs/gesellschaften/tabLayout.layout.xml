@@ -6,7 +6,7 @@
 >
 	<arguments helpID="ID_a6ed78af_7490_4318_b48d_732b43be65d3">
 		<tabLabel key="dynamic.5039d1bf-51eb-45dd-b50c-db98711ad8bc">
-			<de>Lieferanten</de>
+			<de>Gesellschaften</de>
 		</tabLabel>
 		<components>
 			<layout-reference resource="synchra/fmaTest/partcatalogs/gesellschaften/innerLayout.layout.xml"/>

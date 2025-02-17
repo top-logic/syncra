@@ -7,10 +7,10 @@
 				implementation-package="com.top_logic.synchra.model.implementation"
 				interface-package="com.top_logic.synchra.model.interfaces"
 			/>
-			<factory value="com.top_logic.synchra.model.ModelFactory"/>
 			<singletons>
 				<singleton type="TreeRoot"/>
 			</singletons>
+			<factory value="com.top_logic.synchra.model.ModelFactory"/>
 		</annotations>
 		<enum name="ActivityKind">
 			<classifier name="TECHNICAL"/>
@@ -295,6 +295,18 @@
 					navigate="true"
 					type="Company"
 				/>
+				<reference name="suppliers"
+					kind="forwards"
+					multiple="true"
+					navigate="true"
+					type="Company"
+				>
+					<annotations>
+						<options>
+							<options-by-expression function="c -> $c.get(`syn:Component#canBeDelivered`)"/>
+						</options>
+					</annotations>
+				</reference>
 			</attributes>
 		</interface>
 		<class name="ConstructionGroup">

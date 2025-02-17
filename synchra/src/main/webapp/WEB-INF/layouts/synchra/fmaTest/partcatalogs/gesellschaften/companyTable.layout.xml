@@ -6,7 +6,7 @@
 >
 	<arguments
 		size="300px"
-		type="synchra.Vendormanagement:Vendor"
+		type="syn:Company"
 	>
 		<dialogs>
 			<layout-reference resource="synchra/fmaTest/partcatalogs/gesellschaften/createObject1/dialog.layout.xml"/>

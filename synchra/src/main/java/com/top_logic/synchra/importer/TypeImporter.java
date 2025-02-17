@@ -133,9 +133,9 @@ public class TypeImporter {
 	protected String asIdString(TLObject obj) {
 		List<String> idParts = new ArrayList<>();
 		for (String idAttr : _idAttributes) {
-			Object val = obj.tGetData(idAttr);
+			Object val = obj.tValueByName(idAttr);
 			if (val instanceof TLNamed) {
-				idParts.add(((TLNamed) obj).getName().trim());
+				idParts.add(((TLNamed) val).getName().trim());
 			} else {
 				if (val == null) {
 					idParts.add("null");

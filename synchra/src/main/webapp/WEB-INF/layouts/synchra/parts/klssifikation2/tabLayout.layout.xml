@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	template="com.top_logic/tab.template.xml"
+>
+	<arguments helpID="ID_0d44e857_47fd_4106_a9e9_f5aa74d02b3c">
+		<tabLabel key="dynamic.bc2b1a8c-9e18-46e3-b304-3c55d73912c1">
+			<en>Classification</en>
+			<de>Klassifikation</de>
+		</tabLabel>
+		<components>
+			<layout-reference resource="synchra/parts/klssifikation2/innerLayout.layout.xml"/>
+		</components>
+	</arguments>
+</config:template-call>

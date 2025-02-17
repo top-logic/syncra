@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	template="com.top_logic/tab.template.xml"
+>
+	<arguments
+		helpID="ID_02781575_88a3_4b86_b767_ebdaf6473d61"
+		tabIcon="css:fa-solid fa-chart-pie"
+	>
+		<tabLabel key="dynamic.66be166f-772b-48d8-a4f9-b9106f775da0">
+			<en>Parts</en>
+			<de>Teile</de>
+		</tabLabel>
+		<components>
+			<layout-reference resource="synchra/parts/innerLayout.layout.xml"/>
+		</components>
+	</arguments>
+</config:template-call>

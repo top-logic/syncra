@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	template="com.top_logic/tab.template.xml"
+>
+	<arguments helpID="ID_8fa979a6_820e_4f1f_bf4c_87a7354fee6b">
+		<tabLabel key="dynamic.2350b2d2-bffa-4035-b3f5-6436f724b38e">
+			<de>Kataloge</de>
+		</tabLabel>
+		<components>
+			<layout-reference resource="synchra/parts/baum/innerLayout.layout.xml"/>
+		</components>
+	</arguments>
+</config:template-call>

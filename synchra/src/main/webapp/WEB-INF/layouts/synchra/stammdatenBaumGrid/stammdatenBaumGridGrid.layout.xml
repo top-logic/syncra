@@ -17,7 +17,7 @@
 			leafPredicate="elt->$elt.instanceOf(`synchra.Bom:AtomicPart`)"
 			nodePredicate="node -> $node.instanceOf(`synchra.Bom:LibraryNode`) or $node.instanceOf(`synchra.Bom:Component`)"
 			parents="node->$node.container()"
-			rootNode="`synchra.Bom#LIBRARIES`"
+			rootNode="`syn#ROOT`"
 		>
 			<children><![CDATA[node -> switch {
     $node.instanceOf(`synchra.Bom:Structure`): $node.get(`synchra.Bom:Structure#contents`);

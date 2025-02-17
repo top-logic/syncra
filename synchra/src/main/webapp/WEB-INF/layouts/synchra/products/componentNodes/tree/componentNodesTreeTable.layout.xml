@@ -18,11 +18,11 @@
 			leafPredicate="false"
 			nodePredicate="node->$node.instanceOf(`syn:ComponentNode`)"
 			parents="node->$node.get(`syn:ComponentNode#parent`)"
-			rootNode="`synchra.Bom#LIBRARIES`"
+			rootNode="`syn#ROOT`"
 		>
 			<children><![CDATA[node -> selection-> switch {
     $selection==null: null;
-    $node.instanceOf(`synchra.Bom:Libraries`): {
+    $node.instanceOf(`syn:TreeRoot`): {
         product = $selection.get(`syn:ProductSelection#productInRevision`);
         new(`syn:ComponentNode`, transient:true)
             ..set(`syn:ComponentNode#component`, $product.get(`syn:Product#buildGroup`))

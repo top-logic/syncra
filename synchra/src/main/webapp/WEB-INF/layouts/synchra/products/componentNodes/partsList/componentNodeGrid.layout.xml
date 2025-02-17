@@ -18,11 +18,11 @@
 			leafPredicate="node -> $node.instanceOf(`syn:ComponentNode`) &amp;&amp; $node.get(`syn:ComponentNode#component`).get(`syn:ConstructionGroup#consistsOf`).isEmpty()"
 			nodePredicate="node->$node.instanceOf(`syn:ComponentNode`)"
 			parents="node->$node.get(`syn:ComponentNode#parent`)"
-			rootNode="`synchra.Bom#LIBRARIES`"
+			rootNode="`syn#ROOT`"
 		>
 			<children><![CDATA[node -> model -> switch {
     $model==null: null;
-    $node.instanceOf(`synchra.Bom:Libraries`): {
+    $node.instanceOf(`syn:TreeRoot`): {
         date = $model.get(`syn:ProductSelection#referenceDate`);
         revision = $date==null ?  currentRevision() : revisionAt($date);
         product = $model.get(`syn:ProductSelection#product`).inRevision($revision);

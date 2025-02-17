@@ -16,15 +16,15 @@
 		<modelBuilder class="com.top_logic.model.search.providers.TreeModelByExpression"
 			leafPredicate="node->$node.instanceOf(`syn:SinglePart`)"
 			nodePredicate="node->$node.instanceOf(`syn:PartCatalog`) or $node.instanceOf(`syn:SinglePart`)"
-			rootNode="`synchra.Bom#LIBRARIES`"
+			rootNode="`syn#ROOT`"
 		>
 			<children><![CDATA[node -> switch {
-    $node.instanceOf(`synchra.Bom:Libraries`): all(`syn:PartCatalog`);
+    $node.instanceOf(`syn:TreeRoot`): all(`syn:PartCatalog`);
     $node.instanceOf(`syn:PartCatalog`):$node.get(`syn:PartCatalog#parts`);
 }]]></children>
 			<parents><![CDATA[node -> switch {
-    $node.instanceOf(`synchra.Bom:Libraries`): null;
-    $node.instanceOf(`syn:PartCatalog`):`synchra.Bom#LIBRARIES`;
+    $node.instanceOf(`syn:TreeRoot`): null;
+    $node.instanceOf(`syn:PartCatalog`):`syn#ROOT`;
     $node.instanceOf(`syn:SinglePart`):$node.container();
 }]]></parents>
 		</modelBuilder>

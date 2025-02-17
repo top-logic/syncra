@@ -8,6 +8,9 @@
 				interface-package="com.top_logic.synchra.model.interfaces"
 			/>
 			<factory value="com.top_logic.synchra.model.ModelFactory"/>
+			<singletons>
+				<singleton type="TreeRoot"/>
+			</singletons>
 		</annotations>
 		<enum name="ActivityKind">
 			<classifier name="TECHNICAL"/>
@@ -277,7 +280,7 @@
 				</property>
 				<property name="goalPrice"
 					type="tl.core:Double"
-				/>				
+				/>
 				<reference name="isAffectedByProblem"
 					inverse-reference="isRelatedToComponent"
 					kind="backwards"
@@ -878,6 +881,11 @@ all(`syn:Company`).map( company ->
 					</annotations>
 				</reference>
 			</attributes>
+		</class>
+		<class name="TreeRoot">
+			<generalizations>
+				<generalization type="tl.model:TLObject"/>
+			</generalizations>
 		</class>
 	</module>
 </model>

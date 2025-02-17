@@ -15,10 +15,10 @@
 		<modelBuilder class="com.top_logic.model.search.providers.TreeModelByExpression"
 			nodePredicate="node->$node.instanceOf(`syn:PartCatalog`)"
 			parents="node->$node.referers(`syn:PartCatalog#materialGroups`)"
-			rootNode="`synchra.Bom#LIBRARIES`"
+			rootNode="`syn#ROOT`"
 		>
 			<children><![CDATA[node -> switch {
-    $node.instanceOf(`synchra.Bom:Libraries`): all(`syn:PartCatalog`);
+    $node.instanceOf(`syn:TreeRoot`): all(`syn:PartCatalog`);
     $node.instanceOf(`syn:PartCatalog`):$node.get(`syn:PartCatalog#materialCompany`);
     $node.instanceOf(`syn:PartsGroup`):$node.get(`syn:PartsGroup#parts`);    
 }]]></children>

@@ -159,6 +159,7 @@
 						/>
 					</form>
 				</form-definition>
+				<instance-presentation icon="css:fa-regular fa-building"/>
 			</annotations>
 			<attributes>
 				<property name="name"

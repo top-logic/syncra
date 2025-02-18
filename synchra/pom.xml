@@ -13,11 +13,15 @@
 	<version>1.0-SNAPSHOT</version>
 	
 	<licenses>
-		<license>
+        <license>
             <name>BOS-TopLogic-1.0</name>
             <url>https://github.com/top-logic/.github/blob/main/LICENSES/LicenseRef-BOS-TopLogic-1.0.md</url>
         </license>
-	</licenses>
+        <license>
+            <name>AGPL-3.0-only</name>
+            <url>https://www.gnu.org/licenses/agpl-3.0.txt</url>
+        </license>
+    </licenses>
 	
 	<properties>
 		<project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
@@ -42,10 +46,13 @@
 
 	<dependencies>
 		<!-- Using TopLogic Professional Edition. -->
+		<!--  enable this section for professional licence -->
+<!-- 
 		<dependency>
 		    <groupId>com.top-logic</groupId>
 		    <artifactId>tl-license-professional</artifactId>
 		</dependency>
+ -->		
 
 		<!-- TopLogic -->
 		<dependency>

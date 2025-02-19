@@ -152,24 +152,6 @@
 						</properties>
 					</importer>
 					<importer
-						id-attributes="name"
-						tl-class="syn:Problem"
-					>
-						<properties>
-							<property name="syn:Problem#name"/>
-						</properties>
-						<references>
-							<reference name="syn:Problem#solvingActivities"
-								id-attribute="name"
-								tl-class="syn:Activity"
-							/>
-							<reference name="syn:Problem#components"
-								id-attribute="name"
-								tl-class="syn:SinglePart"
-							/>
-						</references>
-					</importer>
-					<importer
 						id-attributes="consistsOf,used,position"
 						tl-class="syn:Connection"
 					>

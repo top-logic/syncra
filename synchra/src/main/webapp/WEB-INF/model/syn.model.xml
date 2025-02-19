@@ -12,9 +12,11 @@
 			</singletons>
 			<factory value="com.top_logic.synchra.model.ModelFactory"/>
 		</annotations>
-		<enum name="ActivityKind">
-			<classifier name="TECHNICAL"/>
-			<classifier name="ORGANISATORIC"/>
+		<enum name="ActivityState">
+			<classifier name="IDEA"/>
+			<classifier name="IN_PROGRESS"/>
+			<classifier name="DONE"/>
+			<classifier name="REJECTED"/>
 		</enum>
 		<enum name="CompanyStructure">
 			<classifier name="AG"/>
@@ -26,6 +28,7 @@
 				<generalization type="tl.model:TLObject"/>
 			</generalizations>
 			<annotations>
+				<instance-presentation icon="css:bi bi-activity"/>
 				<form-definition>
 					<form>
 						<field
@@ -39,9 +42,14 @@
 							type="tl.core:Integer"
 						/>
 						<field
-							attribute="kind"
-							fullQualifiedName="syn:Activity#kind"
-							type="syn:ActivityKind"
+							attribute="state"
+							fullQualifiedName="syn:Activity#state"
+							type="syn:ActivityState"
+						/>
+						<field
+							attribute="effectDate"
+							fullQualifiedName="syn:Activity#effectDate"
+							type="tl.core:Date"
 						/>
 						<field
 							attribute="description"
@@ -59,7 +67,6 @@
 						</field>
 					</form>
 				</form-definition>
-				<instance-presentation icon="css:bi bi-activity"/>
 			</annotations>
 			<attributes>
 				<property name="name"
@@ -86,18 +93,6 @@
 						<create-visibility value="read-only"/>
 					</annotations>
 				</property>
-				<reference name="kind"
-					kind="forwards"
-					mandatory="true"
-					navigate="true"
-					type="ActivityKind"
-				>
-					<annotations>
-						<default-value>
-							<classifier value="TECHNICAL"/>
-						</default-value>
-					</annotations>
-				</reference>
 				<reference name="valuations"
 					composite="true"
 					inverse-reference="activity"
@@ -105,6 +100,21 @@
 					multiple="true"
 					navigate="true"
 					type="kpi:Valuation"
+				/>
+				<reference name="state"
+					kind="forwards"
+					mandatory="true"
+					navigate="true"
+					type="ActivityState"
+				>
+					<annotations>
+						<default-value>
+							<classifier value="IDEA"/>
+						</default-value>
+					</annotations>
+				</reference>
+				<property name="effectDate"
+					type="tl.core:Date"
 				/>
 			</attributes>
 		</class>
@@ -260,8 +270,13 @@
 						<storage-algorithm>
 							<query>
 								<expr><![CDATA[comp -> $comp.get(`syn:Component#valuations`).filter(
-        v -> $v.get(`kpi:AbstractValuation#kpi`).get(`kpi:Kpi#name`).equals("Preis")).
-        map(v -> $v.get(`kpi:AbstractValuation#value`)).sum()]]></expr>
+        v -> $v.get(`kpi:Valuation#kpi`).get(`kpi:Kpi#name`).equals("Preis")
+        &&   $v.get(`kpi:Valuation#activity`).get(`syn:Activity#state`).equals(resolveModelPart(`syn:ActivityState#DONE`))
+        &&   ( $v.get(`kpi:Valuation#activity`).get(`syn:Activity#effectDate`)==null 
+              ||  ! $v.get(`kpi:Valuation#activity`).get(`syn:Activity#effectDate`).isDateGreater(today())  
+             )
+        ).
+        map(v -> $v.get(`kpi:Valuation#value`)).sum()]]></expr>
 							</query>
 						</storage-algorithm>
 					</annotations>
@@ -308,6 +323,35 @@
 						</options>
 					</annotations>
 				</reference>
+				<property name="priceActivityPrognose"
+					type="tl.core:Double"
+				>
+					<annotations>
+						<storage-algorithm>
+							<query>
+								<expr><![CDATA[comp -> $comp.get(`syn:Component#valuations`).filter(
+        v -> $v.get(`kpi:Valuation#kpi`).get(`kpi:Kpi#name`).equals("Preis")
+        &&   (  $v.get(`kpi:Valuation#activity`).get(`syn:Activity#state`).equals(resolveModelPart(`syn:ActivityState#IN_PROGRESS`))
+              ||   ( $v.get(`kpi:Valuation#activity`).get(`syn:Activity#state`).equals(resolveModelPart(`syn:ActivityState#DONE`))
+                     && $v.get(`kpi:Valuation#activity`).get(`syn:Activity#effectDate`)!=null
+                     && $v.get(`kpi:Valuation#activity`).get(`syn:Activity#effectDate`).isDateGreater(today())
+                   )
+             )
+        ).
+        map(v -> $v.get(`kpi:Valuation#value`)).sum()]]></expr>
+							</query>
+						</storage-algorithm>
+					</annotations>
+				</property>
+				<property name="prognose"
+					type="tl.core:Double"
+				>
+					<annotations>
+						<storage-algorithm>
+							<query expr="comp -> $comp.get(`syn:Component#priceAfterActivities`) + $comp.get(`syn:Component#priceActivityContribution`)"/>
+						</storage-algorithm>
+					</annotations>
+				</property>
 			</attributes>
 		</interface>
 		<class name="ConstructionGroup">
@@ -569,6 +613,29 @@
 						</storage-algorithm>
 					</annotations>
 				</property>
+				<property name="prognose"
+					type="tl.core:Double"
+				>
+					<annotations>
+						<storage-algorithm>
+							<query>
+								<expr><![CDATA[node -> if( $node.get(`syn:ComponentNode#component`).instanceOf(`syn:SinglePart`),
+               $node.get(`syn:ComponentNode#component`).get(`syn:SinglePart#priceAfterActivities`),
+ $node.get(`syn:ComponentNode#children`).get(`syn:ComponentNode#prognose`).sum()
+) + $node.get(`syn:ComponentNode#priceActivityPrognose`)]]></expr>
+							</query>
+						</storage-algorithm>
+					</annotations>
+				</property>
+				<property name="priceActivityPrognose"
+					type="tl.core:Double"
+				>
+					<annotations>
+						<storage-algorithm>
+							<query expr="node -> $node.get(`syn:ComponentNode#component`).get(`syn:Component#priceActivityPrognose`)"/>
+						</storage-algorithm>
+					</annotations>
+				</property>
 			</attributes>
 		</class>
 		<class name="Connection">
@@ -750,7 +817,7 @@ all(`syn:Company`).map( company ->
 				>
 					<annotations>
 						<storage-algorithm>
-							<query expr="entry -> $entry.get(`syn:PartsListEntry#part`).get(`syn:SinglePart#price`) * $entry.get(`syn:PartsListEntry#count`)"/>
+							<query expr="entry -> $entry.get(`syn:PartsListEntry#singlePrice`) * $entry.get(`syn:PartsListEntry#count`)"/>
 						</storage-algorithm>
 					</annotations>
 				</property>
@@ -759,7 +826,7 @@ all(`syn:Company`).map( company ->
 				>
 					<annotations>
 						<storage-algorithm>
-							<query expr="entry -> $entry.get(`syn:PartsListEntry#part`).get(`syn:SinglePart#price`)"/>
+							<query expr="entry -> $entry.get(`syn:PartsListEntry#part`).get(`syn:SinglePart#priceAfterActivities`)"/>
 						</storage-algorithm>
 					</annotations>
 				</property>
@@ -786,32 +853,6 @@ all(`syn:Company`).map( company ->
 						</storage-algorithm>
 					</annotations>
 				</reference>
-			</attributes>
-		</class>
-		<class name="Problem">
-			<generalizations>
-				<generalization type="tl.model:TLObject"/>
-			</generalizations>
-			<attributes>
-				<property name="name"
-					mandatory="true"
-					type="tl.core:String"
-				/>
-				<property name="description"
-					type="tl.model.wysiwyg:Html"
-				/>
-				<reference name="components"
-					kind="forwards"
-					multiple="true"
-					navigate="true"
-					type="Component"
-				/>
-				<reference name="solvingActivities"
-					kind="forwards"
-					multiple="true"
-					navigate="true"
-					type="Activity"
-				/>
 			</attributes>
 		</class>
 		<class name="Product">

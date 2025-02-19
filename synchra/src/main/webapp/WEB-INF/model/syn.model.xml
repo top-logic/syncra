@@ -555,6 +555,20 @@
 						</storage-algorithm>
 					</annotations>
 				</property>
+				<property name="goalPrice"
+					type="tl.core:Float"
+				>
+					<annotations>
+						<storage-algorithm>
+							<query>
+								<expr><![CDATA[node -> if( $node.get(`syn:ComponentNode#component`).instanceOf(`syn:SinglePart`),
+ $node.get(`syn:ComponentNode#component`).get(`syn:SinglePart#goalPrice`),
+ $node.get(`syn:ComponentNode#children`).get(`syn:ComponentNode#goalPrice`).sum()
+)]]></expr>
+							</query>
+						</storage-algorithm>
+					</annotations>
+				</property>
 			</attributes>
 		</class>
 		<class name="Connection">

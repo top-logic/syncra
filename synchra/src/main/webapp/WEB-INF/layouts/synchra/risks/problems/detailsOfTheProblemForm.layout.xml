@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	template="com.top_logic.element/form.template.xml"
+>
+	<arguments model="selection(synchra/risks/problems/problemsTable.layout.xml#Table)">
+		<name key="dynamic.de7b81b1-0c7c-4317-bb87-172644b106b8">
+			<en>Details of the Problem</en>
+			<de>Problemdetails</de>
+		</name>
+	</arguments>
+</config:template-call>

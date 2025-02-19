@@ -7,7 +7,9 @@
 	<arguments>
 		<components>
 			<layout-reference resource="synchra/risks/problems/problemsTable.layout.xml"/>
-			<layout-reference resource="synchra/risks/problems/detailsForm.layout.xml"/>
+			<layout-reference resource="synchra/risks/problems/detailsOfTheProblemForm.layout.xml">
+				<layoutInfo/>
+			</layout-reference>
 		</components>
 	</arguments>
 </config:template-call>

@@ -5,8 +5,9 @@
 	template="com.top_logic/table.template.xml"
 >
 	<arguments
+		defaultColumns="name,problemStatus"
 		size="300px"
-		type="syn:Problem"
+		type="prob:Problem"
 	>
 		<dialogs>
 			<layout-reference resource="synchra/risks/problems/createObject/dialog.layout.xml"/>
@@ -16,8 +17,8 @@
 			<de>Probleme</de>
 		</name>
 		<modelBuilder class="com.top_logic.model.search.providers.ListModelByExpression"
-			elements="model->all(`syn:Problem`)"
-			supportsElement="element->$element.instanceOf(`syn:Problem`)"
+			elements="model->all(`prob:Problem`)"
+			supportsElement="element->$element.instanceOf(`prob:Problem`)"
 		/>
 		<buttons>
 			<button id="exportExcel"

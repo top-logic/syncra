@@ -12,6 +12,42 @@
 			<generalizations>
 				<generalization type="tl.bpe.execution:ProcessExecution"/>
 			</generalizations>
+			<annotations>
+				<form-definition>
+					<form>
+						<field
+							attribute="name"
+							fullQualifiedName="prob:Problem#name"
+							type="tl.core:String"
+						/>
+						<field
+							attribute="description"
+							fullQualifiedName="prob:Problem#description"
+							type="tl.model.wysiwyg:Html"
+						/>
+						<field
+							attribute="problemStatus"
+							fullQualifiedName="prob:Problem#problemStatus"
+							type="prob:Problemstatus"
+						/>
+						<field
+							attribute="isRelatedToComponent"
+							fullQualifiedName="prob:Problem#isRelatedToComponent"
+							type="syn:Component"
+						/>
+						<field
+							attribute="isSolvedByActivity"
+							fullQualifiedName="prob:Problem#isSolvedByActivity"
+							type="syn:Activity"
+						/>
+						<field
+							attribute="tType"
+							fullQualifiedName="tl.model:TLObject#tType"
+							type="tl.model:TLType"
+						/>
+					</form>
+				</form-definition>
+			</annotations>
 			<attributes>
 				<property name="name"
 					mandatory="true"
@@ -43,6 +79,12 @@
 					multiple="true"
 					navigate="true"
 					type="syn:Activity"
+				/>
+				<property name="reasonNotSolveable"
+					type="tl.model.wysiwyg:Html"
+				/>
+				<property name="noteForProblemmanager"
+					type="tl.core:Text"
 				/>
 			</attributes>
 		</class>

@@ -7,7 +7,7 @@
 	<arguments orientation="VERTICAL">
 		<components>
 			<layout-reference resource="synchra/products/componentNodes/productSelect.layout.xml">
-				<layoutInfo/>
+				<layoutInfo size="100px"/>
 			</layout-reference>
 			<layout-reference resource="synchra/products/componentNodes/tabbar.layout.xml">
 				<layoutInfo/>

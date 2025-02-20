@@ -578,12 +578,7 @@
 				>
 					<annotations>
 						<storage-algorithm>
-							<query>
-								<expr><![CDATA[node -> if( $node.get(`syn:ComponentNode#component`).instanceOf(`syn:SinglePart`),
- $node.get(`syn:ComponentNode#component`).get(`syn:SinglePart#price`),
- $node.get(`syn:ComponentNode#children`).get(`syn:ComponentNode#price`).sum()
-)]]></expr>
-							</query>
+							<query expr="node ->  $node.get(`syn:ComponentNode#component`).get(`syn:Component#price`)"/>
 						</storage-algorithm>
 					</annotations>
 				</property>
@@ -592,12 +587,7 @@
 				>
 					<annotations>
 						<storage-algorithm>
-							<query>
-								<expr><![CDATA[node -> if( $node.get(`syn:ComponentNode#component`).instanceOf(`syn:SinglePart`),
- $node.get(`syn:ComponentNode#component`).get(`syn:SinglePart#price`),
- $node.get(`syn:ComponentNode#children`).get(`syn:ComponentNode#priceAfterActivities`).sum()
-) + $node.get(`syn:ComponentNode#priceActivityContribution`)]]></expr>
-							</query>
+							<query expr="node ->  $node.get(`syn:ComponentNode#component`).get(`syn:Component#priceAfterActivities`)"/>
 						</storage-algorithm>
 					</annotations>
 				</property>
@@ -629,12 +619,7 @@
 				>
 					<annotations>
 						<storage-algorithm>
-							<query>
-								<expr><![CDATA[node -> if( $node.get(`syn:ComponentNode#component`).instanceOf(`syn:SinglePart`),
-               $node.get(`syn:ComponentNode#component`).get(`syn:SinglePart#priceAfterActivities`),
- $node.get(`syn:ComponentNode#children`).get(`syn:ComponentNode#prognose`).sum()
-) + $node.get(`syn:ComponentNode#priceActivityPrognose`)]]></expr>
-							</query>
+							<query expr="node ->  $node.get(`syn:ComponentNode#component`).get(`syn:Component#prognose`)"/>
 						</storage-algorithm>
 					</annotations>
 				</property>

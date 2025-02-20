@@ -5,7 +5,7 @@
 	template="com.top_logic/treetable.template.xml"
 >
 	<arguments
-		defaultColumns="name,price,ID_4f2fe934_4bf3_426e_bbe0_d73b0bf18cbf,ID_06457f75_4b0b_4e80_a7dc_0262a50bc7f3"
+		defaultColumns="name,price,ID_4f2fe934_4bf3_426e_bbe0_d73b0bf18cbf"
 		model="output(synchra/products/componentNodes/productSelect.layout.xml#Form)"
 		rootVisible="false"
 		type="syn:ComponentNode"
@@ -52,16 +52,6 @@
 				<columnLabel key="dynamic.9d1bd9fc-36d4-4ff8-97a8-30310416f8b3">
 					<en>Material</en>
 					<de>Material</de>
-				</columnLabel>
-			</configurationProvider>
-			<configurationProvider class="com.top_logic.model.search.providers.ComputedColumnProviderByExpression"
-				accessor="row -> model -> $row.get(`syn:ComponentNode#component`).get(`syn:Component#price`)"
-				columnId="ID_06457f75_4b0b_4e80_a7dc_0262a50bc7f3"
-				columnType="tl.core:Double"
-			>
-				<columnLabel key="dynamic.4d9c3695-c4f9-42b7-92ea-f6ab187fb89f">
-					<en>Component-Price</en>
-					<de>Komponenten-Preis</de>
 				</columnLabel>
 			</configurationProvider>
 			<configurationProvider class="com.top_logic.model.search.providers.ComputedColumnProviderByExpression"

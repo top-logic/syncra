@@ -45,13 +45,13 @@ public interface ActivityBase extends com.top_logic.model.TLNamed {
 	String DESCRIPTION_ATTR = "description";
 
 	/**
-	 * Part <code>kind</code> of <code>Activity</code>
+	 * Part <code>effectDate</code> of <code>Activity</code>
 	 * 
 	 * <p>
-	 * Declared as <code>syn:ActivityKind</code> in configuration.
+	 * Declared as <code>tl.core:Date</code> in configuration.
 	 * </p>
 	 */
-	String KIND_ATTR = "kind";
+	String EFFECT_DATE_ATTR = "effectDate";
 
 	/**
 	 * Part <code>name</code> of <code>Activity</code>
@@ -61,6 +61,15 @@ public interface ActivityBase extends com.top_logic.model.TLNamed {
 	 * </p>
 	 */
 	String NAME_ATTR = "name";
+
+	/**
+	 * Part <code>state</code> of <code>Activity</code>
+	 * 
+	 * <p>
+	 * Declared as <code>syn:ActivityState</code> in configuration.
+	 * </p>
+	 */
+	String STATE_ATTR = "state";
 
 	/**
 	 * Part <code>valuations</code> of <code>Activity</code>
@@ -114,17 +123,31 @@ public interface ActivityBase extends com.top_logic.model.TLNamed {
 	}
 
 	/**
-	 * Getter for part {@link #KIND_ATTR}.
+	 * Getter for part {@link #EFFECT_DATE_ATTR}.
 	 */
-	default com.top_logic.model.TLClassifier getKind() {
-		return (com.top_logic.model.TLClassifier) tValueByName(KIND_ATTR);
+	default java.util.Date getEffectDate() {
+		return (java.util.Date) tValueByName(EFFECT_DATE_ATTR);
 	}
 
 	/**
-	 * Setter for part {@link #KIND_ATTR}.
+	 * Setter for part {@link #EFFECT_DATE_ATTR}.
 	 */
-	default void setKind(com.top_logic.model.TLClassifier newValue) {
-		tUpdateByName(KIND_ATTR, newValue);
+	default void setEffectDate(java.util.Date newValue) {
+		tUpdateByName(EFFECT_DATE_ATTR, newValue);
+	}
+
+	/**
+	 * Getter for part {@link #STATE_ATTR}.
+	 */
+	default com.top_logic.model.TLClassifier getState() {
+		return (com.top_logic.model.TLClassifier) tValueByName(STATE_ATTR);
+	}
+
+	/**
+	 * Setter for part {@link #STATE_ATTR}.
+	 */
+	default void setState(com.top_logic.model.TLClassifier newValue) {
+		tUpdateByName(STATE_ATTR, newValue);
 	}
 
 	/**

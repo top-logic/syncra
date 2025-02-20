@@ -15,11 +15,14 @@ import com.top_logic.layout.ResPrefix;
 @SuppressWarnings("javadoc")
 public class I18NConstants extends I18NConstantsBase {
 
-	public static ResKey IMPORT_CATALOGS;
+	public static ResPrefix IMPORT_PICTURES;
 
-	public static ResKey IMPORT_CATALOGS_NOTHING_SELECTED;
-	public static ResKey ONLY_XLXS_FILES;
-	public static ResPrefix IMPORT_CATALOGS_DIALOG;
+	public static ResPrefix IMPORT_CATALOGS;
+
+	public static ResKey ONLY_ZIP_FILES;
+
+	public static ResKey ONLY_XLS_FILES;
+
 	static {
 		initConstants(I18NConstants.class);
 	}

@@ -45,6 +45,15 @@ public interface ComponentNodeBase extends com.top_logic.model.TLNamed {
 	String CONNECTION_ATTR = "connection";
 
 	/**
+	 * Part <code>goalPrice</code> of <code>ComponentNode</code>
+	 * 
+	 * <p>
+	 * Declared as <code>tl.core:Float</code> in configuration.
+	 * </p>
+	 */
+	String GOAL_PRICE_ATTR = "goalPrice";
+
+	/**
 	 * Part <code>name</code> of <code>ComponentNode</code>
 	 * 
 	 * <p>
@@ -81,6 +90,15 @@ public interface ComponentNodeBase extends com.top_logic.model.TLNamed {
 	String PRICE_ACTIVITY_CONTRIBUTION_ATTR = "priceActivityContribution";
 
 	/**
+	 * Part <code>priceActivityPrognose</code> of <code>ComponentNode</code>
+	 * 
+	 * <p>
+	 * Declared as <code>tl.core:Double</code> in configuration.
+	 * </p>
+	 */
+	String PRICE_ACTIVITY_PROGNOSE_ATTR = "priceActivityPrognose";
+
+	/**
 	 * Part <code>priceAfterActivities</code> of <code>ComponentNode</code>
 	 * 
 	 * <p>
@@ -97,6 +115,15 @@ public interface ComponentNodeBase extends com.top_logic.model.TLNamed {
 	 * </p>
 	 */
 	String PRODUCT_ATTR = "product";
+
+	/**
+	 * Part <code>prognose</code> of <code>ComponentNode</code>
+	 * 
+	 * <p>
+	 * Declared as <code>tl.core:Double</code> in configuration.
+	 * </p>
+	 */
+	String PROGNOSE_ATTR = "prognose";
 
 	/**
 	 * Getter for part {@link #CHILDREN_ATTR}.
@@ -135,6 +162,13 @@ public interface ComponentNodeBase extends com.top_logic.model.TLNamed {
 	}
 
 	/**
+	 * Getter for part {@link #GOAL_PRICE_ATTR}.
+	 */
+	default Float getGoalPrice() {
+		return (Float) tValueByName(GOAL_PRICE_ATTR);
+	}
+
+	/**
 	 * Getter for part {@link #PARENT_ATTR}.
 	 */
 	default com.top_logic.synchra.model.interfaces.ComponentNode getParent() {
@@ -163,6 +197,13 @@ public interface ComponentNodeBase extends com.top_logic.model.TLNamed {
 	}
 
 	/**
+	 * Getter for part {@link #PRICE_ACTIVITY_PROGNOSE_ATTR}.
+	 */
+	default Double getPriceActivityPrognose() {
+		return (Double) tValueByName(PRICE_ACTIVITY_PROGNOSE_ATTR);
+	}
+
+	/**
 	 * Getter for part {@link #PRICE_AFTER_ACTIVITIES_ATTR}.
 	 */
 	default Double getPriceAfterActivities() {
@@ -181,6 +222,13 @@ public interface ComponentNodeBase extends com.top_logic.model.TLNamed {
 	 */
 	default void setProduct(com.top_logic.synchra.model.interfaces.Product newValue) {
 		tUpdateByName(PRODUCT_ATTR, newValue);
+	}
+
+	/**
+	 * Getter for part {@link #PROGNOSE_ATTR}.
+	 */
+	default Double getPrognose() {
+		return (Double) tValueByName(PROGNOSE_ATTR);
 	}
 
 }

@@ -27,6 +27,15 @@ public interface ProductSelectionBase extends com.top_logic.model.TLObject {
 	String PRODUCT_ATTR = "product";
 
 	/**
+	 * Part <code>productInRevision</code> of <code>ProductSelection</code>
+	 * 
+	 * <p>
+	 * Declared as <code>syn:Product</code> in configuration.
+	 * </p>
+	 */
+	String PRODUCT_IN_REVISION_ATTR = "productInRevision";
+
+	/**
 	 * Part <code>referenceDate</code> of <code>ProductSelection</code>
 	 * 
 	 * <p>
@@ -56,6 +65,13 @@ public interface ProductSelectionBase extends com.top_logic.model.TLObject {
 	 */
 	default void setProduct(com.top_logic.synchra.model.interfaces.Product newValue) {
 		tUpdateByName(PRODUCT_ATTR, newValue);
+	}
+
+	/**
+	 * Getter for part {@link #PRODUCT_IN_REVISION_ATTR}.
+	 */
+	default com.top_logic.synchra.model.interfaces.Product getProductInRevision() {
+		return (com.top_logic.synchra.model.interfaces.Product) tValueByName(PRODUCT_IN_REVISION_ATTR);
 	}
 
 	/**

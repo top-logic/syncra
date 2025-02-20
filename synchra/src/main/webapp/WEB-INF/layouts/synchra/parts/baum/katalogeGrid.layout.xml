@@ -44,8 +44,16 @@
 					owner="syn:PartCatalog"
 				/>
 			</button>
+			<button id="importPictures"
+				class="com.top_logic.synchra.util.OpenImportPicturesDialog"
+				clique="exportButtons"
+				executability="InViewMode"
+				group="Write"
+				image="css:fa-solid fa-file-import"
+			/>
 			<button id="importCatalogs"
 				class="com.top_logic.synchra.util.OpenImportCatalogsDialog"
+				clique="exportButtons"
 				executability="InViewMode"
 				group="Write"
 				image="css:fa-solid fa-file-import"

@@ -18,6 +18,15 @@ public interface ComponentBase extends com.top_logic.model.TLNamed {
 	String COMPONENT_TYPE = "Component";
 
 	/**
+	 * Part <code>canBeDelivered</code> of <code>Component</code>
+	 * 
+	 * <p>
+	 * Declared as <code>syn:Company</code> in configuration.
+	 * </p>
+	 */
+	String CAN_BE_DELIVERED_ATTR = "canBeDelivered";
+
+	/**
 	 * Part <code>componentID</code> of <code>Component</code>
 	 * 
 	 * <p>
@@ -25,6 +34,24 @@ public interface ComponentBase extends com.top_logic.model.TLNamed {
 	 * </p>
 	 */
 	String COMPONENT_ID_ATTR = "componentID";
+
+	/**
+	 * Part <code>goalPrice</code> of <code>Component</code>
+	 * 
+	 * <p>
+	 * Declared as <code>tl.core:Double</code> in configuration.
+	 * </p>
+	 */
+	String GOAL_PRICE_ATTR = "goalPrice";
+
+	/**
+	 * Part <code>isAffectedByProblem</code> of <code>Component</code>
+	 * 
+	 * <p>
+	 * Declared as <code>prob:Problem</code> in configuration.
+	 * </p>
+	 */
+	String IS_AFFECTED_BY_PROBLEM_ATTR = "isAffectedByProblem";
 
 	/**
 	 * Part <code>name</code> of <code>Component</code>
@@ -63,6 +90,15 @@ public interface ComponentBase extends com.top_logic.model.TLNamed {
 	String PRICE_ACTIVITY_CONTRIBUTION_ATTR = "priceActivityContribution";
 
 	/**
+	 * Part <code>priceActivityPrognose</code> of <code>Component</code>
+	 * 
+	 * <p>
+	 * Declared as <code>tl.core:Double</code> in configuration.
+	 * </p>
+	 */
+	String PRICE_ACTIVITY_PROGNOSE_ATTR = "priceActivityPrognose";
+
+	/**
 	 * Part <code>priceAfterActivities</code> of <code>Component</code>
 	 * 
 	 * <p>
@@ -72,6 +108,15 @@ public interface ComponentBase extends com.top_logic.model.TLNamed {
 	String PRICE_AFTER_ACTIVITIES_ATTR = "priceAfterActivities";
 
 	/**
+	 * Part <code>prognose</code> of <code>Component</code>
+	 * 
+	 * <p>
+	 * Declared as <code>tl.core:Double</code> in configuration.
+	 * </p>
+	 */
+	String PROGNOSE_ATTR = "prognose";
+
+	/**
 	 * Part <code>risks</code> of <code>Component</code>
 	 * 
 	 * <p>
@@ -79,6 +124,15 @@ public interface ComponentBase extends com.top_logic.model.TLNamed {
 	 * </p>
 	 */
 	String RISKS_ATTR = "risks";
+
+	/**
+	 * Part <code>suppliers</code> of <code>Component</code>
+	 * 
+	 * <p>
+	 * Declared as <code>syn:Company</code> in configuration.
+	 * </p>
+	 */
+	String SUPPLIERS_ATTR = "suppliers";
 
 	/**
 	 * Part <code>used</code> of <code>Component</code>
@@ -117,6 +171,14 @@ public interface ComponentBase extends com.top_logic.model.TLNamed {
 	String WEIGHT_AFTER_ACTIVITIES_ATTR = "weightAfterActivities";
 
 	/**
+	 * Getter for part {@link #CAN_BE_DELIVERED_ATTR}.
+	 */
+	@SuppressWarnings("unchecked")
+	default java.util.Set<? extends com.top_logic.synchra.model.interfaces.Company> getCanBeDelivered() {
+		return (java.util.Set<? extends com.top_logic.synchra.model.interfaces.Company>) tValueByName(CAN_BE_DELIVERED_ATTR);
+	}
+
+	/**
 	 * Getter for part {@link #COMPONENT_ID_ATTR}.
 	 */
 	default String getComponentID() {
@@ -128,6 +190,28 @@ public interface ComponentBase extends com.top_logic.model.TLNamed {
 	 */
 	default void setComponentID(String newValue) {
 		tUpdateByName(COMPONENT_ID_ATTR, newValue);
+	}
+
+	/**
+	 * Getter for part {@link #GOAL_PRICE_ATTR}.
+	 */
+	default Double getGoalPrice() {
+		return (Double) tValueByName(GOAL_PRICE_ATTR);
+	}
+
+	/**
+	 * Setter for part {@link #GOAL_PRICE_ATTR}.
+	 */
+	default void setGoalPrice(Double newValue) {
+		tUpdateByName(GOAL_PRICE_ATTR, newValue);
+	}
+
+	/**
+	 * Getter for part {@link #IS_AFFECTED_BY_PROBLEM_ATTR}.
+	 */
+	@SuppressWarnings("unchecked")
+	default java.util.Set<? extends com.top_logic.model.TLObject> getIsAffectedByProblem() {
+		return (java.util.Set<? extends com.top_logic.model.TLObject>) tValueByName(IS_AFFECTED_BY_PROBLEM_ATTR);
 	}
 
 	/**
@@ -181,10 +265,24 @@ public interface ComponentBase extends com.top_logic.model.TLNamed {
 	}
 
 	/**
+	 * Getter for part {@link #PRICE_ACTIVITY_PROGNOSE_ATTR}.
+	 */
+	default Double getPriceActivityPrognose() {
+		return (Double) tValueByName(PRICE_ACTIVITY_PROGNOSE_ATTR);
+	}
+
+	/**
 	 * Getter for part {@link #PRICE_AFTER_ACTIVITIES_ATTR}.
 	 */
 	default Double getPriceAfterActivities() {
 		return (Double) tValueByName(PRICE_AFTER_ACTIVITIES_ATTR);
+	}
+
+	/**
+	 * Getter for part {@link #PROGNOSE_ATTR}.
+	 */
+	default Double getPrognose() {
+		return (Double) tValueByName(PROGNOSE_ATTR);
 	}
 
 	/**
@@ -193,6 +291,49 @@ public interface ComponentBase extends com.top_logic.model.TLNamed {
 	@SuppressWarnings("unchecked")
 	default java.util.Set<? extends com.top_logic.synchra.risk.interfaces.Risk> getRisks() {
 		return (java.util.Set<? extends com.top_logic.synchra.risk.interfaces.Risk>) tValueByName(RISKS_ATTR);
+	}
+
+	/**
+	 * Getter for part {@link #SUPPLIERS_ATTR}.
+	 */
+	@SuppressWarnings("unchecked")
+	default java.util.Set<? extends com.top_logic.synchra.model.interfaces.Company> getSuppliers() {
+		return (java.util.Set<? extends com.top_logic.synchra.model.interfaces.Company>) tValueByName(SUPPLIERS_ATTR);
+	}
+
+	/**
+	 * Live view of the {@link #SUPPLIERS_ATTR} part.
+	 * <p>
+	 * Changes to this {@link java.util.Collection} change directly the attribute value.
+	 * The caller has to take care of the transaction handling.
+	 * </p>
+	 */
+	default java.util.Set<com.top_logic.synchra.model.interfaces.Company> getSuppliersModifiable() {
+		com.top_logic.model.TLStructuredTypePart attribute = tType().getPart(SUPPLIERS_ATTR);
+		@SuppressWarnings("unchecked")
+		java.util.Set<com.top_logic.synchra.model.interfaces.Company> result = (java.util.Set<com.top_logic.synchra.model.interfaces.Company>) com.top_logic.element.meta.kbbased.WrapperMetaAttributeUtil.getLiveCollection(this, attribute);
+		return result;
+	}
+
+	/**
+	 * Setter for part {@link #SUPPLIERS_ATTR}.
+	 */
+	default void setSuppliers(java.util.Set<com.top_logic.synchra.model.interfaces.Company> newValue) {
+		tUpdateByName(SUPPLIERS_ATTR, newValue);
+	}
+
+	/**
+	 * Adds a value to the {@link #SUPPLIERS_ATTR} reference.
+	 */
+	default void addSupplier(com.top_logic.synchra.model.interfaces.Company newValue) {
+		tAddByName(SUPPLIERS_ATTR, newValue);
+	}
+
+	/**
+	 * Removes the given value from the {@link #SUPPLIERS_ATTR} reference.
+	 */
+	default void removeSupplier(com.top_logic.synchra.model.interfaces.Company oldValue) {
+		tRemoveByName(SUPPLIERS_ATTR, oldValue);
 	}
 
 	/**

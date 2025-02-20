@@ -147,7 +147,13 @@
 						<properties>
 							<property name="syn:Activity#name"/>
 							<property name="syn:Activity#costs"/>
+							<property name="syn:Activity#effectDate" type="relativeDate"/>
 						</properties>
+						<classifications>
+							<classification name="syn:Activity#state"
+								enumeration="syn:ActivityState"
+							/>
+						</classifications>
 					</importer>
 					<importer
 						id-attributes="name"

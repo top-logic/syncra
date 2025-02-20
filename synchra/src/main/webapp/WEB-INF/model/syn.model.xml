@@ -348,7 +348,7 @@
 				>
 					<annotations>
 						<storage-algorithm>
-							<query expr="comp -> $comp.get(`syn:Component#priceAfterActivities`) + $comp.get(`syn:Component#priceActivityContribution`)"/>
+							<query expr="comp -> $comp.get(`syn:Component#priceAfterActivities`) + $comp.get(`syn:Component#priceActivityPrognose`)"/>
 						</storage-algorithm>
 					</annotations>
 				</property>
@@ -453,9 +453,7 @@
 						<storage-algorithm>
 							<query>
 								<expr><![CDATA[grp -> $grp.get(`syn:ConstructionGroup#consistsOf`).get(`syn:Connection#consistsOf`).get(`syn:Component#priceAfterActivities`).sum() + 
-         $grp.get(`syn:Component#valuations`).filter(
-        v -> $v.get(`kpi:AbstractValuation#kpi`).get(`kpi:Kpi#name`).equals("Preis")).
-        map(v -> $v.get(`kpi:AbstractValuation#value`)).sum()]]></expr>
+         $grp.get(`syn:Component#priceActivityContribution`)]]></expr>
 							</query>
 						</storage-algorithm>
 					</annotations>
@@ -471,6 +469,19 @@
          $grp.get(`syn:Component#valuations`).filter(
         v -> $v.get(`kpi:AbstractValuation#kpi`).get(`kpi:Kpi#name`).equals("Gewicht")).
         map(v -> $v.get(`kpi:AbstractValuation#value`)).sum()]]></expr>
+							</query>
+						</storage-algorithm>
+					</annotations>
+				</property>
+				<property name="prognose"
+					override="true"
+					type="tl.core:Double"
+				>
+					<annotations>
+						<storage-algorithm>
+							<query>
+								<expr><![CDATA[grp -> $grp.get(`syn:ConstructionGroup#consistsOf`).get(`syn:Connection#consistsOf`).get(`syn:Component#prognose`).sum() + 
+         $grp.get(`syn:Component#priceActivityPrognose`)]]></expr>
 							</query>
 						</storage-algorithm>
 					</annotations>

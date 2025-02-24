@@ -1,0 +1,11 @@
+1) In der GUI Administration -> Tech. Administration -> Wartung die Wartungsseite "DBQuery.jsp" auswählen.
+2) In das Feld "Statement" den Text 
+
+update revision set "date"="date"-604800000
+ 
+genau so eintragen, inklusive der Anführungszeichen.
+
+3) Den Button "Execute update" anklicken.
+
+
+Dadurch wird die KnowledgeBase um 1000*3600*24*7 Millisekunden in die Vergangeheit gesetzt, d.h. um eine Woche. 

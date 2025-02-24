@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	template="com.top_logic/tab.template.xml"
+>
+	<arguments
+		helpID="ID_63960753_e6f2_40a2_8d93_0a2b5c8b9cc8"
+		tabIcon="css:fa-solid fa-truck-field"
+	>
+		<tabLabel key="dynamic.01e17c1b-d155-4504-9ef8-d6367eaa4dd1">
+			<en>Suppliers</en>
+			<de>Lieferanten</de>
+		</tabLabel>
+		<components>
+			<layout-reference resource="synchra/suppliers/innerLayout.layout.xml"/>
+		</components>
+	</arguments>
+</config:template-call>

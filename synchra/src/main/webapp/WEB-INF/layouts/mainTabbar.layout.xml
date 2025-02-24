@@ -13,6 +13,7 @@
 			<layout-reference resource="admin/index.layout.xml"/>
 			<layout-reference resource="synchra/products/tabLayout.layout.xml"/>
 			<layout-reference resource="synchra/risks/tabLayout.layout.xml"/>
+			<layout-reference resource="synchra/suppliers/tabLayout.layout.xml"/>
 		</components>
 		<dialogs>
 			<layout-reference resource="com.top_logic.monitoring/admin/technical/logs/logLines.sessionDialog.layout.xml"/>

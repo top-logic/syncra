@@ -116,6 +116,7 @@
 							<property name="syn:SinglePart#name"/>
 							<property name="syn:SinglePart#price"/>
 							<property name="syn:SinglePart#weight"/>
+							<property name="syn:SinglePart#goalPrice"/>
 						</properties>
 						<references>
 							<reference name="syn:SinglePart#material"

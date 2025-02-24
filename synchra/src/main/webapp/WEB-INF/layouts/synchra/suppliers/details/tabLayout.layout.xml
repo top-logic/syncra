@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	template="com.top_logic/tab.template.xml"
+>
+	<arguments
+		helpID="ID_0de4e9ee_7c3b_43a2_8d7a_2e37cb43de85"
+		tabIcon="css:fa-solid fa-info"
+	>
+		<tabLabel key="dynamic.67e1fc9d-ae2b-4d71-903b-85e9ad478344">
+			<en>Details</en>
+			<de>Detaildaten</de>
+		</tabLabel>
+		<components>
+			<layout-reference resource="synchra/suppliers/details/innerLayout.layout.xml"/>
+		</components>
+	</arguments>
+</config:template-call>

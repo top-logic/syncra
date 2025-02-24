@@ -67,6 +67,7 @@
 						</field>
 					</form>
 				</form-definition>
+				<reference-display value="radio-inline"/>
 			</annotations>
 			<attributes>
 				<property name="name"
@@ -123,6 +124,7 @@
 				<generalization type="tl.model:TLObject"/>
 			</generalizations>
 			<annotations>
+				<instance-presentation icon="css:fa-regular fa-building"/>
 				<form-definition>
 					<form>
 						<static-html>
@@ -147,11 +149,6 @@
 						</group>
 						<group>
 							<field
-								attribute="contactPerson"
-								fullQualifiedName="syn:Company#contactPerson"
-								type="tl.core:String"
-							/>
-							<field
 								attribute="phone"
 								fullQualifiedName="syn:Company#phone"
 								type="tl.core:String"
@@ -167,9 +164,13 @@
 							fullQualifiedName="syn:Company#canDeliver"
 							type="syn:Component"
 						/>
+						<field
+							attribute="contact"
+							fullQualifiedName="syn:Company#contact"
+							type="syn:ContactPerson"
+						/>
 					</form>
 				</form-definition>
-				<instance-presentation icon="css:fa-regular fa-building"/>
 			</annotations>
 			<attributes>
 				<property name="name"
@@ -182,9 +183,6 @@
 					navigate="true"
 					type="CompanyStructure"
 				/>
-				<property name="contactPerson"
-					type="tl.core:String"
-				/>
 				<property name="phone"
 					type="tl.core:String"
 				/>
@@ -195,14 +193,31 @@
 					navigate="true"
 					ordered="true"
 					type="Component"
+				>
+					<annotations>
+						<label-position value="hide-label"/>
+					</annotations>
+				</reference>
+				<reference name="contact"
+					composite="true"
+					kind="forwards"
+					multiple="true"
+					navigate="true"
+					ordered="true"
+					type="ContactPerson"
+				/>
+				<property name="adressInformations"
+					type="tl.core:String"
 				/>
 			</attributes>
 		</class>
 		<interface name="Component">
 			<generalizations>
-				<generalization type="tl.model:TLObject"/>
 				<generalization type="kpi:KpiAware"/>
 			</generalizations>
+			<annotations>
+				<reference-display value="table"/>
+			</annotations>
 			<attributes>
 				<property name="name"
 					mandatory="true"
@@ -657,6 +672,11 @@
 					type="tl.core:String"
 				/>
 			</attributes>
+		</class>
+		<class name="ContactPerson">
+			<generalizations>
+				<generalization type="Contacts:PersonContact"/>
+			</generalizations>
 		</class>
 		<class name="Material">
 			<generalizations>

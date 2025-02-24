@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	template="com.top_logic.element/form.template.xml"
+>
+	<arguments model="selection(synchra/suppliers/suppliersTable.layout.xml#Table)">
+		<name key="dynamic.c7069b7e-a1ce-47fd-8135-6cd845359939">
+			<en>details</en>
+			<de>Detaildaten</de>
+		</name>
+		<forms>
+			<form type="syn:Company">
+				<formDefinition>
+					<static-html>
+						<content><![CDATA[<p><span style="font-size:36px"><strong>Details Firmenkontakt</strong></span></p>
+]]></content>
+					</static-html>
+					<group>
+						<field
+							attribute="name"
+							fullQualifiedName="syn:Company#name"
+							type="tl.core:String"
+						/>
+						<field
+							attribute="structure"
+							fullQualifiedName="syn:Company#structure"
+							type="syn:CompanyStructure"
+						/>
+						<field
+							attribute="adressInformations"
+							fullQualifiedName="syn:Company#adressInformations"
+							type="tl.core:String"
+						/>
+						<field
+							attribute="phone"
+							fullQualifiedName="syn:Company#phone"
+							type="tl.core:String"
+						/>
+						<label key="dynamic.5dae300d-1547-4871-840b-5455236645ad">
+							<en>Base Data</en>
+							<de>Basisdaten</de>
+						</label>
+					</group>
+					<other-attributes/>
+					<separator/>
+					<field
+						attribute="contact"
+						fullQualifiedName="syn:Company#contact"
+						type="syn:ContactPerson"
+					/>
+					<field
+						attribute="canDeliver"
+						fullQualifiedName="syn:Company#canDeliver"
+						type="syn:Component"
+					/>
+				</formDefinition>
+			</form>
+		</forms>
+	</arguments>
+</config:template-call>

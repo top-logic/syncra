@@ -62,15 +62,32 @@ public class ReferenceImport extends AttributeImport {
 
 	@Override
 	public void performImport(TLObject object, Map<Integer, Object> values) {
-
 		Object excelValue = values.get(getColumn());
 		if (excelValue != null) {
 			Object importValue = getImportValue(excelValue);
 			if (getPart().isBackwards()) {
+				TLObject importObject = (TLObject) importValue;
 				TLStructuredTypePart directAttribute = getPart().getOpposite();
-				((TLObject) importValue).tAdd(directAttribute, object);
+				Object existing = importObject.tGetData(directAttribute.getName());
+				if (existing instanceof Collection) {
+					Collection<?> col = (Collection<?>) existing;
+					if (!col.contains(object)) {
+						importObject.tAdd(directAttribute, object);
+					}
+				} else {
+					importObject.tAdd(directAttribute, object);
+				}
+
 			} else {
-				object.tUpdateByName(getName(), importValue);
+				Object existing = object.tGetData(getName());
+				if (existing instanceof Collection) {
+					Collection<?> col = (Collection<?>) existing;
+					if (!col.contains(importValue)) {
+						object.tUpdateByName(getName(), importValue);
+					}
+				} else {
+					object.tUpdateByName(getName(), importValue);
+				}
 			}
 		}
 	}

@@ -158,7 +158,7 @@ public class TypeImporter {
 		for (String idAttr : _idAttributes) {
 			int idCol = _attributesByName.get(idAttr).getColumn();
 			Object val = values.get(idCol);
-			val = val == null ? "" : val;
+			val = val == null ? "null" : val;
 			idParts.add(val.toString().trim());
 		}
 		return StringServices.toString(idParts, "-");
@@ -176,11 +176,18 @@ public class TypeImporter {
 			TLObject existingObject = existing.get(id);
 			if (existingObject == null) {
 				existingObject = ModelFactory.getInstance().createObject(_tlClass);
+				// set values
 				for (AttributeImport ad : _attributesByName.values()) {
 					ad.performImport(existingObject, values);
 				}
 				afterCreation(existingObject);
 				register(existingObject);
+			}
+			else{
+				// set values
+				for (AttributeImport ad : _attributesByName.values()) {
+					ad.performImport(existingObject, values);
+				}
 			}
 		}
 	}

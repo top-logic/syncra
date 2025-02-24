@@ -104,7 +104,6 @@
 						</classifications>
 						<properties>
 							<property name="syn:Company#name"/>
-							<property name="syn:Company#contactPerson"/>
 							<property name="syn:Company#phone"/>
 						</properties>
 					</importer>

@@ -33,11 +33,6 @@
 					</group>
 					<group>
 						<field
-							attribute="contactPerson"
-							fullQualifiedName="syn:Company#contactPerson"
-							type="tl.core:String"
-						/>
-						<field
 							attribute="phone"
 							fullQualifiedName="syn:Company#phone"
 							type="tl.core:String"
@@ -52,6 +47,11 @@
 						attribute="canDeliver"
 						fullQualifiedName="syn:Company#canDeliver"
 						type="syn:Component"
+					/>
+					<field
+						attribute="contact"
+						fullQualifiedName="syn:Company#contact"
+						type="syn:ContactPerson"
 					/>
 				</formDefinition>
 			</form>

@@ -175,6 +175,7 @@ public class TypeImporter {
 			String id = getAsId(values);
 			TLObject existingObject = existing.get(id);
 			if (existingObject == null) {
+				Logger.info("Create instance: " + _tlClass.getName(), TypeImporter.class);
 				existingObject = ModelFactory.getInstance().createObject(_tlClass);
 				// set values
 				for (AttributeImport ad : _attributesByName.values()) {
@@ -185,6 +186,7 @@ public class TypeImporter {
 			}
 			else{
 				// set values
+				Logger.info("Set value for existing: " + _tlClass.getName(), TypeImporter.class);
 				for (AttributeImport ad : _attributesByName.values()) {
 					ad.performImport(existingObject, values);
 				}

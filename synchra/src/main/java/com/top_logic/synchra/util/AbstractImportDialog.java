@@ -8,7 +8,7 @@ import com.top_logic.layout.ResPrefix;
 import com.top_logic.layout.basic.CommandModel;
 import com.top_logic.layout.basic.CommandModelFactory;
 import com.top_logic.layout.basic.CommandModelUtilities;
-import com.top_logic.layout.form.constraints.FilenameEndConstraint;
+import com.top_logic.layout.form.Constraint;
 import com.top_logic.layout.form.model.DataField;
 import com.top_logic.layout.form.model.FormContext;
 import com.top_logic.layout.form.model.FormFactory;
@@ -47,7 +47,7 @@ public abstract class AbstractImportDialog extends SimpleFormDialog {
 		context.addMember(uploadField);
 	}
 
-	protected abstract FilenameEndConstraint getFileNameConstraint();
+	protected abstract Constraint getFileNameConstraint();
 
 	@Override
 	protected void fillButtons(List<CommandModel> buttons) {

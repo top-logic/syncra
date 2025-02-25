@@ -10,11 +10,13 @@ import org.apache.poi.ss.usermodel.Row;
 
 import com.top_logic.basic.io.BinaryContent;
 import com.top_logic.contact.business.POIExcelImporter;
+import com.top_logic.knowledge.service.PersistencyLayer;
+import com.top_logic.knowledge.service.Transaction;
 
 /**
  * Imports data for synchra
  */
-public class SynchraImporter extends POIExcelImporter {
+public class SynchraImporter extends POIExcelImporter implements FileImporter {
 
 	private List<TypeImporter> _importers;
 	private Map<String, TypeImporter> _typeImporters;
@@ -46,7 +48,7 @@ public class SynchraImporter extends POIExcelImporter {
 	/**
 	 * Performs the check for all registered importers in the registering sequence
 	 */
-	public void checkData() {
+	private void checkData() {
 		for(TypeImporter importer : _importers) {
 			importer.checkData();
 		}
@@ -55,9 +57,15 @@ public class SynchraImporter extends POIExcelImporter {
 	/**
 	 * Performs the import for all registered importers in the registering sequence
 	 */
-	public void performImport() {
-		for(TypeImporter importer : _importers) {
-			importer.performImport();
+	@Override
+	public void performImportWithCommit() {
+		run();
+		checkData();
+		try (Transaction ta = PersistencyLayer.getKnowledgeBase().beginTransaction()) {
+			for (TypeImporter importer : _importers) {
+				importer.performImport();
+			}
+			ta.commit();
 		}
 	}
 

@@ -44,23 +44,16 @@
 					owner="syn:PartCatalog"
 				/>
 			</button>
-			<button id="importPictures"
-				class="com.top_logic.synchra.util.OpenImportPicturesDialog"
-				clique="exportButtons"
-				executability="InViewMode"
-				group="Write"
-				image="css:fa-solid fa-file-import"
-			/>
 			<button id="importCatalogs"
-				class="com.top_logic.synchra.util.OpenImportCatalogsDialog"
+				class="com.top_logic.synchra.util.OpenImportSynchraDialog"
 				clique="exportButtons"
 				executability="InViewMode"
 				group="Write"
 				image="css:fa-solid fa-file-import"
 			>
 				<resourceKey key="dynamic.659fe5c1-02b9-4560-9146-31e154fe76b9">
-					<en>Import data</en>
-					<de>Daten importieren</de>
+					<en>Import (data and pictures)...</en>
+					<de>Import (Daten und Bilder)...</de>
 				</resourceKey>
 				<importers>
 					<importer

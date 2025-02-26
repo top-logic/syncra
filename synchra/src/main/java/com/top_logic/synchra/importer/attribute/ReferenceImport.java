@@ -1,12 +1,12 @@
 package com.top_logic.synchra.importer.attribute;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Map;
 
 import com.top_logic.basic.StringServices;
 import com.top_logic.basic.config.InstantiationContext;
 import com.top_logic.basic.config.PolymorphicConfiguration;
+import com.top_logic.basic.config.annotation.defaults.BooleanDefault;
 import com.top_logic.model.TLClass;
 import com.top_logic.model.TLObject;
 import com.top_logic.model.TLReference;
@@ -43,10 +43,19 @@ public class ReferenceImport extends AttributeImport {
 		 * @return the name of the attribute which provides the primary key
 		 */
 		String getIdAttribute();
+
+		/**
+		 * @return flase if no reiport is possible. Used for primary key attributes
+		 */
+		@BooleanDefault(true)
+		boolean getReImport();
 	}
+
+	private boolean _reImport;
 
 	public ReferenceImport(InstantiationContext context, Config config) {
 		super(ImportUtil.getPart(config.getName()), getTransformer(config));
+		_reImport = config.getReImport();
 	}
 
 	private static ReferenceTransformer getTransformer(Config config) {
@@ -66,40 +75,40 @@ public class ReferenceImport extends AttributeImport {
 		if (excelValue != null) {
 			Object importValue = getImportValue(excelValue);
 			if (getPart().isBackwards()) {
-				TLObject importObject = (TLObject) importValue;
-				TLStructuredTypePart directAttribute = getPart().getOpposite();
-				Object existing = importObject.tGetData(directAttribute.getName());
-				if (existing instanceof Collection) {
-					Collection<?> col = (Collection<?>) existing;
-					if (!col.contains(object)) {
-						importObject.tAdd(directAttribute, object);
-					}
-				} else {
-					importObject.tAdd(directAttribute, object);
-				}
-
+				doSetValue(getPart().getOpposite(), (TLObject) importValue, object);
 			} else {
-				Object existing = object.tGetData(getName());
-				if (existing instanceof Collection) {
-					Collection<?> col = (Collection<?>) existing;
-					if (!col.contains(importValue)) {
-						object.tUpdateByName(getName(), importValue);
-					}
-				} else {
-					object.tUpdateByName(getName(), importValue);
-				}
+				doSetValue(getPart(), object, importValue);
 			}
 		}
 	}
 
+	private void doSetValue(TLStructuredTypePart attr, TLObject importObject, Object importValue) {
+		Object existing = importObject.tValue(attr);
+		if (attr.isMultiple()) {
+			if (existing instanceof Collection) {
+				Collection<?> col = (Collection<?>) existing;
+				if (!col.contains(importValue)) {
+					importObject.tAdd(attr, importValue);
+				}
+			} else {
+				importObject.tAdd(attr, importValue);
+			}
+		}
+		else {
+			// single values: set value
+			importObject.tUpdateByName(attr.getName(), importValue);
+		}
+	}
+
+
 	@Override
 	protected Object getImportValue(Object excelValue) {
 		Object value = super.getImportValue(excelValue);
-		if (getPart().isMultiple()) {
-			if (!(value instanceof Collection)) {
-				return Collections.singleton(value);
-			}
-		}
+//		if (getPart().isMultiple()) {
+//			if (!(value instanceof Collection)) {
+//				return Collections.singleton(value);
+//			}
+//		}
 		return value;
 	}
 

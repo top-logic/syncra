@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import com.top_logic.basic.Logger;
 import com.top_logic.basic.io.BinaryContent;
 import com.top_logic.basic.io.binary.BinaryData;
 import com.top_logic.knowledge.service.SimpleDBExecutor;
@@ -34,6 +35,7 @@ public class MultiDayImporter extends ZipImporter implements FileImporter {
 			Collections.sort(days);
 			int oldDay = -1;
 			for (Integer day : days) {
+				Logger.info("Import day " + day, MultiDayImporter.class);
 				boolean importPictures = false;
 				if (oldDay > -1) {
 					shiftTime(day - oldDay);
@@ -45,6 +47,7 @@ public class MultiDayImporter extends ZipImporter implements FileImporter {
 				performImport(data);
 
 				if (importPictures) {
+					Logger.info("Import pictures ", MultiDayImporter.class);
 					importPictures();
 				}
 			}

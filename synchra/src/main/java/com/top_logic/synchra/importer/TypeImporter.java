@@ -187,6 +187,8 @@ public class TypeImporter {
 			else{
 				// set values
 				Logger.info("Set value for existing: " + _tlClass.getName(), TypeImporter.class);
+
+				// beware: do not set again the attributes for primary key
 				for (AttributeImport ad : _attributesByName.values()) {
 					ad.performImport(existingObject, values);
 				}

@@ -49,14 +49,25 @@ public class ZipReader {
 			Enumeration<? extends ZipEntry> entries = zf.entries();
 			while (entries.hasMoreElements()) {
 				ZipEntry zipEntry = entries.nextElement();
-				BinaryData content = readEntry(zf, zipEntry);
-				if (data != null) {
-					String name = zipEntry.getName();
-					_dataByName.put(name, content);
+				if (!zipEntry.isDirectory()) {
+					String name = getSimpleName(zipEntry);
+					BinaryData content = readEntry(zf, zipEntry, name);
+					if (data != null) {
+						_dataByName.put(name, content);
+					}
 				}
 			}
 			zf.close();
 		}
+	}
+
+	private String getSimpleName(ZipEntry zipEntry) {
+		String name = zipEntry.getName();
+		int idx = name.lastIndexOf("/");
+		if (idx > -1) {
+			name = name.substring(idx + 1);
+		}
+		return name;
 	}
 
 	private Map<String, BinaryData> getPicturesByName() throws Exception {
@@ -75,11 +86,11 @@ public class ZipReader {
 	}
 
 
-	private BinaryData readEntry(ZipFile zf, ZipEntry zipEntry) throws Exception {
+	private BinaryData readEntry(ZipFile zf, ZipEntry zipEntry, String simpleName) throws Exception {
 		String contentType = BinaryData.CONTENT_TYPE_OCTET_STREAM;
 		try (InputStream inputStream = zf.getInputStream(zipEntry)) {
 			// do this for the POI reader. It needs a file ending with "xls"
-			String name = Math.random() + "_" + zipEntry.getName();
+			String name = Math.random() + "_" + simpleName;
 			return BinaryDataFactory.createFileBasedBinaryData(inputStream, contentType, name);
 		}
 	}

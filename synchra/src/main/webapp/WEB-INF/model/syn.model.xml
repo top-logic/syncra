@@ -232,7 +232,16 @@
 				/>
 				<property name="price"
 					type="tl.core:Double"
-				/>
+				>
+					<annotations>
+						<format>
+							<currency
+								currency="EUR"
+								pattern="#0.00 €"
+							/>
+						</format>
+					</annotations>
+				</property>
 				<reference name="risks"
 					inverse-reference="components"
 					kind="backwards"
@@ -253,6 +262,12 @@
         ]]></expr>
 							</query>
 						</storage-algorithm>
+						<format>
+							<currency
+								currency="EUR"
+								pattern="#0.00 €"
+							/>
+						</format>
 					</annotations>
 				</property>
 				<reference name="pictures"
@@ -294,6 +309,12 @@
         map(v -> $v.get(`kpi:Valuation#value`)).sum()]]></expr>
 							</query>
 						</storage-algorithm>
+						<format>
+							<currency
+								currency="EUR"
+								pattern="#0.00 €"
+							/>
+						</format>
 					</annotations>
 				</property>
 				<property name="weightActivityContribution"
@@ -311,7 +332,16 @@
 				</property>
 				<property name="goalPrice"
 					type="tl.core:Double"
-				/>
+				>
+					<annotations>
+						<format>
+							<currency
+								currency="EUR"
+								pattern="#0.00 €"
+							/>
+						</format>
+					</annotations>
+				</property>
 				<reference name="isAffectedByProblem"
 					inverse-reference="isRelatedToComponent"
 					kind="backwards"
@@ -356,6 +386,12 @@
         map(v -> $v.get(`kpi:Valuation#value`)).sum()]]></expr>
 							</query>
 						</storage-algorithm>
+						<format>
+							<currency
+								currency="EUR"
+								pattern="#0.00 €"
+							/>
+						</format>
 					</annotations>
 				</property>
 				<property name="prognose"
@@ -365,6 +401,12 @@
 						<storage-algorithm>
 							<query expr="comp -> $comp.get(`syn:Component#priceAfterActivities`) + $comp.get(`syn:Component#priceActivityPrognose`)"/>
 						</storage-algorithm>
+						<format>
+							<currency
+								currency="EUR"
+								pattern="0.00 €"
+							/>
+						</format>
 					</annotations>
 				</property>
 				<property name="goalGap"
@@ -374,6 +416,12 @@
 						<storage-algorithm>
 							<query expr="x->$x.get(`syn:Component#price`) + $x.get(`syn:Component#priceActivityContribution`)-$x.get(`syn:Component#goalPrice`)"/>
 						</storage-algorithm>
+						<format>
+							<currency
+								currency="EUR"
+								pattern="#0.00 €"
+							/>
+						</format>
 					</annotations>
 				</property>
 			</attributes>

@@ -16,18 +16,25 @@
 	    'labels': (count(-77,1,1).map(y -> now().toUserCalendar().withDayAdded
 	                    ($y).toDate().toString())),
 		'datasets': [
-		    {
+		/*    {
 		        'label': 'Preis',
 			    'data': (count(-77,1,1).map(y -> now().toUserCalendar().
 			    withDayAdded($y).toDate().revisionAt()))
 			    .map(rev -> $compNode.get(`syn:ComponentNode#component`).inRevision($rev).get(`syn:Component#price`)
 			    ,)
-		    },
+		    }, */
 		    {
 		        'label': 'Zielpreis',
 			    'data': (count(-77,1,1).map(y -> now().toUserCalendar().
 			    withDayAdded($y).toDate().revisionAt()))
 			    .map(rev -> $compNode.get(`syn:ComponentNode#component`).inRevision($rev).get(`syn:Component#goalPrice`)
+			    ,)
+		    },
+		    {
+		        'label': 'Prognose',
+			    'data': (count(-77,1,1).map(y -> now().toUserCalendar().
+			    withDayAdded($y).toDate().revisionAt()))
+			    .map(rev -> $compNode.get(`syn:ComponentNode#component`).inRevision($rev).get(`syn:Component#prognose`)
 			    ,)
 		    },
 		    {

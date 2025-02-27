@@ -5,7 +5,7 @@
 	template="com.top_logic.element/treegrid.template.xml"
 >
 	<arguments
-		defaultColumns="name,componentID,price,goalPrice,material,company,suppliers,canBeDelivered"
+		defaultColumns="name,componentID,price,goalPrice,priceAfterActivities,goalGap,prognose,material,company"
 		defaultSelection="false"
 		rootVisible="false"
 		type="syn:PartCatalog,syn:SinglePart"
@@ -137,16 +137,18 @@
 						id-attributes="name"
 						tl-class="syn:Activity"
 					>
-						<properties>
-							<property name="syn:Activity#name"/>
-							<property name="syn:Activity#costs"/>
-							<property name="syn:Activity#effectDate" type="relativeDate"/>
-						</properties>
 						<classifications>
 							<classification name="syn:Activity#state"
 								enumeration="syn:ActivityState"
 							/>
 						</classifications>
+						<properties>
+							<property name="syn:Activity#name"/>
+							<property name="syn:Activity#costs"/>
+							<property name="syn:Activity#effectDate"
+								type="relativeDate"
+							/>
+						</properties>
 					</importer>
 					<importer
 						id-attributes="name"

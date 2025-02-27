@@ -367,6 +367,15 @@
 						</storage-algorithm>
 					</annotations>
 				</property>
+				<property name="goalGap"
+					type="tl.core:Double"
+				>
+					<annotations>
+						<storage-algorithm>
+							<query expr="x->$x.get(`syn:Component#price`) + $x.get(`syn:Component#priceActivityContribution`)-$x.get(`syn:Component#goalPrice`)"/>
+						</storage-algorithm>
+					</annotations>
+				</property>
 			</attributes>
 		</interface>
 		<class name="ConstructionGroup">

@@ -160,14 +160,14 @@
 						</group>
 						<other-attributes/>
 						<field
-							attribute="canDeliver"
-							fullQualifiedName="syn:Company#canDeliver"
-							type="syn:Component"
-						/>
-						<field
 							attribute="contact"
 							fullQualifiedName="syn:Company#contact"
 							type="syn:ContactPerson"
+						/>
+						<field
+							attribute="mayDeliver"
+							fullQualifiedName="syn:Company#mayDeliver"
+							type="syn:Component"
 						/>
 					</form>
 				</form-definition>
@@ -186,18 +186,6 @@
 				<property name="phone"
 					type="tl.core:String"
 				/>
-				<reference name="canDeliver"
-					inverse-reference="canBeDelivered"
-					kind="forwards"
-					multiple="true"
-					navigate="true"
-					ordered="true"
-					type="Component"
-				>
-					<annotations>
-						<label-position value="hide-label"/>
-					</annotations>
-				</reference>
 				<reference name="contact"
 					composite="true"
 					kind="forwards"
@@ -209,6 +197,17 @@
 				<property name="adressInformations"
 					type="tl.core:String"
 				/>
+				<reference name="mayDeliver"
+					inverse-reference="suppliers"
+					kind="backwards"
+					multiple="true"
+					navigate="true"
+					type="Component"
+				>
+					<annotations>
+						<label-position value="hide-label"/>
+					</annotations>
+				</reference>
 			</attributes>
 		</class>
 		<interface name="Component">
@@ -350,23 +349,15 @@
 					navigate="true"
 					type="prob:Problem"
 				/>
-				<reference name="canBeDelivered"
-					inverse-reference="canDeliver"
-					kind="backwards"
-					multiple="true"
-					navigate="true"
-					type="Company"
-				/>
 				<reference name="suppliers"
+					inverse-reference="mayDeliver"
 					kind="forwards"
 					multiple="true"
 					navigate="true"
 					type="Company"
 				>
 					<annotations>
-						<options>
-							<options-by-expression function="c -> $c.get(`syn:Component#canBeDelivered`)"/>
-						</options>
+						<label-position value="hide-label"/>
 					</annotations>
 				</reference>
 				<property name="priceActivityPrognose"
@@ -610,11 +601,6 @@
 							type="syn:Company"
 						/>
 						<field
-							attribute="canBeDelivered"
-							fullQualifiedName="syn:Component#canBeDelivered"
-							type="syn:Company"
-						/>
-						<field
 							attribute="isAffectedByProblem"
 							fullQualifiedName="syn:Component#isAffectedByProblem"
 							type="prob:Problem"
@@ -638,12 +624,6 @@
 							attribute="material"
 							fullQualifiedName="syn:SinglePart#material"
 							type="syn:Material"
-						/>
-						<field
-							attribute="valuations"
-							fullQualifiedName="kpi:KpiAware#valuations"
-							type="kpi:AbstractValuation"
-							visibility="read-only"
 						/>
 						<field
 							attribute="weight"

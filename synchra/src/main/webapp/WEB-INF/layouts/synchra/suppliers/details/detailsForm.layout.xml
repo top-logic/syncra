@@ -42,16 +42,14 @@
 							<de>Basisdaten</de>
 						</label>
 					</group>
-					<other-attributes/>
-					<separator/>
 					<field
 						attribute="contact"
 						fullQualifiedName="syn:Company#contact"
 						type="syn:ContactPerson"
 					/>
 					<field
-						attribute="canDeliver"
-						fullQualifiedName="syn:Company#canDeliver"
+						attribute="mayDeliver"
+						fullQualifiedName="syn:Company#mayDeliver"
 						type="syn:Component"
 					/>
 				</formDefinition>

@@ -217,6 +217,7 @@
 			</generalizations>
 			<annotations>
 				<reference-display value="table"/>
+				<main-properties properties="name,componentID"/>
 			</annotations>
 			<attributes>
 				<property name="name"
@@ -566,6 +567,91 @@
 			</generalizations>
 			<annotations>
 				<instance-presentation icon="css:fa-solid fa-diamond"/>
+				<form-definition>
+					<form>
+						<field
+							attribute="name"
+							fullQualifiedName="syn:Component#name"
+							type="tl.core:String"
+						/>
+						<field
+							attribute="componentID"
+							fullQualifiedName="syn:SinglePart#componentID"
+							type="tl.core:String"
+						/>
+						<field
+							attribute="price"
+							fullQualifiedName="syn:Component#price"
+							type="tl.core:Double"
+						/>
+						<field
+							attribute="priceAfterActivities"
+							fullQualifiedName="syn:Component#priceAfterActivities"
+							type="tl.core:Double"
+						/>
+						<field
+							attribute="goalPrice"
+							fullQualifiedName="syn:Component#goalPrice"
+							type="tl.core:Double"
+						/>
+						<field
+							attribute="goalGap"
+							fullQualifiedName="syn:Component#goalGap"
+							type="tl.core:Double"
+						/>
+						<field
+							attribute="prognose"
+							fullQualifiedName="syn:Component#prognose"
+							type="tl.core:Double"
+						/>
+						<field
+							attribute="suppliers"
+							fullQualifiedName="syn:Component#suppliers"
+							type="syn:Company"
+						/>
+						<field
+							attribute="canBeDelivered"
+							fullQualifiedName="syn:Component#canBeDelivered"
+							type="syn:Company"
+						/>
+						<field
+							attribute="isAffectedByProblem"
+							fullQualifiedName="syn:Component#isAffectedByProblem"
+							type="prob:Problem"
+						/>
+						<field
+							attribute="company"
+							fullQualifiedName="syn:SinglePart#company"
+							type="syn:Company"
+						/>
+						<field
+							attribute="pictures"
+							fullQualifiedName="syn:Component#pictures"
+							type="tl.imagegallery:GalleryImage"
+						/>
+						<field
+							attribute="risks"
+							fullQualifiedName="syn:Component#risks"
+							type="risk:Risk"
+						/>
+						<field
+							attribute="material"
+							fullQualifiedName="syn:SinglePart#material"
+							type="syn:Material"
+						/>
+						<field
+							attribute="valuations"
+							fullQualifiedName="kpi:KpiAware#valuations"
+							type="kpi:AbstractValuation"
+							visibility="read-only"
+						/>
+						<field
+							attribute="weight"
+							fullQualifiedName="syn:Component#weight"
+							type="tl.core:Double"
+						/>
+					</form>
+				</form-definition>
 			</annotations>
 			<attributes>
 				<reference name="company"

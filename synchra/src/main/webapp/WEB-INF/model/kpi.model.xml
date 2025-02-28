@@ -114,14 +114,19 @@
 					<form>
 						<group>
 							<field
+								attribute="componentOld"
+								fullQualifiedName="kpi:Progress#componentOld"
+								type="syn:Component"
+							/>
+							<field
 								attribute="priceOld"
 								fullQualifiedName="kpi:Progress#priceOld"
 								type="tl.core:Double"
 							/>
 							<field
-								attribute="componentOld"
-								fullQualifiedName="kpi:Progress#componentOld"
-								type="syn:Component"
+								attribute="prognoseOld"
+								fullQualifiedName="kpi:Progress#prognoseOld"
+								type="tl.core:Double"
 							/>
 							<label key="dynamic.95fa19cb-c530-4413-80c8-4ee24fb7f304">
 								<de>Datum 1</de>
@@ -129,14 +134,19 @@
 						</group>
 						<group>
 							<field
+								attribute="componentNew"
+								fullQualifiedName="kpi:Progress#componentNew"
+								type="syn:Component"
+							/>
+							<field
 								attribute="priceNew"
 								fullQualifiedName="kpi:Progress#priceNew"
 								type="tl.core:Double"
 							/>
 							<field
-								attribute="componentNew"
-								fullQualifiedName="kpi:Progress#componentNew"
-								type="syn:Component"
+								attribute="prognoseNew"
+								fullQualifiedName="kpi:Progress#prognoseNew"
+								type="tl.core:Double"
 							/>
 							<label key="dynamic.1cdc5498-6bd0-4e2d-8fc6-0bd7f12b7931">
 								<en>Date 2</en>
@@ -146,6 +156,11 @@
 						<field
 							attribute="priceDifference"
 							fullQualifiedName="kpi:Progress#priceDifference"
+							type="tl.core:Double"
+						/>
+						<field
+							attribute="prognoseDifference"
+							fullQualifiedName="kpi:Progress#prognoseDifference"
 							type="tl.core:Double"
 						/>
 					</form>
@@ -165,7 +180,7 @@
 						<storage-algorithm>
 							<query>
 								<expr><![CDATA[sel -> {comp = $sel.get(`kpi:Progress#componentOld`);
-        $comp==null ? 0 : $comp.get(`syn:Component#price`);
+        $comp==null ? 0 : $comp.get(`syn:Component#priceAfterActivities`);
     }]]></expr>
 							</query>
 						</storage-algorithm>
@@ -178,7 +193,7 @@
 						<storage-algorithm>
 							<query>
 								<expr><![CDATA[sel -> {comp = $sel.get(`kpi:Progress#componentNew`);
-        $comp==null ? 0 : $comp.get(`syn:Component#price`);
+        $comp==null ? 0 : $comp.get(`syn:Component#priceAfterActivities`);
     }]]></expr>
 							</query>
 						</storage-algorithm>
@@ -226,6 +241,53 @@
 					<annotations>
 						<storage-algorithm>
 							<query expr="p -> $p.get(`kpi:Progress#priceNew`)- $p.get(`kpi:Progress#priceOld`)"/>
+						</storage-algorithm>
+					</annotations>
+				</property>
+				<property name="prognoseOld"
+					type="tl.core:Double"
+				>
+					<annotations>
+						<storage-algorithm>
+							<query>
+								<expr><![CDATA[sel -> {comp = $sel.get(`kpi:Progress#componentOld`);
+        $comp==null ? 0 : $comp.get(`syn:Component#priceAfterActivities`);
+    }]]></expr>
+							</query>
+						</storage-algorithm>
+						<format>
+							<currency
+								currency="EUR"
+								pattern="#0.00 €"
+							/>
+						</format>
+					</annotations>
+				</property>
+				<property name="prognoseNew"
+					type="tl.core:Double"
+				>
+					<annotations>
+						<storage-algorithm>
+							<query>
+								<expr><![CDATA[sel -> {comp = $sel.get(`kpi:Progress#componentNew`);
+        $comp==null ? 0 : $comp.get(`syn:Component#prognose`);
+    }]]></expr>
+							</query>
+						</storage-algorithm>
+					</annotations>
+				</property>
+				<property name="prognoseDifference"
+					type="tl.core:Double"
+				>
+					<annotations>
+						<format>
+							<currency
+								currency="EUR"
+								pattern="#0.00 €"
+							/>
+						</format>
+						<storage-algorithm>
+							<query expr="p -> $p.get(`kpi:Progress#prognoseNew`)- $p.get(`kpi:Progress#prognoseOld`)"/>
 						</storage-algorithm>
 					</annotations>
 				</property>

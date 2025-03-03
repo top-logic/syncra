@@ -6,7 +6,6 @@ import java.util.Map;
 import com.top_logic.basic.StringServices;
 import com.top_logic.basic.config.InstantiationContext;
 import com.top_logic.basic.config.PolymorphicConfiguration;
-import com.top_logic.basic.config.annotation.defaults.BooleanDefault;
 import com.top_logic.model.TLClass;
 import com.top_logic.model.TLObject;
 import com.top_logic.model.TLReference;
@@ -43,19 +42,11 @@ public class ReferenceImport extends AttributeImport {
 		 * @return the name of the attribute which provides the primary key
 		 */
 		String getIdAttribute();
-
-		/**
-		 * @return flase if no reiport is possible. Used for primary key attributes
-		 */
-		@BooleanDefault(true)
-		boolean getReImport();
 	}
 
-	private boolean _reImport;
 
 	public ReferenceImport(InstantiationContext context, Config config) {
 		super(ImportUtil.getPart(config.getName()), getTransformer(config));
-		_reImport = config.getReImport();
 	}
 
 	private static ReferenceTransformer getTransformer(Config config) {
@@ -98,18 +89,6 @@ public class ReferenceImport extends AttributeImport {
 			// single values: set value
 			importObject.tUpdateByName(attr.getName(), importValue);
 		}
-	}
-
-
-	@Override
-	protected Object getImportValue(Object excelValue) {
-		Object value = super.getImportValue(excelValue);
-//		if (getPart().isMultiple()) {
-//			if (!(value instanceof Collection)) {
-//				return Collections.singleton(value);
-//			}
-//		}
-		return value;
 	}
 
 

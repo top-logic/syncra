@@ -165,6 +165,7 @@ public class TypeImporter {
 	}
 
 	public void performImport() {
+		Logger.info("Start import for: " + _tlClass.getName(), TypeImporter.class);
 		Set<TLObject> all = getSession().getAllInstancesOfType(_tlClass);
 		Map<String, TLObject> existing = new HashMap<>();
 		for(TLObject obj : all) {
@@ -194,6 +195,7 @@ public class TypeImporter {
 				}
 			}
 		}
+		Logger.info("Done import for: " + _tlClass.getName(), TypeImporter.class);
 	}
 
 	protected void register(TLObject existingObject) {

@@ -21,7 +21,7 @@
 {
     compNode = $model[0];
     numberOfMins = $model[1];
-    mins = -1 * $numberOfMins.get(`kpi:Anzahl#count`);
+    mins = -1 * ($numberOfMins==null?30: $numberOfMins.get(`kpi:Anzahl#count`));
 {
 	'type': 'line',
 	'data': {

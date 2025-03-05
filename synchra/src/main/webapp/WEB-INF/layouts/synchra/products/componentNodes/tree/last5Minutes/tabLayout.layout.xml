@@ -6,8 +6,8 @@
 >
 	<arguments helpID="ID_31ecd4a3_890d_4620_b218_52421a4e27be">
 		<tabLabel key="dynamic.5aae9e01-3a62-48dd-8390-d724376cfcf6">
-			<en>Last 5 Minutes</en>
-			<de>Letzte 5 Minuten</de>
+			<en>Trend Minutes</en>
+			<de>Verlauf Minuten</de>
 		</tabLabel>
 		<components>
 			<layout-reference resource="synchra/products/componentNodes/tree/last5Minutes/innerLayout.layout.xml"/>

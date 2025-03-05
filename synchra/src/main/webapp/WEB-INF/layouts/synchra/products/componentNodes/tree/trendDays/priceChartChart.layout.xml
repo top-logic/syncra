@@ -21,7 +21,7 @@
 {
     compNode = $model[0];
     numberOfDays = $model[1];
-    days = -1 * $numberOfDays.get(`kpi:Anzahl#count`);
+    days = -1 * ($numberOfDays==null?30: $numberOfDays.get(`kpi:Anzahl#count`));
 {
 	'type': 'line',
 	'data': {

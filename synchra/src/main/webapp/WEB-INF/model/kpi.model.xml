@@ -145,29 +145,9 @@
 					<form>
 						<group>
 							<field
-								attribute="componentOld"
-								fullQualifiedName="kpi:Progress#componentOld"
-								type="syn:Component"
-							/>
-							<field
 								attribute="priceOld"
 								fullQualifiedName="kpi:Progress#priceOld"
 								type="tl.core:Double"
-							/>
-							<field
-								attribute="prognoseOld"
-								fullQualifiedName="kpi:Progress#prognoseOld"
-								type="tl.core:Double"
-							/>
-							<label key="dynamic.95fa19cb-c530-4413-80c8-4ee24fb7f304">
-								<de>Datum 1</de>
-							</label>
-						</group>
-						<group>
-							<field
-								attribute="componentNew"
-								fullQualifiedName="kpi:Progress#componentNew"
-								type="syn:Component"
 							/>
 							<field
 								attribute="priceNew"
@@ -175,25 +155,36 @@
 								type="tl.core:Double"
 							/>
 							<field
+								attribute="priceDifference"
+								fullQualifiedName="kpi:Progress#priceDifference"
+								type="tl.core:Double"
+							/>
+							<label key="dynamic.94aae19e-98c2-489a-9994-1f54c655ca3c">
+								<en>Price</en>
+								<de>Preis</de>
+							</label>
+						</group>
+						<group>
+							<field
+								attribute="prognoseOld"
+								fullQualifiedName="kpi:Progress#prognoseOld"
+								type="tl.core:Double"
+							/>
+							<field
 								attribute="prognoseNew"
 								fullQualifiedName="kpi:Progress#prognoseNew"
 								type="tl.core:Double"
 							/>
-							<label key="dynamic.1cdc5498-6bd0-4e2d-8fc6-0bd7f12b7931">
-								<en>Date 2</en>
-								<de>Datum 2</de>
+							<field
+								attribute="prognoseDifference"
+								fullQualifiedName="kpi:Progress#prognoseDifference"
+								type="tl.core:Double"
+							/>
+							<label key="dynamic.078f069a-bc6d-458b-91eb-826a490417e8">
+								<en>Prognose</en>
+								<de>Prognose</de>
 							</label>
 						</group>
-						<field
-							attribute="priceDifference"
-							fullQualifiedName="kpi:Progress#priceDifference"
-							type="tl.core:Double"
-						/>
-						<field
-							attribute="prognoseDifference"
-							fullQualifiedName="kpi:Progress#prognoseDifference"
-							type="tl.core:Double"
-						/>
 					</form>
 				</form-definition>
 			</annotations>
@@ -352,6 +343,22 @@
 			<generalizations>
 				<generalization type="tl.model:TLObject"/>
 			</generalizations>
+			<annotations>
+				<form-definition>
+					<form>
+						<field
+							attribute="dateOld"
+							fullQualifiedName="kpi:TwoDates#dateOld"
+							type="tl.core:DateTime"
+						/>
+						<field
+							attribute="dateNew"
+							fullQualifiedName="kpi:TwoDates#dateNew"
+							type="tl.core:DateTime"
+						/>
+					</form>
+				</form-definition>
+			</annotations>
 			<attributes>
 				<property name="dateOld"
 					type="tl.core:DateTime"

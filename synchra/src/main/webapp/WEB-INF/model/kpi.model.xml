@@ -184,6 +184,12 @@
     }]]></expr>
 							</query>
 						</storage-algorithm>
+						<format>
+							<currency
+								currency="EUR"
+								pattern="#0.00 €"
+							/>
+						</format>
 					</annotations>
 				</property>
 				<property name="priceNew"
@@ -197,6 +203,12 @@
     }]]></expr>
 							</query>
 						</storage-algorithm>
+						<format>
+							<currency
+								currency="EUR"
+								pattern="#0.00 €"
+							/>
+						</format>
 					</annotations>
 				</property>
 				<reference name="component"
@@ -242,6 +254,12 @@
 						<storage-algorithm>
 							<query expr="p -> $p.get(`kpi:Progress#priceNew`)- $p.get(`kpi:Progress#priceOld`)"/>
 						</storage-algorithm>
+						<format>
+							<currency
+								currency="EUR"
+								pattern="#0.00 €"
+							/>
+						</format>
 					</annotations>
 				</property>
 				<property name="prognoseOld"
@@ -274,6 +292,12 @@
     }]]></expr>
 							</query>
 						</storage-algorithm>
+						<format>
+							<currency
+								currency="EUR"
+								pattern="#0.00 €"
+							/>
+						</format>
 					</annotations>
 				</property>
 				<property name="prognoseDifference"

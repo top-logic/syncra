@@ -1084,7 +1084,6 @@ all(`syn:Company`).map( company ->
 				/>
 				<reference name="productInRevision"
 					kind="forwards"
-					mandatory="true"
 					navigate="true"
 					type="Product"
 				>

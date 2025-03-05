@@ -143,48 +143,65 @@
 			<annotations>
 				<form-definition>
 					<form>
-						<group>
-							<field
-								attribute="priceOld"
-								fullQualifiedName="kpi:Progress#priceOld"
-								type="tl.core:Double"
-							/>
-							<field
-								attribute="priceNew"
-								fullQualifiedName="kpi:Progress#priceNew"
-								type="tl.core:Double"
-							/>
-							<field
-								attribute="priceDifference"
-								fullQualifiedName="kpi:Progress#priceDifference"
-								type="tl.core:Double"
-							/>
-							<label key="dynamic.94aae19e-98c2-489a-9994-1f54c655ca3c">
-								<en>Price</en>
-								<de>Preis</de>
-							</label>
-						</group>
-						<group>
-							<field
-								attribute="prognoseOld"
-								fullQualifiedName="kpi:Progress#prognoseOld"
-								type="tl.core:Double"
-							/>
-							<field
-								attribute="prognoseNew"
-								fullQualifiedName="kpi:Progress#prognoseNew"
-								type="tl.core:Double"
-							/>
-							<field
-								attribute="prognoseDifference"
-								fullQualifiedName="kpi:Progress#prognoseDifference"
-								type="tl.core:Double"
-							/>
-							<label key="dynamic.078f069a-bc6d-458b-91eb-826a490417e8">
-								<en>Prognose</en>
-								<de>Prognose</de>
-							</label>
-						</group>
+						<columnsLayout
+							columns="TWO"
+							lineBreak="false"
+						>
+							<group>
+								<field
+									attribute="priceOld"
+									fullQualifiedName="kpi:Progress#priceOld"
+									type="tl.core:Double"
+								/>
+								<field
+									attribute="priceNew"
+									fullQualifiedName="kpi:Progress#priceNew"
+									type="tl.core:Double"
+								/>
+								<field
+									attribute="priceDifference"
+									fullQualifiedName="kpi:Progress#priceDifference"
+									type="tl.core:Double"
+								>
+									<annotations>
+										<dynamic-label>
+											<label expression="x -> {'Änderung'}"/>
+										</dynamic-label>
+									</annotations>
+								</field>
+								<label key="dynamic.94aae19e-98c2-489a-9994-1f54c655ca3c">
+									<en>Price</en>
+									<de>Preis</de>
+								</label>
+							</group>
+							<group>
+								<field
+									attribute="prognoseOld"
+									fullQualifiedName="kpi:Progress#prognoseOld"
+									type="tl.core:Double"
+								/>
+								<field
+									attribute="prognoseNew"
+									fullQualifiedName="kpi:Progress#prognoseNew"
+									type="tl.core:Double"
+								/>
+								<field
+									attribute="prognoseDifference"
+									fullQualifiedName="kpi:Progress#prognoseDifference"
+									type="tl.core:Double"
+								>
+									<annotations>
+										<dynamic-label>
+											<label expression="x -> {'Änderung'}"/>
+										</dynamic-label>
+									</annotations>
+								</field>
+								<label key="dynamic.078f069a-bc6d-458b-91eb-826a490417e8">
+									<en>Prognose</en>
+									<de>Prognose</de>
+								</label>
+							</group>
+						</columnsLayout>
 					</form>
 				</form-definition>
 			</annotations>
@@ -291,7 +308,7 @@
 						<storage-algorithm>
 							<query>
 								<expr><![CDATA[sel -> {comp = $sel.get(`kpi:Progress#componentOld`);
-        $comp==null ? 0 : $comp.get(`syn:Component#priceAfterActivities`);
+        $comp==null ? 0 : $comp.get(`syn:Component#prognose`);
     }]]></expr>
 							</query>
 						</storage-algorithm>

@@ -7,7 +7,7 @@
 	<arguments orientation="VERTICAL">
 		<components>
 			<layout-reference resource="synchra/products/componentNodes/tree/progress/settingsForm.layout.xml">
-				<layoutInfo/>
+				<layoutInfo size="150px"/>
 			</layout-reference>
 			<layout-reference resource="synchra/products/componentNodes/tree/progress/progressForm.layout.xml">
 				<layoutInfo/>

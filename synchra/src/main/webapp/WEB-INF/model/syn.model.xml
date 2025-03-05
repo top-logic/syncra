@@ -958,6 +958,12 @@ all(`syn:Company`).map( company ->
 						<storage-algorithm>
 							<query expr="entry -> $entry.get(`syn:PartsListEntry#singlePrice`) * $entry.get(`syn:PartsListEntry#count`)"/>
 						</storage-algorithm>
+						<format>
+							<currency
+								currency="EUR"
+								pattern="#0.00 €"
+							/>
+						</format>
 					</annotations>
 				</property>
 				<property name="singlePrice"
@@ -967,6 +973,12 @@ all(`syn:Company`).map( company ->
 						<storage-algorithm>
 							<query expr="entry -> $entry.get(`syn:PartsListEntry#part`).get(`syn:SinglePart#priceAfterActivities`)"/>
 						</storage-algorithm>
+						<format>
+							<currency
+								currency="EUR"
+								pattern="#0.00 €"
+							/>
+						</format>
 					</annotations>
 				</property>
 				<reference name="materials"

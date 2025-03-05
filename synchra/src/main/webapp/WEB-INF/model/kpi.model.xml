@@ -75,6 +75,37 @@
 				/>
 			</attributes>
 		</class>
+		<class name="Anzahl">
+			<generalizations>
+				<generalization type="tl.model:TLObject"/>
+			</generalizations>
+			<annotations>
+				<form-definition>
+					<form>
+						<field
+							attribute="count"
+							fullQualifiedName="kpi:Anzahl#count"
+							type="tl.core:Integer"
+						/>
+					</form>
+				</form-definition>
+			</annotations>
+			<attributes>
+				<property name="count"
+					type="tl.core:Integer"
+				>
+					<annotations>
+						<default-value>
+							<int value="30"/>
+						</default-value>
+						<value-range
+							max="500.0"
+							min="2.0"
+						/>
+					</annotations>
+				</property>
+			</attributes>
+		</class>
 		<class name="Kpi">
 			<generalizations>
 				<generalization type="tl.model:TLObject"/>

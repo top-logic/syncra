@@ -4,42 +4,54 @@
 	xmlns:config="http://www.top-logic.com/ns/config/6.0"
 	template="com.top_logic.chart.chartjs/chartjs.template.xml"
 >
-	<arguments model="selection(synchra/products/componentNodes/tree/componentNodesTreeTable.layout.xml#TreeTable)">
+	<arguments>
 		<name key="dynamic.be5ecb18-5ba3-4ab7-814b-1bb1b72b7907">
 			<en>Price chart</en>
 			<de>Preisentwicklung</de>
 		</name>
-		<data><![CDATA[compNode -> 
+		<model class="com.top_logic.layout.channel.linking.impl.CombineLinking">
+			<channel name="selection">
+				<target name="synchra/products/componentNodes/tree/componentNodesTreeTable.layout.xml#TreeTable"/>
+			</channel>
+			<channel name="output">
+				<target name="synchra/products/componentNodes/tree/trendDays/durationForm.layout.xml#Form"/>
+			</channel>
+		</model>
+		<data><![CDATA[model-> 
+{
+    compNode = $model[0];
+    numberOfDays = $model[1];
+    days = -1 * $numberOfDays.get(`kpi:Anzahl#count`);
 {
 	'type': 'line',
 	'data': {
-	    'labels': (count(-77,1,1).map(y -> now().toUserCalendar().withDayAdded
+	    'labels': (count($days,1,1).map(y -> now().toUserCalendar().withDayAdded
 	                    ($y).toDate().toString())),
 		'datasets': [
 		/*    {
 		        'label': 'Preis',
-			    'data': (count(-77,1,1).map(y -> now().toUserCalendar().
+			    'data': (count($days,1,1).map(y -> now().toUserCalendar().
 			    withDayAdded($y).toDate().revisionAt()))
 			    .map(rev -> $compNode.get(`syn:ComponentNode#component`).inRevision($rev).get(`syn:Component#price`)
 			    ,)
 		    }, */
 		    {
 		        'label': 'Zielpreis',
-			    'data': (count(-77,1,1).map(y -> now().toUserCalendar().
+			    'data': (count($days,1,1).map(y -> now().toUserCalendar().
 			    withDayAdded($y).toDate().revisionAt()))
 			    .map(rev -> $compNode.get(`syn:ComponentNode#component`).inRevision($rev).get(`syn:Component#goalPrice`)
 			    ,)
 		    },
 		    {
 		        'label': 'Prognose',
-			    'data': (count(-77,1,1).map(y -> now().toUserCalendar().
+			    'data': (count($days,1,1).map(y -> now().toUserCalendar().
 			    withDayAdded($y).toDate().revisionAt()))
 			    .map(rev -> $compNode.get(`syn:ComponentNode#component`).inRevision($rev).get(`syn:Component#prognose`)
 			    ,)
 		    },
 		    {
 		        'label': 'Preis nach Maßnahmen',
-			    'data': (count(-77,1,1).map(y -> now().toUserCalendar().
+			    'data': (count($days,1,1).map(y -> now().toUserCalendar().
 			    withDayAdded($y).toDate().revisionAt()))
 			    .map(rev -> $compNode.get(`syn:ComponentNode#component`).inRevision($rev).get(`syn:Component#priceAfterActivities`)
 			    ,)
@@ -67,6 +79,7 @@
 			}
 		}
 	}
+}
 }]]></data>
 	</arguments>
 </config:template-call>

@@ -4,8 +4,11 @@
 	xmlns:config="http://www.top-logic.com/ns/config/6.0"
 	template="com.top_logic/contentLayout.template.xml"
 >
-	<arguments>
+	<arguments orientation="VERTICAL">
 		<components>
+			<layout-reference resource="synchra/products/componentNodes/tree/trendDays/durationForm.layout.xml">
+				<layoutInfo size="90px"/>
+			</layout-reference>
 			<layout-reference resource="synchra/products/componentNodes/tree/trendDays/priceChartChart.layout.xml">
 				<layoutInfo/>
 			</layout-reference>

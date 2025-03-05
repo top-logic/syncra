@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	template="com.top_logic.element/settings.template.xml"
+>
+	<arguments type="kpi:Anzahl">
+		<name key="dynamic.751928bf-735f-4b8e-af37-04a60a136cf0">
+			<en>Duration</en>
+			<de>Dauer</de>
+		</name>
+		<model class="com.top_logic.model.search.providers.TransformLinkingByExpression"
+			function="output -> if ($output == null, new(`kpi:Anzahl`, transient: true), $output.copy())"
+			input="output(self())"
+		/>
+		<buttons>
+			<button id="updateOutput"
+				class="com.top_logic.model.search.providers.CommandHandlerByExpression"
+				group="System"
+				image="theme:ICONS_BUTTON_REFRESH"
+				operation="model -> $model.copy()"
+				transaction="false"
+			>
+				<resourceKey key="dynamic.c890e5c2-35da-4766-9459-b7d3713ee339">
+					<en>Refresh</en>
+					<de>Aktualisieren</de>
+				</resourceKey>
+				<postCreateActions>
+					<setModel target="output(self())">
+						<input/>
+					</setModel>
+				</postCreateActions>
+			</button>
+		</buttons>
+	</arguments>
+</config:template-call>

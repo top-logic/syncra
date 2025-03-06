@@ -5,7 +5,7 @@
 	template="com.top_logic/treetable.template.xml"
 >
 	<arguments
-		defaultColumns="name,goalPrice,price,priceActivityContribution,priceAfterActivities,priceActivityPrognose,prognose"
+		defaultColumns="name,goalPrice,priceAfterActivities,prognose,priceActivityContribution,priceActivityPrognose,price"
 		model="output(synchra/products/componentNodes/productSelect.layout.xml#Form)"
 		rootVisible="false"
 		type="syn:ComponentNode"

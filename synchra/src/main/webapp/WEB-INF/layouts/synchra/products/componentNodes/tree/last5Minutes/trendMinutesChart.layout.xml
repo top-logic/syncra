@@ -36,7 +36,7 @@
 			    ,)
 		    }, */
 		    {
-		        'label': 'Zielpreis',
+		        'label': 'Ziel',
 			    'data': (count($mins,3,3).map(y -> now().toUserCalendar().
 			    withMinuteAdded($y).toDate().revisionAt()))
 			    .map(rev -> 
@@ -52,7 +52,7 @@
 			    ,)
 		    },
 		    {
-		        'label': 'Preis nach Maßnahmen',
+		        'label': 'Plan',
 			    'data': (count($mins,3,3).map(y -> now().toUserCalendar().
 			    withMinuteAdded($y).toDate().revisionAt()))
 			    .map(rev -> 

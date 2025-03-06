@@ -728,6 +728,12 @@
 						<storage-algorithm>
 							<query expr="node ->  $node.get(`syn:ComponentNode#component`).get(`syn:Component#price`)"/>
 						</storage-algorithm>
+						<format>
+							<currency
+								currency="EUR"
+								pattern="#0.00 €"
+							/>
+						</format>
 					</annotations>
 				</property>
 				<property name="priceAfterActivities"
@@ -737,6 +743,12 @@
 						<storage-algorithm>
 							<query expr="node ->  $node.get(`syn:ComponentNode#component`).get(`syn:Component#priceAfterActivities`)"/>
 						</storage-algorithm>
+						<format>
+							<currency
+								currency="EUR"
+								pattern="#0.00 €"
+							/>
+						</format>
 					</annotations>
 				</property>
 				<property name="priceActivityContribution"
@@ -746,6 +758,12 @@
 						<storage-algorithm>
 							<query expr="node -> $node.get(`syn:ComponentNode#component`).get(`syn:Component#priceActivityContribution`)"/>
 						</storage-algorithm>
+						<format>
+							<currency
+								currency="EUR"
+								pattern="#0.00 €"
+							/>
+						</format>
 					</annotations>
 				</property>
 				<property name="goalPrice"
@@ -755,6 +773,12 @@
 						<storage-algorithm>
 							<query expr="node ->  $node.get(`syn:ComponentNode#component`).get(`syn:Component#goalPrice`)"/>
 						</storage-algorithm>
+						<format>
+							<currency
+								currency="EUR"
+								pattern="#0.00 €"
+							/>
+						</format>
 					</annotations>
 				</property>
 				<property name="prognose"
@@ -764,6 +788,12 @@
 						<storage-algorithm>
 							<query expr="node ->  $node.get(`syn:ComponentNode#component`).get(`syn:Component#prognose`)"/>
 						</storage-algorithm>
+						<format>
+							<currency
+								currency="EUR"
+								pattern="#0.00 €"
+							/>
+						</format>
 					</annotations>
 				</property>
 				<property name="priceActivityPrognose"
@@ -773,6 +803,12 @@
 						<storage-algorithm>
 							<query expr="node -> $node.get(`syn:ComponentNode#component`).get(`syn:Component#priceActivityPrognose`)"/>
 						</storage-algorithm>
+						<format>
+							<currency
+								currency="EUR"
+								pattern="#0.00 €"
+							/>
+						</format>
 					</annotations>
 				</property>
 			</attributes>

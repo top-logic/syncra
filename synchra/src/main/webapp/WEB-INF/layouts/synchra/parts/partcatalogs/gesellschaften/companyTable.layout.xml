@@ -5,6 +5,7 @@
 	template="com.top_logic/table.template.xml"
 >
 	<arguments
+		defaultColumns="name,structure"
 		size="300px"
 		type="syn:Company"
 	>

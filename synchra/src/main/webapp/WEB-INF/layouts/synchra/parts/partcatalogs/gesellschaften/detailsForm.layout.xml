@@ -37,21 +37,25 @@
 							fullQualifiedName="syn:Company#phone"
 							type="tl.core:String"
 						/>
+						<field
+							attribute="adressInformations"
+							fullQualifiedName="syn:Company#adressInformations"
+							type="tl.core:String"
+						/>
 						<label key="dynamic.305a3563-965b-402e-a044-c7c861b71154">
 							<en>Contact</en>
 							<de>Kontakt</de>
 						</label>
 					</group>
-					<other-attributes/>
-					<field
-						attribute="canDeliver"
-						fullQualifiedName="syn:Company#canDeliver"
-						type="syn:Component"
-					/>
 					<field
 						attribute="contact"
 						fullQualifiedName="syn:Company#contact"
 						type="syn:ContactPerson"
+					/>
+					<field
+						attribute="mayDeliver"
+						fullQualifiedName="syn:Company#mayDeliver"
+						type="syn:Component"
 					/>
 				</formDefinition>
 			</form>

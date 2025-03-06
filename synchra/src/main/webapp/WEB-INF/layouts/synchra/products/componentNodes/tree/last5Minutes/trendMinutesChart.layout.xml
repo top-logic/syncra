@@ -27,18 +27,18 @@
 	'data': {
 	    'labels': (count($mins,3,3).map(y -> $y.toString())),
 		'datasets': [
-		    {
+		   /* {
 		        'label': 'Preis',
 			    'data': (count($mins,3,3).map(y -> now().toUserCalendar().
-			    withSecondAdded($y).toDate().revisionAt()))
+			    withMinuteAdded($y).toDate().revisionAt()))
 			    .map(rev -> 
 			    $compNode.get(`syn:ComponentNode#component`).inRevision($rev).get(`syn:Component#price`)
 			    ,)
-		    },
+		    }, */
 		    {
 		        'label': 'Zielpreis',
 			    'data': (count($mins,3,3).map(y -> now().toUserCalendar().
-			    withSecondAdded($y).toDate().revisionAt()))
+			    withMinuteAdded($y).toDate().revisionAt()))
 			    .map(rev -> 
 			    $compNode.get(`syn:ComponentNode#component`).inRevision($rev).get(`syn:Component#goalPrice`)
 			    ,)
@@ -46,7 +46,7 @@
 		   {
 		        'label': 'Prognose',
 			    'data': (count($mins,3,3).map(y -> now().toUserCalendar().
-			    withSecondAdded($y).toDate().revisionAt()))
+			    withMinuteAdded($y).toDate().revisionAt()))
 			    .map(rev -> 
 			    $compNode.get(`syn:ComponentNode#component`).inRevision($rev).get(`syn:Component#prognose`)
 			    ,)
@@ -54,7 +54,7 @@
 		    {
 		        'label': 'Preis nach Maßnahmen',
 			    'data': (count($mins,3,3).map(y -> now().toUserCalendar().
-			    withSecondAdded($y).toDate().revisionAt()))
+			    withMinuteAdded($y).toDate().revisionAt()))
 			    .map(rev -> 
 			    $compNode.get(`syn:ComponentNode#component`).inRevision($rev).get(`syn:Component#priceAfterActivities`)
 			    ,)

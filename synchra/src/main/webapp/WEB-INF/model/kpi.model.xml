@@ -305,6 +305,12 @@
 					type="tl.core:Double"
 				>
 					<annotations>
+						<format>
+							<currency
+								currency="EUR"
+								pattern="#0.00 €"
+							/>
+						</format>
 						<storage-algorithm>
 							<query>
 								<expr><![CDATA[sel -> {comp = $sel.get(`kpi:Progress#componentOld`);
@@ -312,12 +318,6 @@
     }]]></expr>
 							</query>
 						</storage-algorithm>
-						<format>
-							<currency
-								currency="EUR"
-								pattern="#0.00 €"
-							/>
-						</format>
 					</annotations>
 				</property>
 				<property name="prognoseNew"

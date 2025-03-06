@@ -550,6 +550,16 @@
 						</storage-algorithm>
 					</annotations>
 				</property>
+				<property name="goalPrice"
+					override="true"
+					type="tl.core:Double"
+				>
+					<annotations>
+						<storage-algorithm>
+							<query expr="grp -> $grp.get(`syn:ConstructionGroup#consistsOf`).get(`syn:Connection#consistsOf`).get(`syn:Component#goalPrice`).sum()"/>
+						</storage-algorithm>
+					</annotations>
+				</property>
 			</attributes>
 		</class>
 		<class name="SinglePart">
@@ -743,12 +753,7 @@
 				>
 					<annotations>
 						<storage-algorithm>
-							<query>
-								<expr><![CDATA[node -> if( $node.get(`syn:ComponentNode#component`).instanceOf(`syn:SinglePart`),
- $node.get(`syn:ComponentNode#component`).get(`syn:SinglePart#goalPrice`),
- $node.get(`syn:ComponentNode#children`).get(`syn:ComponentNode#goalPrice`).sum()
-)]]></expr>
-							</query>
+							<query expr="node ->  $node.get(`syn:ComponentNode#component`).get(`syn:Component#goalPrice`)"/>
 						</storage-algorithm>
 					</annotations>
 				</property>

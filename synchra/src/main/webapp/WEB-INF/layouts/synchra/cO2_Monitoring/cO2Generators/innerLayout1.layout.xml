@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	template="com.top_logic/layout.template.xml"
+>
+	<arguments orientation="VERTICAL">
+		<components>
+			<layout-reference resource="synchra/cO2_Monitoring/cO2Generators/activitiesTable.layout.xml">
+				<layoutInfo/>
+			</layout-reference>
+			<layout-reference resource="synchra/cO2_Monitoring/cO2Generators/durationForm.layout.xml">
+				<layoutInfo/>
+			</layout-reference>
+			<layout-reference resource="synchra/cO2_Monitoring/cO2Generators/cO2TrendChart.layout.xml">
+				<layoutInfo/>
+			</layout-reference>
+		</components>
+	</arguments>
+</config:template-call>

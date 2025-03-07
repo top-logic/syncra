@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	template="com.top_logic/tab.template.xml"
+>
+	<arguments
+		helpID="ID_7e6ff639_db93_4c6e_911f_ffb7a455ed41"
+		tabIcon="css:bi bi-0-circle"
+	>
+		<tabLabel key="dynamic.06d16011-1490-4cce-aede-c78065cf8aeb">
+			<en>do not know yet</en>
+			<de>weiß noch nicht</de>
+		</tabLabel>
+		<components>
+			<layout-reference resource="synchra/cO2_Monitoring/doNotKnowYet/innerLayout.layout.xml"/>
+		</components>
+	</arguments>
+</config:template-call>

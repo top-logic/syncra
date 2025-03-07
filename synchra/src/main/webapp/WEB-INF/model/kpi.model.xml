@@ -22,7 +22,10 @@
         all(`kpi:Kpi`),
         if($val.instanceOf(`risk:Risk`),
             all(`kpi:Kpi`).filter( k -> $k.get(`kpi:Kpi#name`).equals("Schaden") || $k.get(`kpi:Kpi#name`).equals("ETW")),
-            all(`kpi:Kpi`).filter( k -> $k.get(`kpi:Kpi#name`).equals("Preis") || $k.get(`kpi:Kpi#name`).equals("Gewicht")),
+            if($val.instanceOf(`co2m:CO2Producer`),
+                all(`kpi:Kpi`).filter( k -> $k.get(`kpi:Kpi#name`).equals("CO2Reduktion")),
+                all(`kpi:Kpi`).filter( k -> $k.get(`kpi:Kpi#name`).equals("Preis") || $k.get(`kpi:Kpi#name`).equals("Gewicht"))
+            )
          )
     )     
 }]]></function>
@@ -50,7 +53,10 @@
         all(`kpi:KpiAware`),
         if( $kpi.get(`kpi:Kpi#name`).equals("Schaden") || $kpi.get(`kpi:Kpi#name`).equals("ETW"),
             all(`risk:Risk`),
-            all(`syn:Component`)
+             if( $kpi.get(`kpi:Kpi#name`).equals("CO2Reduktion"),
+             all(`co2m:CO2Producer`),
+             all(`syn:Component`)
+         ),
          )
     )    
 }

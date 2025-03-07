@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	template="com.top_logic/tab.template.xml"
+>
+	<arguments
+		helpID="ID_dd429153_e88b_4589_9550_eb6e34a032e3"
+		tabIcon="css:fa-solid fa-tree"
+	>
+		<tabLabel key="dynamic.08f4cee1-dd8d-475d-9a9d-b1b9d8695384">
+			<en>CO2-Monitoring</en>
+			<de>CO2-Monitoring</de>
+		</tabLabel>
+		<components>
+			<layout-reference resource="synchra/cO2_Monitoring/innerLayout.layout.xml"/>
+		</components>
+	</arguments>
+</config:template-call>

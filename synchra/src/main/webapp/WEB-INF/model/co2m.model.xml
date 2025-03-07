@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<model xmlns="http://www.top-logic.com/ns/dynamic-types/6.0">
+	<module name="co2m">
+		<class name="CO2Producer">
+			<generalizations>
+				<generalization type="kpi:KpiAware"/>
+			</generalizations>
+			<annotations>
+				<instance-presentation icon="css:fa-solid fa-tree-city"/>
+				<form-definition>
+					<form>
+						<field
+							attribute="name"
+							fullQualifiedName="co2m:CO2Producer#name"
+							type="tl.core:String"
+						/>
+						<field
+							attribute="description"
+							fullQualifiedName="co2m:CO2Producer#description"
+							type="tl.model.wysiwyg:Html"
+						/>
+						<field
+							attribute="co2StartingValue"
+							fullQualifiedName="co2m:CO2Producer#co2StartingValue"
+							type="tl.core:Double"
+						/>
+						<field
+							attribute="co2Goal"
+							fullQualifiedName="co2m:CO2Producer#co2Goal"
+							type="tl.core:Double"
+						/>
+						<field
+							attribute="co2AfterActivities"
+							fullQualifiedName="co2m:CO2Producer#co2AfterActivities"
+							type="tl.core:Double"
+						/>
+						<field
+							attribute="co2Prognose"
+							fullQualifiedName="co2m:CO2Producer#co2Prognose"
+							type="tl.core:Double"
+						/>
+					</form>
+				</form-definition>
+			</annotations>
+			<attributes>
+				<reference name="activities"
+					kind="forwards"
+					multiple="true"
+					navigate="true"
+					type="syn:Activity"
+				>
+					<annotations>
+						<storage-algorithm>
+							<query expr="r -> $r.get(`co2m:CO2Producer#valuations`).get(`kpi:Valuation#activity`)"/>
+						</storage-algorithm>
+					</annotations>
+				</reference>
+				<property name="name"
+					mandatory="true"
+					type="tl.core:String"
+				/>
+				<property name="description"
+					type="tl.model.wysiwyg:Html"
+				/>
+				<property name="co2StartingValue"
+					type="tl.core:Double"
+				>
+					<annotations>
+						<format>
+							<decimal pattern="#0.00"/>
+						</format>
+					</annotations>
+				</property>
+				<property name="co2AfterActivities"
+					type="tl.core:Double"
+				>
+					<annotations>
+						<format>
+							<decimal pattern="#0.00"/>
+						</format>
+						<storage-algorithm>
+							<query expr="val->$val.get(`co2m:CO2Producer#co2StartingValue`) + $val.get(`co2m:CO2Producer#co2PlanHelper`)"/>
+						</storage-algorithm>
+					</annotations>
+				</property>
+				<property name="co2Prognose"
+					type="tl.core:Double"
+				>
+					<annotations>
+						<format>
+							<decimal pattern="#0.00"/>
+						</format>
+						<storage-algorithm>
+							<query expr="val->$val.get(`co2m:CO2Producer#co2AfterActivities`) + $val.get(`co2m:CO2Producer#co2ProgHelper`)"/>
+						</storage-algorithm>
+					</annotations>
+				</property>
+				<property name="co2Goal"
+					type="tl.core:Double"
+				>
+					<annotations>
+						<format>
+							<decimal pattern="#0.00"/>
+						</format>
+					</annotations>
+				</property>
+				<property name="co2Gap"
+					type="tl.core:Double"
+				>
+					<annotations>
+						<format>
+							<decimal pattern="#0.00"/>
+						</format>
+						<storage-algorithm>
+							<query expr="val->$val.get(`co2m:CO2Producer#co2Goal`) - $val.get(`co2m:CO2Producer#co2AfterActivities`)"/>
+						</storage-algorithm>
+					</annotations>
+				</property>
+				<property name="co2PlanHelper"
+					type="tl.core:Double"
+				>
+					<annotations>
+						<storage-algorithm>
+							<query>
+								<expr><![CDATA[comp -> $comp.get(`co2m:CO2Producer#valuations`).filter(
+        v -> $v.get(`kpi:Valuation#kpi`).get(`kpi:Kpi#name`).equals("CO2Reduktion")
+        &&   $v.get(`kpi:Valuation#activity`).get(`syn:Activity#state`).equals(resolveModelPart(`syn:ActivityState#DONE`))
+        &&   ( $v.get(`kpi:Valuation#activity`).get(`syn:Activity#effectDate`)==null 
+              ||  ! $v.get(`kpi:Valuation#activity`).get(`syn:Activity#effectDate`).isDateGreater(today())  
+             )
+        ).
+        map(v -> $v.get(`kpi:Valuation#value`)).sum() ]]></expr>
+							</query>
+						</storage-algorithm>
+					</annotations>
+				</property>
+				<property name="co2ProgHelper"
+					type="tl.core:Double"
+				>
+					<annotations>
+						<storage-algorithm>
+							<query>
+								<expr><![CDATA[comp -> $comp.get(`syn:Component#valuations`).filter(
+        v -> $v.get(`kpi:Valuation#kpi`).get(`kpi:Kpi#name`).equals("CO2Reduktion")
+        &&   (  $v.get(`kpi:Valuation#activity`).get(`syn:Activity#state`).equals(resolveModelPart(`syn:ActivityState#IN_PROGRESS`))
+              ||   ( $v.get(`kpi:Valuation#activity`).get(`syn:Activity#state`).equals(resolveModelPart(`syn:ActivityState#DONE`))
+                     && $v.get(`kpi:Valuation#activity`).get(`syn:Activity#effectDate`)!=null
+                     && $v.get(`kpi:Valuation#activity`).get(`syn:Activity#effectDate`).isDateGreater(today())
+                   )
+             )
+        ).
+        map(v -> $v.get(`kpi:Valuation#value`)).sum()]]></expr>
+							</query>
+						</storage-algorithm>
+					</annotations>
+				</property>
+			</attributes>
+		</class>
+	</module>
+</model>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	template="com.top_logic/tab.template.xml"
+>
+	<arguments helpID="ID_eb2f57a1_f4d3_4ca6_b43a_6b6c7ca9e6c3">
+		<tabLabel key="dynamic.2c6aaedb-6b0e-4b80-a454-cc397d2f036f">
+			<en>CO2 Generators</en>
+			<de>CO2-Erzeuger</de>
+		</tabLabel>
+		<components>
+			<layout-reference resource="synchra/cO2_Monitoring/cO2Generators/innerLayout.layout.xml"/>
+		</components>
+	</arguments>
+</config:template-call>

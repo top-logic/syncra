@@ -161,6 +161,16 @@
 						</properties>
 					</importer>
 					<importer
+						id-attributes="name"
+						tl-class="co2m:CO2Producer"
+					>
+						<properties>
+							<property name="co2m:CO2Producer#name"/>
+							<property name="co2m:CO2Producer#co2StartingValue"/>
+							<property name="co2m:CO2Producer#co2Goal"/>
+						</properties>
+					</importer>
+					<importer
 						id-attributes="consistsOf,used,position"
 						tl-class="syn:Connection"
 					>

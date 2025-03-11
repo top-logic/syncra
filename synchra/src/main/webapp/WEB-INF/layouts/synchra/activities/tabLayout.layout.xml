@@ -4,13 +4,16 @@
 	xmlns:config="http://www.top-logic.com/ns/config/6.0"
 	template="com.top_logic/tab.template.xml"
 >
-	<arguments helpID="ID_aa55d3c8_e067_44c7_9ff6_36599a2660f9">
-		<tabLabel key="dynamic.5003232f-b535-47a6-bd03-b296fa69f304">
+	<arguments
+		helpID="ID_0b2beed2_c2cb_4310_985c_4aac060f4b86"
+		tabIcon="css:bi bi-activity"
+	>
+		<tabLabel key="dynamic.52d336a7-ae61-42e1-bef6-e71e7d556542">
 			<en>Activities</en>
 			<de>Maßnahmen</de>
 		</tabLabel>
 		<components>
-			<layout-reference resource="synchra/risks/activities/innerLayout.layout.xml"/>
+			<layout-reference resource="synchra/activities/innerLayout.layout.xml"/>
 		</components>
 	</arguments>
 </config:template-call>

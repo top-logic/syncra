@@ -12,6 +12,7 @@
 			<layout-reference resource="synchra/parts/tabLayout.layout.xml"/>
 			<layout-reference resource="admin/index.layout.xml"/>
 			<layout-reference resource="synchra/products/tabLayout.layout.xml"/>
+			<layout-reference resource="synchra/activities/tabLayout.layout.xml"/>
 			<layout-reference resource="synchra/risks/tabLayout.layout.xml"/>
 			<layout-reference resource="synchra/suppliers/tabLayout.layout.xml"/>
 			<layout-reference resource="synchra/cO2_Monitoring/tabLayout.layout.xml"/>

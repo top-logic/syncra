@@ -10,7 +10,7 @@
 		type="syn:Activity"
 	>
 		<dialogs>
-			<layout-reference resource="synchra/risks/activities/createObject/dialog.layout.xml"/>
+			<layout-reference resource="synchra/activities/activities/createObject/dialog.layout.xml"/>
 		</dialogs>
 		<name key="dynamic.14b29866-b686-4e84-beb0-fdbc3a9a77e5">
 			<en>Activities</en>

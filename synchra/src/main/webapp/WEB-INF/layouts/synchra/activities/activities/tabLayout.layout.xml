@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	template="com.top_logic/tab.template.xml"
+>
+	<arguments helpID="ID_aa55d3c8_e067_44c7_9ff6_36599a2660f9">
+		<tabLabel key="dynamic.5003232f-b535-47a6-bd03-b296fa69f304">
+			<en>Activities</en>
+			<de>Maßnahmen</de>
+		</tabLabel>
+		<components>
+			<layout-reference resource="synchra/activities/activities/innerLayout.layout.xml"/>
+		</components>
+	</arguments>
+</config:template-call>

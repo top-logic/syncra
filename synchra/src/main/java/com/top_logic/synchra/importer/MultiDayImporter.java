@@ -90,7 +90,8 @@ public class MultiDayImporter extends ZipImporter implements FileImporter {
 	}
 
 	private void shiftTime(int numberOfDays) {
-		int millis = 1000 * 3600 * 24 * numberOfDays;
+		// beware to have a long in the multiplication
+		long millis = 1000 * 3600 * 24l * numberOfDays;
 
 		String h2Sql = "update revision set \"date\"=\"date\"-" + millis;
 		SimpleDBExecutor db = new SimpleDBExecutor();

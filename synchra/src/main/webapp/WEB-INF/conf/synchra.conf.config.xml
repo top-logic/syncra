@@ -9,6 +9,8 @@
             		<bundle name="model.syn.messages"/>
             		<bundle name="model.risk.messages"/>
             		<bundle name="model.kpi.messages"/>
+            		<bundle name="model.prob.messages"/>
+            		<bundle name="model.co2m.messages"/>
 				</bundles>
 			</instance>
 		</config>
@@ -26,6 +28,8 @@
 	          <declaration file="/WEB-INF/model/syn.model.xml"/>
 	          <declaration file="/WEB-INF/model/risk.model.xml"/>
 	          <declaration file="/WEB-INF/model/kpi.model.xml"/>
+	          <declaration file="/WEB-INF/model/prob.model.xml"/>
+	          <declaration file="/WEB-INF/model/co2m.model.xml"/>
 	        </declarations>
 	       <settings>
 				<module name="risk">

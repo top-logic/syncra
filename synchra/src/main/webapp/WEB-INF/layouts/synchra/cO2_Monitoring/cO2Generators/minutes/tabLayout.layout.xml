@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	template="com.top_logic/tab.template.xml"
+>
+	<arguments helpID="ID_a559c102_57d2_478c_8e93_febf2b8c08d8">
+		<tabLabel key="dynamic.bbd986cc-dba1-4d49-aa46-ba06d1cd8bb2">
+			<en>Minutes</en>
+			<de>Minuten</de>
+		</tabLabel>
+		<components>
+			<layout-reference resource="synchra/cO2_Monitoring/cO2Generators/minutes/innerLayout.layout.xml"/>
+		</components>
+	</arguments>
+</config:template-call>

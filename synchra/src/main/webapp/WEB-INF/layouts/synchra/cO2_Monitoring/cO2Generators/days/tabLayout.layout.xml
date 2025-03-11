@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	template="com.top_logic/tab.template.xml"
+>
+	<arguments helpID="ID_68c5c2d2_4eb2_45f9_b7a5_5f66d79f3178">
+		<tabLabel key="dynamic.c0884915-99de-4902-a9b5-8e0b7832fae8">
+			<en>Days</en>
+			<de>Tage</de>
+		</tabLabel>
+		<components>
+			<layout-reference resource="synchra/cO2_Monitoring/cO2Generators/days/innerLayout.layout.xml"/>
+		</components>
+	</arguments>
+</config:template-call>

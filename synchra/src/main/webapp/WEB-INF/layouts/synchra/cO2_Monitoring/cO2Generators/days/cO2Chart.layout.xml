@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	template="com.top_logic.chart.chartjs/chartjs.template.xml"
+>
+	<arguments>
+		<name key="dynamic.0bcc3862-328f-421d-b019-478345493f93">
+			<en>CO2</en>
+			<de>CO2 Verlauf</de>
+		</name>
+	</arguments>
+</config:template-call>

@@ -9,12 +9,6 @@
 			<layout-reference resource="synchra/cO2_Monitoring/cO2Generators/activitiesTable.layout.xml">
 				<layoutInfo/>
 			</layout-reference>
-			<layout-reference resource="synchra/cO2_Monitoring/cO2Generators/durationForm.layout.xml">
-				<layoutInfo/>
-			</layout-reference>
-			<layout-reference resource="synchra/cO2_Monitoring/cO2Generators/cO2TrendChart.layout.xml">
-				<layoutInfo/>
-			</layout-reference>
 			<layout-reference resource="synchra/cO2_Monitoring/cO2Generators/tabbar.layout.xml">
 				<layoutInfo/>
 			</layout-reference>

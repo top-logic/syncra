@@ -2,13 +2,71 @@
 
 <config:template-call
 	xmlns:config="http://www.top-logic.com/ns/config/6.0"
-	template="com.top_logic/layoutPlaceholder.template.xml"
+	template="com.top_logic.chart.chartjs/chartjs.template.xml"
 >
 	<arguments>
-		<components>
-			<component class="com.top_logic.layout.editor.components.ComponentPlaceholder"
-				name="synchra/cO2_Monitoring/cO2Generators/minutes/componentPlaceholderLayout.layout.xml#placeholder"
-			/>
-		</components>
+		<name key="dynamic.04d79e87-3d0f-49db-92da-6916a4f03eee">
+			<en>Duration</en>
+			<de>Verlauf Minuten</de>
+		</name>
+		<data><![CDATA[model-> 
+{
+    co2maker = $model[0];
+    numberOfMins = $model[1];
+    mins = -1 * ($numberOfMins==null?30: $numberOfMins.get(`kpi:Anzahl#count`));
+{
+	'type': 'line',
+	'data': {
+	    'labels': (count($mins,3,3).map(y -> $y.toString())),
+		'datasets': [
+		    {
+		        'label': 'Ziel',
+			    'data': (count($mins,3,3).map(y -> now().toUserCalendar().
+			    withMinuteAdded($y).toDate().revisionAt()))
+			    .map(rev -> 
+			     $co2maker.inRevision($rev).get(`co2m:CO2Producer#co2Goal`)
+			    ,)
+		    },
+		   {
+		        'label': 'Prognose',
+			    'data': (count($mins,3,3).map(y -> now().toUserCalendar().
+			    withMinuteAdded($y).toDate().revisionAt()))
+			    .map(rev -> 
+			    $co2maker.inRevision($rev).get(`co2m:CO2Producer#co2Prognose`)
+			    ,)
+		    },
+		    {
+		        'label': 'Plan',
+			    'data': (count($mins,3,3).map(y -> now().toUserCalendar().
+			    withMinuteAdded($y).toDate().revisionAt()))
+			    .map(rev -> 
+			     $co2maker.inRevision($rev).get(`co2m:CO2Producer#co2AfterActivities`)
+			    ,)
+		    }
+		]
+	},
+	'options': {
+		'maintainAspectRatio': false,
+		'plugins': {
+            'colorschemes': {
+            	// See https://nagix.github.io/chartjs-plugin-colorschemes/colorchart.html
+                'scheme': 'tableau.Tableau10'
+            }
+        },
+		'scales': {
+		    'y': {
+			    'ticks': {
+			        'min': 0
+			    }
+		    },
+			'x': {
+				'gridLines': {
+					'offsetGridLines': true
+				}
+			}
+		}
+	}
+}
+}]]></data>
 	</arguments>
 </config:template-call>

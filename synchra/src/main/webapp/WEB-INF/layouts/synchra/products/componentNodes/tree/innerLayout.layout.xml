@@ -8,7 +8,7 @@
 		<components>
 			<layout-reference resource="synchra/products/componentNodes/tree/componentNodesTreeTable.layout.xml">
 				<layoutInfo/>
-			</layout-reference>		
+			</layout-reference>
 			<layout-reference resource="synchra/products/componentNodes/tree/tabbar.layout.xml">
 				<layoutInfo/>
 			</layout-reference>

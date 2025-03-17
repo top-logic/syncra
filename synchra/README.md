@@ -1,4 +1,4 @@
-#Syncra, an Open Source Application based on TopLogic Open Source
+# Syncra, an Open Source Application based on TopLogic Open Source
 
 The idea for Syncra emerged in parallel with the thought of making TopLogic available as open source in the future. 
 In addition to the TopLogic platform, models should also be made available as open source. 

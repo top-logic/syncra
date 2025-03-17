@@ -14,7 +14,7 @@
 				<target name="synchra/cO2_Monitoring/cO2Generators/cO2ErzeugerTable.layout.xml#Table"/>
 			</channel>
 			<channel name="model">
-				<target name="synchra/cO2_Monitoring/cO2Generators/minutes/durationForm.layout.xml#Form"/>
+				<target name="synchra/cO2_Monitoring/cO2Generators/minutes/durationForm1.layout.xml#Form"/>
 			</channel>
 		</model>
 		<data><![CDATA[model-> 
@@ -25,11 +25,11 @@
 {
 	'type': 'line',
 	'data': {
-	    'labels': (count($mins,3,3).map(y -> $y.toString())),
+	    'labels': (count($mins,1,1).map(y -> $y.toString())),
 		'datasets': [
 		    {
 		        'label': 'Ziel',
-			    'data': (count($mins,3,3).map(y -> now().toUserCalendar().
+			    'data': (count($mins,1,1).map(y -> now().toUserCalendar().
 			    withMinuteAdded($y).toDate().revisionAt()))
 			    .map(rev -> 
 			     $co2maker.inRevision($rev).get(`co2m:CO2Producer#co2Goal`)
@@ -37,7 +37,7 @@
 		    },
 		   {
 		        'label': 'Prognose',
-			    'data': (count($mins,3,3).map(y -> now().toUserCalendar().
+			    'data': (count($mins,1,1).map(y -> now().toUserCalendar().
 			    withMinuteAdded($y).toDate().revisionAt()))
 			    .map(rev -> 
 			    $co2maker.inRevision($rev).get(`co2m:CO2Producer#co2Prognose`)
@@ -45,7 +45,7 @@
 		    },
 		    {
 		        'label': 'Plan',
-			    'data': (count($mins,3,3).map(y -> now().toUserCalendar().
+			    'data': (count($mins,1,1).map(y -> now().toUserCalendar().
 			    withMinuteAdded($y).toDate().revisionAt()))
 			    .map(rev -> 
 			     $co2maker.inRevision($rev).get(`co2m:CO2Producer#co2AfterActivities`)

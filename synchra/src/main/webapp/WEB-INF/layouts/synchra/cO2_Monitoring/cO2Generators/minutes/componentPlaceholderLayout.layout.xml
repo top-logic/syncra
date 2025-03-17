@@ -9,6 +9,14 @@
 			<en>Duration</en>
 			<de>Verlauf Minuten</de>
 		</name>
+		<model class="com.top_logic.layout.channel.linking.impl.CombineLinking">
+			<channel name="selection">
+				<target name="synchra/cO2_Monitoring/cO2Generators/cO2ErzeugerTable.layout.xml#Table"/>
+			</channel>
+			<channel name="model">
+				<target name="synchra/cO2_Monitoring/cO2Generators/minutes/durationForm.layout.xml#Form"/>
+			</channel>
+		</model>
 		<data><![CDATA[model-> 
 {
     co2maker = $model[0];

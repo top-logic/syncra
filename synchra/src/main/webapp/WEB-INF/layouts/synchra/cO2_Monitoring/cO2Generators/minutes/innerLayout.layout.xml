@@ -4,8 +4,11 @@
 	xmlns:config="http://www.top-logic.com/ns/config/6.0"
 	template="com.top_logic/contentLayout.template.xml"
 >
-	<arguments>
+	<arguments orientation="VERTICAL">
 		<components>
+			<layout-reference resource="synchra/cO2_Monitoring/cO2Generators/minutes/durationForm.layout.xml">
+				<layoutInfo size="90px"/>
+			</layout-reference>
 			<layout-reference resource="synchra/cO2_Monitoring/cO2Generators/minutes/componentPlaceholderLayout.layout.xml">
 				<layoutInfo/>
 			</layout-reference>

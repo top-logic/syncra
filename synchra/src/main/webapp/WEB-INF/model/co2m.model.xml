@@ -157,5 +157,21 @@
 				</property>
 			</attributes>
 		</class>
+		<class name="SumOfCO2">
+			<generalizations>
+				<generalization type="tl.model:TLObject"/>
+			</generalizations>
+			<attributes>
+				<property name="sumOfStartingValues"
+					type="tl.core:Double"
+				>
+					<annotations>
+						<storage-algorithm>
+							<query expr="x->$x.get(`co2m:CO2Producer#co2StartingValue`).sum()"/>
+						</storage-algorithm>
+					</annotations>
+				</property>
+			</attributes>
+		</class>
 	</module>
 </model>

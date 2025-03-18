@@ -7,7 +7,6 @@
 	<arguments>
 		<components>
 			<layout-reference resource="synchra/cO2_Monitoring/cO2Generators/tabLayout.layout.xml"/>
-			<layout-reference resource="synchra/cO2_Monitoring/doNotKnowYet/tabLayout.layout.xml"/>
 		</components>
 	</arguments>
 </config:template-call>

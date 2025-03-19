@@ -7,7 +7,6 @@
 	<arguments>
 		<components>
 			<layout-reference resource="synchra/risks/risks/overview/tabLayout.layout.xml"/>
-			<layout-reference resource="synchra/risks/risks/kinds/tabLayout.layout.xml"/>
 		</components>
 	</arguments>
 </config:template-call>

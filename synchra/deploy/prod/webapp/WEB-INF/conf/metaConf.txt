@@ -1,2 +1,2 @@
-db-h2.conf
+db-h2.xml
 production-mode.xml

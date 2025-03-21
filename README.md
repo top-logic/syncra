@@ -24,12 +24,10 @@ abstract level but instead depicts concrete application scenarios that occur rep
 
 # Syncra Docker Image
 
-This document describes how to download and start the Syncra Docker image from our repository.
-
 ## Requirements
 
 - Installed [Docker](https://docs.docker.com/get-docker/)
-- At least **2548MB RAM** allocated for the container
+- At least **2.6GB RAM** allocated for the container
 
 ## Downloading the Docker Image
 
@@ -47,7 +45,7 @@ The following example starts the container with the recommended settings:
 docker run -d \
   --name syncra \
   -p 8080:8080 \
-  -m 3g \
+  -m 2600m \
   -v $(pwd)/data:/tl \
   docker.top-logic.com/syncra
 ```
@@ -55,7 +53,7 @@ docker run -d \
 ### Explanation:
 
 - `-p 8080:8080` – Maps the internal Tomcat port 8080 to the host.
-- `-m 3g` – Allocates at least 3GB RAM to the container.
+- `-m 2600m` – Allocates at least 2.6GB RAM to the container.
 - `-v $(pwd)/data:/tl` – Mounts the local `data` folder to `/tl` inside the container to persist data.
 - `-d` – Runs the container in detached mode.
 

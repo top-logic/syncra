@@ -22,6 +22,96 @@ is provided for all sub-areas.
 A second goal pursued with the Syncra model: It should also serve as a technical demo that does not operate at an 
 abstract level but instead depicts concrete application scenarios that occur repeatedly in practice.
 
+
+## Usage
+You can import this library through a Maven dependency to your own project. Since it is not distributed to MavenCentral,
+you have to add a custom repository section:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="&lt;repositories&gt;
+    &lt;repository&gt;
+        &lt;id&gt;tl-snapshots&lt;/id&gt;
+        &lt;name&gt;tl-synchra&lt;/name&gt;
+        &lt;url&gt;https://dev.top-logic.com/nexus/repository/toplogic-snapshots/&lt;/url&gt;
+        &lt;releases&gt;
+            &lt;enabled&gt;true&lt;/enabled&gt;
+        &lt;/releases&gt;
+        &lt;snapshots&gt;
+            &lt;enabled&gt;false&lt;/enabled&gt;
+        &lt;/snapshots&gt;
+    &lt;/repository&gt;
+&lt;/repositories&gt;"><pre class="notranslate"><code>&lt;repositories&gt;
+    &lt;repository&gt;
+        &lt;id&gt;github&lt;/id&gt;
+        &lt;name&gt;GitHub haumacher/mjSIP Apache Maven Packages&lt;/name&gt;
+        &lt;url&gt;https://maven.pkg.github.com/haumacher/mjSIP&lt;/url&gt;
+        &lt;releases&gt;
+            &lt;enabled&gt;true&lt;/enabled&gt;
+        &lt;/releases&gt;
+        &lt;snapshots&gt;
+            &lt;enabled&gt;false&lt;/enabled&gt;
+        &lt;/snapshots&gt;
+    &lt;/repository&gt;
+&lt;/repositories&gt;
+</code></pre></div>
+<p dir="auto">Then you can import the modules with the following dependency:</p>
+<p dir="auto">The client part (user-agent) to initiate calls:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="&lt;dependency&gt;	
+    &lt;groupId&gt;org.mjsip&lt;/groupId&gt;
+	&lt;artifactId&gt;mjsip-ua&lt;/artifactId&gt;
+    &lt;version&gt;2.0.0&lt;/version&gt;
+&lt;/dependency&gt;"><pre class="notranslate"><code>&lt;dependency&gt;	
+    &lt;groupId&gt;org.mjsip&lt;/groupId&gt;
+	&lt;artifactId&gt;mjsip-ua&lt;/artifactId&gt;
+    &lt;version&gt;2.0.0&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre></div>
+<p dir="auto">The server part to implement VOIP servers:</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="&lt;dependency&gt;	
+    &lt;groupId&gt;org.mjsip&lt;/groupId&gt;
+	&lt;artifactId&gt;mjsip-server&lt;/artifactId&gt;
+    &lt;version&gt;2.0.0&lt;/version&gt;
+&lt;/dependency&gt;"><pre class="notranslate"><code>&lt;dependency&gt;	
+    &lt;groupId&gt;org.mjsip&lt;/groupId&gt;
+	&lt;artifactId&gt;mjsip-server&lt;/artifactId&gt;
+    &lt;version&gt;2.0.0&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre></div>
+<p dir="auto">Note that the GitHub hosted repositories require authentication (no anonymous download as from Maven-Central).
+Therefore, you need to provide your GitHub access token in the Maven settings to make the download work (in <code>~/.m2/settings.xml</code>):</p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="&lt;servers&gt;
+    &lt;server&gt;
+        &lt;id&gt;github&lt;/id&gt;
+        &lt;username&gt;YOUR_USERNAME&lt;/username&gt;
+        &lt;password&gt;YOUR_AUTH_TOKEN&lt;/password&gt;
+    &lt;/server&gt;
+&lt;/servers&gt;"><pre class="notranslate"><code>&lt;servers&gt;
+    &lt;server&gt;
+        &lt;id&gt;github&lt;/id&gt;
+        &lt;username&gt;YOUR_USERNAME&lt;/username&gt;
+        &lt;password&gt;YOUR_AUTH_TOKEN&lt;/password&gt;
+    &lt;/server&gt;
+&lt;/servers&gt;
+</code></pre></div>
+<p dir="auto">The library consists of the following modules, which can also be imported separately:</p>
+<ul dir="auto">
+<li>mjsip-examples</li>
+<li>mjsip-net</li>
+<li>mjsip-phone</li>
+<li>mjsip-server</li>
+<li>mjsip-sip</li>
+<li>mjsip-sound</li>
+<li>mjsip-ua</li>
+<li>mjsip-util</li>
+</ul>
+<p dir="auto">To get an idea how to start, you can have a look into the <a href="https://github.com/haumacher/mjSIP/tree/master/mjsip-examples/src/main/java/org/mjsip/examples">examples module</a>.</p>
+
+
+
+
+
+
+
+
+
 # Syncra Docker Image
 
 ## Requirements

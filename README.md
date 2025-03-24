@@ -24,6 +24,8 @@ abstract level but instead depicts concrete application scenarios that occur rep
 
 
 ## Usage
+Creating a Top-Logic app is described in https://dev.top-logic.com/tl/content/docs/GetStarted/CreateApp/
+
 You can import this library through a Maven dependency to your own project. Since it is not distributed to MavenCentral,
 you have to add a custom repository section:</p>
 
@@ -41,6 +43,9 @@ you have to add a custom repository section:</p>
     &lt;/repository&gt;
 &lt;/repositories&gt;
 </code></pre>
+
+FROM HERE ITS WORK IN PROGRESS
+
 <p dir="auto">Then you can import the modules with the following dependency:</p>
 <p dir="auto">The client part (user-agent) to initiate calls:</p>
 <code>&lt;dependency&gt;	
@@ -80,7 +85,7 @@ Therefore, you need to provide your GitHub access token in the Maven settings to
 <p dir="auto">To get an idea how to start, you can have a look into the <a href="https://github.com/haumacher/mjSIP/tree/master/mjsip-examples/src/main/java/org/mjsip/examples">examples module</a>.</p>
 
 
-
+END OF WORK IN PROGRESS
 
 
 

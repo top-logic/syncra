@@ -1,95 +1,24 @@
-# Syncra, an Open Source Application based on TopLogic Open Source
+# Syncra
 
-The idea for Syncra emerged in parallel with the thought of making TopLogic available as open source in the future. 
-In addition to the TopLogic platform, models should also be made available as open source. 
-Syncra is intended to be the first application to be available as an open-source model. 
-Syncra is completely based on the modeling tools integrated into TopLogic and on TopLogic's proprietary scripting language, 
-TopLogic-Script.
-
-
-## Regarding the professional background, features:
-
-The core idea was crucial: to present TopLogic as a kind of data hub for various application scenarios.
-It made sense to set up a scenario here, as it often occurs in the manufacturing and development industries:
- product master data, bills of materials, issues, risk management, goal management, measure and change management, 
- supplier management, and report management. All these sub-areas work with the same data.
-
-Syncra is a self-contained application that covers all the mentioned sub-areas. Of course, 
-it is not possible from a professional perspective to capture and implement all conceivable situations. 
-Also, limitations were accepted at some points due to complexity reasons. However, at least basic functionality 
-is provided for all sub-areas.
-
-A second goal pursued with the Syncra model: It should also serve as a technical demo that does not operate at an 
-abstract level but instead depicts concrete application scenarios that occur repeatedly in practice.
+Overview of the functions
+- Parts Management: Create parts catalogs, add individual parts, assign individual parts to a catalog, display catalogs with various classifications.
+- Action Management: Perform a 360-degree assessment of an action regarding its impact on the prices of an assembly/individual part, the probability of occurrence and expected severity of a risk, as well as the increase or reduction of the carbon footprint.
+- Risks and Issues: Basic risk management with configurable risk categorization and graphical evaluation, link risks to actions through a 360-degree assessment of the actions in terms of their impact on risk parameters (probability of occurrence and expected severity), list all issues captured via the process cockpit along with links to affected components and actions for problem resolution.
+- Bill of Materials Management: Product creation, building assemblies, versioned bill of materials.
+- Reporting: Price development between two freely selectable dates, price trend curves for up to 500 days.
+- Supplier Management: List of all suppliers with available parts and contacts.
+- Carbon Monitoring: List of all carbon emitters, list of actions affecting the carbon footprint, trend curve.
 
 
-## Usage
-Creating a Top-Logic app is described in https://dev.top-logic.com/tl/content/docs/GetStarted/CreateApp/
+# Usage
+(Work in progress)
 
-You can import this library through a Maven dependency to your own project. Since it is not distributed to MavenCentral,
-you have to add a custom repository section:</p>
+Clone the repository: (assuming you have installed GitHub)
 
-<pre class="notranslate"><code>&lt;repositories&gt;
-    &lt;repository&gt;
-        &lt;id&gt;tl-snapshots&lt;/id&gt;
-        &lt;name&gt;tl-synchra&lt;/name&gt;
-        &lt;url&gt;https://dev.top-logic.com/nexus/repository/toplogic-snapshots&lt;/url&gt;
-        &lt;releases&gt;
-            &lt;enabled&gt;true&lt;/enabled&gt;
-        &lt;/releases&gt;
-        &lt;snapshots&gt;
-            &lt;enabled&gt;false&lt;/enabled&gt;
-        &lt;/snapshots&gt;
-    &lt;/repository&gt;
-&lt;/repositories&gt;
-</code></pre>
+gh repo clone top-logic/syncra
 
-FROM HERE ITS WORK IN PROGRESS
-
-<p dir="auto">Then you can import the modules with the following dependency:</p>
-<p dir="auto">The client part (user-agent) to initiate calls:</p>
-<code>&lt;dependency&gt;	
-    &lt;groupId&gt;org.mjsip&lt;/groupId&gt;
-	    &lt;artifactId&gt;mjsip-ua&lt;/artifactId&gt;
-    &lt;version&gt;2.0.0&lt;/version&gt;
-&lt;/dependency&gt;
-</code>
-<p dir="auto">The server part to implement VOIP servers:</p>
-<code>&lt;dependency&gt;	
-    &lt;groupId&gt;org.mjsip&lt;/groupId&gt;
-	    &lt;artifactId&gt;mjsip-server&lt;/artifactId&gt;
-    &lt;version&gt;2.0.0&lt;/version&gt;
-&lt;/dependency&gt;
-</code>
-<p dir="auto">Note that the GitHub hosted repositories require authentication (no anonymous download as from Maven-Central).
-Therefore, you need to provide your GitHub access token in the Maven settings to make the download work (in <code>~/.m2/settings.xml</code>):</p>
-<code>&lt;servers&gt;
-    &lt;server&gt;
-        &lt;id&gt;github&lt;/id&gt;
-            &lt;username&gt;YOUR_USERNAME&lt;/username&gt;
-            &lt;password&gt;YOUR_AUTH_TOKEN&lt;/password&gt;
-    &lt;/server&gt;
-&lt;/servers&gt;
-</code>
-<p dir="auto">The library consists of the following modules, which can also be imported separately:</p>
-<ul dir="auto">
-<li>mjsip-examples</li>
-<li>mjsip-net</li>
-<li>mjsip-phone</li>
-<li>mjsip-server</li>
-<li>mjsip-sip</li>
-<li>mjsip-sound</li>
-<li>mjsip-ua</li>
-<li>mjsip-util</li>
-</ul>
-<p dir="auto">To get an idea how to start, you can have a look into the <a href="https://github.com/haumacher/mjSIP/tree/master/mjsip-examples/src/main/java/org/mjsip/examples">examples module</a>.</p>
-
-
-END OF WORK IN PROGRESS
-
-
-
-
+Import the repository in the IDE of your choice.
+Start the application (for eclipse a launch configuration "Start Synchra.launch" is delivered with the repository).
 
 
 # Syncra Docker Image

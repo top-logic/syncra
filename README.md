@@ -16,32 +16,46 @@ There are two ways to get access to syncra. You can download the java project an
 ## Download java project
 To run the **Syncra Java application** from the repository and import it into Eclipse, follow these steps:
 
-### 1. **Clone the Git Repository**
+### 1. Clone the Git Repository
    - Open a terminal or command prompt.
    - Execute the following command to clone the repository:
      ``` git clone https://github.com/top-logic/syncra.git```
    - This will download the repository into a local directory named `syncra`.
    (If you have not installed git, look at https://git-scm.com.)
 
-### 2. **Open Eclipse and Enable Git Integration**
+Now you have two possibilities:
+- You can start syncra using mvn (as described in 2)
+- You can integrate syncra into an eclipse project (as described in 3 to 5)
+
+### 2. Start syncra using mvn
+   - Change the working directory in the command prompt or terminal to syncra/synchra.
+   - Execute ```mvn```
+
+### 3. Open Eclipse and Enable Git Integration
    - Make sure the **Git integration (EGit)** is installed in Eclipse. If not, install it through the Eclipse Marketplace.
    - Open Eclipse, and go to **Window > Perspective > Open Perspective > Git** to enable the Git view.
 
-### 3. **Import the Project into Eclipse**
+### 4. Import the Project into Eclipse
    - Navigate to **File > Import > Git > Projects from Git**, then click **Next**.
    - Choose **Existing local repository** and click **Next**.
    - Select the cloned repository (e.g., the `syncra` folder) and proceed.
    - Select **Import existing Eclipse projects**. 
 
-### 4. **Configure and start the Project**
+### 5. Configure and start the Project
    - If the project uses **Maven**, ensure the appropriate plugins are installed in Eclipse.
    - Run a **Maven build** by right-clicking on `pom.xml` and selecting **Run As > Maven Build**.
-   - A browser opens with the login page. For the user "root" the initial passwort is written in the console (may be you have to scroll up some lines)
+   - A browser opens with the login page. For the user "root" the initial password is written in the console (may be you have to scroll up some lines)
 
-### 5. **First steps**
+###  First steps
+   - Change the root password if you want. This can be done using the user dialog (found in the left otion bar). The password change is located in the burger menue in the dialog.
    - In the application you can import some initial data. Select "Parts" on the left side. Now, in the burger menue of "Kataloge" contains an entry "Import (data and pictures)".
    - Select that entry. a dialog occusr which allows you to upload a zip file.
    - An appropriate zip-file is provided with the repository in the path "synchra/src/test/data".
+
+### Technical information 
+   - In the directory syncra/synchra/tmp the data of the used h2 database are stored.
+   - In the directory syncra/synchra/tmp/app-data/logs contains the log files 
+
 
 ## Syncra Docker Image
 

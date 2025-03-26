@@ -30,6 +30,7 @@ Now you have two possibilities:
 ### 2. Start syncra using mvn
    - Change the working directory in the command prompt or terminal to syncra/synchra.
    - Execute ```mvn```
+   - A browser opens with the login page. For the user "root" the initial password is written in the console (may be you have to scroll up some lines)
 
 ### 3. Open Eclipse and Enable Git Integration
    - Make sure the **Git integration (EGit)** is installed in Eclipse. If not, install it through the Eclipse Marketplace.

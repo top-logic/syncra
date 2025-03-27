@@ -1,4 +1,5 @@
 # Syncra
+Syncra is a self-contained application that uses practical use cases from a manufacturing operation to demonstrate the possibilities offered by a TopLogic application.
 
 Overview of the functions
 - Parts Management: Create parts catalogs, add individual parts, assign individual parts to a catalog, display catalogs with various classifications.

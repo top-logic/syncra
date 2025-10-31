@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	template="com.top_logic/tab.template.xml"
+>
+	<arguments helpID="ID_59117e90_7cce_432d_aef1_fd022189a9d5">
+		<tabLabel key="dynamic.1188400f-1c0a-47e0-a5a6-0e30ca53bed5">
+			<en>new</en>
+			<de>Neu</de>
+		</tabLabel>
+		<components>
+			<layout-reference resource="synchra/products/componentNodes/tree/new/innerLayout.layout.xml"/>
+		</components>
+	</arguments>
+</config:template-call>

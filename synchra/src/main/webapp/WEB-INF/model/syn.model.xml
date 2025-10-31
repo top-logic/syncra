@@ -416,6 +416,9 @@
 						</format>
 					</annotations>
 				</property>
+				<property name="threeDPicture"
+					type="tl.core:Binary"
+				/>
 			</attributes>
 		</interface>
 		<class name="ConstructionGroup">
@@ -450,6 +453,11 @@
 								<label-position value="hide-label"/>
 							</annotations>
 						</field>
+						<field
+							attribute="threeDPicture"
+							fullQualifiedName="syn:Component#threeDPicture"
+							type="tl.core:Binary"
+						/>
 					</form>
 				</form-definition>
 			</annotations>
@@ -834,6 +842,15 @@
 				/>
 				<property name="position"
 					type="tl.core:String"
+				/>
+				<property name="threedTransformation"
+					type="tl.threed.core:Transformation"
+				/>
+				<property name="threeDColor"
+					type="tl.core:String"
+				/>
+				<property name="threeDVisible"
+					type="tl.core:Boolean"
 				/>
 			</attributes>
 		</class>

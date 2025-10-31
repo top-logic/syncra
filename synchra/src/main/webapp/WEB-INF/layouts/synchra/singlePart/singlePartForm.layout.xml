@@ -86,6 +86,11 @@
 						fullQualifiedName="syn:Component#weight"
 						type="tl.core:Double"
 					/>
+					<field
+						attribute="threeDPicture"
+						fullQualifiedName="syn:Component#threeDPicture"
+						type="tl.core:Binary"
+					/>
 				</formDefinition>
 			</form>
 		</forms>

@@ -18,7 +18,7 @@
     <stringAttribute key="org.eclipse.jdt.launching.CLASSPATH_PROVIDER" value="org.eclipse.m2e.launchconfig.classpathProvider"/>
     <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="com.top_logic.ide.jetty.Bootstrap"/>
     <stringAttribute key="org.eclipse.jdt.launching.MODULE_NAME" value="synchra"/>
-    <stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="-port 8080 -contextPath /synchra"/>
+    <stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="-port 8081 -contextPath /synchra"/>
     <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="synchra"/>
     <stringAttribute key="org.eclipse.jdt.launching.SOURCE_PATH_PROVIDER" value="org.eclipse.m2e.launchconfig.sourcepathProvider"/>
     <stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Xms256m&#13;&#10;-Xmx1024M &#13;&#10;-Declipse.workspace=&quot;${workspace_loc}&quot; &#13;&#10;-Dcom.top_logic.util.sched.task.SystemPropertyTaskClusterNodeName=8080&#13;&#10;-ea&#13;&#10;-XX:+HeapDumpOnOutOfMemoryError&#10;-Dtl_initial_password=root1234&#13;&#10;&#10;-Dtl_environment=&quot;Developer machine&quot;&#13;&#10;-Dtl_config=${project_loc:/synchra}/bin/launch/conf/config-${project.developer}.xml&#13;&#10;-Dtl.developerMode=true&#13;&#10;-Dlog4j2.configurationFile=${workspace_loc:/synchra}/src/main/webapp/WEB-INF/conf/logging/logConf.xml"/>

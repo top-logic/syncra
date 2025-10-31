@@ -11,6 +11,8 @@
 			<layout-reference resource="synchra/products/componentNodes/tree/progress/tabLayout.layout.xml"/>
 			<layout-reference resource="synchra/products/componentNodes/tree/trendDays/tabLayout.layout.xml"/>
 			<layout-reference resource="synchra/products/componentNodes/tree/last5Minutes/tabLayout.layout.xml"/>
+			<layout-reference resource="synchra/products/componentNodes/tree/3D_Picture/tabLayout.layout.xml"/>
+			<layout-reference resource="synchra/products/componentNodes/tree/new/tabLayout.layout.xml"/>
 		</components>
 	</arguments>
 </config:template-call>

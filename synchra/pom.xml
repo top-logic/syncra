@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>com.top-logic</groupId>
 		<artifactId>tl-parent-app</artifactId>
-		<version>7.9.1</version>	
+		<version>7.9.6</version>	
 	</parent>
 	
 	<groupId>com.bos</groupId>
@@ -24,6 +24,7 @@
     </licenses>
 	
 	<properties>
+		<msgbuf.version>1.1.8</msgbuf.version>
 		<project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
 		
 		<tl.deb.skip>true</tl.deb.skip>
@@ -87,6 +88,19 @@
 			<groupId>com.top-logic</groupId>
 			<artifactId>tl-doc</artifactId>
 		</dependency>
+		<dependency>
+            <groupId>com.top-logic</groupId>
+            <artifactId>tl-3d-threejs</artifactId>
+            <version>0.9.1</version>
+        </dependency>
+        		<!-- Repeat to overwrite default from TL - setting the property alone does not work. -->
+		<dependency>
+		    <groupId>de.haumacher.msgbuf</groupId>
+		    <artifactId>msgbuf-api</artifactId>
+		    <version>${msgbuf.version}</version>
+		</dependency>
+ 
+ 
 		<dependency>
 			<groupId>com.top-logic</groupId>
 			<artifactId>tl-model-search</artifactId>
@@ -300,4 +314,27 @@
 			</snapshots>
 		</snapshotRepository>
 	</distributionManagement>
+	<repositories>
+		<repository>
+			<id>tl-releases</id>
+			<url>https://dev.top-logic.com/nexus/repository/toplogic/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+ 
+		<repository>
+			<id>tl-snapshots</id>
+			<url>https://dev.top-logic.com/nexus/repository/toplogic-snapshots/</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
 </project>

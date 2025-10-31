@@ -4,5 +4,47 @@
 	xmlns:config="http://www.top-logic.com/ns/config/6.0"
 	template="com.top_logic.element/form.template.xml"
 >
-	<arguments name="class.com.top_logic.layout.editor.I18NConstants.DYNAMIC_COMPONENT.com.top_logic.model.search.tableWithDialogs.template.defaults.editFormTitle"/>
+	<arguments name="class.com.top_logic.layout.editor.I18NConstants.DYNAMIC_COMPONENT.com.top_logic.model.search.tableWithDialogs.template.defaults.editFormTitle">
+		<forms>
+			<form type="co2m:CO2Producer">
+				<formDefinition>
+					<field
+						attribute="name"
+						fullQualifiedName="co2m:CO2Producer#name"
+						type="tl.core:String"
+					/>
+					<field
+						attribute="description"
+						fullQualifiedName="co2m:CO2Producer#description"
+						type="tl.model.wysiwyg:Html"
+					/>
+					<field
+						attribute="co2StartingValue"
+						fullQualifiedName="co2m:CO2Producer#co2StartingValue"
+						type="tl.core:Double"
+					/>
+					<field
+						attribute="co2Goal"
+						fullQualifiedName="co2m:CO2Producer#co2Goal"
+						type="tl.core:Double"
+					/>
+					<field
+						attribute="co2AfterActivities"
+						fullQualifiedName="co2m:CO2Producer#co2AfterActivities"
+						type="tl.core:Double"
+					/>
+					<field
+						attribute="co2Prognose"
+						fullQualifiedName="co2m:CO2Producer#co2Prognose"
+						type="tl.core:Double"
+					/>
+					<field
+						attribute="contributes"
+						fullQualifiedName="co2m:CO2Producer#contributes"
+						type="co2m:CO2Summ"
+					/>
+				</formDefinition>
+			</form>
+		</forms>
+	</arguments>
 </config:template-call>

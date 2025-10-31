@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	template="tl-3d-threejs/threejs.template.xml"
+>
+	<arguments model="selection(synchra/products/componentNodes/tree/componentNodesTreeTable.layout.xml#TreeTable)">
+		<name key="dynamic.f1195454-68fd-4a0b-b145-07aab3f94300">
+			<de>3D-Bild</de>
+		</name>
+		<modelBuilder class="com.top_logic.threed.threejs.component.SceneBuilderByExpression">
+			<createNode><![CDATA[node -> model -> {
+  picture = $node.get(`syn:ComponentNode#component`).get(`syn:Component#threeDPicture`);
+  transformation = $node.get(`syn:ComponentNode#connection`).get(`syn:Connection#threedTransformation`) || txIdentity();
+  imagenode = $picture != null ? threejsGltf(
+    tx: txIdentity(),
+    userData: null,
+    imageData: threejsImage(
+      userData:$node.get(`syn:ComponentNode#component`),
+      data:x->$x.get(`syn:Component#threeDPicture`)
+    )  
+  ): null;
+  info($imagenode);
+  
+  $imagenode == null ? threejsGroup(
+    tx: $transformation,
+    userData: $node
+    ) : threejsGroup(
+    tx: $transformation,
+    userData: $node,
+    components: [$imagenode]
+    )
+}]]></createNode>
+			<resolveParts><![CDATA[node -> selection-> switch {
+    $selection==null: null;
+    $node.instanceOf(`syn:TreeRoot`): {
+        product = $selection.get(`syn:ProductSelection#productInRevision`);
+        new(`syn:ComponentNode`, transient:true)
+            ..set(`syn:ComponentNode#component`, $product.get(`syn:Product#buildGroup`))
+            ..set(`syn:ComponentNode#parent`, null)
+            ..set(`syn:ComponentNode#connection`, null)
+            ..set(`syn:ComponentNode#product`, $product);
+       };
+    $node.instanceOf(`syn:ComponentNode`):{
+       $node.get(`syn:ComponentNode#component`).get(`syn:ConstructionGroup#consistsOf`)
+            .map( con -> 
+                  new(`syn:ComponentNode`, transient:true)
+                    ..set(`syn:ComponentNode#component`, $con.get(`syn:Connection#consistsOf`))
+                    ..set(`syn:ComponentNode#parent`, $node)
+                    ..set(`syn:ComponentNode#connection`, $con)
+                    ..set(`syn:ComponentNode#product`, $node.get(`syn:ComponentNode#product`))
+            );
+     };
+}]]></resolveParts>
+		</modelBuilder>
+	</arguments>
+</config:template-call>

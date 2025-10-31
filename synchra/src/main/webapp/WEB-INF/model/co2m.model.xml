@@ -155,19 +155,77 @@
 						</storage-algorithm>
 					</annotations>
 				</property>
+				<reference name="contributes"
+					inverse-reference="buildBy"
+					kind="forwards"
+					navigate="true"
+					type="CO2Summ"
+				>
+					<annotations>
+						<storage-algorithm>
+							<query expr="x->$x.set(`co2m:CO2Producer#contributes`, all(`co2m:CO2Summ`).firstElement())"/>
+						</storage-algorithm>
+					</annotations>
+				</reference>
 			</attributes>
 		</class>
-		<class name="SumOfCO2">
+		<class name="CO2Summ">
 			<generalizations>
 				<generalization type="tl.model:TLObject"/>
 			</generalizations>
 			<attributes>
-				<property name="sumOfStartingValues"
+				<reference name="buildBy"
+					inverse-reference="contributes"
+					kind="backwards"
+					multiple="true"
+					navigate="true"
+					type="CO2Producer"
+				/>
+				<property name="name"
+					type="tl.core:String"
+				/>
+				<property name="co2StartingValue"
 					type="tl.core:Double"
 				>
 					<annotations>
 						<storage-algorithm>
-							<query expr="x->$x.get(`co2m:CO2Producer#co2StartingValue`).sum()"/>
+							<query expr="x->$x.get(`co2m:CO2Summ#buildBy`).get(`co2m:CO2Producer#co2StartingValue`).sum()"/>
+						</storage-algorithm>
+					</annotations>
+				</property>
+				<property name="co2AfterActivities"
+					type="tl.core:Double"
+				>
+					<annotations>
+						<storage-algorithm>
+							<query expr="x->$x.get(`co2m:CO2Summ#buildBy`).get(`co2m:CO2Producer#co2AfterActivities`).sum()"/>
+						</storage-algorithm>
+					</annotations>
+				</property>
+				<property name="co2Prognose"
+					type="tl.core:Double"
+				>
+					<annotations>
+						<storage-algorithm>
+							<query expr="x->$x.get(`co2m:CO2Summ#buildBy`).get(`co2m:CO2Producer#co2Prognose`).sum()"/>
+						</storage-algorithm>
+					</annotations>
+				</property>
+				<property name="co2Goal"
+					type="tl.core:Double"
+				>
+					<annotations>
+						<storage-algorithm>
+							<query expr="x->$x.get(`co2m:CO2Summ#buildBy`).get(`co2m:CO2Producer#co2Goal`).sum()"/>
+						</storage-algorithm>
+					</annotations>
+				</property>
+				<property name="co2Gap"
+					type="tl.core:Double"
+				>
+					<annotations>
+						<storage-algorithm>
+							<query expr="x->$x.get(`co2m:CO2Summ#buildBy`).get(`co2m:CO2Producer#co2Gap`).sum()"/>
 						</storage-algorithm>
 					</annotations>
 				</property>

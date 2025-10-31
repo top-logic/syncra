@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	template="com.top_logic/tab.template.xml"
+>
+	<arguments
+		helpID="ID_95a470b8_11a2_4a4a_a7f0_4d9bec631d9c"
+		tabIcon="css:bi bi-badge-3d-fill"
+	>
+		<tabLabel key="dynamic.81672f8f-6aab-4e43-85a8-9bb2c55e820f">
+			<en>3D-Picture</en>
+			<de>3D-Bild</de>
+		</tabLabel>
+		<components>
+			<layout-reference resource="synchra/products/componentNodes/tree/3D_Picture/innerLayout.layout.xml"/>
+		</components>
+	</arguments>
+</config:template-call>

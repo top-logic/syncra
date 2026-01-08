@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	template="com.top_logic/table.template.xml"
+>
+	<arguments
+		defaultColumns="name,problemStatus,isRelatedToComponent,isSolvedByActivity"
+		type="prob:Problem"
+	>
+		<name key="dynamic.9d0fc123-8bcd-477e-8ad1-e5ff5fc3b98d">
+			<en>all documented problems</en>
+			<de>Alle erfassten Probleme</de>
+		</name>
+		<modelBuilder class="com.top_logic.model.search.providers.ListModelByExpression"
+			elements="model->all(`prob:Problem`)"
+			supportsElement="element->$element.instanceOf(`prob:Problem`)"
+		/>
+		<buttons>
+			<button id="exportExcel"
+				class="com.top_logic.layout.table.export.ExcelExportHandler"
+			/>
+		</buttons>
+	</arguments>
+</config:template-call>

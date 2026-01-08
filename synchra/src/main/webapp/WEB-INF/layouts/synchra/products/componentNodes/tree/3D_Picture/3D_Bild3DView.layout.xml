@@ -4,7 +4,10 @@
 	xmlns:config="http://www.top-logic.com/ns/config/6.0"
 	template="tl-3d-threejs/threejs.template.xml"
 >
-	<arguments model="selection(synchra/products/componentNodes/tree/componentNodesTreeTable.layout.xml#TreeTable)">
+	<arguments
+		apply-script="node -> tx -> $node.get(`syn:ComponentNode#connection`).set(`syn:Connection#threedTransformation`, $tx)"
+		model="selection(synchra/products/componentNodes/tree/componentNodesTreeTable.layout.xml#TreeTable)"
+	>
 		<name key="dynamic.f1195454-68fd-4a0b-b145-07aab3f94300">
 			<de>3D-Bild</de>
 		</name>
@@ -20,7 +23,6 @@
       data:x->$x.get(`syn:Component#threeDPicture`)
     )  
   ): null;
-  info($imagenode);
   
   $imagenode == null ? threejsGroup(
     tx: $transformation,

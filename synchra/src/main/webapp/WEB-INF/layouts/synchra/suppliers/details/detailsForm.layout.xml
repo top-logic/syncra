@@ -43,14 +43,9 @@
 						</label>
 					</group>
 					<field
-						attribute="contact"
-						fullQualifiedName="syn:Company#contact"
-						type="syn:ContactPerson"
-					/>
-					<field
-						attribute="mayDeliver"
-						fullQualifiedName="syn:Company#mayDeliver"
-						type="syn:Component"
+						attribute="delivers"
+						fullQualifiedName="syn:Company#delivers"
+						type="syn:SinglePart"
 					/>
 				</formDefinition>
 			</form>

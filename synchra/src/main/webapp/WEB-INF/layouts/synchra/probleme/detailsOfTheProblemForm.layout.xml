@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<config:template-call
+	xmlns:config="http://www.top-logic.com/ns/config/6.0"
+	template="com.top_logic.element/form.template.xml"
+>
+	<arguments model="selection(synchra/probleme/allDocumentedProblemsTable.layout.xml#Table)">
+		<name key="dynamic.3c8ea93d-cb82-4a36-aa3f-95b88e2cc3e3">
+			<en>Details of the Problem</en>
+			<de>Probleme Details</de>
+		</name>
+		<forms>
+			<form type="prob:Problem">
+				<formDefinition>
+					<field
+						attribute="name"
+						fullQualifiedName="prob:Problem#name"
+						type="tl.core:String"
+						visibility="read-only"
+					/>
+					<field
+						attribute="description"
+						fullQualifiedName="prob:Problem#description"
+						type="tl.model.wysiwyg:Html"
+						visibility="read-only"
+					/>
+					<field
+						attribute="problemStatus"
+						fullQualifiedName="prob:Problem#problemStatus"
+						type="prob:Problemstatus"
+						visibility="read-only"
+					/>
+					<field
+						attribute="isRelatedToComponent"
+						fullQualifiedName="prob:Problem#isRelatedToComponent"
+						type="syn:Component"
+						visibility="read-only"
+					/>
+					<field
+						attribute="isSolvedByActivity"
+						fullQualifiedName="prob:Problem#isSolvedByActivity"
+						type="syn:Activity"
+						visibility="read-only"
+					/>
+					<field
+						attribute="tType"
+						fullQualifiedName="tl.model:TLObject#tType"
+						type="tl.model:TLType"
+					/>
+				</formDefinition>
+			</form>
+		</forms>
+	</arguments>
+</config:template-call>

@@ -91,7 +91,7 @@
 		<dependency>
             <groupId>com.top-logic</groupId>
             <artifactId>tl-3d-threejs</artifactId>
-            <version>0.9.2</version>
+            <version>0.9.3</version>
         </dependency>
         		<!-- Repeat to overwrite default from TL - setting the property alone does not work. -->
 		<dependency>
